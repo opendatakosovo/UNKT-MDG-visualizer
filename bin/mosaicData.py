@@ -1,4 +1,5 @@
 #!/usr/local/bin/python3.1
+# -*- coding: utf-8 -*-
 import pandas as pd
 
 class MosaicData:
@@ -22,7 +23,6 @@ class MosaicData:
         # Update Column Names
         column_names = list(mapping["refined_name"])
         data.columns = column_names
-
         return data
 
     def convert_to_values(self, data, value_method):
@@ -32,11 +32,11 @@ class MosaicData:
         
         # Get columns to be mapped
         mapping = pd.read_csv(self.mapping, header=0, delimiter=",", quoting=1, index_col=0)
-        cols_w_text = list(mapping.loc[mapping.conversion_needed == 1,'refined_name'])
+        cols_w_text = list(mapping.loc[mapping.conversion_needed == 1,"refined_name"])
         
         # Get remaining columns
         all_cols = list(data.columns)
-        all_cols.remove('Municipality')
+        all_cols.remove("Municipality")
         other_cols = list(set(all_cols) - set(cols_w_text))
         
         # Replace text fields 
@@ -61,9 +61,11 @@ class MosaicData:
                 data[col] = data[col].astype(float)
             except:
                 print("Warning: At least 1 value in column '" + col + "' could not be converted to a numeric datatype.")
-        
         return data
 
     def aggregate_scores(self, data, aggregate_by):
-        results = data.groupby(aggregate_by).mean()
-        return results
+        return data.groupby(aggregate_by).mean()
+     
+    def return_json(self, data, output_file):
+        return data.to_json(orient = "index", path_or_buf = output_file, force_ascii = False)
+    
