@@ -3,64 +3,67 @@ import pandas as pd
 
 class MosaicData:
     
-    def __init__(self, data_filepath, lookup_filepath, mapping_filepath, cols_with_text):
+    def __init__(self, data_filepath, mapping_filepath, values_filepath):
             self.data = data_filepath
-            self.lookup = lookup_filepath
             self.mapping = mapping_filepath
-            self.cols_w_text = cols_with_text
+            self.values = values_filepath
 
     def import_data(self):
         # Import raw data
         data = pd.read_csv(self.data, header=0, delimiter=",", quoting=1, index_col=0, dtype=str)
 
         # Import lookup
-        lookup = pd.read_csv(self.lookup, header=0, delimiter=",", quoting=1, index_col=0)
+        mapping = pd.read_csv(self.mapping, header=0, delimiter=",", quoting=1, index_col=0)
 
         # Extract appropriate columns
-        questions = list(lookup["question"])
+        questions = list(mapping["question"])
         data = data[questions]
 
         # Update Column Names
-        column_names = list(lookup["refined_name"])
+        column_names = list(mapping["refined_name"])
         data.columns = column_names
 
         return data
 
-    def convert_to_values(self, data):
-        # import mapping
+    def convert_to_values(self, data, value_method):
+        # import value mapping
+        value_map = pd.read_csv(self.values, header=0, delimiter=",", quoting=1, index_col=0)
+        text_values = list(value_map.index)
+        
+        # Get columns to be mapped
         mapping = pd.read_csv(self.mapping, header=0, delimiter=",", quoting=1, index_col=0)
-        text_values = list(mapping.index)
-    
+        cols_w_text = list(mapping.loc[mapping.conversion_needed == 1,'refined_name'])
+        
         # Get remaining columns
         all_cols = list(data.columns)
         all_cols.remove('Municipality')
-        other_cols = list(set(all_cols) - set(self.cols_w_text))
-    
+        other_cols = list(set(all_cols) - set(cols_w_text))
+        
         # Replace text fields 
-        for col in self.cols_w_text:
+        for col in cols_w_text:
+            matches = pd.Series(data[col]).isin(text_values)
+            unmapped = len(matches) - matches.sum()
+            
+            # Print warning if unmapped values found
+            if unmapped > 0:
+                print("Warning: " + str(unmapped) + " record(s) in the column '" + col + "' did not match a value in the value mapping.")
+
             for text in text_values:
-                data.loc[data[col] == text, col] = mapping.at[text, "value"]
-    
+                    data.loc[data[col] == text, col] = value_map.at[text, value_method]
+                
         # Replace whitespace fields with 0
         for col in other_cols:
             data.loc[data[col].str.strip() == "", col] = 0
         
         # Convert all fields to numeric datatype
         for col in all_cols:
-            data[col] = data[col].astype(float)
-    
+            try:
+                data[col] = data[col].astype(float)
+            except:
+                print("Warning: At least 1 value in column '" + col + "' could not be converted to a numeric datatype.")
+        
         return data
 
-    def aggregate_scores(self, data, aggregate_by):    
-        return data.groupby(aggregate_by).mean()
-
-
-
-
-
-
-
-
-
-
-
+    def aggregate_scores(self, data, aggregate_by):
+        results = data.groupby(aggregate_by).mean()
+        return results
