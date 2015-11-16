@@ -81,7 +81,7 @@ class MosaicData:
         else: 
             print("MosaicData object has wrong datatype for this method.")
     
-    def transform_consolidated_data(self, data, year_col = 'Year', indicator_col = "indicator"):
+    def transform_consolidated_data(self, data, year_col = 'Year', indicator_col = "indicator", scalar = 1):
         
         # Get unique year values
         years = data[year_col].drop_duplicates().values.tolist()
@@ -97,20 +97,29 @@ class MosaicData:
         for year in years:
             year_data = data.loc[data[year_col] == year, ]
             reindexed_data = year_data.set_index(keys = indicator_col, drop=True)[all_cols]
-            transposed_data = reindexed_data.transpose()
+            
+            # Transpose the data and multiply by optional scalar
+            transposed_data = reindexed_data.transpose() * scalar
             result_set = {'year' : year,
                           'data' : transposed_data}
             final_data.append(result_set)
             
         return final_data
     
-    def return_json(self, data, output_file):
+    def output_data(self, data, output_file, output_type = 'json'):
         if isinstance(data, list):
             for entries in data:
                 year = entries["year"]
-                file_path = output_file + str(year) + ".json"
-                entries["data"].to_json(orient = "index", path_or_buf = file_path, force_ascii = False)         
+                if output_type == "csv":
+                    file_path = output_file + str(year) + ".csv"
+                    entries["data"].to_csv(path_or_buf = file_path, force_ascii = False)  
+                else: 
+                    file_path = output_file + str(year) + ".json"
+                    entries["data"].to_json(orient = "index", path_or_buf = file_path, force_ascii = False)  
         elif isinstance(data, pd.DataFrame):
-            data.to_json(orient = "index", path_or_buf = output_file, force_ascii = False)
+            if output_type == "csv":
+                data.to_csv(path_or_buf = output_file, force_ascii = False)
+            else:
+                data.to_json(orient = "index", path_or_buf = output_file, force_ascii = False)
         return "Success"
     
