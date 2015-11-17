@@ -44,7 +44,7 @@ svg.call(tip);
 // Import Data
 function start(year, muni) {
 	$.ajax({
-		'url': "../data/output" + year + ".json",
+		'url': "./data/output" + year + ".json",
 		'dataType': 'json',
 		'responseJSON': 'data',
 		'success': function (data) {
