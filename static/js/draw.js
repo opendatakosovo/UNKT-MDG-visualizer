@@ -1,5 +1,5 @@
-var width = 500,
-height = 500,
+var width = 350,
+height = 400,
 radius = Math.min(width, height) / 2,
 innerRadius = 0.3 * radius;
 
@@ -33,18 +33,12 @@ var outlineArc = d3.svg.arc()
 .innerRadius(innerRadius)
 .outerRadius(radius);
 
-var svg = d3.select("body").append("svg")
-.attr("width", width)
-.attr("height", height)
-.append("g")
-.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-svg.call(tip);
 
 // Import Data
 function start(year, muni) {
 	$.ajax({
-		'url': "./data/output" + year + ".json",
+		'url': "http://assemblio.github.io/kosovo-mosaic-visualizer/data/output" + year + ".json",
 		'dataType': 'json',
 		'responseJSON': 'data',
 		'success': function (data) {
@@ -61,7 +55,9 @@ function convert_data(data, muni) {
 	//Loop through and convert to required format	
 	var json_string = "["
 	for (var key in muni_data) {
-		json_string = json_string + '{' + '"label":"' + key.replace(/Satisfaction with /g, "") + '", "value":' + muni_data[key] + '},'
+		if (muni_data[key] != null){
+			json_string = json_string + '{' + '"label":"' + key.replace(/Satisfaction with /g, "") + '", "value":' + muni_data[key] + '},'
+		}
 	};
 	
 	//Fix end of string
@@ -69,12 +65,28 @@ function convert_data(data, muni) {
 	
 	//Convert to JSON
 	var modified_data = JSON.parse(json_string)
-	create(modified_data);
+	var sorted_data = sortByKey(modified_data, "label");
+	create(sorted_data);
+}
+
+function sortByKey(array, key) {
+    return array.sort(function(a, b) {
+        var x = a[key]; var y = b[key];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
 }
 
 // Create chart
 function create(data) {
-	
+	$("#aster-chart").empty();
+	window.svg = d3.select("#aster-chart").append("svg")
+	.attr("width", width)
+	.attr("height", height)
+	.append("g")
+	.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+	svg.call(tip);
+
 	// Background
 	var outerPath = svg.selectAll(".outlineArc")
 	.data(pie(data))
@@ -101,7 +113,7 @@ function create(data) {
 // What happens when a wedge is clicked
 function select_wedge(d){
 	// Remove old text
-	svg.selectAll("text").remove()
+	svg.selectAll("text").remove();
 	
 	//Reset Colors
 	svg.selectAll(".solidArc")
@@ -114,7 +126,7 @@ function select_wedge(d){
 	.attr("class", "aster-score")
 	.attr("dy", ".35em")
 	.attr("text-anchor", "middle")
-	.text(d.data.label + ": " + d.data.value);
+	.text(d.data.value + "%");
 	
 	//Color selected wedge
 	d3.select(this)
