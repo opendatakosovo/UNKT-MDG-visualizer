@@ -26,9 +26,9 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "hc-key": "kv-graqanica",
+        "hc-key": "kv-gracanica",
         "CODE": null,
-        "name": "Graqanica",
+        "name": "Gracanica",
         "VENDBANIME": 0,
         "HA": 11804.99,
         "KM": 118.05,
@@ -59504,7 +59504,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
       "type": "Feature",
       "properties": {
         "CODE": "19",
-        "hc-key": "kv-prishtine",
+        "hc-key": "kv-pristina",
         "name": "Prishtine",
         "VENDBANIME": 0,
         "HA": 52443.8,
@@ -63136,7 +63136,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
       "properties": {
         "CODE": "04",
         "hc-key": "kv-gjilan",
-        "names": "Gjilan",
+        "name": "Gjilan",
         "VENDBANIME": 0,
         "HA": 40284.21,
         "KM": 402.84,
