@@ -65,7 +65,8 @@
 				'dataType': 'json',
 				'responseJSON': 'data',
 				'success': function (data) {
-					var municipalities_data = []
+					var municipalities_data = [];
+					var values_array = [];
 					for (key in data){
 						var name = key
 						if (key == "Gliogovc"){
@@ -80,6 +81,7 @@
 							name = "Mitrovice"
 						}
 						if (data[key][indicator] != null){
+							values_array.push(data[key][indicator])
 							var json_key = {
 								"hc-key": "kv-" + slugify(name),
 								"value": data[key][indicator]
@@ -102,7 +104,6 @@
 		                },
 
 		                colorAxis: {
-		                    min: 0,
 		                    maxColor: '#73AD21'
 		                },
 
