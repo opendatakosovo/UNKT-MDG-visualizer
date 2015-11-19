@@ -89,7 +89,7 @@
 							municipalities_data.push(json_key);
 						}
 					}
-
+					var min = Math.min.apply(Math, values_array);
 		            // Initiate the chart
 		            $('#container').highcharts('Map', {
 		                title : {
@@ -104,6 +104,7 @@
 		                },
 
 		                colorAxis: {
+		                	min: min,
 		                    maxColor: '#73AD21'
 		                },
 
@@ -246,7 +247,6 @@
 				'dataType': 'json',
 				'responseJSON': 'data',
 				'success': function (data) {
-					console.log(data)
 					var json_obj = {}
 					for (key in data){
 						if (data[key][indicator] != null) {
@@ -271,7 +271,6 @@
 		                data.push(b[1]);
 		            }
 
-					console.log(json_data)
 		            $('#' + div).highcharts({
 		                chart: {
 		                    type: chart_type
@@ -339,6 +338,14 @@
 			});
 		}
 
+		jQuery.fn.d3Click = function () {
+			this.each(function (i, e) {
+				var evt = document.createEvent("MouseEvents");
+				evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+				e.dispatchEvent(evt);
+			});
+		};
+
         $(document).ready(function(){
             var json_obj = jsonObject()
             var muni = "Kosovo";
@@ -359,6 +366,7 @@
 				var year = $('input[name=radio]:checked', '#my-form').val()
             	drawMap(year, indicator);
             	drawColumnChart("column-chart", "column", year, indicator);
+            	$("#aster-chart").d3Click();
 			})
 
             drawMap("2015", "Satisfaction with family medical centers");
