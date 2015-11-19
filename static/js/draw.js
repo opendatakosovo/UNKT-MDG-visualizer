@@ -143,9 +143,5 @@ function select_wedge(d){
 	.attr("fill", d3.rgb(select_color))
 	.attr("stroke", d3.rgb(line_color))
 	.attr("stroke-width", "1");
-
-
-	$('#aster-text').empty();
-	$("#aster-text").append("<h4>Satisfaction with " + d.data.label + "</h4>");
 };
 
