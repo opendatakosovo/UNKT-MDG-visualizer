@@ -1,11 +1,13 @@
 #!/usr/local/bin/python3.1
 # -*- coding: utf-8 -*-
 import pandas as pd
+import os, shutil
+import json
 
 class MosaicData:
     
     def __init__(self, data_filepath, data_type, mapping_filepath = None, values_filepath = None):
-            self.data = data_filepath
+            self.data_path = data_filepath
             self.data_type = data_type
             if mapping_filepath != None: 
                 self.mapping = mapping_filepath
@@ -15,7 +17,7 @@ class MosaicData:
     def import_raw_data(self):
         if self.data_type == 'raw':
             # Import raw data
-            data = pd.read_csv(self.data, header=0, delimiter=",", quoting=1, index_col=0, dtype=str)
+            data = pd.read_csv(self.data_path, header=0, delimiter=",", quoting=1, index_col=0, dtype=str)
 
             # Import lookup
             mapping = pd.read_csv(self.mapping, header=0, delimiter=",", quoting=1, index_col=0)
@@ -27,11 +29,12 @@ class MosaicData:
             # Update Column Names
             column_names = list(mapping["refined_name"])
             data.columns = column_names
-            return data
+            self.data = data
         else:
             print("MosaicData object has wrong datatype for this method.")
 
-    def convert_to_values(self, data, value_method):
+    def convert_to_values(self, value_method):
+        data = self.data
         # import value mapping
         value_map = pd.read_csv(self.values, header=0, delimiter=",", quoting=1, index_col=0)
         text_values = list(value_map.index)
@@ -67,21 +70,22 @@ class MosaicData:
                 data[col] = data[col].astype(float)
             except:
                 print("Warning: At least 1 value in column '" + col + "' could not be converted to a numeric datatype.")
-        return data
+        self.data = data
 
-    def aggregate_scores(self, data, aggregate_by):
-        return data.groupby(aggregate_by).mean()
+    def aggregate_scores(self, aggregate_by):
+        return self.data.groupby(aggregate_by).mean()
         
     def import_consolidated_data(self):
         if self.data_type == 'consolidated':
             # Import consolidated data
-            data = pd.read_csv(self.data, header=0, delimiter=",", quoting=1, index_col=None)
+            data = pd.read_csv(self.data_path, header=0, delimiter=",", quoting=1, index_col=None)
             
-            return data
+            self.data = data
         else: 
             print("MosaicData object has wrong datatype for this method.")
     
-    def transform_consolidated_data(self, data, year_col = 'Year', indicator_col = "indicator", scalar = 1):
+    def transform_consolidated_data(self, year_col = 'Year', indicator_col = "indicator", scalar = 1):
+        data = self.data
         
         # Get unique year values
         years = data[year_col].drop_duplicates().values.tolist()
@@ -104,9 +108,10 @@ class MosaicData:
                           'data' : transposed_data}
             final_data.append(result_set)
             
-        return final_data
+        self.data = final_data
     
-    def output_data(self, data, output_file, output_type = 'json'):
+    def output_data(self, output_file, output_type = 'json'):
+        data = self.data
         if isinstance(data, list):
             for entries in data:
                 year = entries["year"]
@@ -123,3 +128,24 @@ class MosaicData:
                 data.to_json(orient = "index", path_or_buf = output_file, force_ascii = False)
         return "Success"
     
+    def delete_old_files(self, folder = "../data/clean_data/"):
+        for the_file in os.listdir(folder):
+            file_path = os.path.join(folder, the_file)
+            try:
+                if os.path.isfile(file_path):
+                    os.unlink(file_path)
+            except Exception, e:
+                print e
+    
+    def regenerate_years_list(self, year_col = 'Year'):
+        try:
+            
+            years = self.data[year_col].drop_duplicates().values.tolist()
+            years = sorted(years)
+            file_path = "../data/mapping/years.json"
+            with open(file_path, 'w') as data_file:
+                json.dump(years, data_file)
+        except Exception, e:
+            print e
+            print "Years must be generated before the transform step."
+            

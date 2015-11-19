@@ -61,7 +61,7 @@
 
         function drawMap(year, indicator){
         	$.ajax({
-				'url': "http://assemblio.github.io/kosovo-mosaic-visualizer/data/output" + year + ".json",
+				'url': "./data/clean_data/" + year + ".json",
 				'dataType': 'json',
 				'responseJSON': 'data',
 				'success': function (data) {
@@ -137,7 +137,7 @@
 
         function drawColumnChart(div, chart_type, year, indicator){
         	$.ajax({
-				'url': "http://assemblio.github.io/kosovo-mosaic-visualizer/data/output" + year + ".json",
+				'url': "./data/clean_data/" + year + ".json",
 				'dataType': 'json',
 				'responseJSON': 'data',
 				'success': function (data) {
@@ -216,7 +216,7 @@
 
         function bindIndicatorSelectBox(year){
 			$.ajax({
-				'url': "http://assemblio.github.io/kosovo-mosaic-visualizer/data/output" + year + ".json",
+				'url': "./data/clean_data/" + year + ".json",
 				'dataType': 'json',
 				'responseJSON': 'data',
 				'success': function (data) {
