@@ -84,7 +84,7 @@ class MosaicData:
         else: 
             print("MosaicData object has wrong datatype for this method.")
     
-    def transform_consolidated_data(self, year_col = 'Year', indicator_col = "indicator", scalar = 1):
+    def transform_consolidated_data(self, year_col = 'year', indicator_col = "indicator", scalar = 1):
         data = self.data
         
         # Get unique year values
