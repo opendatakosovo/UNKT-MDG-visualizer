@@ -36,9 +36,9 @@ var outlineArc = d3.svg.arc()
 
 
 // Import Data
-function start(year, muni) {
+function start(year, muni, s_or_d) {
 	$.ajax({
-		'url': "data/clean_data/" + year + ".json",
+		'url': "data/clean_data/" + year + s_or_d + ".json",
 		'dataType': 'json',
 		'responseJSON': 'data',
 		'success': function (data) {
