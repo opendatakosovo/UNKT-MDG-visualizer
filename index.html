@@ -227,8 +227,9 @@
         	
             var json_obj = jsonObject()
             var muni = "Kosovo";
-			start('2015', muni);
-			bindIndicatorSelectBox("2015")
+			var viti = $('input[name=radio]:checked', '#my-form').val()
+			start(viti, muni);
+			bindIndicatorSelectBox(viti)
 
 			$("input[name=radio]:radio").change(function () {
 				var year = $('input[name=radio]:checked', '#my-form').val()
@@ -255,12 +256,16 @@
 				var year = $('input[name=radio]:checked', '#my-form').val();
             	drawMap(year, indicator);
             	drawColumnChart("column-chart", "column", year, indicator);
+			});
+
+			$("#aster-chart path").on("click", function(){
+				console.log($(this))
 			})
 
             // draw map chart in page load.
-            drawMap("2015", "Satisfaction with family medical centers");
+            drawMap(viti, "Satisfaction with family medical centers");
             // draw column chart in page load.
-            drawColumnChart("column-chart", "column", "2015", "Satisfaction with family medical centers");
+            drawColumnChart("column-chart", "column", viti, "Satisfaction with family medical centers");
         })
     </script>
 </head>
