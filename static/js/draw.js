@@ -76,6 +76,15 @@ function sortByKey(array, key) {
     });
 }
 
+function slugify(text) {
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start of text
+    .replace(/-+$/, '');            // Trim - from end of text
+}
+
 // Create chart
 function create(data) {
 	$("#aster-chart").empty();
@@ -94,6 +103,7 @@ function create(data) {
 	.attr("fill", d3.rgb(bg_color))
 	.attr("stroke", d3.rgb(line_color))
 	.attr("class", "outlineArc")
+    .transition().delay(function (d,i){ return i * 40;}).duration(40)
 	.attr("d", outlineArc);  
 	
 	// Wedges
@@ -102,12 +112,12 @@ function create(data) {
 	.enter().append("path")
 	.attr("fill", d3.rgb(wedge_color))
 	.attr("class", "solidArc")
+	.attr("id", function(d) { return slugify(d.data.label); })
 	.attr("stroke", d3.rgb(line_color))
 	.attr("d", arc)
 	.on('click', select_wedge)
 	.on('mouseover', tip.show)
 	.on('mouseout', tip.hide);
-
 };
 
 // What happens when a wedge is clicked
@@ -133,5 +143,9 @@ function select_wedge(d){
 	.attr("fill", d3.rgb(select_color))
 	.attr("stroke", d3.rgb(line_color))
 	.attr("stroke-width", "1");
+
+
+	$('#aster-text').empty();
+	$("#aster-text").append("<h4>Satisfaction with " + d.data.label + "</h4>");
 };
 
