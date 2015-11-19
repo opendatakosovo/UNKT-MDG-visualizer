@@ -3,12 +3,12 @@
 from mosaicData import MosaicData
 import json
 
-data_filepath = "../data/raw_data/consolidated_indicators_mod.csv"
+#data_filepath = "../data/raw_data/satisfied.csv"
+data_filepath = "../data/raw_data/dissatisfied.csv"
 output_filepath = "../data/clean_data/"
-data_type = 'consolidated'
 
 # Create Mosaic object
-mosaic2012 = MosaicData(data_filepath, data_type)
+mosaic2012 = MosaicData(data_filepath = data_filepath, sat_or_dis = 'd')
 
 # Import the data
 mosaic2012.import_consolidated_data()
@@ -18,7 +18,7 @@ mosaic2012.regenerate_years_list()
 mosaic2012.transform_consolidated_data(scalar = 100)
 
 # Delete previous files
-mosaic2012.delete_old_files(output_filepath)
+#mosaic2012.delete_old_files(output_filepath)
 
 # Write new files
 #output_type = "csv"

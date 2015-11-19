@@ -36,9 +36,9 @@ var outlineArc = d3.svg.arc()
 
 
 // Import Data
-function start(year, muni) {
+function start(year, muni, s_or_d) {
 	$.ajax({
-		'url': "data/clean_data/" + year + ".json",
+		'url': "data/clean_data/" + year + s_or_d + ".json",
 		'dataType': 'json',
 		'responseJSON': 'data',
 		'success': function (data) {
@@ -143,9 +143,5 @@ function select_wedge(d){
 	.attr("fill", d3.rgb(select_color))
 	.attr("stroke", d3.rgb(line_color))
 	.attr("stroke-width", "1");
-
-
-	$('#aster-text').empty();
-	$("#aster-text").append("<h4>Satisfaction with " + d.data.label + "</h4>");
 };
 

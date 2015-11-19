@@ -6,13 +6,25 @@ import json
 
 class MosaicData:
     
-    def __init__(self, data_filepath, data_type, mapping_filepath = None, values_filepath = None):
+    def __init__(self, data_filepath, sat_or_dis, data_type = "consolidated", mapping_filepath = None, values_filepath = None):
             self.data_path = data_filepath
             self.data_type = data_type
-            if mapping_filepath != None: 
-                self.mapping = mapping_filepath
-            if values_filepath != None:
-                self.values = values_filepath
+            
+            # Check sat_or_dis is 'd' or 's'
+            if sat_or_dis.lower() != 'd' and sat_or_dis.lower() != 's':
+                raise TypeError("The 'sat_or_dis' parameter must be set to 's' (satisfied %) or 'd' (dissatisfied %).")
+            else:
+                self.sat_or_dis = sat_or_dis
+                
+            # Handle additional parameters if data type = 'raw'
+            if data_type == 'raw': 
+                if mapping_filepath != None:
+                    raise TypeError("When data_type set to 'raw', a path for a mapping must be passed.")
+                elif values_filepath != None:
+                    raise TypeError("When data_type set to 'raw', a path for a value mapping must be passed.")
+                else:
+                    self.mapping = mapping_filepath
+                    self.values = values_filepath
 
     def import_raw_data(self):
         if self.data_type == 'raw':
@@ -112,21 +124,32 @@ class MosaicData:
     
     def output_data(self, output_file, output_type = 'json'):
         data = self.data
+        
+        # Consolidated data type
         if isinstance(data, list):
             for entries in data:
                 year = entries["year"]
+                
+                # Is the data satisfied or dissatisfied percentage?
+                if self.sat_or_dis.lower() == 's':
+                    file_path = output_file + str(year) + "S"
+                elif self.sat_or_dis.lower() == 'd':
+                    file_path = output_file + str(year) + "D"
+                    
+                # CSV or JSON file type?
                 if output_type == "csv":
-                    file_path = output_file + str(year) + ".csv"
+                    file_path = file_path + ".csv"
                     entries["data"].to_csv(path_or_buf = file_path, force_ascii = False)  
                 else: 
-                    file_path = output_file + str(year) + ".json"
+                    file_path = file_path + ".json"
                     entries["data"].to_json(orient = "index", path_or_buf = file_path, force_ascii = False)  
+        
+        # Raw Datatype
         elif isinstance(data, pd.DataFrame):
             if output_type == "csv":
                 data.to_csv(path_or_buf = output_file, force_ascii = False)
             else:
                 data.to_json(orient = "index", path_or_buf = output_file, force_ascii = False)
-        return "Success"
     
     def delete_old_files(self, folder = "../data/clean_data/"):
         for the_file in os.listdir(folder):
@@ -137,9 +160,8 @@ class MosaicData:
             except Exception, e:
                 print e
     
-    def regenerate_years_list(self, year_col = 'Year'):
+    def regenerate_years_list(self, year_col = 'year'):
         try:
-            
             years = self.data[year_col].drop_duplicates().values.tolist()
             years = sorted(years)
             file_path = "../data/mapping/years.json"

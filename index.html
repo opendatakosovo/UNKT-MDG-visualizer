@@ -49,17 +49,18 @@
     	municipality_names_to_fix = {
     		"Gliogovc": "Drenas"
     	}
-
-        function drawMap(year, indicator){
+		
+        function drawMap(year, indicator, s_or_d){
         	$.ajax({
-				'url': "./data/clean_data/" + year + ".json",
+				'url': "./data/clean_data/" + year + s_or_d + ".json",
 				'dataType': 'json',
 				'responseJSON': 'data',
 				'success': function (data) {
+					console.log(s_or_d )
 					var municipalities_data = [];
 					for (key in data){
 						var name = key
-						if (key == "Gliogovc"){
+						if (key == "Gllogoc"){
 							name = "Drenas";
 						} else if (key == "Mitrovica South") {
 							name = "Mitrovice"
@@ -121,9 +122,9 @@
 			});
 		}	
 
-        function drawColumnChart(div, chart_type, year, indicator){
+        function drawColumnChart(div, chart_type, year, indicator, s_or_d){
         	$.ajax({
-				'url': "./data/clean_data/" + year + ".json",
+				'url': "./data/clean_data/" + year + s_or_d + ".json",
 				'dataType': 'json',
 				'responseJSON': 'data',
 				'success': function (data) {
@@ -200,9 +201,9 @@
 			});
         }
 
-        function bindIndicatorSelectBox(year){
+        function bindIndicatorSelectBox(year, s_or_d){
 			$.ajax({
-				'url': "./data/clean_data/" + year + ".json",
+				'url': "./data/clean_data/" + year + s_or_d + ".json",
 				'dataType': 'json',
 				'responseJSON': 'data',
 				'success': function (data) {
@@ -224,24 +225,28 @@
 
         $(document).ready(function(){
         	$("#d3-tip n").d3Click();
-        	
-            var json_obj = jsonObject()
+			
+			// Variable for switching between satisfied and dissatisfied datasets
+			var s_or_d = "D";
+            var json_obj = jsonObject();
             var muni = "Kosovo";
-			start('2015', muni);
-			bindIndicatorSelectBox("2015")
+			var viti = $('input[name=radio]:checked', '#my-form').val()
+			
+			start(viti, muni, s_or_d);
+			bindIndicatorSelectBox(viti, s_or_d)
 
 			$("input[name=radio]:radio").change(function () {
 				var year = $('input[name=radio]:checked', '#my-form').val()
 				var indicator = $("#indicator-select").val();
-				start(year, muni);
+				start(year, muni, s_or_d);
 				text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ indicator +"</h4>"
 				$("#aster-text").empty();
 				$("#aster-text").append(text);
 				indicator_id = indicator.replace("Satisfaction with ", "");
 				$("#" + slugify(indicator_id)).d3Click();
-	        	bindIndicatorSelectBox(year);
-            	drawMap(year, indicator);
-            	drawColumnChart("column-chart", "column", year, indicator);
+	        	bindIndicatorSelectBox(year, s_or_d);
+            	drawMap(year, indicator, s_or_d);
+            	drawColumnChart("column-chart", "column", year, indicator, s_or_d);
 			});
 
 			$("#indicator-select").change(function(){
@@ -253,14 +258,18 @@
 				console.log(slugify(indicator_id));
 				$("path#" + slugify(indicator_id)).d3Click();
 				var year = $('input[name=radio]:checked', '#my-form').val();
-            	drawMap(year, indicator);
-            	drawColumnChart("column-chart", "column", year, indicator);
+            	drawMap(year, indicator, s_or_d);
+            	drawColumnChart("column-chart", "column", year, indicator, s_or_d);
+			});
+			
+			$("#aster-chart path").on("click", function(){
+				console.log($(this))
 			})
 
             // draw map chart in page load.
-            drawMap("2015", "Satisfaction with family medical centers");
+            drawMap(viti, "family medical centers", "S");
             // draw column chart in page load.
-            drawColumnChart("column-chart", "column", "2015", "Satisfaction with family medical centers");
+            drawColumnChart("column-chart", "column", viti, "family medical centers", "S");
         })
     </script>
 </head>
