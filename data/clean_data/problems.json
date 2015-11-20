@@ -1,0 +1,708 @@
+[
+    {
+        "municipality": "Pristina", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 12.9
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 43.9
+            }, 
+            {
+                "label": "Corruption", 
+                "value": 9.5
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Mitrovica", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 24.5
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 40.0
+            }, 
+            {
+                "label": "Corruption", 
+                "value": 9.0
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Mitrovica North", 
+        "values": [
+            {
+                "label": "Unemployment", 
+                "value": 23.7
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 33.6
+            }, 
+            {
+                "label": "Inter-ethnic relations", 
+                "value": 14.499999999999998
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Gjilan", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 18.5
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 56.99999999999999
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 9.0
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Peje", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 22.0
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 36.5
+            }, 
+            {
+                "label": "Corruption", 
+                "value": 18.0
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Prizren", 
+        "values": [
+            {
+                "label": "Unemployment", 
+                "value": 48.8
+            }, 
+            {
+                "label": "Corruption", 
+                "value": 19.5
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 8.2
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Gjakove", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 32.5
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 50.0
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 8.5
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Podujeve", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 12.5
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 64.5
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 10.5
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Vushtrri", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 6.0
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 69.5
+            }, 
+            {
+                "label": "Poor water supply", 
+                "value": 6.0
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Skenderaj", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 31.5
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 53.0
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 10.5
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Leposaviq", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 14.499999999999998
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 26.5
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 38.0
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Kline", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 24.0
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 41.0
+            }, 
+            {
+                "label": "Poor water supply", 
+                "value": 11.5
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Istog", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 25.5
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 40.8
+            }, 
+            {
+                "label": "Corruption", 
+                "value": 12.5
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Decan", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 9.5
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 61.5
+            }, 
+            {
+                "label": "Corruption", 
+                "value": 11.0
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Dragash", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 22.3
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 62.0
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 6.5
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Suhareke", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 21.5
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 63.5
+            }, 
+            {
+                "label": "Corruption", 
+                "value": 6.0
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Rahovec", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 24.0
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 29.5
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 9.5
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Viti", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 17.5
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 52.5
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 7.000000000000001
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Kamenice", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 23.0
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 44.0
+            }, 
+            {
+                "label": "Corruption", 
+                "value": 9.5
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Lipjan", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 52.0
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 26.5
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Shtime", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 23.5
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 45.0
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 8.5
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Ferizaj", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 15.5
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 44.0
+            }, 
+            {
+                "label": "Corruption", 
+                "value": 13.5
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Kacanik", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 20.0
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 57.49999999999999
+            }, 
+            {
+                "label": "Corruption", 
+                "value": 15.5
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Fushe Kosove", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 19.0
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 56.00000000000001
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 12.0
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Obiliq", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 11.5
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 32.0
+            }, 
+            {
+                "label": "Environmental pollution", 
+                "value": 39.0
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Novoberda", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 15.6
+            }, 
+            {
+                "label": "Corruption", 
+                "value": 15.6
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 49.0
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Zubin Potok", 
+        "values": [
+            {
+                "label": "Unemployment", 
+                "value": 30.0
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 42.2
+            }, 
+            {
+                "label": "Inter-ethnic relations", 
+                "value": 7.8
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Shterpce", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 17.5
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 33.1
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 11.3
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Zvecan", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 13.8
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 30.9
+            }, 
+            {
+                "label": "Corruption", 
+                "value": 13.8
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 20.2
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Gllogoc", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 18.0
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 51.0
+            }, 
+            {
+                "label": "Corruption", 
+                "value": 9.0
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Malisheve", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 42.8
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 32.0
+            }, 
+            {
+                "label": "Corruption", 
+                "value": 8.5
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Junik", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 22.0
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 43.0
+            }, 
+            {
+                "label": "Corruption", 
+                "value": 31.0
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Mamushe", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 40.0
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 37.0
+            }, 
+            {
+                "label": "Poor water supply", 
+                "value": 13.0
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Hani I Elezit", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 24.0
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 49.0
+            }, 
+            {
+                "label": "Poor water supply", 
+                "value": 8.7
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Gracanica", 
+        "values": [
+            {
+                "label": "Crime", 
+                "value": 25.0
+            }, 
+            {
+                "label": "Corruption", 
+                "value": 33.5
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 19.0
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Ranillug", 
+        "values": [
+            {
+                "label": "Unemployment", 
+                "value": 35.0
+            }, 
+            {
+                "label": "Crime", 
+                "value": 14.000000000000002
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 13.0
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Partesh", 
+        "values": [
+            {
+                "label": "Road infrastructure", 
+                "value": 16.0
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 41.0
+            }, 
+            {
+                "label": "Crime", 
+                "value": 13.0
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Kllokot", 
+        "values": [
+            {
+                "label": "Unemployment", 
+                "value": 30.0
+            }, 
+            {
+                "label": "Corruption", 
+                "value": 11.0
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 16.0
+            }
+        ], 
+        "year": 2015
+    }, 
+    {
+        "municipality": "Kosovo", 
+        "values": [
+            {
+                "label": "Lack of economic growth", 
+                "value": 18.9
+            }, 
+            {
+                "label": "Unemployment", 
+                "value": 43.5
+            }, 
+            {
+                "label": "Corruption", 
+                "value": 9.4
+            }, 
+            {
+                "label": "Poverty/Low standard of living", 
+                "value": 9.5
+            }
+        ], 
+        "year": 2015
+    }
+]
