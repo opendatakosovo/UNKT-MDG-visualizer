@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- Albanian Version -->
+	<!-- Serbian Version-->
     <title>Kosovo Mosaic</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
@@ -21,8 +21,7 @@
 
     <!-- jquery plugin -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="data/output2015.js"></script>
-
+    <script src="../data/output2015.js"></script>
 
     <!-- Highcharts map JavaScript -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -53,7 +52,7 @@
 		
         function drawMap(year, indicator, s_or_d){
         	$.ajax({
-				'url': "./data/clean_data/" + year + s_or_d + ".json",
+				'url': "../data/clean_data/" + year + s_or_d + ".json",
 				'dataType': 'json',
 				'responseJSON': 'data',
 				'success': function (data) {
@@ -125,7 +124,7 @@
 
         function drawColumnChart(div, chart_type, year, indicator, s_or_d){
         	$.ajax({
-				'url': "./data/clean_data/" + year + s_or_d + ".json",
+				'url': "../data/clean_data/" + year + s_or_d + ".json",
 				'dataType': 'json',
 				'responseJSON': 'data',
 				'success': function (data) {
@@ -204,7 +203,7 @@
 
         function bindIndicatorSelectBox(year, s_or_d){
 			$.ajax({
-				'url': "./data/clean_data/" + year + s_or_d + ".json",
+				'url': "../data/clean_data/" + year + s_or_d + ".json",
 				'dataType': 'json',
 				'responseJSON': 'data',
 				'success': function (data) {
@@ -283,11 +282,11 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="index.html">Visualizer</a></li>
-					<li><a href="shq/indicators.html">Indicators</a></li>
+					<li><a href="indicators.html">Indicators</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="index.html">Shqip</a></li>
-					<li><a href="srb/index.html">Srpski</a></li>
+					<li><a href="../index.html">Shqip</a></li>
+					<li class="active"><a href="index.html">Srpski</a></li>
 				</ul>
 			</div> <!-- navbar-collapse -->
 		</div> <!-- container-fluid -->		
