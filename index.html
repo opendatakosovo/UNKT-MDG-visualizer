@@ -23,6 +23,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="data/output2015.js"></script>
 
+    <!-- Bootstrap modal plugins -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <!-- Highcharts map JavaScript -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -97,6 +103,31 @@
 		                	min: 0,
 		                    maxColor: '#73AD21'
 		                },
+		                plotOptions: {
+				            enabled: true,
+				            series: {
+				                point: {
+				                    events: {
+				                        select: function () {
+				                        	$('#popup-button').click();
+				                            var text = 'Selected ' + this.name + ' (' + this.value + '%)';
+			                                $('.modal-title').empty();
+				                            $('.modal-title').append("Municipality Profile: <b>" + this.name + "</b>");
+			                                $("#municipality-popup").empty();
+								            var muni = this.name;
+											var viti = $('input[name=radio]:checked', '#my-form').val()
+											var aster_div = "aster-chart-popup";
+											var aster_text_div = "aster-text-popup";
+											var indicator = $("#indicator-select").val();
+											indicator_id = indicator.replace("Satisfaction with ", "");
+											$("#" + aster_text_div).find("path#" + slugify(indicator_id)).d3Click();
+			                        		$("#municipality-popup").append(text);
+											start(viti, muni, s_or_d, aster_div, aster_text_div);
+				                        }
+				                    }
+				                }
+				            }
+				        },
 		                tooltip: {
 				            backgroundColor: '#FCFFC5',
 				            fontSize: "15px",
@@ -107,6 +138,7 @@
 		                    data : municipalities_data,
 		                    mapData: Highcharts.maps['countries/kv/kv-all'],
 		                    joinBy: 'hc-key',
+            				allowPointSelect: true,
 		                    name: indicator,
 		                    states: {
 		                        hover: {
@@ -225,21 +257,33 @@
 		};
 
         $(document).ready(function(){
-        	$("#d3-tip n").d3Click();
-			
-			// Variable for switching between satisfied and dissatisfied datasets
-			var s_or_d = "D";
-            var json_obj = jsonObject();
+			var s_or_d = "S";
             var muni = "Kosovo";
 			var viti = $('input[name=radio]:checked', '#my-form').val()
+			var aster_div = "aster-chart";
+			var aster_text_div = "aster-text";
 			
-			start(viti, muni, s_or_d);
-			bindIndicatorSelectBox(viti, s_or_d)
+			start(viti, muni, s_or_d, aster_div);
+			bindIndicatorSelectBox(viti, s_or_d);
+
+			$(document).on('click', '#close-popup, .close', function(event) {
+				text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ capitalizeFirstLetter("family medical centers") +"</h4>"
+				$("#aster-text").empty();
+				$("#aster-text").append(text)
+        		start(viti, muni, s_or_d, aster_div);
+				bindIndicatorSelectBox(viti, s_or_d);
+
+	            drawMap(viti, "family medical centers", "S");
+	            drawColumnChart("column-chart", "column", viti, "family medical centers", "S");
+			});
+
+			// Variable for switching between satisfied and dissatisfied datasets
+			
 
 			$("input[name=radio]:radio").change(function () {
 				var year = $('input[name=radio]:checked', '#my-form').val()
 				var indicator = $("#indicator-select").val();
-				start(year, muni, s_or_d);
+				start(year, muni, s_or_d, aster_div);
 				text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ indicator +"</h4>"
 				$("#aster-text").empty();
 				$("#aster-text").append(text);
@@ -252,20 +296,15 @@
 
 			$("#indicator-select").change(function(){
 				var indicator = $("#indicator-select").val();
-				text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ indicator +"</h4>"
+				text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ capitalizeFirstLetter(indicator) +"</h4>"
 				$("#aster-text").empty();
 				$("#aster-text").append(text)
-				indicator_id = indicator.replace("Satisfaction with ", "");
-				console.log(slugify(indicator_id));
-				$("path#" + slugify(indicator_id)).d3Click();
 				var year = $('input[name=radio]:checked', '#my-form').val();
             	drawMap(year, indicator, s_or_d);
+				indicator_id = indicator.replace("Satisfaction with ", "");
+				$("#aster-chart").find("path#" + slugify(indicator_id)).d3Click();
             	drawColumnChart("column-chart", "column", year, indicator, s_or_d);
 			});
-			
-			$("#aster-chart path").on("click", function(){
-				console.log($(this))
-			})
 
             // draw map chart in page load.
             drawMap(viti, "family medical centers", "S");
@@ -345,8 +384,33 @@
             </div>
         </div>
     </div>
-    
+    <button id="popup-button" type="button" class="btn btn-info btn-lg" data-toggle="modal" style="display:none;" data-target="#myModal">Open Modal</button>
+	<!-- Modal -->
+	<div class="modal fade" data-backdrop="static" data-keyboard="false" id="myModal" role="dialog">
+		<div class="modal-dialog" style="width:90%;">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="navbar-collapse modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title" style="text-align: center"></h4>
+				</div>
+				<div class="modal-body">
+					<p id="municipality-popup"></p>
+					<div id="aster-text-popup" style="width:100%; height:40px; float:left; position:absolute; text-align:left;">
+	                </div>
+	                <br><br>
+	                <div id="aster-chart-popup" style="width:100%;">
+	                </div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" id="close-popup" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
     <!-- Aster chart script -->
     <script src="static/js/draw.js" ></script>
+
 </body>
 </html>

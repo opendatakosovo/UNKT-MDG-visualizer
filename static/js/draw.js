@@ -7,7 +7,7 @@ innerRadius = 0.3 * radius;
 var wedge_color = "#FFFF46",
 bg_color = "#2F2F29",
 line_color = "#000000"
-select_color = "#FCB232";
+select_color = "red";
 
 // Width of wedges
 var pie = d3.layout.pie()
@@ -19,7 +19,7 @@ var tip = d3.tip()
 .attr('class', 'd3-tip')
 .offset([0, 0])
 .html(function(d) {
-	return d.data.label + ": <span style='color:white'>" + d.data.value + "</span>";
+	return d.data.label + ": <span style='color:red'><b>" + d.data.value + "%</b></span>";
 });
 
 // Calculate fill
@@ -36,19 +36,19 @@ var outlineArc = d3.svg.arc()
 
 
 // Import Data
-function start(year, muni, s_or_d) {
+function start(year, muni, s_or_d, div) {
 	$.ajax({
 		'url': "data/clean_data/" + year + s_or_d + ".json",
 		'dataType': 'json',
 		'responseJSON': 'data',
 		'success': function (data) {
-			convert_data(data, muni);
+			convert_data(data, muni, div);
 		}
 	});
 };
 
 // Convert data from JSON to required format
-function convert_data(data, muni) {
+function convert_data(data, muni, div) {
 	//Select data for municipality
 	muni_data = data[muni];
 	
@@ -66,7 +66,7 @@ function convert_data(data, muni) {
 	//Convert to JSON
 	var modified_data = JSON.parse(json_string)
 	var sorted_data = sortByKey(modified_data, "label");
-	create(sorted_data);
+	create(sorted_data, div);
 }
 
 function sortByKey(array, key) {
@@ -86,9 +86,9 @@ function slugify(text) {
 }
 
 // Create chart
-function create(data) {
-	$("#aster-chart").empty();
-	window.svg = d3.select("#aster-chart").append("svg")
+function create(data, div) {
+	$("#" + div).empty();
+	window.svg = d3.select("#" + div).append("svg")
 	.attr("width", width)
 	.attr("height", height)
 	.append("g")
@@ -120,6 +120,10 @@ function create(data) {
 	.on('mouseout', tip.hide);
 };
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 // What happens when a wedge is clicked
 function select_wedge(d){
 	// Remove old text
@@ -143,5 +147,10 @@ function select_wedge(d){
 	.attr("fill", d3.rgb(select_color))
 	.attr("stroke", d3.rgb(line_color))
 	.attr("stroke-width", "1");
+	text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ capitalizeFirstLetter(d.data.label) +"</h4>"
+	$("#aster-text").empty();
+	$("#aster-text").append(text);
+	$("#aster-text-popup").empty();
+	$("#aster-text-popup").append(text);
 };
 
