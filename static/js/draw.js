@@ -19,7 +19,7 @@ var tip = d3.tip()
 .attr('class', 'd3-tip')
 .offset([0, 0])
 .html(function(d) {
-	return d.data.label + ": <span style='color:red'><b>" + d.data.value + "%</b></span>";
+	return capitalizeFirstLetter(d.data.label) + ": <span style='color:red'><b>" + d.data.value + "%</b></span>";
 });
 
 // Calculate fill
