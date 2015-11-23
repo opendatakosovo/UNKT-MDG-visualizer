@@ -211,7 +211,7 @@ class MosaicData:
             if output_type == "csv":
                 data.to_csv(path_or_buf = output_file, force_ascii = False)
             else:
-                data.to_json(orient = "index", path_or_buf = output_file, force_ascii = False, indent = 4, sort_keys = True)
+                data.to_json(orient = "index", path_or_buf = output_file, force_ascii = False)
     
     def delete_old_files(self, folder = "../data/clean_data/"):
         for the_file in os.listdir(folder):
@@ -232,4 +232,21 @@ class MosaicData:
         except Exception, e:
             print e
             print "Years must be generated before the transform step."
+    
+    def regenerate_whitelists(self):
+        if self.data_type == 'whitelist':
+            keys = ['municipalities', 'indicators', 'problems']
+            for key in keys:
+                sheet = pd.read_excel(self.data_path, key, index_col = None)
+                output_file = "../data/standard_lists/" + key + ".json"
+                sheet.to_json(orient = "records", path_or_buf = output_file, force_ascii = False)
+                
+        else: 
+            print("MosaicData object requires data_type = 'whitelist' to use this method.")
+            
+            
+            
+            
+            
+            
             
