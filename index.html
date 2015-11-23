@@ -208,6 +208,8 @@
                     categories: categories
                 },
                 yAxis: {
+                    min: 0,
+                    max: 100,
                     title: {
                         text: 'Satisfaction percentage'
                     },
@@ -361,6 +363,7 @@
                 start(muni, s_or_d, aster_div, all_data[year][muni]);
                 drawMap(indicator, "S", all_data[year]);
                 drawColumnChart("column-chart", "column", year, indicator, s_or_d);
+                $("#aster-chart").find("#" + slugify(indicator)).d3Click();
             });
 
             $("#indicator-select").change(function(){
@@ -375,11 +378,12 @@
                 drawColumnChart("column-chart", "column", year, indicator, s_or_d);
             });
 
+            var indicator = $("#indicator-select").val();
+            $("#aster-chart").find("#" + slugify(indicator)).d3Click();
             // draw map chart in page load.
             drawMap("family medical centers", "S", all_data[viti]);
             // draw column chart in page load.
-            drawColumnChart("column-chart", "column", viti, "family medical centers", "S");
-            $("#aster-chart").find("path#family-medical-centers").d3Click();
+            drawColumnChart("column-chart", "column", viti, indicator, "S");
         })
     </script>
 </head>
@@ -475,7 +479,7 @@
                             </div>
                         </div>
                         <div class="col-md-5">
-                            <div id="line-chart" style="min-width: 330px; max-width: 100%; width:500px; height: 260px;"></div>
+                            <div id="line-chart" style="min-width: 330px; max-width: 100%; width:500px; height: 400px;"></div>
                         </div>
                     </div>
                 </div>
