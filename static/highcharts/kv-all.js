@@ -3605,9 +3605,9 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "hc-key": "kv-novo-berd",
+        "hc-key": "kv-novoberde",
         "CODE": null,
-        "name": "Novo Berd",
+        "name": "Novoberde",
         "VENDBANIME": 0,
         "HA": 20431.24,
         "KM": 204.31,

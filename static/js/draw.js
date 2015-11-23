@@ -1,4 +1,4 @@
-var width = 350,
+var width = 335,
 height = 400,
 radius = Math.min(width, height) / 2,
 innerRadius = 0.3 * radius;
@@ -89,6 +89,8 @@ function slugify(text) {
 function create(data, div) {
 	$("#" + div).empty();
 	window.svg = d3.select("#" + div).append("svg")
+	.attr("id", "aster-chart")
+	.attr("style", "margin: 0 auto;")
 	.attr("width", width)
 	.attr("height", height)
 	.append("g")
