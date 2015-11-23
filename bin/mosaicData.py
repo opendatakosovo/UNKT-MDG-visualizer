@@ -237,16 +237,9 @@ class MosaicData:
         if self.data_type == 'whitelist':
             keys = ['municipalities', 'indicators', 'problems']
             for key in keys:
-                sheet = pd.read_excel(self.data_path, key, index_col = None)
+                sheet = pd.read_excel(self.data_path, key, index_col = 0)
                 output_file = "../data/standard_lists/" + key + ".json"
-                sheet.to_json(orient = "records", path_or_buf = output_file, force_ascii = False)
+                sheet.to_json(orient = "index", path_or_buf = output_file, force_ascii = False)
                 
         else: 
             print("MosaicData object requires data_type = 'whitelist' to use this method.")
-            
-            
-            
-            
-            
-            
-            
