@@ -191,7 +191,10 @@
                 categories.push(key);
                 value = all_data[key][municipality][indicator]
                 if (value != undefined && !(isNaN(value))){
-                    data.push(value);   
+                    if (value.toString().length > 4){
+                        value = value.toFixed(1);
+                    }
+                    data.push(Number(value));
                 } else {
                     data.push(null)
                 }
