@@ -42,7 +42,6 @@ function start(muni, s_or_d, div, data) {
 
 // Convert data from JSON to required format
 function convert_data(data, muni, div) {
-	console.log(data)
 	//Select data for municipality
 	muni_data = data;
 	
@@ -58,13 +57,8 @@ function convert_data(data, muni, div) {
 		}
 	};
 	
-	//Fix end of string
-	// json_string = json_string.replace(/,$/g, "]")
-	console.log(json_array)
-	//Convert to JSON
-	// var modified_data = JSON.parse(json_string)
+	// Sort data by the label
 	var sorted_data = sortByKey(json_array, "label");
-	console.log(sorted_data)
 	create(sorted_data, div);
 }
 

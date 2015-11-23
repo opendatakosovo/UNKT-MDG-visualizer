@@ -138,7 +138,6 @@
                                     } else if (muni == "Drenas") {
                                         muni = "Gllogoc"
                                     }
-                                    console.log(data[muni])
                                     $('.modal-title').empty();
                                     $('.modal-title').append("Municipality Profile: <b>" + this.name + "</b>");
                                     $("#municipality-popup").empty();
@@ -191,14 +190,12 @@
             for (key in all_data){
                 categories.push(key);
                 value = all_data[key][municipality][indicator]
-                if (value != undefined){
+                if (value != undefined && !(isNaN(value))){
                     data.push(value);   
                 } else {
                     data.push(null)
                 }
             }
-            console.log(categories)
-            console.log(data)
             $('#line-chart').highcharts({
                 title: {
                     text: indicator,
@@ -209,7 +206,7 @@
                 },
                 yAxis: {
                     title: {
-                        text: 'Temperature (°C)'
+                        text: 'Satisfaction percentage'
                     },
                     plotLines: [{
                         value: 0,
@@ -218,7 +215,7 @@
                     }]
                 },
                 tooltip: {
-                    valueSuffix: '°C'
+                    valueSuffix: '%'
                 },
                 legend: {
                     layout: 'horizontal',
