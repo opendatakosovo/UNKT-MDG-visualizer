@@ -36,36 +36,35 @@ var outlineArc = d3.svg.arc()
 
 
 // Import Data
-function start(year, muni, s_or_d, div) {
-	$.ajax({
-		'url': "data/clean_data/" + year + s_or_d + ".json",
-		'dataType': 'json',
-		'responseJSON': 'data',
-		'success': function (data) {
-			convert_data(data, muni, div);
-		}
-	});
+function start(muni, s_or_d, div, data) {
+	convert_data(data, muni, div);
 };
 
 // Convert data from JSON to required format
 function convert_data(data, muni, div) {
+	console.log(data)
 	//Select data for municipality
-	muni_data = data[muni];
+	muni_data = data;
 	
 	//Loop through and convert to required format	
-	var json_string = "["
+	var json_array = []
 	for (var key in muni_data) {
-		if (muni_data[key] != null){
-			json_string = json_string + '{' + '"label":"' + key.replace(/Satisfaction with /g, "") + '", "value":' + muni_data[key] + '},'
+		if (!(isNaN(muni_data[key]))){
+			var json = {
+				"label": key.replace(/Satisfaction with /g, ""),
+				"value": muni_data[key].toFixed(1)
+			}
+			json_array.push(json);
 		}
 	};
 	
 	//Fix end of string
-	json_string = json_string.replace(/,$/g, "]")
-	
+	// json_string = json_string.replace(/,$/g, "]")
+	console.log(json_array)
 	//Convert to JSON
-	var modified_data = JSON.parse(json_string)
-	var sorted_data = sortByKey(modified_data, "label");
+	// var modified_data = JSON.parse(json_string)
+	var sorted_data = sortByKey(json_array, "label");
+	console.log(sorted_data)
 	create(sorted_data, div);
 }
 
@@ -89,7 +88,7 @@ function slugify(text) {
 function create(data, div) {
 	$("#" + div).empty();
 	window.svg = d3.select("#" + div).append("svg")
-	.attr("id", "aster-chart")
+	.attr("id", "aster-chart-svg")
 	.attr("style", "margin: 0 auto;")
 	.attr("width", width)
 	.attr("height", height)
@@ -115,6 +114,7 @@ function create(data, div) {
 	.attr("fill", d3.rgb(wedge_color))
 	.attr("class", "solidArc")
 	.attr("id", function(d) { return slugify(d.data.label); })
+	.attr("value", function(d) { return d.data.label; })
 	.attr("stroke", d3.rgb(line_color))
 	.attr("d", arc)
 	.on('click', select_wedge)
