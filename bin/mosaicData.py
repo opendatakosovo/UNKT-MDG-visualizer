@@ -180,6 +180,7 @@ class MosaicData:
     
     def output_data(self, output_file, output_type = 'json'):
         data = self.data
+        final_dict = {}
         
         # Consolidated data type
         if self.data_type == 'consolidated':
@@ -192,13 +193,21 @@ class MosaicData:
                 elif self.sat_or_dis == 'd':
                     file_path = output_file + str(year) + "D"
                     
-                # CSV or JSON file type?
+                # If CSV, return individual files
                 if output_type == "csv":
                     file_path = file_path + ".csv"
-                    entries["data"].to_csv(path_or_buf = file_path, force_ascii = False)  
+                    entries["data"].to_csv(path_or_buf = file_path, force_ascii = False) 
                 else: 
-                    file_path = file_path + ".json"
-                    entries["data"].to_json(orient = "index", path_or_buf = file_path, force_ascii = False)  
+                    final_dict[year] = entries["data"].to_dict()
+            
+            # If JSON, return merged JSON file
+            if output_type == "json":
+                if self.sat_or_dis == 's':
+                    file_path = "../data/clean_data/satisfied.json"
+                elif self.sat_or_dis == 'd':
+                    file_path = "../data/clean_data/dissatisfied.json"
+                with open(file_path, 'w') as data_file:
+                    json.dump(obj = final_dict, fp = data_file, indent = 4, sort_keys = True)
         
         # Problem data type
         if self.data_type == 'problems': 
