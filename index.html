@@ -52,6 +52,19 @@
         .tooltip {
           z-index: 1151 !important;
         }
+
+        #aster-chart {
+            margin: 0 auto;
+        }
+
+        @media only screen 
+        and (min-device-width : 320px) 
+        and (max-device-width : 480px) {
+            /* Styles */
+            #aster-chart {margin-left: -5px !important;}
+
+        }
+
     </style>
 
     <script type="text/javascript">
@@ -75,7 +88,7 @@
                         } else if (key == "Mitrovica North") {
                             name = "Mitrovice Veriore"
                         } else if (key == "Novoberda") {
-                            name = "Novo berd"
+                            name = "Novoberde"
                         } else if (key == "Mitrovica") {
                             name = "Mitrovice"
                         }
@@ -116,7 +129,7 @@
                                             console.log(muni)
                                             if (muni == "Prishtine"){
                                                 muni = "Pristina"
-                                            } else if (muni == "Novo berd") {
+                                            } else if (muni == "Novoberde") {
                                                 muni = "Novoberda"
                                             } else if (muni == "Mitrovice") {
                                                 muni = "Mitrovica"
@@ -135,6 +148,7 @@
                                             start(viti, muni, s_or_d, aster_div, aster_text_div);
                                             indicator_id = indicator.replace("Satisfaction with ", "");
                                             $("#municipality-popup").append(text);
+                                            drawLineChart()
                                             $("#" + slugify(indicator_id)).d3Click();
                                         }
                                     }
@@ -167,6 +181,43 @@
                 }
             });
         }   
+
+        function drawLineChart(){
+            $('#line-chart').highcharts({
+                title: {
+                    text: 'Monthly Average Temperature',
+                    x: -20 //center
+                },
+                subtitle: {
+                    text: 'Source: WorldClimate.com',
+                    x: -20
+                },
+                xAxis: {
+                    categories: ["2015", "2012", "2009", "2006", "2003"]
+                },
+                yAxis: {
+                    title: {
+                        text: 'Temperature (°C)'
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    valueSuffix: '°C'
+                },
+                legend: {
+                    layout: 'horizontal',
+                    verticalAlign: 'bottom'
+                },
+                series: [{
+                    name: 'Tokyo',
+                    data: [7.0, 6.9, 9.5, 14.5, 18.2]
+                }]
+            });
+        }
 
         function drawColumnChart(div, chart_type, year, indicator, s_or_d){
             $.ajax({
@@ -281,6 +332,7 @@
                 $("#aster-text").empty();
                 $("#aster-text").append(text)
                 start(viti, muni, s_or_d, aster_div);
+                $("#" + viti),attr("checked");
                 bindIndicatorSelectBox(viti, s_or_d);
                 drawMap(viti, "family medical centers", "S");
                 drawColumnChart("column-chart", "column", viti, "family medical centers", "S");
@@ -397,7 +449,7 @@
     <button id="popup-button" type="button" class="btn btn-info btn-lg" data-toggle="modal" style="display:none;" data-target="#myModal">Open Modal</button>
     <!-- Modal -->
     <div class="modal fade" data-backdrop="static" data-keyboard="false" id="myModal" role="dialog">
-        <div class="modal-dialog" style="width:90%;">
+        <div class="modal-dialog" style="width:95%;">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="navbar-collapse modal-header">
@@ -406,10 +458,17 @@
                 </div>
                 <div class="modal-body">
                     <p id="municipality-popup"></p>
-                    <div id="aster-text-popup" style="margin-left: 50px; width:100%; height:40px; float:left; position:absolute; text-align:left;">
-                    </div>
-                    <br><br>
-                    <div id="aster-chart-popup" style="width:100%; margin-left: 50px;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div id="aster-text-popup" style="margin-left: 50px; width: 100%; height:40px; float:left; position:absolute; text-align:left;">
+                            </div>
+                            <br><br>
+                            <div id="aster-chart-popup" style="min-width: 310px; width:330; margin-left: 15px;">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div id="line-chart" style="min-width: 330px; max-width: 100%; width:500px; height: 260px;"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
