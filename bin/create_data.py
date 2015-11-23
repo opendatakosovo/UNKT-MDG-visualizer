@@ -28,7 +28,7 @@ mosaicS.transform_consolidated_data(scalar = 100)
 mosaicD.transform_consolidated_data(scalar = 100)
 mosaicP.transform_problems_data(scalar = 100)
 
-# Delete previous files
+# Delete previous (indicator) files
 mosaicS.delete_old_files(output_filepath)
 
 # Write new files
