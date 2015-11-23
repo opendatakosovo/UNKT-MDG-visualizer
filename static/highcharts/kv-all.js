@@ -78116,7 +78116,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
       "properties": {
         "CODE": "33",
         "hc-key": "kv-hani-i-elezit",
-        "name": "Hani i Elezit",
+        "name": "Hani I Elezit",
         "VENDBANIME": 0,
         "HA": 8360.03,
         "KM": 83.6,

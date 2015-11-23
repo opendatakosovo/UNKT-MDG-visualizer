@@ -321,6 +321,16 @@
             });
         };
 
+        function bindSelectBoxOnLabelClick(s_or_d){
+            $("#aster-chart").find('.solidArc').click(function(){
+                selected_indicator = $(this).attr("value");
+                $("#indicator-select").val(selected_indicator);
+                var viti = $('input[name=radio]:checked', '#my-form').val()
+                drawMap(selected_indicator, "S", all_data[viti]);
+                drawColumnChart("column-chart", "column", viti, selected_indicator, s_or_d);
+            })
+        }
+
         $(document).ready(function(){
             var s_or_d = "S";
             var muni = "Kosovo";
@@ -330,13 +340,7 @@
             start(muni, s_or_d, aster_div, all_data[viti][muni]);
             bindIndicatorSelectBox(viti, s_or_d);
 
-            $("#aster-chart").find('.solidArc').click(function(){
-                selected_indicator = $(this).attr("value");
-                $("#indicator-select").val(selected_indicator);
-                var viti = $('input[name=radio]:checked', '#my-form').val()
-                drawMap(selected_indicator, "S", all_data[viti]);
-                drawColumnChart("column-chart", "column", viti, selected_indicator, s_or_d);
-            })
+            bindSelectBoxOnLabelClick(s_or_d);
 
             $(document).on('click', '#close-popup, .close', function(event) {
                 var viti_chb = $('input[name=radio]:checked', '#my-form').val();
@@ -347,9 +351,12 @@
                 $("#" + viti_chb).attr("checked");
                 bindIndicatorSelectBox(viti_chb, s_or_d);
                 // draw map chart on year radio button click.
+                $("#indicator-select").val(indicator);
                 start(muni, s_or_d, aster_div, all_data[viti_chb][muni]);
                 drawMap(indicator, "S", all_data[viti_chb]);
                 drawColumnChart("column-chart", "column", viti_chb, indicator, s_or_d);
+                $("#aster-chart").find("#" + slugify(indicator)).d3Click();
+                bindSelectBoxOnLabelClick(s_or_d);
             });
 
             // Variable for switching between satisfied and dissatisfied datasets
@@ -366,18 +373,12 @@
                 $("#" + slugify(indicator_id)).d3Click();
                 bindIndicatorSelectBox(year, s_or_d);
                 // draw map chart on year radio button click.
-                start(muni, s_or_d, aster_div, all_data[year][muni]);
+                start(muni, s_or_d, aster_div, all_data[year]["Kosovo"]);
                 drawMap(indicator, "S", all_data[year]);
                 drawColumnChart("column-chart", "column", year, indicator, s_or_d);
                 $("#aster-chart").find("#" + slugify(indicator)).d3Click();
 
-                $("#aster-chart").find('.solidArc').click(function(){
-                    selected_indicator = $(this).attr("value");
-                    $("#indicator-select").val(selected_indicator);
-                    var viti = $('input[name=radio]:checked', '#my-form').val()
-                    drawMap(selected_indicator, "S", all_data[viti]);
-                    drawColumnChart("column-chart", "column", viti, selected_indicator, s_or_d);
-                })
+                bindSelectBoxOnLabelClick(s_or_d);
             });
 
             $("#indicator-select").change(function(){
@@ -390,6 +391,7 @@
                 indicator_id = indicator.replace("Satisfaction with ", "");
                 $("#aster-chart").find("path#" + slugify(indicator_id)).d3Click();
                 drawColumnChart("column-chart", "column", year, indicator, s_or_d);
+                bindSelectBoxOnLabelClick(s_or_d);
             });
 
             var indicator = $("#indicator-select").val();
