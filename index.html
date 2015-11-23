@@ -330,7 +330,13 @@
             start(muni, s_or_d, aster_div, all_data[viti][muni]);
             bindIndicatorSelectBox(viti, s_or_d);
 
-
+            $("#aster-chart").find('.solidArc').click(function(){
+                selected_indicator = $(this).attr("value");
+                $("#indicator-select").val(selected_indicator);
+                var viti = $('input[name=radio]:checked', '#my-form').val()
+                drawMap(selected_indicator, "S", all_data[viti]);
+                drawColumnChart("column-chart", "column", viti, selected_indicator, s_or_d);
+            })
 
             $(document).on('click', '#close-popup, .close', function(event) {
                 var viti_chb = $('input[name=radio]:checked', '#my-form').val();
@@ -364,6 +370,14 @@
                 drawMap(indicator, "S", all_data[year]);
                 drawColumnChart("column-chart", "column", year, indicator, s_or_d);
                 $("#aster-chart").find("#" + slugify(indicator)).d3Click();
+
+                $("#aster-chart").find('.solidArc').click(function(){
+                    selected_indicator = $(this).attr("value");
+                    $("#indicator-select").val(selected_indicator);
+                    var viti = $('input[name=radio]:checked', '#my-form').val()
+                    drawMap(selected_indicator, "S", all_data[viti]);
+                    drawColumnChart("column-chart", "column", viti, selected_indicator, s_or_d);
+                })
             });
 
             $("#indicator-select").change(function(){
