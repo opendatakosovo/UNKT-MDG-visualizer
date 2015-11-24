@@ -22,6 +22,7 @@
     <!-- jquery plugin -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="data/output_data.js"></script>
+    <script src="data/output_problems.js"></script>
 
     <!-- Bootstrap popup modal plugins -->
     <meta charset="utf-8">
@@ -51,6 +52,25 @@
             color: gray;
         }
 
+
+        input[type="radio"].toggle {
+            position: absolute;
+            left: -99em;
+        }
+
+        input[type="radio"].toggle + label {
+            display:inline-block;
+            text-align:center;
+            padding:3px 0px;
+            width:80px;
+            border: 1px solid #404040;
+        }
+
+        /*input[type="radio"].toggle:checked + label,*/ input[type="radio"].toggle.checked + label {
+            background-color:#404040;
+            color:#F7F7F7;
+        }
+
         @media only screen 
         and (min-device-width : 320px) 
         and (max-device-width : 480px) {
@@ -69,11 +89,11 @@
 
     <script type="text/javascript">
         var all_data = getAllData();
+        var problems_data = getProblemsData();
         municipality_names_to_fix = {
             "Gliogovc": "Drenas"
         }
-        width = window.screen.availWidth
-        console.log(width)
+        
         function drawMap(indicator, s_or_d, data){
             var municipalities_data = [];
             for (key in data){
@@ -113,7 +133,9 @@
                         verticalAlign: 'bottom'
                     }
                 },
-
+                mapNavigation: {
+                    enableMouseWheelZoom: false
+                },
                 colorAxis: {
                     min: 0,
                     maxColor: '#73AD21'
@@ -180,13 +202,77 @@
             });
         }
 
-        function drawLineChart(indicator, municipality){
+        function drawColumnChart(div, data){
+            $('#' + div).highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Stacked column chart'
+                },
+                xAxis: {
+                    categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Total fruit consumption'
+                    },
+                    stackLabels: {
+                        enabled: true,
+                        style: {
+                            fontWeight: 'bold',
+                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                        }
+                    }
+                },
+                legend: {
+                    align: 'right',
+                    x: -30,
+                    verticalAlign: 'top',
+                    y: 25,
+                    floating: true,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                    borderColor: '#CCC',
+                    borderWidth: 1,
+                    shadow: false
+                },
+                tooltip: {
+                    headerFormat: '<b>{point.x}</b><br/>',
+                    pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                            style: {
+                                textShadow: '0 0 3px black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'John',
+                    data: [5, 3, 4, 7, 2]
+                }, {
+                    name: 'Jane',
+                    data: [2, 2, 3, 2, 1]
+                }, {
+                    name: 'Joe',
+                    data: [3, 4, 4, 2, 5]
+                }]
+            });
+        }
+
+        function drawLineChart(indicator, municipality, s_or_d){
             var categories = []
             var json_data = {}
             var data = []
-            for (key in all_data){
+            for (key in all_data[s_or_d]){
                 categories.push(key);
-                value = all_data[key][municipality][indicator]
+                value = all_data[s_or_d][key][municipality][indicator]
                 if (value != undefined && !(isNaN(value))){
                     if (value.toString().length > 4){
                         value = value.toFixed(1);
@@ -232,7 +318,7 @@
 
         function bindIndicatorSelectBox(year, s_or_d){
             $("#indicator-select").empty();
-            for (key in all_data[year]["Pristina"]){
+            for (key in all_data[s_or_d][year]["Pristina"]){
                 $("#indicator-select").append("<option value='"+key+"'>"+capitalizeFirstLetter(key)+"</option>");
             }
         }
@@ -250,14 +336,14 @@
                 selected_indicator = $(this).attr("value");
                 $("#indicator-select").val(selected_indicator);
                 var viti = $('input[name=radio]:checked', '#my-form').val()
-                drawMap(selected_indicator, "S", all_data[viti]);
+                drawMap(selected_indicator, s_or_d, all_data[s_or_d][viti]);
             })
         }
 
         function rankingByMunicipality(year, indicator, muni, aster_div, s_or_d) {
             var data = {}
-            for (var key in all_data[year]){
-                data[key] = all_data[year][key][indicator]
+            for (var key in all_data[s_or_d][year]){
+                data[key] = all_data[s_or_d][year][key][indicator]
             }
             var municipality = "Pristina";
             text = "<h4 style='text-align:center; width:100%; height:40px; position:absolute; text-align:left;'>"+ capitalizeFirstLetter(indicator) + " for " + municipality +" Level</h4>"
@@ -265,22 +351,23 @@
             $("#aster-text").append(text);
             $("#aster-chart").find("#" + slugify(municipality)).d3Click();
             start(muni, s_or_d, aster_div, data, "value");
-            drawMap(indicator, s_or_d, all_data[year]);
+            drawMap(indicator, s_or_d, all_data[s_or_d][year]);
             $("#aster-chart").find("path#" + slugify("Kosovo")).d3Click();
         }
 
         $(document).ready(function(){
-            var s_or_d = "S";
+            var s_or_d = $('input[name=toggle]:checked').val();
             var muni = "Kosovo";
             var viti = $('input[name=radio]:checked', '#my-form').val()
             var aster_div = "aster-chart";
             var aster_text_div = "aster-text";
-            start(muni, s_or_d, aster_div, all_data[viti][muni], "label");
+            start(muni, s_or_d, aster_div, all_data[s_or_d][viti][muni], "label");
             bindIndicatorSelectBox(viti, s_or_d);
 
             bindSelectBoxOnLabelClick(s_or_d);
 
             $(document).on('click', '#close-popup, .close', function(event) {
+                var s_or_d = $('input[name=toggle]:checked').val();
                 var year = $('input[name=radio]:checked', '#my-form').val();
                 var indicator = $("#indicator-select").val();
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
@@ -295,8 +382,8 @@
                     bindIndicatorSelectBox(year, s_or_d);
                     // draw map chart on year radio button click.
                     $("#indicator-select").val(indicator);
-                    start(muni, s_or_d, aster_div, all_data[year][muni], "label");
-                    drawMap(indicator, "S", all_data[year]);
+                    start(muni, s_or_d, aster_div, all_data[s_or_d][year][muni], "label");
+                    drawMap(indicator, s_or_d, all_data[s_or_d][year]);
                     $("#aster-chart").find("#" + slugify(indicator)).d3Click();
                     bindSelectBoxOnLabelClick(s_or_d);
                 }
@@ -304,21 +391,31 @@
 
             // Variable for switching between satisfied and dissatisfied datasets
             
-            $("input[name=ranking-radio]:radio").change(function () {
+            function onRadioButtonChange(){
+                var s_or_d = $('input[name=toggle]:checked').val();
                 var year = $('input[name=radio]:checked', '#my-form').val();
-                bindIndicatorSelectBox(year, s_or_d);
+                // bindIndicatorSelectBox(year, s_or_d);
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
                 var indicator = $("#indicator-select").val();
                 if (ranking_by == "municipality") {
                     rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
                 } else {
-                    start(muni, s_or_d, aster_div, all_data[year]["Kosovo"], "label");
+                    start(muni, s_or_d, aster_div, all_data[s_or_d][year]["Kosovo"], "label");
                     bindSelectBoxOnLabelClick(s_or_d);
                     $("#aster-chart").find("path#" + slugify(indicator)).d3Click();
                 }
+            }
+
+            $("input[name=ranking-radio]:radio").change(function () {
+                onRadioButtonChange()
+            });
+
+            $("input[name=toggle]:radio").change(function () {
+                onRadioButtonChange()
             });
 
             $("input[name=radio]:radio").change(function () {
+                var s_or_d = $('input[name=toggle]:checked').val();
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
                 var year = $('input[name=radio]:checked', '#my-form').val()
                 bindIndicatorSelectBox(year, s_or_d);
@@ -326,15 +423,15 @@
                 if (ranking_by == "municipality") {
                     rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
                 } else {
-                    aster_data = all_data[year][muni];
+                    aster_data = all_data[s_or_d][year][muni];
                     text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ indicator +"</h4>"
                     $("#aster-text").empty();
                     $("#aster-text").append(text);
                     indicator_id = indicator.replace("Satisfaction with ", "");
                     $("#" + slugify(indicator_id)).d3Click();
                     // draw map chart on year radio button click.
-                    start(muni, s_or_d, aster_div, all_data[year]["Kosovo"], "label");
-                    drawMap(indicator, "S", all_data[year]);
+                    start(muni, s_or_d, aster_div, all_data[s_or_d][year]["Kosovo"], "label");
+                    drawMap(indicator, s_or_d, all_data[s_or_d][year]);
 
                     bindSelectBoxOnLabelClick(s_or_d);
                     $("#aster-chart").find("#" + slugify(indicator)).d3Click();
@@ -342,6 +439,7 @@
             });
 
             $("#indicator-select").change(function(){
+                var s_or_d = $('input[name=toggle]:checked').val();
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
                 var indicator = $("#indicator-select").val();
                 var year = $('input[name=radio]:checked', '#my-form').val();
@@ -351,7 +449,7 @@
                     text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ capitalizeFirstLetter(indicator) +"</h4>"
                     $("#aster-text").empty();
                     $("#aster-text").append(text)
-                    drawMap(indicator, s_or_d, all_data[year]);
+                    drawMap(indicator, s_or_d, all_data[s_or_d][year]);
                     indicator_id = indicator.replace("Satisfaction with ", "");
                     $("#aster-chart").find("path#" + slugify(indicator_id)).d3Click();
                     bindSelectBoxOnLabelClick(s_or_d);
@@ -362,12 +460,21 @@
             var indicator = $("#indicator-select").val();
             if (ranking_by == "municipality") {
                 rankingByMunicipality(viti, indicator, muni, aster_div, s_or_d);
-                drawMap("family medical centers", "S", all_data[viti]);
+                drawMap("family medical centers", s_or_d, all_data[s_or_d][viti]);
             } else {
                 $("#aster-chart").find("#" + slugify(indicator)).d3Click();
                 // draw map chart in page load.
-                drawMap("family medical centers", "S", all_data[viti]);
+                drawMap("family medical centers", s_or_d, all_data[s_or_d][viti]);
             }
+
+            $('.no-checkedselector').on('change', 'input[type="radio"].toggle', function () {
+                if (this.checked) {
+                    $('input[name="' + this.name + '"].checked').removeClass('checked');
+                    $(this).addClass('checked');
+                    $('.toggle-container').addClass('force-update').removeClass('force-update');
+                }
+            });
+            $('.no-checkedselector input[type="radio"].toggle:checked').addClass('checked');
         })
     </script>
 </head>
@@ -433,10 +540,19 @@
                 <div class="col-md-1">
                 </div>
             </form>
-        </div>
-        <br>
+        </div><br>
         <div class="row">
+            <div class="no-checkedselector" style="text-align:center;">
+                <div class="toggle-container">
+                   <input id="toggle-on" class="toggle toggle-left" name="toggle" value="s" type="radio" checked>
+                   <label for="toggle-on" class="btn">Satisfied</label>
+                   <input id="toggle-off" class="toggle toggle-right" value="d" name="toggle" type="radio">
+                   <label for="toggle-off" class="btn">Dissatisfied</label>
+                </div>
+            </div>
+        </div>
             <hr class="style-eight" style="width: 80%" />
+        <div class="row">
             <div class="col-md-7">
                 <div id="container" style="height:550px;"></div>
             </div>
@@ -483,6 +599,7 @@
                         </div>
                         <div class="col-md-5">
                             <div id="line-chart" style="min-width: 330px; max-width: 100%; width:500px; height: 400px;"></div>
+                            <hr>
                         </div>
                     </div>
                 </div>
