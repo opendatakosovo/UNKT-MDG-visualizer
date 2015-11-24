@@ -50,6 +50,21 @@
             text-align: center;
             color: gray;
         }
+
+        @media only screen 
+        and (min-device-width : 320px) 
+        and (max-device-width : 480px) {
+            /* Styles */
+
+            #aster-chart {
+                width :200px; 
+                background-color:#666666 !important;
+            }
+            #aster-chart-popup {
+                width :100px !important;
+            }
+
+        }
         .tooltip {
           z-index: 1151 !important;
         }
@@ -62,7 +77,8 @@
         municipality_names_to_fix = {
             "Gliogovc": "Drenas"
         }
-        
+        width = window.screen.availWidth
+        console.log(width)
         function drawMap(indicator, s_or_d, data){
             var municipalities_data = [];
             for (key in data){
@@ -464,7 +480,7 @@
                             <div id="aster-text-popup" style="margin-left: 50px; width: 100%; height:40px; float:left; position:absolute; text-align:left;">
                             </div>
                             <br><br>
-                            <div id="aster-chart-popup" style="min-width: 310px; width:330; margin-left: 5px;">
+                            <div id="aster-chart-popup" style="min-width: 310px; width:330; margin-left: 50px;">
                             </div>
                         </div>
                         <div class="col-md-5">
