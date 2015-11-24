@@ -162,7 +162,7 @@ function addDescriptionToAsterChart(d, fulltext, svg){
 	if (a.length <= 2) {
 		index = 2;
 	} else if (a.length == 3) {
-		index = 2;
+		index = 1;
 	} else if (a.length >= 4 && a.length <= 5) {
 		index = 1;
 	} else {
