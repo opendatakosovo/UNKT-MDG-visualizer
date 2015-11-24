@@ -52,7 +52,7 @@ class MosaicData:
             else:
                 print('MosaicData object has wrong datatype for this method.')
         else:
-            print('MosaicData object has to be in \'created\' status to use this method. Currently in \'' + self.status + '\' status.')
+            print('MosaicData object has to be in \'created\' status to use import_raw_data method. Currently in \'' + self.status + '\' status.')
     
     def import_consolidated_data(self):
         if self.status == 'created':
@@ -65,7 +65,7 @@ class MosaicData:
             else: 
                 print('MosaicData object has wrong datatype for this method.')
         else:
-            print('MosaicData object has to be in \'created\' status to use this method. Currently in \'' + self.status + '\' status.')
+            print('MosaicData object has to be in \'created\' status to use import_consolidated_data method. Currently in \'' + self.status + '\' status.')
 
     def import_problems_data(self):
         if self.status == 'created':
@@ -77,7 +77,7 @@ class MosaicData:
             else: 
                 print('MosaicData object has wrong datatype for this method.')
         else:
-            print('MosaicData object has to be in \'created\' status to use this method. Currently in \'' + self.status + '\' status.')
+            print('MosaicData object has to be in \'created\' status to use import_problems_data method. Currently in \'' + self.status + '\' status.')
 
     def convert_to_values(self, value_method):
         data = self.data
@@ -150,9 +150,9 @@ class MosaicData:
                 self.data = final_data
                 self.status = 'transformed'
             else: 
-                print('MosaicData object requires data_type = \'consolidated\' to use this method.')
+                print('MosaicData object requires data_type = \'consolidated\' to use transform_consolidated_data method.')
         else:
-            print('MosaicData object has to be in \'imported\' status to use this method. Currently in \'' + self.status + '\' status.')
+            print('MosaicData object has to be in \'imported\' status to use transform_consolidated_data method. Currently in \'' + self.status + '\' status.')
     
     def transform_problems_data(self, year_col = 'year', problem_col = 'problem', scalar = 1):
         if self.status == 'imported':
@@ -162,7 +162,7 @@ class MosaicData:
                 # Get unique year values
                 years = data[year_col].drop_duplicates().values.tolist()
                 years = sorted(years)
-                final_data = []
+                final_data = {}
         
                 # Get muncipalities List
                 municipalities = list(data.columns)
@@ -175,7 +175,7 @@ class MosaicData:
                 
                 # Loop through municipalities 
                 for muni in municipalities:
-                    result_set = {muni : {}}
+                    result_set = {}
                     muni_data = data.loc[ : , [year_col, problem_col, muni]]
                     muni_data = muni_data.loc[muni_data[muni].notnull(),]
                     
@@ -187,17 +187,17 @@ class MosaicData:
                         year_data = year_data.to_dict(orient = 'records')
                     
                         # Create dictionary with values
-                        result_set[muni][year] = year_data
+                        result_set[year] = year_data
                     
-                    final_data.append(result_set)
+                    final_data[muni] = result_set
             
                 self.data = final_data
                 self.status = 'transformed'
                 
             else: 
-                print('MosaicData object requires data_type = \'problems\' to use this method.')
+                print('MosaicData object requires data_type = \'problems\' to use transform_problems_data method.')
         else:
-            print('MosaicData object has to be in \'imported\' status to use this method. Currently in \'' + self.status + '\' status.')
+            print('MosaicData object has to be in \'imported\' status to use transform_problems_data method. Currently in \'' + self.status + '\' status.')
     
     def output_data(self, output_file, output_type = 'json'):
         if self.status == 'transformed':
@@ -244,7 +244,7 @@ class MosaicData:
                 else:
                     data.to_json(orient = 'index', path_or_buf = output_file, force_ascii = False)
         else:
-            print('MosaicData object has to be in \'transformed\' status to use this method. Currently in \'' + self.status + '\' status.')
+            print('MosaicData object has to be in \'transformed\' status to use output_data method. Currently in \'' + self.status + '\' status.')
     
     def delete_old_files(self, folder = '../data/clean_data/'):
         for the_file in os.listdir(folder):
@@ -256,15 +256,14 @@ class MosaicData:
                 print e
     
     def regenerate_years_list(self, year_col = 'year'):
-        try:
+        if self.status == 'imported':
             years = self.data[year_col].drop_duplicates().values.tolist()
             years = sorted(years)
             file_path = '../data/mapping/years.json'
             with open(file_path, 'w') as data_file:
                 json.dump(years, data_file)
-        except Exception, e:
-            print e
-            print 'Years must be generated before the transform step.'
+        else:
+            print('MosaicData object has to be in \'imported\' status to use regenerate_years_list method. Currently in \'' + self.status + '\' status.')
     
     def regenerate_whitelists(self):
         if self.data_type == 'whitelist':
@@ -275,4 +274,4 @@ class MosaicData:
                 sheet.to_json(orient = 'index', path_or_buf = output_file, force_ascii = False)
                 
         else: 
-            print('MosaicData object requires data_type = \'whitelist\' to use this method.')
+            print('MosaicData object requires data_type = \'whitelist\' to use regenerate_whitelists method.')
