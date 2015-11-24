@@ -260,7 +260,7 @@
                 data[key] = all_data[year][key][indicator]
             }
             var municipality = "Pristina";
-            text = "<h4 style='text-align:center; width:100%; height:40px; position:absolute; text-align:left;'>"+ municipality +"</h4>"
+            text = "<h4 style='text-align:center; width:100%; height:40px; position:absolute; text-align:left;'>"+ capitalizeFirstLetter(indicator) + " for " + municipality +" Level</h4>"
             $("#aster-text").empty();
             $("#aster-text").append(text);
             $("#aster-chart").find("#" + slugify(municipality)).d3Click();
@@ -447,7 +447,7 @@
                     </div>
                     <div class="form-group">
                         <input type="radio" name="ranking-radio" selected="selected" id="kosovo-level" checked value="kosovo-level" class="radio" />
-                        <label for="kosovo-level">Kosovo Level</label>
+                        <label for="kosovo-level">Indicators</label>
                     </div>
                     <div class="form-group">
                         <input type="radio" name="ranking-radio" id="municipality" value="municipality" class="radio" />
