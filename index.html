@@ -90,8 +90,10 @@
     <script type="text/javascript">
         var all_data = getAllData();
         var problems_data = getProblemsData();
-        municipality_names_to_fix = {
-            "Gliogovc": "Drenas"
+
+        var satisfaction_json = {
+            "s": "Satisfaction Level",
+            "d": "Dissatisfaction Level"
         }
         
         function drawMap(indicator, s_or_d, data){
@@ -319,7 +321,7 @@
         function bindIndicatorSelectBox(year, s_or_d){
             $("#indicator-select").empty();
             for (key in all_data[s_or_d][year]["Pristina"]){
-                $("#indicator-select").append("<option value='"+key+"'>"+capitalizeFirstLetter(key)+"</option>");
+                $("#indicator-select").append("<option value='"+key+"'>"+capitalizeFirstLetter(key)+ " " + satisfaction_json[s_or_d] +"</option>");
             }
         }
 
@@ -345,8 +347,8 @@
             for (var key in all_data[s_or_d][year]){
                 data[key] = all_data[s_or_d][year][key][indicator]
             }
-            var municipality = "Pristina";
-            text = "<h4 style='text-align:center; width:100%; height:40px; position:absolute; text-align:left;'>"+ capitalizeFirstLetter(indicator) + " for " + municipality +" Level</h4>"
+
+            text = "<h4 style='text-align:center; width:100%; height:40px; position:absolute; text-align:left;'>"+ capitalizeFirstLetter(indicator) + " " + satisfaction_json[s_or_d]+"</h4>"
             $("#aster-text").empty();
             $("#aster-text").append(text);
             $("#aster-chart").find("#" + slugify(municipality)).d3Click();
@@ -371,13 +373,13 @@
                 var year = $('input[name=radio]:checked', '#my-form').val();
                 var indicator = $("#indicator-select").val();
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
+                text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ indicator + " " + satisfaction_json[s_or_d] + "</h4>"
+                $("#aster-text").empty();
+                $("#aster-text").append(text);
                 bindIndicatorSelectBox(year, s_or_d);
                 if (ranking_by == "municipality") {
                     rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
                 } else {
-                    text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ capitalizeFirstLetter(indicator) +"</h4>"
-                    $("#aster-text").empty();
-                    $("#aster-text").append(text)
                     $("#" + year).attr("checked");
                     bindIndicatorSelectBox(year, s_or_d);
                     // draw map chart on year radio button click.
@@ -397,6 +399,9 @@
                 // bindIndicatorSelectBox(year, s_or_d);
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
                 var indicator = $("#indicator-select").val();
+                text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ indicator + " " + satisfaction_json[s_or_d] + "</h4>"
+                $("#aster-text").empty();
+                $("#aster-text").append(text);
                 if (ranking_by == "municipality") {
                     rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
                 } else {
@@ -424,7 +429,7 @@
                     rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
                 } else {
                     aster_data = all_data[s_or_d][year][muni];
-                    text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ indicator +"</h4>"
+                    text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ indicator + " " + satisfaction_json[s_or_d] + "</h4>"
                     $("#aster-text").empty();
                     $("#aster-text").append(text);
                     indicator_id = indicator.replace("Satisfaction with ", "");
@@ -443,10 +448,13 @@
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
                 var indicator = $("#indicator-select").val();
                 var year = $('input[name=radio]:checked', '#my-form').val();
+                text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ indicator + " " + satisfaction_json[s_or_d] + "</h4>"
+                $("#aster-text").empty();
+                $("#aster-text").append(text);
                 if (ranking_by == "municipality") {
                     rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
                 } else {
-                    text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ capitalizeFirstLetter(indicator) +"</h4>"
+                    text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ capitalizeFirstLetter(indicator) + " " + satisfaction_json[s_or_d] + "</h4>"
                     $("#aster-text").empty();
                     $("#aster-text").append(text)
                     drawMap(indicator, s_or_d, all_data[s_or_d][year]);
@@ -458,6 +466,9 @@
 
             var ranking_by = $('input[name=ranking-radio]:checked').val();
             var indicator = $("#indicator-select").val();
+            text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ indicator + " " + satisfaction_json[s_or_d] + "</h4>"
+            $("#aster-text").empty();
+            $("#aster-text").append(text);
             if (ranking_by == "municipality") {
                 rankingByMunicipality(viti, indicator, muni, aster_div, s_or_d);
                 drawMap("family medical centers", s_or_d, all_data[s_or_d][viti]);

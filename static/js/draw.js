@@ -145,12 +145,6 @@ function select_wedge(d){
 	.attr("fill", d3.rgb(select_color))
 	.attr("stroke", d3.rgb(line_color))
 	.attr("stroke-width", "1");
-
-	text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ capitalizeFirstLetter(d.data.label) +"</h4>"
-	$("#aster-text").empty();
-	$("#aster-text").append(text);
-	$("#aster-text-popup").empty();
-	$("#aster-text-popup").append(text);
 };
 
 function addDescriptionToAsterChart(d, fulltext, svg){
