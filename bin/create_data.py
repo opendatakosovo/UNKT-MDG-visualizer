@@ -40,4 +40,3 @@ mosaicP.output_data(output_filepath, output_type)
 
 # Regenerate Whitelists
 mosaicW.regenerate_whitelists()
-
