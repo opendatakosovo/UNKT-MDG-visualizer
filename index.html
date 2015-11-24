@@ -297,10 +297,10 @@
             // Variable for switching between satisfied and dissatisfied datasets
             
             $("input[name=ranking-radio]:radio").change(function () {
-                var ranking_by = $('input[name=ranking-radio]:checked').val();
                 var year = $('input[name=radio]:checked', '#my-form').val();
-                var indicator = $("#indicator-select").val();
                 bindIndicatorSelectBox(year, s_or_d);
+                var ranking_by = $('input[name=ranking-radio]:checked').val();
+                var indicator = $("#indicator-select").val();
                 if (ranking_by == "municipality") {
                     rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
                 } else {
@@ -313,8 +313,8 @@
             $("input[name=radio]:radio").change(function () {
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
                 var year = $('input[name=radio]:checked', '#my-form').val()
-                var indicator = $("#indicator-select").val();
                 bindIndicatorSelectBox(year, s_or_d);
+                var indicator = $("#indicator-select").val();
                 if (ranking_by == "municipality") {
                     rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
                 } else {
@@ -337,7 +337,6 @@
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
                 var indicator = $("#indicator-select").val();
                 var year = $('input[name=radio]:checked', '#my-form').val();
-                bindIndicatorSelectBox(year, s_or_d);
                 if (ranking_by == "municipality") {
                     rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
                 } else {
