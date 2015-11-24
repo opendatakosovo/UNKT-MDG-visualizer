@@ -163,6 +163,7 @@
                                     }
                                     $('.modal-title').empty();
                                     $('.modal-title').append("Municipality Profile: <b>" + this.name + "</b>");
+                                    var s_or_d = $('input[name=toggle]:checked').val();
                                     var viti = $('input[name=radio]:checked', '#my-form').val()
                                     var aster_div = "aster-chart-popup";
                                     var aster_text_div = "aster-text-popup";
@@ -171,7 +172,7 @@
                                     indicator_id = indicator.replace("Satisfaction with ", "");
                                     $("#aster-chart-popup").find('.solidArc').click(function(){
                                         selected_indicator = $(this).attr("value");
-                                        drawLineChart(selected_indicator, muni);
+                                        drawLineChart(selected_indicator, muni, s_or_d);
                                     })
                                     $("#aster-chart-popup").find("#" + slugify(indicator)).d3Click();
                                 }
@@ -321,7 +322,7 @@
         function bindIndicatorSelectBox(year, s_or_d){
             $("#indicator-select").empty();
             for (key in all_data[s_or_d][year]["Pristina"]){
-                $("#indicator-select").append("<option value='"+key+"'>"+capitalizeFirstLetter(key)+ " " + satisfaction_json[s_or_d] +"</option>");
+                $("#indicator-select").append("<option value='"+key+"'>"+capitalizeFirstLetter(key)+"</option>");
             }
         }
 
@@ -518,7 +519,7 @@
                             <label style="border: 0px;">Indicator: </label>
                         </div>
                         <div class="form-group">
-                            <select id="indicator-select" class="form-control">
+                            <select id="indicator-select" style="width:404px;" class="form-control">
                             </select>
                             <br>
                         </div>
@@ -581,7 +582,7 @@
                         <label for="municipality">Municipality</label>
                     </div>
                 </div>
-                <div id="aster-text" style="width:100%; height:40px; position:absolute; text-align:left;">
+                <div id="aster-text" style="width:90%; height:40px; position:absolute; text-align:left;">
                 </div>
                 <br><br>
                 <div id="aster-chart" style="width:100%;">
