@@ -132,17 +132,15 @@ function select_wedge(d){
 	.attr("stroke-width", "1");
 	
 	// Text placed in the middle
-	svg.append("svg:text")
-	.attr("class", "aster-score")
-	.attr("dy", ".35em")
-	.attr("text-anchor", "middle")
-	.text(d.data.value + "%");
+	var fulltext = capitalizeFirstLetter(d.data.label) + " " + d.data.value + "%";
+	addDescriptionToAsterChart(d, fulltext, svg);
 	
 	//Color selected wedge
 	d3.select(this)
 	.attr("fill", d3.rgb(select_color))
 	.attr("stroke", d3.rgb(line_color))
 	.attr("stroke-width", "1");
+
 	text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ capitalizeFirstLetter(d.data.label) +"</h4>"
 	$("#aster-text").empty();
 	$("#aster-text").append(text);
@@ -150,3 +148,33 @@ function select_wedge(d){
 	$("#aster-text-popup").append(text);
 };
 
+function addDescriptionToAsterChart(d, fulltext, svg){
+	var json_position = {
+		0: -38,
+		1: -18,
+		2: 2,
+		3: 22,
+		4: 42,
+		5: 62,
+	}
+	var a = fulltext.match(/.{6}\S*|.*/g);
+	var index = 0;
+	if (a.length <= 2) {
+		index = 2;
+	} else if (a.length == 3) {
+		index = 1;
+	} else if (a.length >= 4 && a.length <= 5) {
+		index = 1;
+	} else {
+		index = 0;
+	}
+	a.forEach(function(entry) {
+		svg.append("svg:text")
+		.attr("class", "aster-score")
+		.attr("dy", json_position[index])
+		.attr("text-anchor", "middle")
+		.text(entry);
+		index = index + 1;
+	});
+
+}
