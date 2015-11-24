@@ -162,7 +162,7 @@ class MosaicData:
                 # Get unique year values
                 years = data[year_col].drop_duplicates().values.tolist()
                 years = sorted(years)
-                final_data = []
+                final_data = {}
         
                 # Get muncipalities List
                 municipalities = list(data.columns)
@@ -175,7 +175,7 @@ class MosaicData:
                 
                 # Loop through municipalities 
                 for muni in municipalities:
-                    result_set = {muni : {}}
+                    result_set = {}
                     muni_data = data.loc[ : , [year_col, problem_col, muni]]
                     muni_data = muni_data.loc[muni_data[muni].notnull(),]
                     
@@ -187,9 +187,9 @@ class MosaicData:
                         year_data = year_data.to_dict(orient = 'records')
                     
                         # Create dictionary with values
-                        result_set[muni][year] = year_data
+                        result_set[year] = year_data
                     
-                    final_data.append(result_set)
+                    final_data[muni] = result_set
             
                 self.data = final_data
                 self.status = 'transformed'
