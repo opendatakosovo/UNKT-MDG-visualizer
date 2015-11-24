@@ -1,7 +1,7 @@
-var width = 335,
+var width = 365,
 height = 400,
 radius = Math.min(width, height) / 2,
-innerRadius = 0.3 * radius;
+innerRadius = 0.4 * radius;
 
 // Colors
 var wedge_color = "#FFFF46",
@@ -36,12 +36,12 @@ var outlineArc = d3.svg.arc()
 
 
 // Import Data
-function start(muni, s_or_d, div, data) {
-	convert_data(data, muni, div);
+function start(muni, s_or_d, div, data, sort_by) {
+	convert_data(data, muni, div, sort_by);
 };
 
 // Convert data from JSON to required format
-function convert_data(data, muni, div) {
+function convert_data(data, muni, div, sort_by) {
 	//Select data for municipality
 	muni_data = data;
 	
@@ -51,15 +51,15 @@ function convert_data(data, muni, div) {
 		if (!(isNaN(muni_data[key]))){
 			var json = {
 				"label": key.replace(/Satisfaction with /g, ""),
-				"value": muni_data[key].toFixed(1)
+				"value": Number(muni_data[key].toFixed(1))
 			}
 			json_array.push(json);
 		}
 	};
 	
 	// Sort data by the label
-	var sorted_data = sortByKey(json_array, "label");
-	create(sorted_data, div);
+	var sorted_data = sortByKey(json_array, sort_by);
+	create(sorted_data.reverse(), div);
 }
 
 function sortByKey(array, key) {
