@@ -537,11 +537,11 @@
             $("#aster-text").append(text);
             if (ranking_by == "municipality") {
                 rankingByMunicipality(viti, indicator, muni, aster_div, s_or_d);
-                drawMap("family medical centers", s_or_d, all_data[s_or_d][viti]);
+                drawMap(indicator, s_or_d, all_data[s_or_d][viti]);
             } else {
                 $("#aster-chart").find("#" + slugify(indicator)).d3Click();
                 // draw map chart in page load.
-                drawMap("family medical centers", s_or_d, all_data[s_or_d][viti]);
+                drawMap(indicator, s_or_d, all_data[s_or_d][viti]);
             }
 
             $('.no-checkedselector').on('change', 'input[type="radio"].toggle', function () {
@@ -639,12 +639,12 @@
                         <label style="border: 0px;">Ranking by: </label>
                     </div>
                     <div class="form-group">
-                        <input type="radio" name="ranking-radio" selected="selected" id="kosovo-level" checked value="kosovo-level" class="radio" />
-                        <label for="kosovo-level">Indicators</label>
+                        <input type="radio" name="ranking-radio" id="municipality" value="municipality" checked class="radio" />
+                        <label for="municipality">Municipality</label>
                     </div>
                     <div class="form-group">
-                        <input type="radio" name="ranking-radio" id="municipality" value="municipality" class="radio" />
-                        <label for="municipality">Municipality</label>
+                        <input type="radio" name="ranking-radio" selected="selected" id="kosovo-level" value="kosovo-level" class="radio" />
+                        <label for="kosovo-level">Indicators</label>
                     </div>
                 </div>
                 <div id="aster-text" style="width:90%; height:40px; position:absolute; text-align:left;">
