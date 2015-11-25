@@ -62,14 +62,19 @@
             display:inline-block;
             text-align:center;
             padding:3px 0px;
-            width:80px;
-            border: 1px solid #404040;
+            width:60px;
         }
 
         /*input[type="radio"].toggle:checked + label,*/ input[type="radio"].toggle.checked + label {
-            background-color:#404040;
+            background-color:#73AD21;
             color:#F7F7F7;
         }
+        input[type="radio"].toggle-right.checked + label {
+            background-color:red;
+            color:#F7F7F7;
+        }
+
+
 
         @media only screen 
         and (min-device-width : 320px) 
@@ -91,12 +96,17 @@
         var all_data = getAllData();
         var problems_data = getProblemsData();
 
+        var s_or_d_colors = {
+            "s": "#73AD21",
+            "d": "#FF0000"
+        }
+
         var satisfaction_json = {
             "s": "Satisfaction Level",
             "d": "Dissatisfaction Level"
         }
         
-        function drawMap(indicator, s_or_d, data){
+        function drawMap(indicator, s_or_d, data, color){
             var municipalities_data = [];
             for (key in data){
                 var name = key
@@ -140,7 +150,7 @@
                 },
                 colorAxis: {
                     min: 0,
-                    maxColor: '#73AD21'
+                    maxColor: color
                 },
                 plotOptions: {
                     enabled: true,
@@ -164,7 +174,7 @@
                                     $('.modal-title').empty();
                                     $('.modal-title').append("Municipality Profile: <b>" + this.name + "</b>");
                                     var s_or_d = $('input[name=toggle]:checked').val();
-                                    var viti = $('input[name=radio]:checked', '#my-form').val()
+                                    var viti = $('input[name=radio]:checked').val()
                                     var aster_div = "aster-chart-popup";
                                     var aster_text_div = "aster-text-popup";
                                     var indicator = $("#indicator-select").val();
@@ -186,7 +196,7 @@
                     }
                 },
                 tooltip: {
-                    backgroundColor: '#FCFFC5',
+                    backgroundColor: "#FCFFC5",
                     fontSize: "15px",
                     valueSuffix: "%"
                 },
@@ -403,8 +413,8 @@
             $("#aster-chart").find('.solidArc').click(function(){
                 selected_indicator = $(this).attr("value");
                 $("#indicator-select").val(selected_indicator);
-                var viti = $('input[name=radio]:checked', '#my-form').val()
-                drawMap(selected_indicator, s_or_d, all_data[s_or_d][viti]);
+                var viti = $('input[name=radio]:checked').val()
+                drawMap(selected_indicator, s_or_d, all_data[s_or_d][viti], s_or_d_colors[s_or_d]);
             })
         }
 
@@ -419,14 +429,14 @@
             $("#aster-text").append(text);
             $("#aster-chart").find("#" + slugify(municipality)).d3Click();
             start(muni, s_or_d, aster_div, data, "value");
-            drawMap(indicator, s_or_d, all_data[s_or_d][year]);
+            drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
             $("#aster-chart").find("path#" + slugify("Kosovo")).d3Click();
         }
 
         $(document).ready(function(){
             var s_or_d = $('input[name=toggle]:checked').val();
             var muni = "Kosovo";
-            var viti = $('input[name=radio]:checked', '#my-form').val()
+            var viti = $('input[name=radio]:checked').val()
             var aster_div = "aster-chart";
             var aster_text_div = "aster-text";
             start(muni, s_or_d, aster_div, all_data[s_or_d][viti][muni], "label");
@@ -436,7 +446,7 @@
 
             $(document).on('click', '#close-popup, .close', function(event) {
                 var s_or_d = $('input[name=toggle]:checked').val();
-                var year = $('input[name=radio]:checked', '#my-form').val();
+                var year = $('input[name=radio]:checked').val();
                 var indicator = $("#indicator-select").val();
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
                 text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ indicator + " " + satisfaction_json[s_or_d] + "</h4>"
@@ -451,7 +461,7 @@
                     // draw map chart on year radio button click.
                     $("#indicator-select").val(indicator);
                     start(muni, s_or_d, aster_div, all_data[s_or_d][year][muni], "label");
-                    drawMap(indicator, s_or_d, all_data[s_or_d][year]);
+                    drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
                     $("#aster-chart").find("#" + slugify(indicator)).d3Click();
                     bindSelectBoxOnLabelClick(s_or_d);
                 }
@@ -461,7 +471,7 @@
             
             function onRadioButtonChange(){
                 var s_or_d = $('input[name=toggle]:checked').val();
-                var year = $('input[name=radio]:checked', '#my-form').val();
+                var year = $('input[name=radio]:checked').val();
                 // bindIndicatorSelectBox(year, s_or_d);
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
                 var indicator = $("#indicator-select").val();
@@ -488,7 +498,7 @@
             $("input[name=radio]:radio").change(function () {
                 var s_or_d = $('input[name=toggle]:checked').val();
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
-                var year = $('input[name=radio]:checked', '#my-form').val()
+                var year = $('input[name=radio]:checked').val()
                 bindIndicatorSelectBox(year, s_or_d);
                 var indicator = $("#indicator-select").val();
                 if (ranking_by == "municipality") {
@@ -502,7 +512,7 @@
                     $("#" + slugify(indicator_id)).d3Click();
                     // draw map chart on year radio button click.
                     start(muni, s_or_d, aster_div, all_data[s_or_d][year]["Kosovo"], "label");
-                    drawMap(indicator, s_or_d, all_data[s_or_d][year]);
+                    drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
 
                     bindSelectBoxOnLabelClick(s_or_d);
                     $("#aster-chart").find("#" + slugify(indicator)).d3Click();
@@ -513,7 +523,7 @@
                 var s_or_d = $('input[name=toggle]:checked').val();
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
                 var indicator = $("#indicator-select").val();
-                var year = $('input[name=radio]:checked', '#my-form').val();
+                var year = $('input[name=radio]:checked').val();
                 text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ indicator + " " + satisfaction_json[s_or_d] + "</h4>"
                 $("#aster-text").empty();
                 $("#aster-text").append(text);
@@ -523,7 +533,7 @@
                     text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ capitalizeFirstLetter(indicator) + " " + satisfaction_json[s_or_d] + "</h4>"
                     $("#aster-text").empty();
                     $("#aster-text").append(text)
-                    drawMap(indicator, s_or_d, all_data[s_or_d][year]);
+                    drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
                     indicator_id = indicator.replace("Satisfaction with ", "");
                     $("#aster-chart").find("path#" + slugify(indicator_id)).d3Click();
                     bindSelectBoxOnLabelClick(s_or_d);
@@ -537,11 +547,11 @@
             $("#aster-text").append(text);
             if (ranking_by == "municipality") {
                 rankingByMunicipality(viti, indicator, muni, aster_div, s_or_d);
-                drawMap(indicator, s_or_d, all_data[s_or_d][viti]);
+                drawMap(indicator, s_or_d, all_data[s_or_d][viti], s_or_d_colors[s_or_d]);
             } else {
                 $("#aster-chart").find("#" + slugify(indicator)).d3Click();
                 // draw map chart in page load.
-                drawMap(indicator, s_or_d, all_data[s_or_d][viti]);
+                drawMap(indicator, s_or_d, all_data[s_or_d][viti], s_or_d_colors[s_or_d]);
             }
 
             $('.no-checkedselector').on('change', 'input[type="radio"].toggle', function () {
@@ -575,61 +585,50 @@
     </nav>
     <div class="container-fluid">
         <div class="row" style="margin-top: 10px;">
-            <form id="my-form">
-                <div class="col-md-1">
-                </div>
-                <div class="col-md-5">
-                    <div class="form-inline" >
-                        <div class="form-group">
-                            <label style="border: 0px;">Indicator: </label>
-                        </div>
-                        <div class="form-group">
-                            <select id="indicator-select" style="width:100%;" class="form-control">
-                            </select>
-                            <br>
-                        </div>
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-4">
+                <div class="form-inline" >
+                    <div class="form-group" style="text-align:center;">
+                        <select id="indicator-select" style="" class="form-control">Indicator
+                        </select><br><br>
                     </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="form-inline">
-                        <div class="form-group">
-                            <input type="radio" name="radio" id="2015" value="2015" class="radio" checked/>
-                            <label for="2015">2015</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="radio" name="radio" id="2012" value="2012" class="radio"/>
-                            <label for="2012">2012</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="radio" name="radio" id="2009" value="2009" class="radio"/>
-                            <label for="2009">2009</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="radio" name="radio" id="2006" value="2006" class="radio"/>
-                            <label for="2006">2006</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="radio" name="radio" id="2003" value="2003" class="radio"/>
-                            <label for="2003">2003</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-1">
-                </div>
-            </form>
-        </div><br>
-        <div class="row">
-            <div class="no-checkedselector" style="text-align:center;">
-                <div class="toggle-container">
-                   <input id="toggle-on" class="toggle toggle-left" name="toggle" value="s" type="radio" checked>
-                   <label for="toggle-on" class="btn">Satisfied</label>
-                   <input id="toggle-off" class="toggle toggle-right" value="d" name="toggle" type="radio">
-                   <label for="toggle-off" class="btn">Dissatisfied</label>
                 </div>
             </div>
+            <div class="col-md-2">
+                <div class="no-checkedselector" style="text-align:center;  margin-top:-10px;">
+                    <div class="toggle-container">
+                       <input id="toggle-on" class="toggle toggle-left" name="toggle" value="s" type="radio" checked>
+                       <label style="font-size: 30px;" for="toggle-on" class="btn">&#128515;</label>
+                       <input id="toggle-off" class="toggle toggle-right" value="d" name="toggle" type="radio">
+                       <label style="font-size: 30px;" for="toggle-off" class="btn">&#128542;</label>
+                       <br><br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div style="display-inline;">
+                    <div class="no-checkedselector" style="text-align:center;">
+                        <div class="toggle-container">
+                            <input type="radio" class="toggle toggle-left" name="radio" id="2015" value="2015" checked>
+                            <label style="" for="2015" class="btn">2015</label>
+                            <input type="radio" name="radio" id="2012" value="2012" class="toggle toggle-left">
+                            <label style="" for="2012" class="btn">2012</label>
+                            <input type="radio" name="radio" id="2009" value="2009" class="toggle toggle-left">
+                            <label style="" for="2009" class="btn">2009</label>
+                            <input type="radio" name="radio" id="2006" value="2006" class="toggle toggle-left">
+                            <label style="" for="2006" class="btn">2006</label>
+                            <input type="radio" name="radio" id="2003" value="2003" class="toggle toggle-left">
+                            <label style="" for="2003" class="btn">2003</label><br><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
+            </div>
         </div>
-            <hr class="style-eight" style="width: 80%" />
         <div class="row">
+            <hr class="style-eight" style="width: 85%" />
             <div class="col-md-7">
                 <div id="container" style="height:550px;"></div>
             </div>
@@ -676,9 +675,9 @@
                             </div>
                         </div>
                         <div class="col-md-5">
-                            <div id="column-chart" style="min-width: 330px; max-width: 100%; width:500px; height: 320px;"></div>
+                            <div id="column-chart" style="min-width: 330px; max-width: 100%; width:40%; height: 320px;"></div>
                             <hr class="style-eight" style="width: 100%" />
-                            <div id="line-chart" style="min-width: 330px; max-width: 100%; width:500px; height: 320px;"></div>
+                            <div id="line-chart" style="min-width: 330px; max-width: 100%; width:40%; height: 320px;"></div>
                             <hr>
                         </div>
                     </div>

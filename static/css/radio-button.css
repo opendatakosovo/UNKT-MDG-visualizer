@@ -47,7 +47,7 @@ input.radio:checked ~ label:before {
 	content:'\2714';
 	text-indent: .9em;
 	color: #9CE2AE;
-	background-color: #4DCB6D;
+	background-color: #73AD21;
 }
 
 input.radio:checked ~ label {
