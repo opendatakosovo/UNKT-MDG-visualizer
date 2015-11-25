@@ -6,7 +6,7 @@ import json
 s_filepath = "../data/raw_data/satisfied.csv"
 d_filepath = "../data/raw_data/dissatisfied.csv"
 p_filepath = "../data/raw_data/problems.csv"
-w_filepath = "../data/standard_lists/whitelist.xlsx"
+w_filepath = "../data/standard_lists/whitelist-dummy.xlsx"
 output_filepath = "../data/clean_data/"
 
 # Create Mosaic object
