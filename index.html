@@ -205,32 +205,11 @@
                                     drawLineChart("line-chart", indicator, muni, s_or_d);
 
                                     $('input[name=years-popup]:radio').change(function () {
-                                        var s_or_d = $('input[name=s_or_d]:checked').val();
-                                        var save_selected_indicator = $("#aster-chart-popup").find("text").text();
-                                        var lastIndex = save_selected_indicator.lastIndexOf(" ");
-                                        save_selected_indicator = save_selected_indicator.substring(0, lastIndex)
-                                        var year = $('input[name=years-popup]:checked').val();
-                                        start(muni, s_or_d, aster_div, all_data[s_or_d][year][muni], "label");
-                                        onAsterChartClick(muni, s_or_d)
-                                        $("#aster-chart-popup").find("#" + slugify(save_selected_indicator)).d3Click();
-                                        $("#aster-text-popup").empty();
-                                        var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_d] +"</h4>"
-                                        $("#aster-text-popup").append(text)
+                                        onRadioChange (muni, aster_div)
                                     })
 
                                     $('input[name=s_or_d]:radio').change(function () {
-                                        var save_selected_indicator = $("#aster-chart-popup").find("text").text();
-                                        var lastIndex = save_selected_indicator.lastIndexOf(" ");
-                                        save_selected_indicator = save_selected_indicator.substring(0, lastIndex)
-                                        var year = $('input[name=years-popup]:checked').val();
-                                        var s_or_dis = $('input[name=s_or_d]:checked').val();
-                                        start(muni, s_or_d, aster_div, all_data[s_or_dis][year][muni], "label");
-                                        drawLineChart("line-chart", save_selected_indicator, muni, s_or_dis);
-                                        onAsterChartClick(muni, s_or_dis)
-                                        $("#aster-chart-popup").find("#" + slugify(save_selected_indicator)).d3Click();
-                                        $("#aster-text-popup").empty();
-                                        var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_dis] +"</h4>"
-                                        $("#aster-text-popup").append(text)
+                                        onRadioChange (muni, aster_div)
                                     })
 
                                     onAsterChartClick(muni, s_or_d)
@@ -264,6 +243,30 @@
                     }
                 }]
             });
+        }
+
+            // body...
+        function onRadioChange (muni, aster_div) {
+            var s_or_d = $('input[name=s_or_d]:checked').val();
+            var save_selected_indicator = $("#aster-chart-popup").find("text").text();
+            var lastIndex = save_selected_indicator.lastIndexOf(" ");
+            save_selected_indicator = save_selected_indicator.substring(0, lastIndex)
+            var year = $('input[name=years-popup]:checked').val();
+            start(muni, s_or_d, aster_div, all_data[s_or_d][year][muni], "label");
+            onAsterChartClick(muni, s_or_d)
+            $("#aster-text-popup").empty();
+            var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_d] +"</h4>"
+            $("#aster-text-popup").append(text)
+            var indicators_array = []
+            for (var key in all_data[s_or_d][year][muni]) {
+                indicators_array.push(slugify(key));
+            }
+            if(indicators_array.indexOf(slugify(save_selected_indicator)) >= 0){
+                $("#aster-chart-popup").find("#" + slugify(save_selected_indicator)).d3Click();
+            } else {
+                $("#aster-chart-popup").find("#municipal-administration").d3Click();
+            }
+            
         }
 
         function onAsterChartClick (muni, s_or_d) {
