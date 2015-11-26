@@ -358,17 +358,16 @@
             var json_data = {}
             var data = []
             for (key in all_data[s_or_d]){
-                categories.push(key);
                 value = all_data[s_or_d][key][municipality][indicator]
                 if (value != undefined && !(isNaN(value))){
+                    categories.push(key);
                     if (value.toString().length > 4){
                         value = value.toFixed(1);
                     }
                     data.push(Number(value));
-                } else {
-                    data.push(null)
                 }
             }
+
             $('#' + div).highcharts({
                 title: {
                     text: capitalizeFirstLetter(indicator),
@@ -674,6 +673,8 @@
                     <h4 class="modal-title" style="text-align: center"></h4>
                 </div>
                 <div class="modal-body">
+                    <div class="row">
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div id="aster-text-popup" style="margin-left: 25%; width: 100%; height:40px; float:left; position:absolute; text-align:left;">
