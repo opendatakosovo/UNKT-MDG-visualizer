@@ -203,7 +203,7 @@
                                         var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_d] +"</h4>"
                                         $("#aster-text-popup").append(text)
 
-                                        onAsterChartClick(muni, s_or_d)
+                                        onAsterChartClick(muni, s_or_d);
                                         $("#aster-chart-popup").find("#" + slugify(indicator)).d3Click();
 
                                     } else {
@@ -271,8 +271,10 @@
                     indicators_array.push(slugify(key));
                 }
                 if(indicators_array.indexOf(slugify(save_selected_indicator)) >= 0){
+                    onAsterChartClick(muni, s_or_d)
                     $("#aster-chart-popup").find("#" + slugify(save_selected_indicator)).d3Click();
                 } else {
+                    onAsterChartClick(muni, s_or_d)
                     $("#aster-chart-popup").find("#municipal-administration").d3Click();
                 }
             } else {
