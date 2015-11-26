@@ -189,24 +189,53 @@
                                     }
                                     $('.modal-title').empty();
                                     $('.modal-title').append("Municipality Profile: <b>" + this.name + "</b>");
-                                    var s_or_d = $('input[name=toggle]:checked').val();
-                                    var viti = $('input[name=radio]:checked').val()
                                     var aster_div = "aster-chart-popup";
                                     var aster_text_div = "aster-text-popup";
                                     var indicator = $("#indicator-select").val();
-                                    start(muni, "S", aster_div, data[muni], "label");
+                                    var year = $('input[name=years-popup]:checked').val();
+                                    var s_or_d = $('input[name=s_or_d]:checked').val();
+
+                                    start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label");
                                     indicator_id = indicator.replace("Satisfaction with ", "");
+
                                     $("#aster-text-popup").empty();
                                     var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_d] +"</h4>"
                                     $("#aster-text-popup").append(text)
                                     drawColumnChart("column-chart", problems_data, muni);
                                     drawLineChart("line-chart", indicator, muni, s_or_d);
-                                    $("#aster-chart-popup").find('.solidArc').click(function(){
-                                        drawColumnChart("column-chart", problems_data, muni);
-                                        selected_indicator = $(this).attr("value");
-                                        drawLineChart("line-chart", selected_indicator, muni, s_or_d);
+
+                                    $('input[name=years-popup]:radio').change(function () {
+                                        var s_or_d = $('input[name=s_or_d]:checked').val();
+                                        var save_selected_indicator = $("#aster-chart-popup").find("text").text();
+                                        var lastIndex = save_selected_indicator.lastIndexOf(" ");
+                                        save_selected_indicator = save_selected_indicator.substring(0, lastIndex)
+                                        var year = $('input[name=years-popup]:checked').val();
+                                        start(muni, s_or_d, aster_div, all_data[s_or_d][year][muni], "label");
+                                        onAsterChartClick(muni, s_or_d)
+                                        $("#aster-chart-popup").find("#" + slugify(save_selected_indicator)).d3Click();
+                                        $("#aster-text-popup").empty();
+                                        var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_d] +"</h4>"
+                                        $("#aster-text-popup").append(text)
                                     })
+
+                                    $('input[name=s_or_d]:radio').change(function () {
+                                        var save_selected_indicator = $("#aster-chart-popup").find("text").text();
+                                        var lastIndex = save_selected_indicator.lastIndexOf(" ");
+                                        save_selected_indicator = save_selected_indicator.substring(0, lastIndex)
+                                        var year = $('input[name=years-popup]:checked').val();
+                                        var s_or_dis = $('input[name=s_or_d]:checked').val();
+                                        start(muni, s_or_d, aster_div, all_data[s_or_dis][year][muni], "label");
+                                        drawLineChart("line-chart", save_selected_indicator, muni, s_or_dis);
+                                        onAsterChartClick(muni, s_or_dis)
+                                        $("#aster-chart-popup").find("#" + slugify(save_selected_indicator)).d3Click();
+                                        $("#aster-text-popup").empty();
+                                        var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_dis] +"</h4>"
+                                        $("#aster-text-popup").append(text)
+                                    })
+
+                                    onAsterChartClick(muni, s_or_d)
                                     $("#aster-chart-popup").find("#" + slugify(indicator)).d3Click();
+
                                 }
                             }
                         }
@@ -235,6 +264,14 @@
                     }
                 }]
             });
+        }
+
+        function onAsterChartClick (muni, s_or_d) {
+            $("#aster-chart-popup").find('.solidArc').click(function(){
+                drawColumnChart("column-chart", problems_data, muni);
+                selected_indicator = $(this).attr("value");
+                drawLineChart("line-chart", selected_indicator, muni, s_or_d);
+            })
         }
 
         function drawColumnChart(div, data, municipality){
@@ -378,7 +415,7 @@
 
             $('#' + div).highcharts({
                 title: {
-                    text: capitalizeFirstLetter(indicator),
+                    text: capitalizeFirstLetter(indicator) + " " + satisfaction_json[s_or_d],
                     x: -20 //center
                 },
                 xAxis: {
@@ -692,7 +729,30 @@
                     <h4 class="modal-title" style="text-align: center"></h4>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
+                    <div class="row" style="text-align: center;">
+                         <div class="no-checkedselector" style="text-align:center;  margin-top:-10px;">
+                            <div class="toggle-container">
+                               <input id="s" class="toggle toggle-left" name="s_or_d" value="s" type="radio" checked>
+                               <label style="font-size: 30px;" for="s" class="btn">&#128515;</label>
+                               <input id="d" class="toggle toggle-right" value="d" name="s_or_d" type="radio">
+                               <label style="font-size: 30px;" for="d" class="btn">&#128544;</label>
+                               <br><br>
+                            </div>
+                        </div>
+                        <div class="no-checkedselector" style="text-align:center;">
+                            <div class="toggle-container">
+                                <input type="radio" name="years-popup" id="year-2015" value="2015" class="toggle" checked>
+                                <label style="" for="year-2015" class="btn">2015</label>
+                                <input type="radio" name="years-popup" id="year-2012" value="2012" class="toggle">
+                                <label style="" for="year-2012" class="btn">2012</label>
+                                <input type="radio" name="years-popup" id="year-2009" value="2009" class="toggle">
+                                <label style="" for="year-2009" class="btn">2009</label>
+                                <input type="radio" name="years-popup" id="year-2006" value="2006" class="toggle">
+                                <label style="" for="year-2006" class="btn">2006</label>
+                                <input type="radio" name="years-popup" id="year-2003" value="2003" class="toggle">
+                                <label style="" for="year-2003" class="btn">2003</label><br><br>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
