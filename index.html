@@ -195,13 +195,22 @@
                                     var year = $('input[name=years-popup]:checked').val();
                                     var s_or_d = $('input[name=s_or_d]:checked').val();
                                     changeRadioButtonsColor(s_or_d)
+                                    if (!(isNaN(all_data[s_or_d][year][muni]["Municipal Administration"]))){
+                                        $("#no-data").css("display", "none");
+                                        start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label");
 
-                                    start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label");
-                                    indicator_id = indicator.replace("Satisfaction with ", "");
+                                        $("#aster-text-popup").empty();
+                                        var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_d] +"</h4>"
+                                        $("#aster-text-popup").append(text)
 
-                                    $("#aster-text-popup").empty();
-                                    var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_d] +"</h4>"
-                                    $("#aster-text-popup").append(text)
+                                        onAsterChartClick(muni, s_or_d)
+                                        $("#aster-chart-popup").find("#" + slugify(indicator)).d3Click();
+
+                                    } else {
+                                        $("#" + aster_div).empty();
+                                        $("#no-data").css("display", "block");
+                                    }
+                                    
                                     drawColumnChart("column-chart", problems_data, muni);
                                     drawLineChart("line-chart", indicator, muni, s_or_d);
 
@@ -212,9 +221,6 @@
                                     $('input[name=s_or_d]:radio').change(function () {
                                         onRadioChange (muni, aster_div)
                                     })
-
-                                    onAsterChartClick(muni, s_or_d)
-                                    $("#aster-chart-popup").find("#" + slugify(indicator)).d3Click();
 
                                 }
                             }
@@ -254,20 +260,26 @@
             var lastIndex = save_selected_indicator.lastIndexOf(" ");
             save_selected_indicator = save_selected_indicator.substring(0, lastIndex)
             var year = $('input[name=years-popup]:checked').val();
-            start(muni, s_or_d, aster_div, all_data[s_or_d][year][muni], "label");
-            onAsterChartClick(muni, s_or_d)
-            $("#aster-text-popup").empty();
-            var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_d] +"</h4>"
-            $("#aster-text-popup").append(text)
-            var indicators_array = []
-            for (var key in all_data[s_or_d][year][muni]) {
-                indicators_array.push(slugify(key));
-            }
-            if(indicators_array.indexOf(slugify(save_selected_indicator)) >= 0){
-                $("#aster-chart-popup").find("#" + slugify(save_selected_indicator)).d3Click();
+            if (!(isNaN(all_data[s_or_d][year][muni]["Municipal Administration"]))){
+                $("#no-data").css("display", "none");
+                start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label");
+                $("#aster-text-popup").empty();
+                var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_d] +"</h4>"
+                $("#aster-text-popup").append(text)
+                var indicators_array = []
+                for (var key in all_data[s_or_d][year][muni]) {
+                    indicators_array.push(slugify(key));
+                }
+                if(indicators_array.indexOf(slugify(save_selected_indicator)) >= 0){
+                    $("#aster-chart-popup").find("#" + slugify(save_selected_indicator)).d3Click();
+                } else {
+                    $("#aster-chart-popup").find("#municipal-administration").d3Click();
+                }
             } else {
-                $("#aster-chart-popup").find("#municipal-administration").d3Click();
+                $("#" + aster_div).empty();
+                $("#no-data").css("display", "block");
             }
+            onAsterChartClick(muni, s_or_d)
             
         }
 
@@ -779,9 +791,10 @@
                             <div id="aster-text-popup" style="margin-left: 25%; width: 100%; height:40px; float:left; position:absolute; text-align:left;">
                             </div>
                             <br><br>
-                            <br><br>
+                            <br><br><br><br>
                             <div id="aster-chart-popup" style="min-width: 310px; width:330; margin-left: 100px;">
                             </div>
+                            <h3 id="no-data" style="color: red; text-align:center; display:none; ">There's no data available</h3><br><br><br><br>
                         </div>
                         <div class="col-md-6" >
                             <div class="row" style="margin-left:8%;">
