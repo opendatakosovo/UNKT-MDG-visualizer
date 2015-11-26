@@ -194,6 +194,7 @@
                                     var indicator = $("#indicator-select").val();
                                     var year = $('input[name=years-popup]:checked').val();
                                     var s_or_d = $('input[name=s_or_d]:checked').val();
+                                    changeRadioButtonsColor(s_or_d)
 
                                     start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label");
                                     indicator_id = indicator.replace("Satisfaction with ", "");
@@ -248,6 +249,7 @@
             // body...
         function onRadioChange (muni, aster_div) {
             var s_or_d = $('input[name=s_or_d]:checked').val();
+            changeRadioButtonsColor(s_or_d)
             var save_selected_indicator = $("#aster-chart-popup").find("text").text();
             var lastIndex = save_selected_indicator.lastIndexOf(" ");
             save_selected_indicator = save_selected_indicator.substring(0, lastIndex)
@@ -502,6 +504,7 @@
 
             $(document).on('click', '#close-popup, .close', function(event) {
                 var s_or_d = $('input[name=toggle]:checked').val();
+                changeRadioButtonsColor(s_or_d)
                 var year = $('input[name=radio]:checked').val();
                 var indicator = $("#indicator-select").val();
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
@@ -527,6 +530,7 @@
             
             function onRadioButtonChange(){
                 var s_or_d = $('input[name=toggle]:checked').val();
+                changeRadioButtonsColor(s_or_d)
                 var year = $('input[name=radio]:checked').val();
                 // bindIndicatorSelectBox(year, s_or_d);
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
@@ -553,6 +557,7 @@
 
             $("input[name=radio]:radio").change(function () {
                 var s_or_d = $('input[name=toggle]:checked').val();
+                changeRadioButtonsColor(s_or_d)
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
                 var year = $('input[name=radio]:checked').val()
                 bindIndicatorSelectBox(year, s_or_d);
@@ -577,6 +582,7 @@
 
             $("#indicator-select").change(function(){
                 var s_or_d = $('input[name=toggle]:checked').val();
+                changeRadioButtonsColor(s_or_d)
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
                 var indicator = $("#indicator-select").val();
                 var year = $('input[name=radio]:checked').val();
@@ -619,7 +625,18 @@
                 }
             });
             $('.no-checkedselector input[type="radio"].toggle:checked').addClass('checked');
+            changeRadioButtonsColor(s_or_d)
         })
+
+        function changeRadioButtonsColor(s_or_d) {
+            if (s_or_d == "s") {
+                $('input[type="radio"]').removeClass('toggle-right')
+                $('input[type="radio"]').addClass('toggle-left')
+            } else {
+                $('input[type="radio"]').removeClass('toggle-left')
+                $('input[type="radio"]').addClass('toggle-right')
+            }
+        }
     </script>
 </head>
 <body>
