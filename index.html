@@ -82,6 +82,12 @@
             /* Styles */
             #aster-chart-popup {
                 margin-left: -5px !important;
+            },
+            #line-chart {
+                width: 310px !important;
+            },
+            #column-chart {
+                width: 310px !important;
             }
 
         }
@@ -188,7 +194,6 @@
                                     var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_d] +"</h4>"
                                     $("#aster-text-popup").append(text)
                                     drawColumnChart("column-chart", problems_data, muni);
-
                                     $("#aster-chart-popup").find("#" + slugify(indicator)).d3Click();
                                 }
                             }
@@ -675,9 +680,13 @@
                             </div>
                         </div>
                         <div class="col-md-5">
-                            <div id="column-chart" style="min-width: 330px; max-width: 100%; width:40%; height: 320px;"></div>
+                            <div id="column-chart-container">
+                                <div id="column-chart" style="min-width: 310px; width: 400px; height: 320px;"></div>
+                            </div>
                             <hr class="style-eight" style="width: 100%" />
-                            <div id="line-chart" style="min-width: 330px; max-width: 100%; width:40%; height: 320px;"></div>
+                            <div id="line-chart-container">
+                                <div id="line-chart" style="min-width: 310px; width: 400px; height: 320px;"></div>
+                            </div>
                             <hr>
                         </div>
                     </div>
