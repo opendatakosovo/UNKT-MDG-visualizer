@@ -339,7 +339,8 @@
 					found = 0;
 					for (cat in data[municipality][year]) {
 						if (data[municipality][year][cat]['label'] == category) {
-							data_array.push(data[municipality][year][cat]['value']);
+                            var value = Number(data[municipality][year][cat]['value'].toFixed(1))
+							data_array.push(value);
 							found = 1;
 						}
 					} // Municipality Loop
@@ -353,7 +354,8 @@
 					
 					for (cat in data['Kosovo'][year]) {
 						if (data['Kosovo'][year][cat]['label'] == category) {
-							data_array.push(data['Kosovo'][year][cat]['value']);
+                            var value = Number(data['Kosovo'][year][cat]['value'].toFixed(1))
+							data_array.push(value);
 							found = 1;
 						}
 					} // Kosovo Loop
