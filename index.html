@@ -175,6 +175,12 @@
                             events: {
                                 select: function () {
                                     $('#popup-button').click();
+                                    var sat_or_diss = $('input[name=toggle]:checked').val();
+                                    radiobtn_s_or_d = document.getElementById(sat_or_diss);
+                                    radiobtn_s_or_d.click();
+                                    var viti = $('input[name=radio]:checked').val();
+                                    radiobtn_viti = document.getElementById("year-" + viti);
+                                    radiobtn_viti.click();
                                     var muni = this.name;
                                     if (muni == "Prishtine"){
                                         muni = "Pristina"
@@ -197,7 +203,7 @@
                                     changeRadioButtonsColor(s_or_d)
                                     if (!(isNaN(all_data[s_or_d][year][muni]["Municipal Administration"]))){
                                         $("#no-data").css("display", "none");
-                                        start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label");
+                                        start(muni, "S", aster_div, all_data[s_or_d][viti][muni], "label");
 
                                         $("#aster-text-popup").empty();
                                         var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_d] +"</h4>"
