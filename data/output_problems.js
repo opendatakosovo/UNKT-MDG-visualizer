@@ -61,7 +61,6 @@ function getProblemsData(){
             ]
         },
         "Mitrovica North": {
-            "2012": [], 
             "2015": [
                 {
                     "label": "Unemployment", 

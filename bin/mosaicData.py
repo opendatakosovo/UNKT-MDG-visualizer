@@ -179,15 +179,16 @@ class MosaicData:
                     muni_data = data.loc[ : , [year_col, problem_col, muni]]
                     muni_data = muni_data.loc[muni_data[muni].notnull(),]
                     
-                    
                     # Loop through years
                     for year in years:
                         year_data = muni_data.loc[data[year_col] == year, [problem_col, muni]]
-                        year_data.columns = ['label', 'value']
-                        year_data = year_data.to_dict(orient = 'records')
+                        
+                        if not year_data.empty:
+                            year_data.columns = ['label', 'value']
+                            year_data = year_data.to_dict(orient = 'records')
                     
-                        # Create dictionary with values
-                        result_set[year] = year_data
+                            # Create dictionary with values
+                            result_set[year] = year_data
                     
                     final_data[muni] = result_set
             
