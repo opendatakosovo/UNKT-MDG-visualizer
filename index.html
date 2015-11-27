@@ -121,7 +121,7 @@
             "s": "Satisfaction Level",
             "d": "Dissatisfaction Level"
         }
-        
+
         function drawMap(indicator, s_or_d, data, color){
             var municipalities_data = [];
             for (key in data){
@@ -507,6 +507,7 @@
             bindSelectBoxOnLabelClick(s_or_d);
 
             $(document).on('click', '#close-popup, .close', function(event) {
+                $("#column-chart").empty();
                 var s_or_d = $('input[name=toggle]:checked').val();
                 changeRadioButtonsColor(s_or_d)
                 var year = $('input[name=radio]:checked').val();
