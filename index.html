@@ -523,6 +523,7 @@
             bindSelectBoxOnLabelClick(s_or_d);
 
             $(document).on('click', '#close-popup, .close', function(event) {
+                $("#column-chart").empty();
                 var s_or_d = $('input[name=toggle]:checked').val();
                 changeRadioButtonsColor(s_or_d)
                 var year = $('input[name=radio]:checked').val();

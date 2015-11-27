@@ -11822,7 +11822,7 @@ function getAllData(){
                     }, 
                     "Mamushe": {
                         "Municipal Administration": 3.4000000000000004, 
-                        "Municipal Assembly": 7.9, 
+                        "Municipal Assembly": 8, 
                         "access to and quality of preschool education": 1.0, 
                         "cemetery maintenace": 1.0, 
                         "cultural activities": 31.300000000000001, 
@@ -11851,7 +11851,7 @@ function getAllData(){
                         "sidewalks": 9.0999999999999996, 
                         "social services": 98.0, 
                         "sports activities": 69.0, 
-                        "the Mayor": 8.9, 
+                        "the Mayor": 9, 
                         "traffic and parking control and regulation": 53.5, 
                         "urban and rural planning": 93.299999999999997, 
                         "waste collection services": 36.899999999999999, 
