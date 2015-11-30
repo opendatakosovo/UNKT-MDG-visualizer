@@ -8,11 +8,26 @@
     <!-- jquery plugin -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
+<<<<<<< HEAD
+=======
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+
+    <!-- DataTables plugin -->
+    <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+
+>>>>>>> master
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <!-- Responsive HTML Table -->
+<<<<<<< HEAD
     <link rel="stylesheet" href="../static/css/responsive-table.css">
+=======
+    <!-- <link rel="stylesheet" href="../static/css/responsive-table.css"> -->
+
+
+>>>>>>> master
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -41,6 +56,7 @@
         var language = "serbian";
         function getData () {
             $.ajax({
+<<<<<<< HEAD
                 'url': "../data/standard_lists/indicators.json",
                 'dataType': 'json',
                 'responseJSON': 'data',
@@ -51,10 +67,32 @@
                         var description = data[key][language + "_description"];
                         $('#indicators-table').append("<tr><td data-th='Indicator'>"+ capitalizeFirstLetter(name) +"</td><td data-th='Description'>"+ description +"</td></tr>");
                     }
+=======
+                'url': "../data/standard_lists/problems.json",
+                'dataType': 'json',
+                'responseJSON': 'data',
+                'success': function (data) {
+                    $('#indicators-table').append("<tbody id='table-body'></tbody>");
+                    for (var key in data) {
+                        var name = data[key][language + "_name"];
+                        var description = data[key][language + "_description"];
+                        $('#table-body').append("<tr><td>"+ capitalizeFirstLetter(name) +"</td><td>"+ description +"</td></tr>");
+                    }
+                    $("#indicators-table").DataTable({
+                        "paging": false
+                    });
+>>>>>>> master
                 }
             });
         }
 
+<<<<<<< HEAD
+=======
+        $(document).ready(function() {
+            getData();
+        });
+        
+>>>>>>> master
         function capitalizeFirstLetter(string) {
             if (string != null) {
                 return string.charAt(0).toUpperCase() + string.slice(1);
@@ -62,10 +100,13 @@
                 return "Empty"
             }
         }
+<<<<<<< HEAD
 
         $(document).ready(function() {
             getData ();
         });
+=======
+>>>>>>> master
     </script>
 </head>
 <body>
@@ -91,9 +132,29 @@
         <div class="row" style="margin-top: 10px;">
             <div class="col-md-2"></div>
             <div class="col-md-8" style="text-align:center">
+<<<<<<< HEAD
                 <h1>Indicators</h1>
                 <table id="indicators-table" class="rwd-table">
                 </table>
+=======
+                <h1>Problems</h1>
+                <div id="table">
+                    <table id="indicators-table" class="display" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Problem</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Problem</th>
+                                <th>Description</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+>>>>>>> master
             </div>
             <div class="col-md-2"></div>
         </div>
