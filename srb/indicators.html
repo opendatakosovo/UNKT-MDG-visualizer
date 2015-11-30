@@ -2,7 +2,6 @@
 <head>
     <meta charset="utf-8"/>
     <!-- Serbian Version -->
-    
     <title>Kosovo Mosaic</title>
 
     <!-- jquery plugin -->
@@ -20,8 +19,11 @@
     <!-- Responsive HTML Table -->
     <!-- <link rel="stylesheet" href="../static/css/responsive-table.css"> -->
 
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
 
-
+    <!-- DataTables plugin -->
+    <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
@@ -64,6 +66,14 @@
                     });
                 }
             });
+        }
+
+        $(document).ready(function() {
+            getData();
+        });
+        
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
         }
 
         $(document).ready(function() {
