@@ -49,14 +49,14 @@
         var language = "serbian";
         function getData () {
             $.ajax({
-                'url': "../data/standard_lists/indicators.json",
+                'url': "../data/standard_lists/problems.json",
                 'dataType': 'json',
                 'responseJSON': 'data',
                 'success': function (data) {
                     $('#indicators-table').append("<tbody id='table-body'></tbody>");
                     for (var key in data) {
-                        var name = data[key]["name_" + language];
-                        var description = data[key]["description_" + language];
+                        var name = data[key][language + "_name"];
+                        var description = data[key][language + "_description"];
                         $('#table-body').append("<tr><td>"+ capitalizeFirstLetter(name) +"</td><td>"+ description +"</td></tr>");
                     }
                     $("#indicators-table").DataTable({
@@ -88,12 +88,12 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="../index.html">Visualizer</a></li>
-                    <li class="active"><a href="indicators.html">Indicators</a></li>
-                    <li><a href="problems.html">Problems</a></li>
+                    <li><a href="indicators.html">Indicators</a></li>
+                    <li class="active"><a href="problems.html">Problems</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="../shq/indicators.html">Shqip</a></li>
-                    <li class="active"><a href="../srb/indicators.html">Srpski</a></li>
+                    <li><a href="../shq/problems.html">Shqip</a></li>
+                    <li class="active"><a href="../srb/problems.html">Srpski</a></li>
                 </ul>
             </div> <!-- navbar-collapse -->
         </div> <!-- container-fluid -->     
@@ -102,18 +102,18 @@
         <div class="row" style="margin-top: 10px;">
             <div class="col-md-2"></div>
             <div class="col-md-8" style="text-align:center">
-                <h1>Indicators</h1>
+                <h1>Problems</h1>
                 <div id="table">
                     <table id="indicators-table" class="display" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-                                <th>Indicator</th>
+                                <th>Problem</th>
                                 <th>Description</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Indicator</th>
+                                <th>Problem</th>
                                 <th>Description</th>
                             </tr>
                         </tfoot>

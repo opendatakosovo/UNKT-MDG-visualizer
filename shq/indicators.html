@@ -1,26 +1,32 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-	<!-- Albanian Version -->
+    <!-- Albanian Version -->
+    
     <title>Kosovo Mosaic</title>
 
     <!-- jquery plugin -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+
+    <!-- DataTables plugin -->
+    <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <!-- Responsive HTML Table -->
-    <link rel="stylesheet" href="../static/css/responsive-table.css">
+    <!-- <link rel="stylesheet" href="../static/css/responsive-table.css"> -->
+
+
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-    <!-- Responsive table css -->
-    <!-- <link rel="stylesheet" type="text/css" href="kosovo-mosaic-visualizer/static/css/responsive-table.css"> -->
 
 
 
@@ -40,60 +46,79 @@
     </style>
 
     <script type="text/javascript">
-        var language = "albanian"
+        var language = "albanian";
         function getData () {
             $.ajax({
                 'url': "../data/standard_lists/indicators.json",
                 'dataType': 'json',
                 'responseJSON': 'data',
                 'success': function (data) {
-                    console.log(data);
-
-                    $('#indicators-table').append("<tr><th style'text-align:center;'>Indicator</th><th style'text-align:center;>Description</th></tr>");
+                    $('#indicators-table').append("<tbody id='table-body'></tbody>");
                     for (var key in data) {
                         var name = data[key]["name_" + language];
                         var description = data[key]["description_" + language];
-                        $('#indicators-table').append("<tr><td data-th='Indicator'>"+ capitalizeFirstLetter(name) +"</td><td data-th='Description'>"+ description +"</td></tr>");
+                        $('#table-body').append("<tr><td>"+ capitalizeFirstLetter(name) +"</td><td>"+ description +"</td></tr>");
                     }
+                    $("#indicators-table").DataTable({
+                        "paging": false
+                    });
                 }
             });
         }
 
-        function capitalizeFirstLetter(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
-        }
-
         $(document).ready(function() {
-            getData ();
+            getData();
         });
+        
+        function capitalizeFirstLetter(string) {
+            if (string != null) {
+                return string.charAt(0).toUpperCase() + string.slice(1);
+            } else {
+                return "Empty"
+            }
+        }
     </script>
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="http://www.undp.org/content/dam/kosovo/docs/Mozaik/Kosovo_Mosaic_2012_Eng_735317.pdf">Kosovo Mosaic Visualizer</a>
-			</div>
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li><a href="../index.html">Visualizer</a></li>
-					<li class="active"><a href="indicators.html">Indicators</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="indicators.html">Shqip</a></li>
-					<li><a href="../srb/indicators.html">Srpski</a></li>
-				</ul>
-			</div> <!-- navbar-collapse -->
-		</div> <!-- container-fluid -->		
-	</nav>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://www.undp.org/content/dam/kosovo/docs/Mozaik/Kosovo_Mosaic_2012_Eng_735317.pdf">Kosovo Mosaic Visualizer</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="../index.html">Visualizer</a></li>
+                    <li class="active"><a href="indicators.html">Indicators</a></li>
+                    <li><a href="problems.html">Problems</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="../shq/indicators.html">Shqip</a></li>
+                    <li><a href="../srb/indicators.html">Srpski</a></li>
+                </ul>
+            </div> <!-- navbar-collapse -->
+        </div> <!-- container-fluid -->     
+    </nav>
     <div class="container-fluid">
         <div class="row" style="margin-top: 10px;">
             <div class="col-md-2"></div>
             <div class="col-md-8" style="text-align:center">
                 <h1>Indicators</h1>
-                <table id="indicators-table" class="rwd-table">
-                 
-                </table>
+                <div id="table">
+                    <table id="indicators-table" class="display" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Indicator</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Indicator</th>
+                                <th>Description</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
             <div class="col-md-2"></div>
         </div>
