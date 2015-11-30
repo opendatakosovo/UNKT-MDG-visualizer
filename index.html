@@ -118,8 +118,8 @@
         }
 
         var satisfaction_json = {
-            "s": "Satisfaction Level",
-            "d": "Dissatisfaction Level"
+            "s": "Satisfied",
+            "d": "Dissatisfied"
         }
 
         function drawMap(indicator, s_or_d, data, color){
@@ -381,7 +381,7 @@
                     type: 'column'
                 },
                 title: {
-                    text: 'Biggest problems reported by citizens'
+                    text: 'What is the biggest issue?'
                 },
                 xAxis: {
                     categories: colNames
@@ -389,7 +389,7 @@
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Total problems reported'
+                        text: 'Proportion of Respondents (%)'
                     }
                 },
                 legend: {
@@ -427,7 +427,7 @@
 
             $('#' + div).highcharts({
                 title: {
-                    text: capitalizeFirstLetter(indicator) + " " + satisfaction_json[s_or_d],
+                    text: satisfaction_json[s_or_d] + " - " + capitalizeFirstLetter(indicator),
                     x: -20 //center
                 },
                 xAxis: {
@@ -437,7 +437,7 @@
                     min: 0,
                     max: 100,
                     title: {
-                        text: 'Satisfaction percentage'
+                        text: 'Proportion of Respondents (%)'
                     },
                     plotLines: [{
                         value: 0,
@@ -488,9 +488,9 @@
                 data[key] = all_data[s_or_d][year][key][indicator]
             }
 
-            text = "<h4 style='text-align:center; width:100%; height:40px; position:absolute; text-align:left;'>"+ capitalizeFirstLetter(indicator) + " " + satisfaction_json[s_or_d]+"</h4>"
+            /*text = "<h4 style='text-align:center; width:100%; height:40px; position:absolute; text-align:left;'>" + satisfaction_json[s_or_d] + " - " + capitalizeFirstLetter(indicator) + "</h4>"
             $("#aster-text").empty();
-            $("#aster-text").append(text);
+            $("#aster-text").append(text);*/
             $("#aster-chart").find("#" + slugify(municipality)).d3Click();
             start(muni, s_or_d, aster_div, data, "value");
             drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
@@ -515,9 +515,7 @@
                 var year = $('input[name=radio]:checked').val();
                 var indicator = $("#indicator-select").val();
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
-                text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ indicator + " " + satisfaction_json[s_or_d] + "</h4>"
-                $("#aster-text").empty();
-                $("#aster-text").append(text);
+
                 bindIndicatorSelectBox(year, s_or_d);
                 if (ranking_by == "municipality") {
                     rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
@@ -542,9 +540,7 @@
                 // bindIndicatorSelectBox(year, s_or_d);
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
                 var indicator = $("#indicator-select").val();
-                text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ capitalizeFirstLetter(indicator) + " " + satisfaction_json[s_or_d] + "</h4>"
-                $("#aster-text").empty();
-                $("#aster-text").append(text);
+
                 if (ranking_by == "municipality") {
                     rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
                 } else {
@@ -573,9 +569,7 @@
                     rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
                 } else {
                     aster_data = all_data[s_or_d][year][muni];
-                    text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ indicator + " " + satisfaction_json[s_or_d] + "</h4>"
-                    $("#aster-text").empty();
-                    $("#aster-text").append(text);
+
                     indicator_id = indicator.replace("Satisfaction with ", "");
                     $("#" + slugify(indicator_id)).d3Click();
                     // draw map chart on year radio button click.
@@ -593,13 +587,11 @@
                 var ranking_by = $('input[name=ranking-radio]:checked').val();
                 var indicator = $("#indicator-select").val();
                 var year = $('input[name=radio]:checked').val();
-                text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ indicator + " " + satisfaction_json[s_or_d] + "</h4>"
-                $("#aster-text").empty();
-                $("#aster-text").append(text);
+
                 if (ranking_by == "municipality") {
                     rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
                 } else {
-                    text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ capitalizeFirstLetter(indicator) + " " + satisfaction_json[s_or_d] + "</h4>"
+                    text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>" + satisfaction_json[s_or_d] + " - " + capitalizeFirstLetter(indicator) + "</h4>"
                     $("#aster-text").empty();
                     $("#aster-text").append(text)
                     drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
@@ -612,15 +604,14 @@
 
             var ranking_by = $('input[name=ranking-radio]:checked').val();
             var indicator = $("#indicator-select").val();
-            text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ indicator + " " + satisfaction_json[s_or_d] + "</h4>"
-            $("#aster-text").empty();
-            $("#aster-text").append(text);
+
             if (ranking_by == "municipality") {
                 rankingByMunicipality(viti, indicator, muni, aster_div, s_or_d);
                 drawMap(indicator, s_or_d, all_data[s_or_d][viti], s_or_d_colors[s_or_d]);
             } else {
                 $("#aster-chart").find("#" + slugify(indicator)).d3Click();
-                // draw map chart in page load.
+                
+				// draw map chart in page load.
                 drawMap(indicator, s_or_d, all_data[s_or_d][viti], s_or_d_colors[s_or_d]);
             }
 
@@ -656,7 +647,6 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="index.html">Visualizer</a></li>
                     <li><a href="shq/indicators.html">Indicators</a></li>
-                    <li><a href="shq/problems.html">Problems</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="index.html">Shqip</a></li>
