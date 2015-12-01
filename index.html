@@ -90,15 +90,8 @@
         and (max-device-width : 480px) {
             /* Styles */
             #aster-chart-popup {
-                width: 310px !important;
-                height: 310px !important;
                 margin-left: -5px !important;
             },
-            #aster-chart-svg {
-                width: 310px !important;
-                height: 310px !important;
-                margin-left: -5px !important;
-            }
             #line-chart {
                 width: 310px !important;
                 margin-left: 0 !important;
@@ -117,12 +110,6 @@
     </style>
 
     <script type="text/javascript">
-        var screen_resolution = window.screen.availWidth;
-        if (screen_resolution >= 310 || screen_resolution <= 480){
-            $("#aster-chart-svg").prop("height", "300")
-            $("#aster-chart-svg").prop("width", "300")
-        }
-
     	var sData = getSData();
     	var dData = getDData();
     	var all_data = {s: sData,
