@@ -5,7 +5,6 @@ radius = Math.min(width, height) / 2,
 innerRadius = 0.4 * radius;
 
 var screen_resolution = window.screen.availWidth;
-console.log(screen_resolution)
 if (screen_resolution <= 480){
     width = 305
     height = 305
