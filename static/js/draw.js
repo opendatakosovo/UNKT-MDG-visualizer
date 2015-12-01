@@ -4,8 +4,8 @@ height = 470
 
 var screen_resolution = window.screen.availWidth;
 if (screen_resolution <= 480){
-    width = 335
-    height = 335
+    width = 330
+    height = 330
 } 
 
 var radius = Math.min(width, height) / 2
