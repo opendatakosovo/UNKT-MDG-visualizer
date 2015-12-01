@@ -7,8 +7,8 @@ if (screen_resolution <= 480){
     width = 325
     height = 325
 } else {
-    width = 425
-    height = 425
+    width = 365
+    height = 365
 }
 
 
