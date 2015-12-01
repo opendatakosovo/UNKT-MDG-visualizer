@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- Serbian Version-->
+    <!-- Serbian Version -->
     <title>Kosovo Mosaic</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
@@ -14,14 +14,23 @@
 
     <!-- D3 charts -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-	<script src="http://d3js.org/d3.v3.min.js"></script>
-	<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-	<link rel="stylesheet" type="text/css" href="static/css/style.css">
-	<link rel="stylesheet" type="text/css" href="static/css/radio-button.css">
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="static/css/radio-button.css">
 
     <!-- jquery plugin -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../data/output2015.js"></script>
+    <script src="data/output_data.js"></script>
+    <script src="data/output_problems.js"></script>
+
+    <!-- Bootstrap popup modal plugins -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 
     <!-- Highcharts map JavaScript -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -42,310 +51,760 @@
             text-align: center;
             color: gray;
         }
-        
+
+
+        input[type="radio"].toggle {
+            position: absolute;
+            left: -99em;
+        }
+
+        input[type="radio"].toggle + label {
+            display:inline-block;
+            text-align:center;
+            padding:3px 0px;
+            width:76px;
+        }
+
+        input[type="radio"].toggle + label:hover {
+            border: 0.5px solid #73AD21;
+        }
+
+        input[type="radio"].toggle-right + label:hover {
+            border: 0.5px solid red;
+        }
+
+        /*input[type="radio"].toggle:checked + label,*/ input[type="radio"].toggle.checked + label {
+            background-color:#73AD21;
+            color:#F7F7F7;
+        }
+        input[type="radio"].toggle-right.checked + label {
+            background-color:red;
+            color:#F7F7F7;
+        }
+
+
+
+        @media only screen 
+        and (min-device-width : 320px) 
+        and (max-device-width : 480px) {
+            /* Styles */
+            #aster-chart-popup {
+                margin-left: -5px !important;
+            },
+            #line-chart {
+                width: 310px !important;
+                margin-left: 0 !important;
+            },
+            #column-chart {
+                width: 310px !important;
+                margin-left: 0 !important;
+            }
+
+        }
+        .tooltip {
+          z-index: 1151 !important;
+        }
+        .style-eight { padding: 0; border: none; border-top: medium double #333; color: #333; text-align: center; } 
+        .style-eight:after { content: "§"; display: inline-block; position: relative; top: -0.7em; font-size: 1.5em; padding: 0 0.25em; background: white; }
     </style>
 
     <script type="text/javascript">
-    	municipality_names_to_fix = {
-    		"Gliogovc": "Drenas"
-    	}
-		
-        function drawMap(year, indicator, s_or_d){
-        	$.ajax({
-				'url': "../data/clean_data/" + year + s_or_d + ".json",
-				'dataType': 'json',
-				'responseJSON': 'data',
-				'success': function (data) {
-					console.log(s_or_d )
-					var municipalities_data = [];
-					for (key in data){
-						var name = key
-						if (key == "Gllogoc"){
-							name = "Drenas";
-						} else if (key == "Mitrovica South") {
-							name = "Mitrovice"
-						} else if (key == "Mitrovica North") {
-							name = "Mitrovice Veriore"
-						} else if (key == "Novoberda") {
-							name = "Novo berd"
-						} else if (key == "Mitrovica") {
-							name = "Mitrovice"
-						}
-						if (data[key][indicator] != null){
-							var json_key = {
-								"hc-key": "kv-" + slugify(name),
-								"value": data[key][indicator]
-							}
-							municipalities_data.push(json_key);
-						}
-					}
-		            // Initiate the chart
-		            $('#container').highcharts('Map', {
-		                title : {
-		                    text : ''
-		                },
+        var all_data = getAllData();
+        var problems_data = getProblemsData();
 
-		                mapNavigation: {
-		                    enabled: true,
-		                    buttonOptions: {
-		                        verticalAlign: 'bottom'
-		                    }
-		                },
+        var s_or_d_colors = {
+            "s": "#73AD21",
+            "d": "#FF0000"
+        }
 
-		                colorAxis: {
-		                	min: 0,
-		                    maxColor: '#73AD21'
-		                },
-		                tooltip: {
-				            backgroundColor: '#FCFFC5',
-				            fontSize: "15px",
-				            valueSuffix: "%"
-				        },
+        var satisfaction_json = {
+            "s": "Satisfied",
+            "d": "Dissatisfied"
+        }
 
-		                series : [{
-		                    data : municipalities_data,
-		                    mapData: Highcharts.maps['countries/kv/kv-all'],
-		                    joinBy: 'hc-key',
-		                    name: indicator,
-		                    states: {
-		                        hover: {
-		                            color: 'grey'
-		                        }
-		                    },
-		                    dataLabels: {
-		                        enabled: true,
-		                        format: '{point.name}'
-		                    }
-		                }]
-		            });
-		        }
+        function drawMap(indicator, s_or_d, data, color){
+            var municipalities_data = [];
+            for (key in data){
+                var name = key
+                if (key == "Gllogoc"){
+                    name = "Drenas";
+                } else if (key == "Mitrovica South") {
+                    name = "Mitrovice"
+                } else if (key == "Mitrovica North") {
+                    name = "Mitrovice Veriore"
+                } else if (key == "Novoberda") {
+                    name = "Novoberde"
+                } else if (key == "Mitrovica") {
+                    name = "Mitrovice"
+                }
+                var value = data[key][indicator]
+                if (!(isNaN(value))){
+                    if (value.toString().length > 4){
+                        value = value.toFixed(1);
+                    }
+                    var json_key = {
+                        "hc-key": "kv-" + slugify(name),
+                        "value": value
+                    }
+                    municipalities_data.push(json_key);
+                }
+            }
+            // Initiate the chart
+            $('#container').highcharts('Map', {
+                title : {
+                    text : ''
+                },
+
+                mapNavigation: {
+                    enabled: true,
+                    buttonOptions: {
+                        verticalAlign: 'bottom'
+                    }
+                },
+                mapNavigation: {
+                    enableMouseWheelZoom: false
+                },
+                colorAxis: {
+                    min: 0,
+                    max: 100,
+                    maxColor: color
+                },
+                plotOptions: {
+                    enabled: true,
+                    series: {
+                        point: {
+                            events: {
+                                select: function () {
+                                    $('#popup-button').click();
+                                    var sat_or_diss = $('input[name=toggle]:checked').val();
+                                    radiobtn_s_or_d = document.getElementById(sat_or_diss);
+                                    radiobtn_s_or_d.click();
+                                    var viti = $('input[name=radio]:checked').val();
+                                    radiobtn_viti = document.getElementById("year-" + viti);
+                                    radiobtn_viti.click();
+                                    var muni = this.name;
+                                    if (muni == "Prishtine"){
+                                        muni = "Pristina"
+                                    } else if (muni == "Novoberde") {
+                                        muni = "Novoberda"
+                                    } else if (muni == "Mitrovice") {
+                                        muni = "Mitrovica"
+                                    } else if (muni == "Mitrovice Veriore") {
+                                        muni = "Mitrovica North"
+                                    } else if (muni == "Drenas") {
+                                        muni = "Gllogoc"
+                                    }
+                                    $('.modal-title').empty();
+                                    $('.modal-title').append("Municipality Profile: <b>" + this.name + "</b>");
+                                    var aster_div = "aster-chart-popup";
+                                    var aster_text_div = "aster-text-popup";
+                                    var indicator = $("#indicator-select").val();
+                                    var year = $('input[name=years-popup]:checked').val();
+                                    var s_or_d = $('input[name=s_or_d]:checked').val();
+                                    changeRadioButtonsColor(s_or_d)
+                                    if (!(isNaN(all_data[s_or_d][year][muni]["Municipal Administration"]))){
+                                        $("#no-data").css("display", "none");
+                                        start(muni, "S", aster_div, all_data[s_or_d][viti][muni], "label");
+
+                                        $("#aster-text-popup").empty();
+                                        var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_d] +"</h4>"
+                                        $("#aster-text-popup").append(text)
+
+                                        onAsterChartClick(muni, s_or_d);
+                                        $("#aster-chart-popup").find("#" + slugify(indicator)).d3Click();
+
+                                    } else {
+                                        $("#" + aster_div).empty();
+                                        $("#no-data").css("display", "block");
+                                    }
+                                    
+                                    drawColumnChart("column-chart", problems_data, muni);
+                                    drawLineChart("line-chart", indicator, muni, s_or_d);
+
+                                    $('input[name=years-popup]:radio').change(function () {
+                                        onRadioChange (muni, aster_div)
+                                    })
+
+                                    $('input[name=s_or_d]:radio').change(function () {
+                                        onRadioChange (muni, aster_div)
+                                    })
+
+                                }
+                            }
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: "#FCFFC5",
+                    fontSize: "15px",
+                    valueSuffix: "%"
+                },
+
+                series : [{
+                    data : municipalities_data,
+                    mapData: Highcharts.maps['countries/kv/kv-all'],
+                    joinBy: 'hc-key',
+                    allowPointSelect: true,
+                    name: capitalizeFirstLetter(indicator),
+                    states: {
+                        hover: {
+                            color: 'grey'
+                        }
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}'
+                    }
+                }]
+            });
+        }
+
+            // body...
+        function onRadioChange (muni, aster_div) {
+            var s_or_d = $('input[name=s_or_d]:checked').val();
+            changeRadioButtonsColor(s_or_d)
+            var save_selected_indicator = $("#aster-chart-popup").find("text").text();
+            var lastIndex = save_selected_indicator.lastIndexOf(" ");
+            save_selected_indicator = save_selected_indicator.substring(0, lastIndex)
+            var year = $('input[name=years-popup]:checked').val();
+            if (!(isNaN(all_data[s_or_d][year][muni]["Municipal Administration"]))){
+                $("#no-data").css("display", "none");
+                start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label");
+                $("#aster-text-popup").empty();
+                var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_d] +"</h4>"
+                $("#aster-text-popup").append(text)
+                var indicators_array = []
+                for (var key in all_data[s_or_d][year][muni]) {
+                    indicators_array.push(slugify(key));
+                }
+                if(indicators_array.indexOf(slugify(save_selected_indicator)) >= 0){
+                    onAsterChartClick(muni, s_or_d)
+                    $("#aster-chart-popup").find("#" + slugify(save_selected_indicator)).d3Click();
+                } else {
+                    onAsterChartClick(muni, s_or_d)
+                    $("#aster-chart-popup").find("#municipal-administration").d3Click();
+                }
+            } else {
+                $("#" + aster_div).empty();
+                $("#no-data").css("display", "block");
+            }
+            onAsterChartClick(muni, s_or_d)
+            
+        }
+
+        function onAsterChartClick (muni, s_or_d) {
+            $("#aster-chart-popup").find('.solidArc').click(function(){
+                drawColumnChart("column-chart", problems_data, muni);
+                selected_indicator = $(this).attr("value");
+                drawLineChart("line-chart", selected_indicator, muni, s_or_d);
+            })
+        }
+
+        function drawColumnChart(div, data, municipality){
+			
+			// Get years and categories for Municipality
+			var years = Object.keys(data[municipality]);
+			var categories = [];
+			var colNames = [];
+			
+			for (var record in years) {
+				var year = years[record];
+				colNames.push(municipality + " " + year);
+				colNames.push("Kosovo " + year)
+				
+				for (var cat in data[municipality][year]) {
+					categories.push(data[municipality][year][cat]['label']);
+				};
+				//Get categories for Kosovo
+				for (var cat in data['Kosovo'][year]) {
+					categories.push(data['Kosovo'][year][cat]['label']);
+				};
+			};
+			
+			// Get rid of duplicates
+			var uniqueCats = [];
+			$.each(categories, function(i, el){
+			    if($.inArray(el, uniqueCats) === -1) uniqueCats.push(el);
 			});
-		}	
-
-        function drawColumnChart(div, chart_type, year, indicator, s_or_d){
-        	$.ajax({
-				'url': "../data/clean_data/" + year + s_or_d + ".json",
-				'dataType': 'json',
-				'responseJSON': 'data',
-				'success': function (data) {
-					var json_obj = {}
-					for (key in data){
-						if (data[key][indicator] != null) {
-							json_obj[key] = data[key][indicator]
+			
+			// Create Data for Chart
+			series = [];
+			var i = 0;
+			
+			for (cat in uniqueCats) {
+				category = uniqueCats[cat];
+				data_array = [];
+				
+				for (record in years) {
+					year = years[record];
+					found = 0;
+					for (cat in data[municipality][year]) {
+						if (data[municipality][year][cat]['label'] == category) {
+                            var value = Number(data[municipality][year][cat]['value'].toFixed(1))
+							data_array.push(value);
+							found = 1;
 						}
-					}
+					} // Municipality Loop
+					
+					// If the category didn't exist push null
+					if (found == 0) {
+						data_array.push(null);
+					};
+					
+					found = 0;
+					
+					for (cat in data['Kosovo'][year]) {
+						if (data['Kosovo'][year][cat]['label'] == category) {
+                            var value = Number(data['Kosovo'][year][cat]['value'].toFixed(1))
+							data_array.push(value);
+							found = 1;
+						}
+					} // Kosovo Loop
+					
+					// If the category didn't exist push null
+					if (found == 0) {
+						data_array.push(null);
+					};
+					
+				} // Year Loop
+				
+				// Insert data and category into final array
+				series[i] = {'data': data_array
+							,'name': category}
 
-		            var array=[]
-		            for(a in json_obj){
-		                array.push([a,json_obj[a]])
-		            }
-		            array.sort(function(a,b){return a[1] - b[1]});
-		            sorted_array = array.reverse();
+				i = i + 1
+			} // Category Loop
 
-		            var json_data = {}
-		            var categories = []
-		            var data = []
+			// Feed Data to Chart
+            $('#' + div).highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'What is the biggest issue?'
+                },
+                xAxis: {
+                    categories: colNames
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Proportion of Respondents (%)'
+                    }
+                },
+                legend: {
+                    layout: 'horizontal',
+                    verticalAlign: 'bottom'
+                },
+                tooltip: {
+                    headerFormat: '<b>{point.x}</b><br/>',
+                    shared: true,
+                    valueSuffix: '%'
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal'
+                    }
+                },
+                series: series
+            });
+        }
 
-		            for(var a=0,b,txt='';b=array[a];++a){
-		                json_data[b[0]] = b[1];
-		                categories.push(b[0]);
-		                data.push(b[1]);
-		            }
+        function drawLineChart(div, indicator, municipality, s_or_d){
+            var categories = []
+            var json_data = {}
+            var data = []
+            for (key in all_data[s_or_d]){
+                value = all_data[s_or_d][key][municipality][indicator]
+                if (value != undefined && !(isNaN(value))){
+                    categories.push(key);
+                    if (value.toString().length > 4){
+                        value = value.toFixed(1);
+                    }
+                    data.push(Number(value));
+                }
+            }
 
-		            $('#' + div).highcharts({
-		                chart: {
-		                    type: chart_type
-		                },
-		                title: {
-		                    text: 'Historic World Population by Region'
-		                },
-		                subtitle: {
-		                    text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
-		                },
-		                xAxis: {
-		                    categories: categories,
-		                    title: {
-		                        text: null
-		                    }
-		                },
-		                yAxis: {
-		                    min: 0,
-		                    labels: {
-		                        overflow: 'justify'
-		                    }
-		                },
-		                tooltip: {
-		                    valueSuffix: '%'
-		                },
-		                plotOptions: {
-		                    column: {
-		                        colorByPoint: true,
-		                        dataLabels: {
-		                            enabled: true
-		                        }
-		                    }
-		                },
-		                legend: {
-		                    borderWidth: 1,
-		                    shadow: true
-		                },
-		                credits: {
-		                    enabled: false
-		                },
-		                series: [{
-		                    name: indicator,
-		                    data: data
-		                }]
-		            });
-				}
-			});
+            $('#' + div).highcharts({
+                title: {
+                    text: satisfaction_json[s_or_d] + " - " + capitalizeFirstLetter(indicator),
+                    x: -20 //center
+                },
+                xAxis: {
+                    categories: categories
+                },
+                yAxis: {
+                    min: 0,
+                    max: 100,
+                    title: {
+                        text: 'Proportion of Respondents (%)'
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    valueSuffix: '%'
+                },
+                legend: {
+                    enabled: false
+                },
+                series: [{
+                    name: municipality,
+                    data: data
+                }]
+            });
         }
 
         function bindIndicatorSelectBox(year, s_or_d){
-			$.ajax({
-				'url': "../data/clean_data/" + year + s_or_d + ".json",
-				'dataType': 'json',
-				'responseJSON': 'data',
-				'success': function (data) {
-        			$("#indicator-select").empty();
-					for (key in data["Pristina"]){
-						$("#indicator-select").append("<option value='"+key+"'>"+key+"</option>");
-					}
-				}
-			});
-		}
+            $("#indicator-select").empty();
+            for (key in all_data[s_or_d][year]["Pristina"]){
+                $("#indicator-select").append("<option value='"+key+"'>"+capitalizeFirstLetter(key)+"</option>");
+            }
+        }
 
-		jQuery.fn.d3Click = function () {
-			this.each(function (i, e) {
-				var evt = document.createEvent("MouseEvents");
-				evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-				e.dispatchEvent(evt);
-			});
-		};
+        jQuery.fn.d3Click = function () {
+            this.each(function (i, e) {
+                var evt = document.createEvent("MouseEvents");
+                evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                e.dispatchEvent(evt);
+            });
+        };
+
+        function bindSelectBoxOnLabelClick(s_or_d){
+            $("#aster-chart").find('.solidArc').click(function(){
+                selected_indicator = $(this).attr("value");
+                $("#indicator-select").val(selected_indicator);
+                var viti = $('input[name=radio]:checked').val()
+                drawMap(selected_indicator, s_or_d, all_data[s_or_d][viti], s_or_d_colors[s_or_d]);
+            })
+        }
+
+        function rankingByMunicipality(year, indicator, muni, aster_div, s_or_d) {
+            var data = {}
+            for (var key in all_data[s_or_d][year]){
+                data[key] = all_data[s_or_d][year][key][indicator]
+            }
+
+            /*text = "<h4 style='text-align:center; width:100%; height:40px; position:absolute; text-align:left;'>" + satisfaction_json[s_or_d] + " - " + capitalizeFirstLetter(indicator) + "</h4>"
+            $("#aster-text").empty();
+            $("#aster-text").append(text);*/
+            $("#aster-chart").find("#" + slugify(municipality)).d3Click();
+            start(muni, s_or_d, aster_div, data, "value");
+            drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
+            $("#aster-chart").find("path#" + slugify("Kosovo")).d3Click();
+        }
 
         $(document).ready(function(){
-        	$("#d3-tip n").d3Click();
-			
-			// Variable for switching between satisfied and dissatisfied datasets
-			var s_or_d = "D";
-            var json_obj = jsonObject();
+            var s_or_d = $('input[name=toggle]:checked').val();
             var muni = "Kosovo";
-			var viti = $('input[name=radio]:checked', '#my-form').val()
-			
-			start(viti, muni, s_or_d);
-			bindIndicatorSelectBox(viti, s_or_d)
+            var viti = $('input[name=radio]:checked').val()
+            var aster_div = "aster-chart";
+            var aster_text_div = "aster-text";
+            start(muni, s_or_d, aster_div, all_data[s_or_d][viti][muni], "label");
+            bindIndicatorSelectBox(viti, s_or_d);
 
-			$("input[name=radio]:radio").change(function () {
-				var year = $('input[name=radio]:checked', '#my-form').val()
-				var indicator = $("#indicator-select").val();
-				start(year, muni, s_or_d);
-				text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ indicator +"</h4>"
-				$("#aster-text").empty();
-				$("#aster-text").append(text);
-				indicator_id = indicator.replace("Satisfaction with ", "");
-				$("#" + slugify(indicator_id)).d3Click();
-	        	bindIndicatorSelectBox(year, s_or_d);
-            	drawMap(year, indicator, s_or_d);
-            	drawColumnChart("column-chart", "column", year, indicator, s_or_d);
-			});
+            bindSelectBoxOnLabelClick(s_or_d);
 
-			$("#indicator-select").change(function(){
-				var indicator = $("#indicator-select").val();
-				text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ indicator +"</h4>"
-				$("#aster-text").empty();
-				$("#aster-text").append(text)
-				indicator_id = indicator.replace("Satisfaction with ", "");
-				console.log(slugify(indicator_id));
-				$("path#" + slugify(indicator_id)).d3Click();
-				var year = $('input[name=radio]:checked', '#my-form').val();
-            	drawMap(year, indicator, s_or_d);
-            	drawColumnChart("column-chart", "column", year, indicator, s_or_d);
-			});
-			
-			$("#aster-chart path").on("click", function(){
-				console.log($(this))
-			})
+            $(document).on('click', '#close-popup, .close', function(event) {
+                $("#column-chart").empty();
+                var s_or_d = $('input[name=toggle]:checked').val();
+                changeRadioButtonsColor(s_or_d)
+                var year = $('input[name=radio]:checked').val();
+                var indicator = $("#indicator-select").val();
+                var ranking_by = $('input[name=ranking-radio]:checked').val();
 
-            // draw map chart in page load.
-            drawMap(viti, "family medical centers", "S");
-            // draw column chart in page load.
-            drawColumnChart("column-chart", "column", viti, "family medical centers", "S");
+                bindIndicatorSelectBox(year, s_or_d);
+                if (ranking_by == "municipality") {
+                    rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
+                } else {
+                    $("#" + year).attr("checked");
+                    bindIndicatorSelectBox(year, s_or_d);
+                    // draw map chart on year radio button click.
+                    $("#indicator-select").val(indicator);
+                    start(muni, s_or_d, aster_div, all_data[s_or_d][year][muni], "label");
+                    drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
+                    $("#aster-chart").find("#" + slugify(indicator)).d3Click();
+                    bindSelectBoxOnLabelClick(s_or_d);
+                }
+            });
+
+            // Variable for switching between satisfied and dissatisfied datasets
+            
+            function onRadioButtonChange(){
+                var s_or_d = $('input[name=toggle]:checked').val();
+                changeRadioButtonsColor(s_or_d)
+                var year = $('input[name=radio]:checked').val();
+                // bindIndicatorSelectBox(year, s_or_d);
+                var ranking_by = $('input[name=ranking-radio]:checked').val();
+                var indicator = $("#indicator-select").val();
+
+                if (ranking_by == "municipality") {
+                    rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
+                } else {
+                    start(muni, s_or_d, aster_div, all_data[s_or_d][year]["Kosovo"], "label");
+                    bindSelectBoxOnLabelClick(s_or_d);
+                    $("#aster-chart").find("path#" + slugify(indicator)).d3Click();
+                }
+            }
+
+            $("input[name=ranking-radio]:radio").change(function () {
+                onRadioButtonChange()
+            });
+
+            $("input[name=toggle]:radio").change(function () {
+                onRadioButtonChange()
+            });
+
+            $("input[name=radio]:radio").change(function () {
+                var s_or_d = $('input[name=toggle]:checked').val();
+                changeRadioButtonsColor(s_or_d)
+                var ranking_by = $('input[name=ranking-radio]:checked').val();
+                var year = $('input[name=radio]:checked').val()
+                bindIndicatorSelectBox(year, s_or_d);
+                var indicator = $("#indicator-select").val();
+                if (ranking_by == "municipality") {
+                    rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
+                } else {
+                    aster_data = all_data[s_or_d][year][muni];
+
+                    indicator_id = indicator.replace("Satisfaction with ", "");
+                    $("#" + slugify(indicator_id)).d3Click();
+                    // draw map chart on year radio button click.
+                    start(muni, s_or_d, aster_div, all_data[s_or_d][year]["Kosovo"], "label");
+                    drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
+
+                    bindSelectBoxOnLabelClick(s_or_d);
+                    $("#aster-chart").find("#" + slugify(indicator)).d3Click();
+                }
+            });
+
+            $("#indicator-select").change(function(){
+                var s_or_d = $('input[name=toggle]:checked').val();
+                changeRadioButtonsColor(s_or_d)
+                var ranking_by = $('input[name=ranking-radio]:checked').val();
+                var indicator = $("#indicator-select").val();
+                var year = $('input[name=radio]:checked').val();
+
+                if (ranking_by == "municipality") {
+                    rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
+                } else {
+                    text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>" + satisfaction_json[s_or_d] + " - " + capitalizeFirstLetter(indicator) + "</h4>"
+                    $("#aster-text").empty();
+                    $("#aster-text").append(text)
+                    drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
+                    indicator_id = indicator.replace("Satisfaction with ", "");
+                    $("#aster-chart").find("path#" + slugify(indicator_id)).d3Click();
+                    bindSelectBoxOnLabelClick(s_or_d);
+                }
+            });
+            
+
+            var ranking_by = $('input[name=ranking-radio]:checked').val();
+            var indicator = $("#indicator-select").val();
+
+            if (ranking_by == "municipality") {
+                rankingByMunicipality(viti, indicator, muni, aster_div, s_or_d);
+                drawMap(indicator, s_or_d, all_data[s_or_d][viti], s_or_d_colors[s_or_d]);
+            } else {
+                $("#aster-chart").find("#" + slugify(indicator)).d3Click();
+                
+				// draw map chart in page load.
+                drawMap(indicator, s_or_d, all_data[s_or_d][viti], s_or_d_colors[s_or_d]);
+            }
+
+            $('.no-checkedselector').on('change', 'input[type="radio"].toggle', function () {
+                if (this.checked) {
+                    $('input[name="' + this.name + '"].checked').removeClass('checked');
+                    $(this).addClass('checked');
+                    $('.toggle-container').addClass('force-update').removeClass('force-update');
+                }
+            });
+            $('.no-checkedselector input[type="radio"].toggle:checked').addClass('checked');
+            changeRadioButtonsColor(s_or_d)
         })
+
+        function changeRadioButtonsColor(s_or_d) {
+            if (s_or_d == "s") {
+                $('input[type="radio"]').removeClass('toggle-right')
+                $('input[type="radio"]').addClass('toggle-left')
+            } else {
+                $('input[type="radio"]').removeClass('toggle-left')
+                $('input[type="radio"]').addClass('toggle-right')
+            }
+        }
     </script>
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="http://www.undp.org/content/dam/kosovo/docs/Mozaik/Kosovo_Mosaic_2012_Eng_735317.pdf">Kosovo Mosaic Visualizer</a>
-			</div>
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.html">Visualizer</a></li>
-					<li><a href="indicators.html">Indicators</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../index.html">Shqip</a></li>
-					<li class="active"><a href="index.html">Srpski</a></li>
-				</ul>
-			</div> <!-- navbar-collapse -->
-		</div> <!-- container-fluid -->		
-	</nav>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://www.undp.org/content/dam/kosovo/docs/Mozaik/Kosovo_Mosaic_2012_Eng_735317.pdf">Kosovo Mosaic Visualizer</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.html">Visualizer</a></li>
+                    <li><a href="shq/indicators.html">Indicators</a></li>
+                    
+                    <li><a href="shq/problems.html">Problems</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="../index.html">Shqip</a></li>
+                    <li><a href="srb/index.html">Srpski</a></li>
+                </ul>
+            </div> <!-- navbar-collapse -->
+        </div> <!-- container-fluid -->
+    </nav>
     <div class="container-fluid">
         <div class="row" style="margin-top: 10px;">
-        	<form id="my-form">
-	            <div class="col-md-2">
-	            </div>
-	            <div class="col-md-3">
-	                <select id="indicator-select" class="form-control">
-	                </select>
-	                <br>
-	            </div>
-	            <div class="col-md-1">
-		            <input type="radio" name="radio" id="2015" value="2015" class="radio" checked/>
-					<label for="2015">2015</label>
-	            </div>
-	            <div class="col-md-1">
-	                <input type="radio" name="radio" id="2012" value="2012" class="radio"/>
-					<label for="2012">2012</label>
-	            </div>
-	            <div class="col-md-1">
-	            	<input type="radio" name="radio" id="2009" value="2009" class="radio"/>
-					<label for="2009">2009</label>
-	            </div>
-	            <div class="col-md-1">
-	            	<input type="radio" name="radio" id="2006" value="2006" class="radio"/>
-					<label for="2006">2006</label>
-	            </div>
-	            <div class="col-md-1">
-	            	<input type="radio" name="radio" id="2003" value="2003" class="radio"/>
-					<label for="2003">2003</label>
-	            </div>
-	            <div class="col-md-2">
-	            </div>
-	        </form>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-8">
-                <div id="container" style="height:550px;"></div>
+            <div class="col-md-1">
             </div>
-            <div class="col-md-4" style="height:500px;">
-                <div id="aster-text" style="width:100%; height:40px; position:absolute; text-align:left;">
+            <div class="col-md-4">
+                <div class="form-inline" >
+                    <div class="form-group" style="text-align:center;">
+                        <select id="indicator-select" style="" class="form-control">Indicator
+                        </select><br><br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="no-checkedselector" style="text-align:center;  margin-top:-10px;">
+                    <div class="toggle-container">
+                       <input id="toggle-on" class="toggle toggle-left" name="toggle" value="s" type="radio" checked>
+                       <label style="font-size: 30px;" for="toggle-on" class="btn">&#128515;</label>
+                       <input id="toggle-off" class="toggle toggle-right" value="d" name="toggle" type="radio">
+                       <label style="font-size: 30px;" for="toggle-off" class="btn">&#128544;</label>
+                       <br><br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div style="display-inline;">
+                    <div class="no-checkedselector" style="text-align:center;">
+                        <div class="toggle-container">
+                            <input type="radio" class="toggle toggle-left" name="radio" id="2015" value="2015" checked>
+                            <label style="" for="2015" class="btn">2015</label>
+                            <input type="radio" name="radio" id="2012" value="2012" class="toggle toggle-left">
+                            <label style="" for="2012" class="btn">2012</label>
+                            <input type="radio" name="radio" id="2009" value="2009" class="toggle toggle-left">
+                            <label style="" for="2009" class="btn">2009</label>
+                            <input type="radio" name="radio" id="2006" value="2006" class="toggle toggle-left">
+                            <label style="" for="2006" class="btn">2006</label>
+                            <input type="radio" name="radio" id="2003" value="2003" class="toggle toggle-left">
+                            <label style="" for="2003" class="btn">2003</label><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
+            </div>
+        </div>
+        <div class="row">
+            <hr class="style-eight" style="width: 85%" />
+            <div class="col-md-7">
+                <div id="container" style="height:550px;"></div><br><br>
+            </div>
+            <div class="col-md-5" style="height:500px;">
+                <div class="form-inline">
+                    <div class="no-checkedselector" style="">
+                        <div class="toggle-container">
+                            <label style="margin-top:5px; float:left; border: 0px; width:90px;">Ranking by: </label>
+                            <input class="toggle toggle-left" type="radio" name="ranking-radio" id="municipality" value="municipality" checked>
+                            <label style="" for="municipality" class="btn">Municipality</label>
+                            <input class="toggle toggle-left" type="radio" name="ranking-radio" id="kosovo-level" value="kosovo-level">
+                            <label style="" for="kosovo-level" class="btn">Indicator</label>
+                            <br><br>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label style="border: 0px;">Ranking by: </label>
+                    </div>
+                    <div class="form-group">
+                        <input type="radio" name="ranking-radio" id="municipality" value="municipality" checked class="radio" />
+                        <label for="municipality">Municipality</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="radio" name="ranking-radio" selected="selected" id="kosovo-level" value="kosovo-level" class="radio" />
+                        <label for="kosovo-level">Indicators</label>
+                    </div> -->
+                </div>
+                <div id="aster-text" style="width:90%; height:40px; position:absolute; text-align:left;">
                 </div>
                 <br><br>
                 <div id="aster-chart" style="width:100%;">
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div id="column-chart" style="height:400px;"></div>
+    </div>
+    <button id="popup-button" type="button" class="btn btn-info btn-lg" data-toggle="modal" style="display:none;" data-target="#myModal">Open Modal</button>
+    <!-- Modal -->
+    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="myModal" role="dialog">
+        <div class="modal-dialog" style="width:95%;">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="navbar-collapse modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="text-align: center"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="text-align: center;">
+                         <div class="no-checkedselector" style="text-align:center;  margin-top:-10px;">
+                            <div class="toggle-container">
+                               <input id="s" class="toggle toggle-left" name="s_or_d" value="s" type="radio" checked>
+                               <label style="font-size: 30px;" for="s" class="btn">&#128515;</label>
+                               <input id="d" class="toggle toggle-right" value="d" name="s_or_d" type="radio">
+                               <label style="font-size: 30px;" for="d" class="btn">&#128544;</label>
+                               <br><br>
+                            </div>
+                        </div>
+                        <div class="no-checkedselector" style="text-align:center;">
+                            <div class="toggle-container">
+                                <input type="radio" name="years-popup" id="year-2015" value="2015" class="toggle" checked>
+                                <label style="" for="year-2015" class="btn">2015</label>
+                                <input type="radio" name="years-popup" id="year-2012" value="2012" class="toggle">
+                                <label style="" for="year-2012" class="btn">2012</label>
+                                <input type="radio" name="years-popup" id="year-2009" value="2009" class="toggle">
+                                <label style="" for="year-2009" class="btn">2009</label>
+                                <input type="radio" name="years-popup" id="year-2006" value="2006" class="toggle">
+                                <label style="" for="year-2006" class="btn">2006</label>
+                                <input type="radio" name="years-popup" id="year-2003" value="2003" class="toggle">
+                                <label style="" for="year-2003" class="btn">2003</label><br><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div id="aster-text-popup" style="margin-left: 25%; width: 100%; height:40px; float:left; position:absolute; text-align:left;">
+                            </div>
+                            <br><br>
+                            <br><br><br><br>
+                            <div id="aster-chart-popup" style="min-width: 310px; width:330; margin-left: 100px;">
+                            </div>
+                            <h3 id="no-data" style="color: red; text-align:center; display:none; ">There's no data available</h3><br><br><br><br>
+                        </div>
+                        <div class="col-md-6" >
+                            <div class="row" style="margin-left:8%;">
+                                <div id="column-chart" style="min-width: 310px; width: 450px; height: 320px;"></div>
+                            </div>
+                            <hr class="style-eight" style="margin-left:8%; float:left; width: 80%" />
+                            <div class="row" style="margin-left:8%;">
+                                <div id="line-chart" style="min-width: 310px; width: 450px; height: 320px;"></div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="close-popup" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-    
+
     <!-- Aster chart script -->
     <script src="static/js/draw.js" ></script>
+
 </body>
 </html>

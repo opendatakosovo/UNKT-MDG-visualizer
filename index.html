@@ -129,174 +129,183 @@
 		"d": "Dissatisfied"
 	}
 
-	function drawMap(indicator, s_or_d, data, color){
-		var municipalities_data = [];
-		for (key in data){
-			var name = key
-			if (key == "Gllogoc"){
-				name = "Drenas";
-			} else if (key == "Mitrovica South") {
-				name = "Mitrovice"
-			} else if (key == "Mitrovica North") {
-				name = "Mitrovice Veriore"
-			} else if (key == "Novoberda") {
-				name = "Novoberde"
-			} else if (key == "Mitrovica") {
-				name = "Mitrovice"
-			}
-			var value = data[key][indicator]
-			if (!(isNaN(value))){
-				if (value.toString().length > 4){
-					value = value.toFixed(1);
-				}
-				var json_key = {
-					"hc-key": "kv-" + slugify(name),
-					"value": value
-				}
-				municipalities_data.push(json_key);
-			}
-		}
-		// Initiate the chart
-		$('#container').highcharts('Map', {
-			title : {
-				text : ''
-			},
+        function drawMap(indicator, s_or_d, data, color){
+            var municipalities_data = [];
+            for (key in data){
+                var name = key
+                if (key == "Gllogoc"){
+                    name = "Drenas";
+                } else if (key == "Mitrovica South") {
+                    name = "Mitrovice"
+                } else if (key == "Mitrovica North") {
+                    name = "Mitrovice Veriore"
+                } else if (key == "Novoberda") {
+                    name = "Novoberde"
+                } else if (key == "Mitrovica") {
+                    name = "Mitrovice"
+                }
+                var value = data[key][indicator]
+                if (!(isNaN(value))){
+                    if (value.toString().length > 4){
+                        value = value.toFixed(1);
+                    }
+                    var json_key = {
+                        "hc-key": "kv-" + slugify(name),
+                        "value": value
+                    }
+                    municipalities_data.push(json_key);
+                }
+            }
+            // Initiate the chart
+            $('#container').highcharts('Map', {
+                title : {
+                    text : ''
+                },
 
-			mapNavigation: {
-				enabled: true,
-				buttonOptions: {
-					verticalAlign: 'bottom'
-				}
-			},
-			mapNavigation: {
-				enableMouseWheelZoom: false
-			},
-			colorAxis: {
-				min: 0,
-				max: 100,
-				maxColor: color
-			},
-			plotOptions: {
-				enabled: true,
-				series: {
-					point: {
-						events: {
-							select: function () {
-								$('#popup-button').click();
-								var sat_or_diss = $('input[name=toggle]:checked').val();
-								radiobtn_s_or_d = document.getElementById(sat_or_diss);
-								radiobtn_s_or_d.click();
-								var viti = $('input[name=radio]:checked').val();
-								radiobtn_viti = document.getElementById("year-" + viti);
-								radiobtn_viti.click();
-								var muni = this.name;
-								if (muni == "Prishtine"){
-									muni = "Pristina"
-								} else if (muni == "Novoberde") {
-									muni = "Novoberda"
-								} else if (muni == "Mitrovice") {
-									muni = "Mitrovica"
-								} else if (muni == "Mitrovice Veriore") {
-									muni = "Mitrovica North"
-								} else if (muni == "Drenas") {
-									muni = "Gllogoc"
-								}
-								$('.modal-title').empty();
-								$('.modal-title').append("Municipality Profile: <b>" + this.name + "</b>");
-								var aster_div = "aster-chart-popup";
-								var aster_text_div = "aster-text-popup";
-								var indicator = $("#indicator-select").val();
-								var year = $('input[name=years-popup]:checked').val();
-								var s_or_d = $('input[name=s_or_d]:checked').val();
-								changeRadioButtonsColor(s_or_d)
-								if (!(isNaN(all_data[s_or_d][year][muni]["Municipal Administration"]))){
-									$("#no-data").css("display", "none");
-									start(muni, "S", aster_div, all_data[s_or_d][viti][muni], "label");
+                mapNavigation: {
+                    enabled: true,
+                    buttonOptions: {
+                        verticalAlign: 'bottom'
+                    }
+                },
+                mapNavigation: {
+                    enableMouseWheelZoom: false
+                },
+                colorAxis: {
+                    min: 0,
+                    max: 100,
+                    maxColor: color
+                },
+                plotOptions: {
+                    enabled: true,
+                    series: {
+                        point: {
+                            events: {
+                                select: function () {
+                                    $('#popup-button').click();
+                                    var muni = this.name;
+                                    if (muni == "Prishtine"){
+                                        muni = "Pristina"
+                                    } else if (muni == "Novoberde") {
+                                        muni = "Novoberda"
+                                    } else if (muni == "Mitrovice") {
+                                        muni = "Mitrovica"
+                                    } else if (muni == "Mitrovice Veriore") {
+                                        muni = "Mitrovica North"
+                                    } else if (muni == "Drenas") {
+                                        muni = "Gllogoc"
+                                    }
+                                    var sat_or_diss = $('input[name=toggle]:checked').val();
+                                    generateYearsButtons(sat_or_diss, muni);
+                                    radiobtn_s_or_d = document.getElementById(sat_or_diss);
+                                    radiobtn_s_or_d.click();
+                                    var viti = $('input[name=radio]:checked').val();
+                                    radiobtn_viti = document.getElementById("year-" + viti);
+                                    radiobtn_viti.click();
+                                    $('.modal-title').empty();
+                                    $('.modal-title').append("Municipality Profile: <b>" + this.name + "</b>");
+                                    var aster_div = "aster-chart-popup";
+                                    var aster_text_div = "aster-text-popup";
+                                    var indicator = $("#indicator-select").val();
+                                    var year = $('input[name=years-popup]:checked').val();
+                                    var s_or_d = $('input[name=s_or_d]:checked').val();
+                                    changeRadioButtonsColor(s_or_d)
+                                    if (!(isNaN(all_data[s_or_d][year][muni]["Municipal Administration"]))){
+                                        $("#no-data").css("display", "none");
+                                        start(muni, "S", aster_div, all_data[s_or_d][viti][muni], "label");
 
-									$("#aster-text-popup").empty();
-									var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_d] +"</h4>"
-									$("#aster-text-popup").append(text)
+                                        $("#aster-text-popup").empty();
+                                        var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_d] +"</h4>"
+                                        $("#aster-text-popup").append(text)
 
-									onAsterChartClick(muni, s_or_d);
-									$("#aster-chart-popup").find("#" + slugify(indicator)).d3Click();
+                                        onAsterChartClick(muni, s_or_d);
+                                        $("#aster-chart-popup").find("#" + slugify(indicator)).d3Click();
 
-								} else {
-									$("#" + aster_div).empty();
-									$("#no-data").css("display", "block");
-								}
+                                    } else {
+                                        $("#" + aster_div).empty();
+                                        $("#no-data").css("display", "block");
+                                    }
                                     
-								drawColumnChart("column-chart", problems_data, muni);
-								drawLineChart("line-chart", indicator, muni, s_or_d);
+                                    drawColumnChart("column-chart", problems_data, muni);
+                                    drawLineChart("line-chart", indicator, muni, s_or_d);
 
-								$('input[name=years-popup]:radio').change(function () {
-									onRadioChange (muni, aster_div)
-								})
+                                    $('input[name=years-popup]:radio').change(function () {
+                                        onRadioChange (muni, aster_div)
+                                    })
 
-								$('input[name=s_or_d]:radio').change(function () {
-									onRadioChange (muni, aster_div)
-								})
+                                    $('input[name=s_or_d]:radio').change(function () {
+                                        onRadioChange (muni, aster_div)
+                                    })
 
-							}
-						}
-					}
-				}
-			},
-			tooltip: {
-				backgroundColor: "#FCFFC5",
-				fontSize: "15px",
-				valueSuffix: "%"
-			},
+                                }
+                            }
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: "#FCFFC5",
+                    fontSize: "15px",
+                    valueSuffix: "%"
+                },
 
-			series : [{
-				data : municipalities_data,
-				mapData: Highcharts.maps['countries/kv/kv-all'],
-				joinBy: 'hc-key',
-				allowPointSelect: true,
-				name: capitalizeFirstLetter(indicator),
-				states: {
-					hover: {
-						color: 'grey'
-					}
-				},
-				dataLabels: {
-					enabled: true,
-					format: '{point.name}'
-				}
-			}]
-		});
-	}
+                series : [{
+                    data : municipalities_data,
+                    mapData: Highcharts.maps['countries/kv/kv-all'],
+                    joinBy: 'hc-key',
+                    allowPointSelect: true,
+                    name: capitalizeFirstLetter(indicator),
+                    states: {
+                        hover: {
+                            color: 'grey'
+                        }
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}'
+                    }
+                }]
+            });
+        }
 
-	// body...
-	function onRadioChange (muni, aster_div) {
-		var s_or_d = $('input[name=s_or_d]:checked').val();
-		changeRadioButtonsColor(s_or_d)
-		var save_selected_indicator = $("#aster-chart-popup").find("text").text();
-		var lastIndex = save_selected_indicator.lastIndexOf(" ");
-		save_selected_indicator = save_selected_indicator.substring(0, lastIndex)
-		var year = $('input[name=years-popup]:checked').val();
-		if (!(isNaN(all_data[s_or_d][year][muni]["Municipal Administration"]))){
-			$("#no-data").css("display", "none");
-			start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label");
-			$("#aster-text-popup").empty();
-			var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_d] +"</h4>"
-			$("#aster-text-popup").append(text)
-			var indicators_array = []
-			for (var key in all_data[s_or_d][year][muni]) {
-				indicators_array.push(slugify(key));
-			}
-			if(indicators_array.indexOf(slugify(save_selected_indicator)) >= 0){
-				onAsterChartClick(muni, s_or_d)
-				$("#aster-chart-popup").find("#" + slugify(save_selected_indicator)).d3Click();
-			} else {
-				onAsterChartClick(muni, s_or_d)
-				$("#aster-chart-popup").find("#municipal-administration").d3Click();
-			}
-		} else {
-			$("#" + aster_div).empty();
-			$("#no-data").css("display", "block");
-		}
-		onAsterChartClick(muni, s_or_d)
-            
+        function generateYearsButtons(s_or_d, muni) {
+            $("#years-popup-div").empty();
+            for (var key in all_data[s_or_d]) {
+                if(!(isNaN(all_data[s_or_d][key][muni]["Municipal Administration"]))){
+                    var radio_button = "<input type='radio' name='years-popup' id='year-"+key+"' value='"+key+"' class='toggle'><label for='year-"+key+"' class='btn'>"+key+"</label>";
+                    $("#years-popup-div").append(radio_button);
+                }
+            }
+        }
+
+        function onRadioChange (muni, aster_div) {
+            var s_or_d = $('input[name=s_or_d]:checked').val();
+            changeRadioButtonsColor(s_or_d)
+            var save_selected_indicator = $("#aster-chart-popup").find("text").text();
+            var lastIndex = save_selected_indicator.lastIndexOf(" ");
+            save_selected_indicator = save_selected_indicator.substring(0, lastIndex)
+            var year = $('input[name=years-popup]:checked').val();
+            if (!(isNaN(all_data[s_or_d][year][muni]["Municipal Administration"]))){
+                $("#no-data").css("display", "none");
+                start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label");
+                $("#aster-text-popup").empty();
+                var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_d] +"</h4>"
+                $("#aster-text-popup").append(text)
+                var indicators_array = []
+                for (var key in all_data[s_or_d][year][muni]) {
+                    indicators_array.push(slugify(key));
+                }
+                if(indicators_array.indexOf(slugify(save_selected_indicator)) >= 0){
+                    onAsterChartClick(muni, s_or_d)
+                    $("#aster-chart-popup").find("#" + slugify(save_selected_indicator)).d3Click();
+                } else {
+                    onAsterChartClick(muni, s_or_d)
+                    $("#aster-chart-popup").find("#municipal-administration").d3Click();
+                }
+            } else {
+                $("#" + aster_div).empty();
+                $("#no-data").css("display", "block");
+            }
+            onAsterChartClick(muni, s_or_d)        
 	}
 
 	function onAsterChartClick (muni, s_or_d) {
@@ -607,8 +616,7 @@
 				$("#aster-chart").find("path#" + slugify(indicator_id)).d3Click();
 				bindSelectBoxOnLabelClick(s_or_d);
 			}
-		});
-            
+		}); 
 
 		var ranking_by = $('input[name=ranking-radio]:checked').val();
 		var indicator = $("#indicator-select").val();
@@ -655,6 +663,8 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="index.html">Visualizer</a></li>
                     <li><a href="shq/indicators.html">Indicators</a></li>
+                    
+                    <li><a href="shq/problems.html">Problems</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="index.html">Shqip</a></li>
@@ -766,17 +776,7 @@
                             </div>
                         </div>
                         <div class="no-checkedselector" style="text-align:center;">
-                            <div class="toggle-container">
-                                <input type="radio" name="years-popup" id="year-2015" value="2015" class="toggle" checked>
-                                <label style="" for="year-2015" class="btn">2015</label>
-                                <input type="radio" name="years-popup" id="year-2012" value="2012" class="toggle">
-                                <label style="" for="year-2012" class="btn">2012</label>
-                                <input type="radio" name="years-popup" id="year-2009" value="2009" class="toggle">
-                                <label style="" for="year-2009" class="btn">2009</label>
-                                <input type="radio" name="years-popup" id="year-2006" value="2006" class="toggle">
-                                <label style="" for="year-2006" class="btn">2006</label>
-                                <input type="radio" name="years-popup" id="year-2003" value="2003" class="toggle">
-                                <label style="" for="year-2003" class="btn">2003</label><br><br>
+                            <div class="toggle-container" id="years-popup-div">
                             </div>
                         </div>
                     </div>

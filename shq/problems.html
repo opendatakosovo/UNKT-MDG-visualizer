@@ -19,17 +19,17 @@
 
     <!-- Responsive HTML Table -->
     <!-- <link rel="stylesheet" href="../static/css/responsive-table.css"> -->
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
 
-    <!-- DataTables plugin -->
-    <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+
 
     <style type="text/css">
         #container {
@@ -49,14 +49,14 @@
         var language = "albanian";
         function getData () {
             $.ajax({
-                'url': "../data/standard_lists/indicators.json",
+                'url': "../data/standard_lists/problems.json",
                 'dataType': 'json',
                 'responseJSON': 'data',
                 'success': function (data) {
                     $('#indicators-table').append("<tbody id='table-body'></tbody>");
                     for (var key in data) {
-                        var name = data[key]["name_" + language];
-                        var description = data[key]["description_" + language];
+                        var name = data[key][language + "_name"];
+                        var description = data[key][language + "_description"];
                         $('#table-body').append("<tr><td>"+ capitalizeFirstLetter(name) +"</td><td>"+ description +"</td></tr>");
                     }
                     $("#indicators-table").DataTable({
@@ -88,12 +88,12 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="../index.html">Visualizer</a></li>
-                    <li class="active"><a href="indicators.html">Indicators</a></li>
-                    <li><a href="problems.html">Problems</a></li>
+                    <li><a href="indicators.html">Indicators</a></li>
+                    <li class="active"><a href="problems.html">Problems</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="../shq/indicators.html">Shqip</a></li>
-                    <li><a href="../srb/indicators.html">Srpski</a></li>
+                    <li class="active"><a href="../shq/problems.html">Shqip</a></li>
+                    <li><a href="../srb/problems.html">Srpski</a></li>
                 </ul>
             </div> <!-- navbar-collapse -->
         </div> <!-- container-fluid -->     
@@ -102,12 +102,12 @@
         <div class="row" style="margin-top: 10px;">
             <div class="col-md-2"></div>
             <div class="col-md-8" style="text-align:center">
-                <h1>Indicators</h1>
+                <h1>Problems</h1>
                 <div id="table">
                     <table id="indicators-table" class="display" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-                                <th>Indicator</th>
+                                <th>Problem</th>
                                 <th>Description</th>
                             </tr>
                         </thead>

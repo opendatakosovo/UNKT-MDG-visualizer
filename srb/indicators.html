@@ -2,18 +2,28 @@
 <head>
     <meta charset="utf-8"/>
     <!-- Serbian Version -->
-    
     <title>Kosovo Mosaic</title>
 
     <!-- jquery plugin -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+
+    <!-- DataTables plugin -->
+    <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <!-- Responsive HTML Table -->
-    <link rel="stylesheet" href="../static/css/responsive-table.css">
+    <!-- <link rel="stylesheet" href="../static/css/responsive-table.css"> -->
 
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+
+    <!-- DataTables plugin -->
+    <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
@@ -45,17 +55,22 @@
                 'dataType': 'json',
                 'responseJSON': 'data',
                 'success': function (data) {
-                    console.log(data);
-
-                    $('#indicators-table').append("<tr><th style'text-align:center;'>Indicator</th><th style'text-align:center;>Description</th></tr>");
+                    $('#indicators-table').append("<tbody id='table-body'></tbody>");
                     for (var key in data) {
                         var name = data[key]["name_" + language];
                         var description = data[key]["description_" + language];
-                        $('#indicators-table').append("<tr><td data-th='Indicator'>"+ capitalizeFirstLetter(name) +"</td><td data-th='Description'>"+ description +"</td></tr>");
+                        $('#table-body').append("<tr><td>"+ capitalizeFirstLetter(name) +"</td><td>"+ description +"</td></tr>");
                     }
+                    $("#indicators-table").DataTable({
+                        "paging": false
+                    });
                 }
             });
         }
+
+        $(document).ready(function() {
+            getData();
+        });
 
         function capitalizeFirstLetter(string) {
             if (string != null) {
@@ -64,10 +79,6 @@
                 return "Empty"
             }
         }
-
-        $(document).ready(function() {
-            getData ();
-        });
     </script>
 </head>
 <body>
@@ -78,9 +89,9 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="../index.html">Visualizer</a></li>
+                    <li><a href="../srb/index.html">Visualizer</a></li>
                     <li class="active"><a href="indicators.html">Indicators</a></li>
-                    <li><a href="problem.html">Problems</a></li>
+                    <li><a href="problems.html">Problems</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="../shq/indicators.html">Shqip</a></li>
@@ -94,8 +105,16 @@
             <div class="col-md-2"></div>
             <div class="col-md-8" style="text-align:center">
                 <h1>Indicators</h1>
-                <table id="indicators-table" class="rwd-table">
-                </table>
+                <div id="table">
+                    <table id="indicators-table" class="display" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Indicator</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
             <div class="col-md-2"></div>
         </div>
