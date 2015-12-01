@@ -119,8 +119,8 @@
     <script type="text/javascript">
         var screen_resolution = window.screen.availWidth;
         if (screen_resolution >= 310 || screen_resolution <= 480){
-            $("#aster-chart-svg").attr("height", "300")
-            $("#aster-chart-svg").attr("width", "300")
+            $("#aster-chart-svg").prop("height", "300")
+            $("#aster-chart-svg").prop("width", "300")
         }
 
     	var sData = getSData();

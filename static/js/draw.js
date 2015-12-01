@@ -4,6 +4,12 @@ height = 470,
 radius = Math.min(width, height) / 2,
 innerRadius = 0.4 * radius;
 
+var screen_resolution = window.screen.availWidth;
+console.log(screen_resolution)
+if (screen_resolution <= 480){
+    width = 305
+    height = 305
+}
 // Colors
 var wedge_color = "#FFFF46",
 bg_color = "#2F2F29",
