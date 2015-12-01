@@ -202,7 +202,6 @@
                                     $('.modal-title').empty();
                                     $('.modal-title').append("Municipality Profile: <b>" + this.name + "</b>");
                                     var aster_div = "aster-chart-popup";
-                                    var aster_text_div = "aster-text-popup";
                                     var indicator = $("#indicator-select").val();
                                     var year = $('input[name=years-popup]:checked').val();
                                     var s_or_d = $('input[name=s_or_d]:checked').val();
@@ -210,10 +209,6 @@
                                     if (!(isNaN(all_data[s_or_d][year][muni]["Municipal Administration"]))){
                                         $("#no-data").css("display", "none");
                                         start(muni, "S", aster_div, all_data[s_or_d][viti][muni], "label");
-
-                                        $("#aster-text-popup").empty();
-                                        var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_d] +"</h4>"
-                                        $("#aster-text-popup").append(text)
 
                                         onAsterChartClick(muni, s_or_d);
                                         $("#aster-chart-popup").find("#" + slugify(indicator)).d3Click();
@@ -284,9 +279,6 @@
             if (!(isNaN(all_data[s_or_d][year][muni]["Municipal Administration"]))){
                 $("#no-data").css("display", "none");
                 start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label");
-                $("#aster-text-popup").empty();
-                var text = "<h4 style='width:100%; height:40px; position:absolute; text-align:left;'>"+ satisfaction_json[s_or_d] +"</h4>"
-                $("#aster-text-popup").append(text)
                 var indicators_array = []
                 for (var key in all_data[s_or_d][year][muni]) {
                     indicators_array.push(slugify(key));
@@ -769,11 +761,9 @@
                         <br><br>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <div id="aster-text-popup" style="margin-left: 25%; width: 100%; height:40px; float:left; position:absolute; text-align:left;">
-                            </div>
-                            <br><br><br><br>
-                            <div id="aster-chart-popup" style="min-width: 310px; width:330; margin-left: 100px;">
+                        <div class="col-md-6" style="text-align: center;">
+                            <br><br><br>
+                            <div id="aster-chart-popup" style="min-width: 310px; width:330; text-align: center;">
                             </div>
                             <h3 id="no-data" style="color: red; text-align:center; display:none; ">There's no data available</h3><br><br><br><br>
                         </div>
