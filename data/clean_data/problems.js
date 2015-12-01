@@ -1,4 +1,4 @@
-{
+function getProblemsData() {return {
     "Decan": {
         "2012": [
             {
@@ -1187,4 +1187,4 @@
             }
         ]
     }
-}
+}}

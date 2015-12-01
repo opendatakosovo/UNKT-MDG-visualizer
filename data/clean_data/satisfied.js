@@ -1,4 +1,4 @@
-{
+function getSData() {return {
     "2003": {
         "Decan": {
             "Municipal Administration": 83.299999999999997, 
@@ -6288,4 +6288,4 @@
             "youth activities": 42.600000000000001
         }
     }
-}
+}}

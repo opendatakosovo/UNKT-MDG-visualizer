@@ -226,17 +226,25 @@ class MosaicData:
                 # If JSON, return merged JSON file
                 if output_type == 'json':
                     if self.sat_or_dis == 's':
-                        file_path = '../data/clean_data/satisfied.json'
+                        file_path = '../data/clean_data/satisfied.js'
+                        with open(file_path, 'w') as data_file:
+                            data_file.write("function getSData() {return "
+                                             + json.dumps(obj = final_dict, indent = 4, sort_keys = True)
+                                             + "}")
                     elif self.sat_or_dis == 'd':
-                        file_path = '../data/clean_data/dissatisfied.json'
-                    with open(file_path, 'w') as data_file:
-                        json.dump(obj = final_dict, fp = data_file, indent = 4, sort_keys = True)
+                        file_path = '../data/clean_data/dissatisfied.js'
+                        with open(file_path, 'w') as data_file:
+                            data_file.write("function getDData() {return "
+                                             + json.dumps(obj = final_dict, indent = 4, sort_keys = True)
+                                             + "}")
         
             # Problem data type
             if self.data_type == 'problems': 
-                file_path = output_file + 'problems.json'
+                file_path = output_file + 'problems.js'
                 with open(file_path, 'w') as data_file:
-                    json.dump(obj = data, fp = data_file, indent = 4, sort_keys = True)
+                    data_file.write("function getProblemsData() {return "
+                                     + json.dumps(obj = data, indent = 4, sort_keys = True)
+                                     + "}")
         
             # Raw Datatype
             elif self.data_type == 'raw':
