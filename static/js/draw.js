@@ -6,6 +6,9 @@ var screen_resolution = window.screen.availWidth;
 if (screen_resolution <= 480){
     width = 325
     height = 325
+} else {
+    width = 425
+    height = 425
 }
 
 
