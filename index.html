@@ -165,10 +165,8 @@
                 mapNavigation: {
                     enabled: true,
                     buttonOptions: {
-                        verticalAlign: 'bottom'
-                    }
-                },
-                mapNavigation: {
+                        verticalAlign: 'top'
+                    },
                     enableMouseWheelZoom: false
                 },
                 colorAxis: {
@@ -719,14 +717,13 @@
         </div>
         <div class="row">
             <hr class="style-eight" style="width: 85%" />
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <div id="container" style="height:550px;"></div><br><br>
             </div>
-            <div class="col-md-5" style="height:500px;">
+            <div class="col-md-6" style="height:500px;">
                 <div class="form-inline">
-                    <div class="no-checkedselector" style="">
+                    <div class="no-checkedselector" style="text-align:center;">
                         <div class="toggle-container">
-                            <label style="margin-top:5px; float:left; border: 0px; width:90px;">Ranking by: </label>
                             <input class="toggle toggle-left" type="radio" name="ranking-radio" id="municipality" value="municipality" checked>
                             <label style="" for="municipality" class="btn">Municipality</label>
                             <input class="toggle toggle-left" type="radio" name="ranking-radio" id="kosovo-level" value="kosovo-level">
@@ -734,22 +731,10 @@
                             <br><br>
                         </div>
                     </div>
-                    <!-- <div class="form-group">
-                        <label style="border: 0px;">Ranking by: </label>
-                    </div>
-                    <div class="form-group">
-                        <input type="radio" name="ranking-radio" id="municipality" value="municipality" checked class="radio" />
-                        <label for="municipality">Municipality</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="radio" name="ranking-radio" selected="selected" id="kosovo-level" value="kosovo-level" class="radio" />
-                        <label for="kosovo-level">Indicators</label>
-                    </div> -->
                 </div>
                 <div id="aster-text" style="width:90%; height:40px; position:absolute; text-align:left;">
                 </div>
-                <br><br>
-                <div id="aster-chart" style="width:100%;">
+                <div id="aster-chart" style="width:100%; text-align: center;">
                 </div>
             </div>
         </div>
@@ -766,25 +751,28 @@
                 </div>
                 <div class="modal-body">
                     <div class="row" style="text-align: center;">
-                         <div class="no-checkedselector" style="text-align:center;  margin-top:-10px;">
-                            <div class="toggle-container">
-                               <input id="s" class="toggle toggle-left" name="s_or_d" value="s" type="radio" checked>
-                               <label style="font-size: 30px;" for="s" class="btn">&#128515;</label>
-                               <input id="d" class="toggle toggle-right" value="d" name="s_or_d" type="radio">
-                               <label style="font-size: 30px;" for="d" class="btn">&#128544;</label>
-                               <br><br>
+                        <div class="col-md-6">
+                             <div class="no-checkedselector" style="text-align:center;  margin-top:-10px;">
+                                <div class="toggle-container">
+                                   <input id="s" class="toggle toggle-left" name="s_or_d" value="s" type="radio" checked>
+                                   <label style="font-size: 30px;" for="s" class="btn">&#128515;</label>
+                                   <input id="d" class="toggle toggle-right" value="d" name="s_or_d" type="radio">
+                                   <label style="font-size: 30px;" for="d" class="btn">&#128544;</label>
+                                   <br><br>
+                                </div>
                             </div>
                         </div>
+                        <div class="col-md-6">
                         <div class="no-checkedselector" style="text-align:center;">
                             <div class="toggle-container" id="years-popup-div">
                             </div>
                         </div>
+                        <br><br>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div id="aster-text-popup" style="margin-left: 25%; width: 100%; height:40px; float:left; position:absolute; text-align:left;">
                             </div>
-                            <br><br>
                             <br><br><br><br>
                             <div id="aster-chart-popup" style="min-width: 310px; width:330; margin-left: 100px;">
                             </div>
