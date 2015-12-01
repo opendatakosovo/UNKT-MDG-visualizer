@@ -90,8 +90,15 @@
         and (max-device-width : 480px) {
             /* Styles */
             #aster-chart-popup {
+                width: 310px !important;
+                height: 310px !important;
                 margin-left: -5px !important;
             },
+            #aster-chart-svg {
+                width: 310px !important;
+                height: 310px !important;
+                margin-left: -5px !important;
+            }
             #line-chart {
                 width: 310px !important;
                 margin-left: 0 !important;
@@ -110,24 +117,29 @@
     </style>
 
     <script type="text/javascript">
-	
-	var sData = getSData();
-	var dData = getDData();
-	var all_data = {s: sData,
-					d: dData};
-	
-	// Load Problem Data
-	var problems_data = getProblemsData();
+        var screen_resolution = window.screen.availWidth;
+        if (screen_resolution >= 310 || screen_resolution <= 480){
+            $("#aster-chart-svg").attr("height", "300")
+            $("#aster-chart-svg").attr("width", "300")
+        }
 
-	var s_or_d_colors = {
-		"s": "#73AD21",
-		"d": "#FF0000"
-	}
+    	var sData = getSData();
+    	var dData = getDData();
+    	var all_data = {s: sData,
+    					d: dData};
+    	
+    	// Load Problem Data
+    	var problems_data = getProblemsData();
 
-	var satisfaction_json = {
-		"s": "Satisfied",
-		"d": "Dissatisfied"
-	}
+    	var s_or_d_colors = {
+    		"s": "#73AD21",
+    		"d": "#FF0000"
+    	}
+
+    	var satisfaction_json = {
+    		"s": "Satisfied",
+    		"d": "Dissatisfied"
+    	}
 
         function drawMap(indicator, s_or_d, data, color){
             var municipalities_data = [];
