@@ -572,13 +572,24 @@
 			changeRadioButtonsColor(s_or_d)
 			var ranking_by = $('input[name=ranking-radio]:checked').val();
 			var year = $('input[name=radio]:checked').val()
-			bindIndicatorSelectBox(year, s_or_d);
-			var indicator = $("#indicator-select").val();
+            var save_selected_indicator = $("#indicator-select").val();
+            bindIndicatorSelectBox(year, s_or_d);
+            var indicators_array = []
+            for (var key in all_data[s_or_d][year]["Pristina"]) {
+                indicators_array.push(slugify(key));
+            }
+            var indicator;
+            if(indicators_array.indexOf(slugify(save_selected_indicator)) >= 0){
+                indicator = save_selected_indicator;
+            } else {
+                indicator = "Municipal Administration";
+            }
+            $("#indicator-select").val(indicator);
+            
 			if (ranking_by == "municipality") {
 				rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
 			} else {
 				aster_data = all_data[s_or_d][year][muni];
-
 				indicator_id = indicator.replace("Satisfaction with ", "");
 				$("#" + slugify(indicator_id)).d3Click();
 				// draw map chart on year radio button click.
