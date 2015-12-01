@@ -1,10 +1,10 @@
 
-var width = 470,
+var width = 450,
 height = 470
 
 var screen_resolution = window.screen.availWidth;
 if (screen_resolution <= 480){
-    width = 330
+    width = 310
     height = 330
 } 
 
