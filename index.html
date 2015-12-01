@@ -176,12 +176,6 @@
                             events: {
                                 select: function () {
                                     $('#popup-button').click();
-                                    var sat_or_diss = $('input[name=toggle]:checked').val();
-                                    radiobtn_s_or_d = document.getElementById(sat_or_diss);
-                                    radiobtn_s_or_d.click();
-                                    var viti = $('input[name=radio]:checked').val();
-                                    radiobtn_viti = document.getElementById("year-" + viti);
-                                    radiobtn_viti.click();
                                     var muni = this.name;
                                     if (muni == "Prishtine"){
                                         muni = "Pristina"
@@ -194,6 +188,13 @@
                                     } else if (muni == "Drenas") {
                                         muni = "Gllogoc"
                                     }
+                                    var sat_or_diss = $('input[name=toggle]:checked').val();
+                                    generateYearsButtons(sat_or_diss, muni);
+                                    radiobtn_s_or_d = document.getElementById(sat_or_diss);
+                                    radiobtn_s_or_d.click();
+                                    var viti = $('input[name=radio]:checked').val();
+                                    radiobtn_viti = document.getElementById("year-" + viti);
+                                    radiobtn_viti.click();
                                     $('.modal-title').empty();
                                     $('.modal-title').append("Municipality Profile: <b>" + this.name + "</b>");
                                     var aster_div = "aster-chart-popup";
@@ -259,7 +260,16 @@
             });
         }
 
-            // body...
+        function generateYearsButtons(s_or_d, muni) {
+            $("#years-popup-div").empty();
+            for (var key in all_data[s_or_d]) {
+                if(!(isNaN(all_data[s_or_d][key][muni]["Municipal Administration"]))){
+                    var radio_button = "<input type='radio' name='years-popup' id='year-"+key+"' value='"+key+"' class='toggle'><label for='year-"+key+"' class='btn'>"+key+"</label>";
+                    $("#years-popup-div").append(radio_button);
+                }
+            }
+        }
+
         function onRadioChange (muni, aster_div) {
             var s_or_d = $('input[name=s_or_d]:checked').val();
             changeRadioButtonsColor(s_or_d)
@@ -503,6 +513,7 @@
             var viti = $('input[name=radio]:checked').val()
             var aster_div = "aster-chart";
             var aster_text_div = "aster-text";
+            
             start(muni, s_or_d, aster_div, all_data[s_or_d][viti][muni], "label");
             bindIndicatorSelectBox(viti, s_or_d);
 
@@ -757,17 +768,7 @@
                             </div>
                         </div>
                         <div class="no-checkedselector" style="text-align:center;">
-                            <div class="toggle-container">
-                                <input type="radio" name="years-popup" id="year-2015" value="2015" class="toggle" checked>
-                                <label style="" for="year-2015" class="btn">2015</label>
-                                <input type="radio" name="years-popup" id="year-2012" value="2012" class="toggle">
-                                <label style="" for="year-2012" class="btn">2012</label>
-                                <input type="radio" name="years-popup" id="year-2009" value="2009" class="toggle">
-                                <label style="" for="year-2009" class="btn">2009</label>
-                                <input type="radio" name="years-popup" id="year-2006" value="2006" class="toggle">
-                                <label style="" for="year-2006" class="btn">2006</label>
-                                <input type="radio" name="years-popup" id="year-2003" value="2003" class="toggle">
-                                <label style="" for="year-2003" class="btn">2003</label><br><br>
+                            <div class="toggle-container" id="years-popup-div">
                             </div>
                         </div>
                     </div>
