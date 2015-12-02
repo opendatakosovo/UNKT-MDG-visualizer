@@ -58,7 +58,7 @@ function convert_data(data, muni, div, sort_by) {
 	for (var key in muni_data) {
 		if (!(isNaN(muni_data[key]))){
 			var json = {
-				"label": key.replace(/Satisfaction with /g, ""),
+				"label": key,
 				"value": Number(muni_data[key].toFixed(1))
 			}
 			json_array.push(json);

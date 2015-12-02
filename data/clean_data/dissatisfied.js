@@ -3401,7 +3401,7 @@ function getDData() {return {
     "2012": {
         "Decan": {
             "access to and quality of preschool education": 32.600000000000001, 
-            "cemetery maintenace": 42.700000000000003, 
+            "cemetery maintenance": 42.700000000000003, 
             "cultural activities": 77.299999999999997, 
             "electricity supply": 83.599999999999994, 
             "environmental protection": 58.70000000000001, 
@@ -3437,7 +3437,7 @@ function getDData() {return {
         }, 
         "Dragash": {
             "access to and quality of preschool education": 19.5, 
-            "cemetery maintenace": 51.700000000000003, 
+            "cemetery maintenance": 51.700000000000003, 
             "cultural activities": 84.799999999999997, 
             "electricity supply": 29.299999999999997, 
             "environmental protection": 48.100000000000001, 
@@ -3473,7 +3473,7 @@ function getDData() {return {
         }, 
         "Ferizaj": {
             "access to and quality of preschool education": 3.8999999999999999, 
-            "cemetery maintenace": 45.0, 
+            "cemetery maintenance": 45.0, 
             "cultural activities": 35.5, 
             "electricity supply": 51.600000000000001, 
             "environmental protection": 29.799999999999997, 
@@ -3509,7 +3509,7 @@ function getDData() {return {
         }, 
         "Fushe Kosove": {
             "access to and quality of preschool education": 13.4, 
-            "cemetery maintenace": 48.0, 
+            "cemetery maintenance": 48.0, 
             "cultural activities": 57.999999999999993, 
             "electricity supply": 57.299999999999997, 
             "environmental protection": 59.099999999999994, 
@@ -3545,7 +3545,7 @@ function getDData() {return {
         }, 
         "Gjakove": {
             "access to and quality of preschool education": 31.0, 
-            "cemetery maintenace": 51.600000000000001, 
+            "cemetery maintenance": 51.600000000000001, 
             "cultural activities": 57.399999999999999, 
             "electricity supply": 43.200000000000003, 
             "environmental protection": 43.5, 
@@ -3581,7 +3581,7 @@ function getDData() {return {
         }, 
         "Gjilan": {
             "access to and quality of preschool education": 7.2999999999999998, 
-            "cemetery maintenace": 24.899999999999999, 
+            "cemetery maintenance": 24.899999999999999, 
             "cultural activities": 60.299999999999997, 
             "electricity supply": 25.0, 
             "environmental protection": 53.0, 
@@ -3617,7 +3617,7 @@ function getDData() {return {
         }, 
         "Gllogoc": {
             "access to and quality of preschool education": 9.6999999999999993, 
-            "cemetery maintenace": 43.600000000000001, 
+            "cemetery maintenance": 43.600000000000001, 
             "cultural activities": 47.799999999999997, 
             "electricity supply": 77.200000000000003, 
             "environmental protection": 51.200000000000003, 
@@ -3653,7 +3653,7 @@ function getDData() {return {
         }, 
         "Gracanica": {
             "access to and quality of preschool education": 7.5999999999999996, 
-            "cemetery maintenace": 52.300000000000004, 
+            "cemetery maintenance": 52.300000000000004, 
             "cultural activities": 89.799999999999997, 
             "electricity supply": 49.399999999999999, 
             "environmental protection": 71.799999999999997, 
@@ -3689,7 +3689,7 @@ function getDData() {return {
         }, 
         "Hani I Elezit": {
             "access to and quality of preschool education": 9.8000000000000007, 
-            "cemetery maintenace": 28.899999999999999, 
+            "cemetery maintenance": 28.899999999999999, 
             "cultural activities": 59.399999999999999, 
             "electricity supply": 8.0, 
             "environmental protection": 40.5, 
@@ -3725,7 +3725,7 @@ function getDData() {return {
         }, 
         "Istog": {
             "access to and quality of preschool education": 31.100000000000001, 
-            "cemetery maintenace": 13.800000000000001, 
+            "cemetery maintenance": 13.800000000000001, 
             "cultural activities": 56.799999999999997, 
             "electricity supply": 56.899999999999991, 
             "environmental protection": 54.500000000000007, 
@@ -3761,7 +3761,7 @@ function getDData() {return {
         }, 
         "Junik": {
             "access to and quality of preschool education": 5.7000000000000002, 
-            "cemetery maintenace": 55.899999999999991, 
+            "cemetery maintenance": 55.899999999999991, 
             "cultural activities": 69.400000000000006, 
             "electricity supply": 23.699999999999999, 
             "environmental protection": 32.100000000000001, 
@@ -3797,7 +3797,7 @@ function getDData() {return {
         }, 
         "Kacanik": {
             "access to and quality of preschool education": 9.8000000000000007, 
-            "cemetery maintenace": 37.5, 
+            "cemetery maintenance": 37.5, 
             "cultural activities": 66.799999999999997, 
             "electricity supply": 53.200000000000003, 
             "environmental protection": 32.100000000000001, 
@@ -3833,7 +3833,7 @@ function getDData() {return {
         }, 
         "Kamenice": {
             "access to and quality of preschool education": 10.5, 
-            "cemetery maintenace": 24.699999999999999, 
+            "cemetery maintenance": 24.699999999999999, 
             "cultural activities": 39.799999999999997, 
             "electricity supply": 14.199999999999999, 
             "environmental protection": 39.5, 
@@ -3869,7 +3869,7 @@ function getDData() {return {
         }, 
         "Kline": {
             "access to and quality of preschool education": 24.5, 
-            "cemetery maintenace": 36.600000000000001, 
+            "cemetery maintenance": 36.600000000000001, 
             "cultural activities": 60.5, 
             "electricity supply": 61.0, 
             "environmental protection": 55.600000000000009, 
@@ -3905,7 +3905,7 @@ function getDData() {return {
         }, 
         "Kllokot": {
             "access to and quality of preschool education": 45.200000000000003, 
-            "cemetery maintenace": 63.5, 
+            "cemetery maintenance": 63.5, 
             "cultural activities": 79.200000000000003, 
             "electricity supply": 53.900000000000006, 
             "environmental protection": 75.5, 
@@ -3941,7 +3941,7 @@ function getDData() {return {
         }, 
         "Kosovo": {
             "access to and quality of preschool education": 15.800000000000001, 
-            "cemetery maintenace": 43.100000000000001, 
+            "cemetery maintenance": 43.100000000000001, 
             "cultural activities": 58.099999999999994, 
             "electricity supply": 49.600000000000001, 
             "environmental protection": 49.799999999999997, 
@@ -3977,7 +3977,7 @@ function getDData() {return {
         }, 
         "Leposaviq": {
             "access to and quality of preschool education": 5.2000000000000002, 
-            "cemetery maintenace": 34.600000000000001, 
+            "cemetery maintenance": 34.600000000000001, 
             "cultural activities": 52.600000000000001, 
             "electricity supply": 81.200000000000003, 
             "environmental protection": 50.600000000000001, 
@@ -4013,7 +4013,7 @@ function getDData() {return {
         }, 
         "Lipjan": {
             "access to and quality of preschool education": 15.5, 
-            "cemetery maintenace": 36.399999999999999, 
+            "cemetery maintenance": 36.399999999999999, 
             "cultural activities": 61.399999999999999, 
             "electricity supply": 32.899999999999999, 
             "environmental protection": 50.0, 
@@ -4049,7 +4049,7 @@ function getDData() {return {
         }, 
         "Malisheve": {
             "access to and quality of preschool education": 16.399999999999999, 
-            "cemetery maintenace": 40.299999999999997, 
+            "cemetery maintenance": 40.299999999999997, 
             "cultural activities": 55.899999999999991, 
             "electricity supply": 52.100000000000001, 
             "environmental protection": 52.600000000000001, 
@@ -4085,7 +4085,7 @@ function getDData() {return {
         }, 
         "Mamushe": {
             "access to and quality of preschool education": 5.0, 
-            "cemetery maintenace": 26.899999999999995, 
+            "cemetery maintenance": 26.899999999999995, 
             "cultural activities": 52.900000000000006, 
             "electricity supply": 47.299999999999997, 
             "environmental protection": 24.5, 
@@ -4121,7 +4121,7 @@ function getDData() {return {
         }, 
         "Mitrovica": {
             "access to and quality of preschool education": 18.5, 
-            "cemetery maintenace": 41.700000000000003, 
+            "cemetery maintenance": 41.700000000000003, 
             "cultural activities": 54.500000000000007, 
             "electricity supply": 65.900000000000006, 
             "environmental protection": 71.5, 
@@ -4157,7 +4157,7 @@ function getDData() {return {
         }, 
         "Mitrovica North": {
             "access to and quality of preschool education": NaN, 
-            "cemetery maintenace": NaN, 
+            "cemetery maintenance": NaN, 
             "cultural activities": NaN, 
             "electricity supply": NaN, 
             "environmental protection": NaN, 
@@ -4193,7 +4193,7 @@ function getDData() {return {
         }, 
         "Novoberda": {
             "access to and quality of preschool education": 11.300000000000001, 
-            "cemetery maintenace": 50.700000000000003, 
+            "cemetery maintenance": 50.700000000000003, 
             "cultural activities": 65.599999999999994, 
             "electricity supply": 32.0, 
             "environmental protection": 37.100000000000001, 
@@ -4229,7 +4229,7 @@ function getDData() {return {
         }, 
         "Obiliq": {
             "access to and quality of preschool education": 15.4, 
-            "cemetery maintenace": 33.899999999999999, 
+            "cemetery maintenance": 33.899999999999999, 
             "cultural activities": 62.799999999999997, 
             "electricity supply": 52.600000000000001, 
             "environmental protection": 88.5, 
@@ -4265,7 +4265,7 @@ function getDData() {return {
         }, 
         "Partesh": {
             "access to and quality of preschool education": 34.100000000000001, 
-            "cemetery maintenace": 35.700000000000003, 
+            "cemetery maintenance": 35.700000000000003, 
             "cultural activities": 65.900000000000006, 
             "electricity supply": 11.6, 
             "environmental protection": 58.099999999999994, 
@@ -4301,7 +4301,7 @@ function getDData() {return {
         }, 
         "Peje": {
             "access to and quality of preschool education": 23.800000000000001, 
-            "cemetery maintenace": 29.799999999999997, 
+            "cemetery maintenance": 29.799999999999997, 
             "cultural activities": 56.200000000000003, 
             "electricity supply": 47.0, 
             "environmental protection": 39.399999999999999, 
@@ -4337,7 +4337,7 @@ function getDData() {return {
         }, 
         "Podujeve": {
             "access to and quality of preschool education": 12.5, 
-            "cemetery maintenace": 52.900000000000006, 
+            "cemetery maintenance": 52.900000000000006, 
             "cultural activities": 53.0, 
             "electricity supply": 61.799999999999997, 
             "environmental protection": 34.700000000000003, 
@@ -4373,7 +4373,7 @@ function getDData() {return {
         }, 
         "Pristina": {
             "access to and quality of preschool education": 14.6, 
-            "cemetery maintenace": 46.0, 
+            "cemetery maintenance": 46.0, 
             "cultural activities": 57.600000000000009, 
             "electricity supply": 31.300000000000001, 
             "environmental protection": 69.0, 
@@ -4409,7 +4409,7 @@ function getDData() {return {
         }, 
         "Prizren": {
             "access to and quality of preschool education": 11.699999999999999, 
-            "cemetery maintenace": 52.100000000000001, 
+            "cemetery maintenance": 52.100000000000001, 
             "cultural activities": 44.0, 
             "electricity supply": 45.799999999999997, 
             "environmental protection": 31.800000000000001, 
@@ -4445,7 +4445,7 @@ function getDData() {return {
         }, 
         "Rahovec": {
             "access to and quality of preschool education": 14.699999999999999, 
-            "cemetery maintenace": 48.200000000000003, 
+            "cemetery maintenance": 48.200000000000003, 
             "cultural activities": 36.700000000000003, 
             "electricity supply": 71.799999999999997, 
             "environmental protection": 57.299999999999997, 
@@ -4481,7 +4481,7 @@ function getDData() {return {
         }, 
         "Ranillug": {
             "access to and quality of preschool education": 16.100000000000001, 
-            "cemetery maintenace": 56.100000000000009, 
+            "cemetery maintenance": 56.100000000000009, 
             "cultural activities": 90.900000000000006, 
             "electricity supply": 11.6, 
             "environmental protection": 81.400000000000006, 
@@ -4517,7 +4517,7 @@ function getDData() {return {
         }, 
         "Shterpce": {
             "access to and quality of preschool education": 13.4, 
-            "cemetery maintenace": 74.200000000000003, 
+            "cemetery maintenance": 74.200000000000003, 
             "cultural activities": 95.5, 
             "electricity supply": 13.699999999999998, 
             "environmental protection": 60.600000000000001, 
@@ -4553,7 +4553,7 @@ function getDData() {return {
         }, 
         "Shtime": {
             "access to and quality of preschool education": 9.5, 
-            "cemetery maintenace": 41.700000000000003, 
+            "cemetery maintenance": 41.700000000000003, 
             "cultural activities": 64.400000000000006, 
             "electricity supply": 30.0, 
             "environmental protection": 40.200000000000003, 
@@ -4589,7 +4589,7 @@ function getDData() {return {
         }, 
         "Skenderaj": {
             "access to and quality of preschool education": 14.400000000000002, 
-            "cemetery maintenace": 48.399999999999999, 
+            "cemetery maintenance": 48.399999999999999, 
             "cultural activities": 53.600000000000001, 
             "electricity supply": 54.400000000000006, 
             "environmental protection": 34.0, 
@@ -4625,7 +4625,7 @@ function getDData() {return {
         }, 
         "Suhareke": {
             "access to and quality of preschool education": 9.8000000000000007, 
-            "cemetery maintenace": 41.100000000000001, 
+            "cemetery maintenance": 41.100000000000001, 
             "cultural activities": 45.100000000000001, 
             "electricity supply": 38.399999999999999, 
             "environmental protection": 29.299999999999997, 
@@ -4661,7 +4661,7 @@ function getDData() {return {
         }, 
         "Viti": {
             "access to and quality of preschool education": 24.399999999999999, 
-            "cemetery maintenace": 42.700000000000003, 
+            "cemetery maintenance": 42.700000000000003, 
             "cultural activities": 38.299999999999997, 
             "electricity supply": 33.5, 
             "environmental protection": 50.299999999999997, 
@@ -4697,7 +4697,7 @@ function getDData() {return {
         }, 
         "Vushtrri": {
             "access to and quality of preschool education": 19.699999999999999, 
-            "cemetery maintenace": 62.0, 
+            "cemetery maintenance": 62.0, 
             "cultural activities": 67.5, 
             "electricity supply": 83.0, 
             "environmental protection": 52.5, 
@@ -4733,7 +4733,7 @@ function getDData() {return {
         }, 
         "Zubin Potok": {
             "access to and quality of preschool education": 0.0, 
-            "cemetery maintenace": 52.5, 
+            "cemetery maintenance": 52.5, 
             "cultural activities": 70.700000000000003, 
             "electricity supply": 93.200000000000003, 
             "environmental protection": 90.700000000000003, 
@@ -4769,7 +4769,7 @@ function getDData() {return {
         }, 
         "Zvecan": {
             "access to and quality of preschool education": 1.5, 
-            "cemetery maintenace": 41.299999999999997, 
+            "cemetery maintenance": 41.299999999999997, 
             "cultural activities": 80.0, 
             "electricity supply": 95.900000000000006, 
             "environmental protection": 68.799999999999997, 
@@ -4807,7 +4807,7 @@ function getDData() {return {
     "2015": {
         "Decan": {
             "access to and quality of preschool education": 40.5, 
-            "cemetery maintenace": 62.299999999999997, 
+            "cemetery maintenance": 62.299999999999997, 
             "cultural activities": 72.400000000000006, 
             "electricity supply": 56.299999999999997, 
             "environmental protection": 76.900000000000006, 
@@ -4845,7 +4845,7 @@ function getDData() {return {
         }, 
         "Dragash": {
             "access to and quality of preschool education": 6.5, 
-            "cemetery maintenace": 51.899999999999999, 
+            "cemetery maintenance": 51.899999999999999, 
             "cultural activities": 75.799999999999997, 
             "electricity supply": 13.200000000000001, 
             "environmental protection": 74.5, 
@@ -4883,7 +4883,7 @@ function getDData() {return {
         }, 
         "Ferizaj": {
             "access to and quality of preschool education": 31.300000000000001, 
-            "cemetery maintenace": 53.0, 
+            "cemetery maintenance": 53.0, 
             "cultural activities": 50.299999999999997, 
             "electricity supply": 23.600000000000001, 
             "environmental protection": 42.5, 
@@ -4921,7 +4921,7 @@ function getDData() {return {
         }, 
         "Fushe Kosove": {
             "access to and quality of preschool education": 7.0000000000000009, 
-            "cemetery maintenace": 16.0, 
+            "cemetery maintenance": 16.0, 
             "cultural activities": 56.100000000000009, 
             "electricity supply": 7.0000000000000009, 
             "environmental protection": 69.0, 
@@ -4959,7 +4959,7 @@ function getDData() {return {
         }, 
         "Gjakove": {
             "access to and quality of preschool education": 4.2999999999999998, 
-            "cemetery maintenace": 31.5, 
+            "cemetery maintenance": 31.5, 
             "cultural activities": 46.0, 
             "electricity supply": 7.5, 
             "environmental protection": 40.5, 
@@ -4997,7 +4997,7 @@ function getDData() {return {
         }, 
         "Gjilan": {
             "access to and quality of preschool education": 18.800000000000001, 
-            "cemetery maintenace": 41.700000000000003, 
+            "cemetery maintenance": 41.700000000000003, 
             "cultural activities": 57.100000000000009, 
             "electricity supply": 11.5, 
             "environmental protection": 50.0, 
@@ -5035,7 +5035,7 @@ function getDData() {return {
         }, 
         "Gllogoc": {
             "access to and quality of preschool education": 31.800000000000001, 
-            "cemetery maintenace": 81.5, 
+            "cemetery maintenance": 81.5, 
             "cultural activities": 73.400000000000006, 
             "electricity supply": 75.0, 
             "environmental protection": 56.999999999999993, 
@@ -5073,7 +5073,7 @@ function getDData() {return {
         }, 
         "Gracanica": {
             "access to and quality of preschool education": 64.200000000000003, 
-            "cemetery maintenace": 67.5, 
+            "cemetery maintenance": 67.5, 
             "cultural activities": 73.700000000000003, 
             "electricity supply": 67.5, 
             "environmental protection": 75.0, 
@@ -5111,7 +5111,7 @@ function getDData() {return {
         }, 
         "Hani I Elezit": {
             "access to and quality of preschool education": 7.7000000000000002, 
-            "cemetery maintenace": 29.799999999999997, 
+            "cemetery maintenance": 29.799999999999997, 
             "cultural activities": 27.899999999999999, 
             "electricity supply": 8.6999999999999993, 
             "environmental protection": 67.299999999999997, 
@@ -5149,7 +5149,7 @@ function getDData() {return {
         }, 
         "Istog": {
             "access to and quality of preschool education": 5.5, 
-            "cemetery maintenace": 47.5, 
+            "cemetery maintenance": 47.5, 
             "cultural activities": 36.5, 
             "electricity supply": 12.5, 
             "environmental protection": 56.299999999999997, 
@@ -5187,7 +5187,7 @@ function getDData() {return {
         }, 
         "Junik": {
             "access to and quality of preschool education": 23.0, 
-            "cemetery maintenace": 28.999999999999996, 
+            "cemetery maintenance": 28.999999999999996, 
             "cultural activities": 62.0, 
             "electricity supply": 28.000000000000004, 
             "environmental protection": 23.0, 
@@ -5225,7 +5225,7 @@ function getDData() {return {
         }, 
         "Kacanik": {
             "access to and quality of preschool education": 13.4, 
-            "cemetery maintenace": 55.000000000000007, 
+            "cemetery maintenance": 55.000000000000007, 
             "cultural activities": 24.100000000000001, 
             "electricity supply": 16.600000000000001, 
             "environmental protection": 67.5, 
@@ -5263,7 +5263,7 @@ function getDData() {return {
         }, 
         "Kamenice": {
             "access to and quality of preschool education": 16.0, 
-            "cemetery maintenace": 45.200000000000003, 
+            "cemetery maintenance": 45.200000000000003, 
             "cultural activities": 59.099999999999994, 
             "electricity supply": 18.5, 
             "environmental protection": 55.000000000000007, 
@@ -5301,7 +5301,7 @@ function getDData() {return {
         }, 
         "Kline": {
             "access to and quality of preschool education": 22.100000000000001, 
-            "cemetery maintenace": 42.5, 
+            "cemetery maintenance": 42.5, 
             "cultural activities": 52.300000000000004, 
             "electricity supply": 19.5, 
             "environmental protection": 67.0, 
@@ -5339,7 +5339,7 @@ function getDData() {return {
         }, 
         "Kllokot": {
             "access to and quality of preschool education": 10.5, 
-            "cemetery maintenace": 36.0, 
+            "cemetery maintenance": 36.0, 
             "cultural activities": 48.5, 
             "electricity supply": 3.0, 
             "environmental protection": 39.399999999999999, 
@@ -5377,7 +5377,7 @@ function getDData() {return {
         }, 
         "Kosovo": {
             "access to and quality of preschool education": 23.199999999999999, 
-            "cemetery maintenace": 48.5, 
+            "cemetery maintenance": 48.5, 
             "cultural activities": 52.300000000000004, 
             "electricity supply": 28.499999999999996, 
             "environmental protection": 53.400000000000006, 
@@ -5415,7 +5415,7 @@ function getDData() {return {
         }, 
         "Leposaviq": {
             "access to and quality of preschool education": 48.5, 
-            "cemetery maintenace": 56.799999999999997, 
+            "cemetery maintenance": 56.799999999999997, 
             "cultural activities": 92.0, 
             "electricity supply": 55.000000000000007, 
             "environmental protection": 70.5, 
@@ -5453,7 +5453,7 @@ function getDData() {return {
         }, 
         "Lipjan": {
             "access to and quality of preschool education": 20.800000000000001, 
-            "cemetery maintenace": 36.5, 
+            "cemetery maintenance": 36.5, 
             "cultural activities": 26.100000000000001, 
             "electricity supply": 47.0, 
             "environmental protection": 21.100000000000001, 
@@ -5491,7 +5491,7 @@ function getDData() {return {
         }, 
         "Malisheve": {
             "access to and quality of preschool education": 37.899999999999999, 
-            "cemetery maintenace": 52.0, 
+            "cemetery maintenance": 52.0, 
             "cultural activities": 64.299999999999997, 
             "electricity supply": 36.0, 
             "environmental protection": 63.5, 
@@ -5529,7 +5529,7 @@ function getDData() {return {
         }, 
         "Mamushe": {
             "access to and quality of preschool education": 1.0, 
-            "cemetery maintenace": 1.0, 
+            "cemetery maintenance": 1.0, 
             "cultural activities": 31.300000000000001, 
             "electricity supply": 69.0, 
             "environmental protection": 37.399999999999999, 
@@ -5567,7 +5567,7 @@ function getDData() {return {
         }, 
         "Mitrovica": {
             "access to and quality of preschool education": 13.0, 
-            "cemetery maintenace": 19.699999999999999, 
+            "cemetery maintenance": 19.699999999999999, 
             "cultural activities": 60.0, 
             "electricity supply": 5.0, 
             "environmental protection": 65.200000000000003, 
@@ -5605,7 +5605,7 @@ function getDData() {return {
         }, 
         "Mitrovica North": {
             "access to and quality of preschool education": 60.699999999999996, 
-            "cemetery maintenace": 66.400000000000006, 
+            "cemetery maintenance": 66.400000000000006, 
             "cultural activities": 78.900000000000006, 
             "electricity supply": 60.5, 
             "environmental protection": 74.299999999999997, 
@@ -5643,7 +5643,7 @@ function getDData() {return {
         }, 
         "Novoberda": {
             "access to and quality of preschool education": 55.200000000000003, 
-            "cemetery maintenace": 66.700000000000003, 
+            "cemetery maintenance": 66.700000000000003, 
             "cultural activities": 86.5, 
             "electricity supply": 53.100000000000001, 
             "environmental protection": 87.5, 
@@ -5681,7 +5681,7 @@ function getDData() {return {
         }, 
         "Obiliq": {
             "access to and quality of preschool education": 18.600000000000001, 
-            "cemetery maintenace": 44.5, 
+            "cemetery maintenance": 44.5, 
             "cultural activities": 34.299999999999997, 
             "electricity supply": 16.600000000000001, 
             "environmental protection": 66.0, 
@@ -5719,7 +5719,7 @@ function getDData() {return {
         }, 
         "Partesh": {
             "access to and quality of preschool education": 15.0, 
-            "cemetery maintenace": 43.0, 
+            "cemetery maintenance": 43.0, 
             "cultural activities": 41.0, 
             "electricity supply": 2.0, 
             "environmental protection": 40.0, 
@@ -5757,7 +5757,7 @@ function getDData() {return {
         }, 
         "Peje": {
             "access to and quality of preschool education": 11.5, 
-            "cemetery maintenace": 61.0, 
+            "cemetery maintenance": 61.0, 
             "cultural activities": 12.1, 
             "electricity supply": 31.5, 
             "environmental protection": 35.5, 
@@ -5795,7 +5795,7 @@ function getDData() {return {
         }, 
         "Podujeve": {
             "access to and quality of preschool education": 54.500000000000007, 
-            "cemetery maintenace": 69.0, 
+            "cemetery maintenance": 69.0, 
             "cultural activities": 79.400000000000006, 
             "electricity supply": 35.5, 
             "environmental protection": 38.5, 
@@ -5833,7 +5833,7 @@ function getDData() {return {
         }, 
         "Pristina": {
             "access to and quality of preschool education": 11.4, 
-            "cemetery maintenace": 23.399999999999999, 
+            "cemetery maintenance": 23.399999999999999, 
             "cultural activities": 32.700000000000003, 
             "electricity supply": 11.4, 
             "environmental protection": 51.5, 
@@ -5871,7 +5871,7 @@ function getDData() {return {
         }, 
         "Prizren": {
             "access to and quality of preschool education": 24.800000000000001, 
-            "cemetery maintenace": 73.400000000000006, 
+            "cemetery maintenance": 73.400000000000006, 
             "cultural activities": 63.899999999999999, 
             "electricity supply": 13.699999999999998, 
             "environmental protection": 48.799999999999997, 
@@ -5909,7 +5909,7 @@ function getDData() {return {
         }, 
         "Rahovec": {
             "access to and quality of preschool education": 7.7999999999999998, 
-            "cemetery maintenace": 61.299999999999997, 
+            "cemetery maintenance": 61.299999999999997, 
             "cultural activities": 56.999999999999993, 
             "electricity supply": 41.5, 
             "environmental protection": 29.5, 
@@ -5947,7 +5947,7 @@ function getDData() {return {
         }, 
         "Ranillug": {
             "access to and quality of preschool education": 9.0, 
-            "cemetery maintenace": 18.0, 
+            "cemetery maintenance": 18.0, 
             "cultural activities": 20.0, 
             "electricity supply": 3.0, 
             "environmental protection": 12.0, 
@@ -5985,7 +5985,7 @@ function getDData() {return {
         }, 
         "Shterpce": {
             "access to and quality of preschool education": 20.300000000000001, 
-            "cemetery maintenace": 33.100000000000001, 
+            "cemetery maintenance": 33.100000000000001, 
             "cultural activities": 56.299999999999997, 
             "electricity supply": 30.0, 
             "environmental protection": 61.899999999999999, 
@@ -6023,7 +6023,7 @@ function getDData() {return {
         }, 
         "Shtime": {
             "access to and quality of preschool education": 23.300000000000001, 
-            "cemetery maintenace": 35.0, 
+            "cemetery maintenance": 35.0, 
             "cultural activities": 42.5, 
             "electricity supply": 34.5, 
             "environmental protection": 34.5, 
@@ -6061,7 +6061,7 @@ function getDData() {return {
         }, 
         "Skenderaj": {
             "access to and quality of preschool education": 15.0, 
-            "cemetery maintenace": 69.0, 
+            "cemetery maintenance": 69.0, 
             "cultural activities": 59.5, 
             "electricity supply": 13.5, 
             "environmental protection": 61.0, 
@@ -6099,7 +6099,7 @@ function getDData() {return {
         }, 
         "Suhareke": {
             "access to and quality of preschool education": 34.799999999999997, 
-            "cemetery maintenace": 56.299999999999997, 
+            "cemetery maintenance": 56.299999999999997, 
             "cultural activities": 53.0, 
             "electricity supply": 39.0, 
             "environmental protection": 65.5, 
@@ -6137,7 +6137,7 @@ function getDData() {return {
         }, 
         "Viti": {
             "access to and quality of preschool education": 5.7999999999999998, 
-            "cemetery maintenace": 65.700000000000003, 
+            "cemetery maintenance": 65.700000000000003, 
             "cultural activities": 10.0, 
             "electricity supply": 12.5, 
             "environmental protection": 27.0, 
@@ -6175,7 +6175,7 @@ function getDData() {return {
         }, 
         "Vushtrri": {
             "access to and quality of preschool education": 13.0, 
-            "cemetery maintenace": 41.700000000000003, 
+            "cemetery maintenance": 41.700000000000003, 
             "cultural activities": 38.5, 
             "electricity supply": 29.5, 
             "environmental protection": 25.5, 
@@ -6213,7 +6213,7 @@ function getDData() {return {
         }, 
         "Zubin Potok": {
             "access to and quality of preschool education": 68.900000000000006, 
-            "cemetery maintenace": 66.700000000000003, 
+            "cemetery maintenance": 66.700000000000003, 
             "cultural activities": 87.400000000000006, 
             "electricity supply": 55.600000000000009, 
             "environmental protection": 92.099999999999994, 
@@ -6251,7 +6251,7 @@ function getDData() {return {
         }, 
         "Zvecan": {
             "access to and quality of preschool education": 26.100000000000001, 
-            "cemetery maintenace": 45.200000000000003, 
+            "cemetery maintenance": 45.200000000000003, 
             "cultural activities": 56.399999999999991, 
             "electricity supply": 44.700000000000003, 
             "environmental protection": 62.399999999999999, 
