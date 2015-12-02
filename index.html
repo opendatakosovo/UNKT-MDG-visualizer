@@ -202,7 +202,6 @@
                                     radiobtn_s_or_d.click();
                                     var viti = $('input[name=radio]:checked').val();
                                     radiobtn_viti = document.getElementById("year-" + viti);
-                                    console.log(radiobtn_viti)
                                     radiobtn_viti.click();
                                     $('.modal-title').empty();
                                     $('.modal-title').append("Municipality Profile: <b>" + this.name + "</b>");
@@ -476,7 +475,6 @@
             if (indicator_lower == "cemetery maintenace") { 
                 indicator_lower = "cemetery maintenance";
             }
-            console.log(indicator_lower)
             var indicator = indicators_data[indicator_lower]["name_albanian"];
 			$("#indicator-select").append("<option value='"+indicator_lower+"'>"+capitalizeFirstLetter(indicator)+"</option>");
 		}
@@ -593,7 +591,8 @@
             if(indicators_array.indexOf(slugify(save_selected_indicator)) >= 0){
                 indicator = save_selected_indicator;
             } else {
-                indicator = "municipal administration";
+                for (first in all_data[s_or_d][year]["Kosovo"]) break;
+                indicator = first;
             }
             $("#indicator-select").val(indicator);
             
