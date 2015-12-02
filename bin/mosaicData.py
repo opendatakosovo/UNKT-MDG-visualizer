@@ -279,8 +279,12 @@ class MosaicData:
             keys = ['municipalities', 'indicators', 'problems']
             for key in keys:
                 sheet = pd.read_excel(self.data_path, key, index_col = 0)
-                output_file = '../data/standard_lists/' + key + '.json'
-                sheet.to_json(orient = 'index', path_or_buf = output_file, force_ascii = False)
+                output_file = '../data/standard_lists/' + key + '.js'
+                json_file = sheet.to_json(orient = 'index', force_ascii = False)
+                with open(output_file, 'w') as data_file:
+                    data_file.write("function get" + key + "Data() {return "
+                                     + str(json_file)
+                                     + "}")
                 
         else: 
             print('MosaicData object requires data_type = \'whitelist\' to use regenerate_whitelists method.')
