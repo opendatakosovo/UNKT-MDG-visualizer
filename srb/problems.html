@@ -7,6 +7,7 @@
 
     <!-- jquery plugin -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../data/standard_lists/problems.js"></script>
 
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
@@ -46,23 +47,17 @@
     </style>
 
     <script type="text/javascript">
+        var data = getproblemsData();
         var language = "serbian";
         function getData () {
-            $.ajax({
-                'url': "../data/standard_lists/problems.json",
-                'dataType': 'json',
-                'responseJSON': 'data',
-                'success': function (data) {
-                    $('#indicators-table').append("<tbody id='table-body'></tbody>");
-                    for (var key in data) {
-                        var name = data[key][language + "_name"];
-                        var description = data[key][language + "_description"];
-                        $('#table-body').append("<tr><td>"+ capitalizeFirstLetter(name) +"</td><td>"+ description +"</td></tr>");
-                    }
-                    $("#indicators-table").DataTable({
-                        "paging": false
-                    });
-                }
+            $('#indicators-table').append("<tbody id='table-body'></tbody>");
+            for (var key in data) {
+                var name = data[key][language + "_name"];
+                var description = data[key][language + "_description"];
+                $('#table-body').append("<tr><td>"+ capitalizeFirstLetter(name) +"</td><td>"+ description +"</td></tr>");
+            }
+            $("#indicators-table").DataTable({
+                "paging": false
             });
         }
 
