@@ -6,6 +6,7 @@
 
     <!-- jquery plugin -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="data/standard_lists/indicators.js"></script>
     <script src="data/clean_data/satisfied.js"></script>
     <script src="data/clean_data/dissatisfied.js"></script>
     <script src="data/clean_data/problems.js"></script>
@@ -112,6 +113,7 @@
     </style>
 
     <script type="text/javascript">
+        var indicators_data = getindicatorsData();
     	var sData = getSData();
     	var dData = getDData();
     	var all_data = {s: sData,
@@ -200,6 +202,7 @@
                                     radiobtn_s_or_d.click();
                                     var viti = $('input[name=radio]:checked').val();
                                     radiobtn_viti = document.getElementById("year-" + viti);
+                                    console.log(radiobtn_viti)
                                     radiobtn_viti.click();
                                     $('.modal-title').empty();
                                     $('.modal-title').append("Municipality Profile: <b>" + this.name + "</b>");
@@ -208,18 +211,11 @@
                                     var year = $('input[name=years-popup]:checked').val();
                                     var s_or_d = $('input[name=s_or_d]:checked').val();
                                     changeRadioButtonsColor(s_or_d)
-                                    if (!(isNaN(all_data[s_or_d][year][muni]["Municipal Administration"]))){
-                                        $("#no-data").css("display", "none");
-                                        start(muni, "S", aster_div, all_data[s_or_d][viti][muni], "label");
+                                    $("#no-data").css("display", "none");
+                                    start(muni, "S", aster_div, all_data[s_or_d][viti][muni], "label");
 
-                                        onAsterChartClick(muni, s_or_d);
-                                        $("#aster-chart-popup").find("#" + slugify(indicator)).d3Click();
-
-                                    } else {
-                                        $("#" + aster_div).empty();
-                                        $("#no-data").css("display", "block");
-                                    }
-                                    
+                                    onAsterChartClick(muni, s_or_d);
+                                    $("#aster-chart-popup").find("#" + slugify(indicator)).d3Click();
                                     drawColumnChart("column-chart", problems_data, muni);
                                     drawLineChart("line-chart", indicator, muni, s_or_d);
 
@@ -264,9 +260,21 @@
         function generateYearsButtons(s_or_d, muni) {
             $("#years-popup-div").empty();
             for (var key in all_data[s_or_d]) {
-                if(!(isNaN(all_data[s_or_d][key][muni]["Municipal Administration"]))){
+                var is_NaN = checkIfValueIsNaN(all_data[s_or_d][key][muni]);
+                if(is_NaN == 1){
                     var radio_button = "<input type='radio' name='years-popup' id='year-"+key+"' value='"+key+"' class='toggle'><label for='year-"+key+"' class='btn'>"+key+"</label>";
                     $("#years-popup-div").append(radio_button);
+                }
+            }
+        }
+
+        function checkIfValueIsNaN(json){
+            for (var key in json){
+                if (!(isNaN(json[key]))){
+                    return 1
+                }
+                else {
+                    return 0
                 }
             }
         }
@@ -278,23 +286,17 @@
             var lastIndex = save_selected_indicator.lastIndexOf(" ");
             save_selected_indicator = save_selected_indicator.substring(0, lastIndex)
             var year = $('input[name=years-popup]:checked').val();
-            if (!(isNaN(all_data[s_or_d][year][muni]["Municipal Administration"]))){
-                $("#no-data").css("display", "none");
-                start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label");
-                var indicators_array = []
-                for (var key in all_data[s_or_d][year][muni]) {
-                    indicators_array.push(slugify(key));
-                }
-                if(indicators_array.indexOf(slugify(save_selected_indicator)) >= 0){
-                    onAsterChartClick(muni, s_or_d)
-                    $("#aster-chart-popup").find("#" + slugify(save_selected_indicator)).d3Click();
-                } else {
-                    onAsterChartClick(muni, s_or_d)
-                    $("#aster-chart-popup").find("#municipal-administration").d3Click();
-                }
+            start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label");
+            var indicators_array = []
+            for (var key in all_data[s_or_d][year][muni]) {
+                indicators_array.push(slugify(key));
+            }
+            if(indicators_array.indexOf(slugify(save_selected_indicator)) >= 0){
+                onAsterChartClick(muni, s_or_d)
+                $("#aster-chart-popup").find("#" + slugify(save_selected_indicator)).d3Click();
             } else {
-                $("#" + aster_div).empty();
-                $("#no-data").css("display", "block");
+                onAsterChartClick(muni, s_or_d)
+                $("#aster-chart-popup").find("#municipal-administration").d3Click();
             }
             onAsterChartClick(muni, s_or_d)        
 	}
@@ -465,10 +467,18 @@
 		});
 	}
 
+    var language = "albanian";
+
 	function bindIndicatorSelectBox(year, s_or_d){
 		$("#indicator-select").empty();
 		for (key in all_data[s_or_d][year]["Pristina"]){
-			$("#indicator-select").append("<option value='"+key+"'>"+capitalizeFirstLetter(key)+"</option>");
+            var indicator_lower = key.toLowerCase();
+            if (indicator_lower == "cemetery maintenace") { 
+                indicator_lower = "cemetery maintenance";
+            }
+            console.log(indicator_lower)
+            var indicator = indicators_data[indicator_lower]["name_albanian"];
+			$("#indicator-select").append("<option value='"+indicator_lower+"'>"+capitalizeFirstLetter(indicator)+"</option>");
 		}
 	}
 
@@ -613,8 +623,7 @@
 				rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
 			} else {
 				drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
-				indicator_id = indicator.replace("Satisfaction with ", "");
-				$("#aster-chart").find("path#" + slugify(indicator_id)).d3Click();
+				$("#aster-chart").find("path#" + slugify(indicator)).d3Click();
 				bindSelectBoxOnLabelClick(s_or_d);
 			}
 		}); 
