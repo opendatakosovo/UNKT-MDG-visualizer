@@ -1,6 +1,6 @@
 
-var width = 480,
-height = 470
+var width = 500,
+height = 480
 // var margin = {top: 40, right: 80, bottom: 40, left: 120};
 
 var screen_resolution = window.screen.availWidth;
@@ -132,7 +132,7 @@ function create(data, div) {
     .each(stash);
 
   path.append("svg:text")
-    .text(function(d) { return d.data.label; })
+    .text(function(d) { return reduceIndicatorsText(d.data.label); })
     .classed("label", true)
     .attr("x", function(d) { return d.x; })
     .attr("text-anchor", "middle")
@@ -207,6 +207,14 @@ function select_wedge(d){
 	.attr("stroke", d3.rgb(line_color))
 	.attr("stroke-width", "1");
 };
+
+function reduceIndicatorsText(text){
+	if (text.length > 10){
+		return text.substring(0, 10) + "...";	
+	} else {
+		return text;
+	}
+}
 
 function addDescriptionToAsterChart(d, fulltext, svg){
 	var json_position = {
