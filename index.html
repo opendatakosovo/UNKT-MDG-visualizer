@@ -122,6 +122,7 @@
     	var dData = getDData();
     	var all_data = {s: sData,
     					d: dData};
+        var language = "albanian";
     	
     	// Load Problem Data
     	var problems_data = getProblemsData();
@@ -215,7 +216,7 @@
                                     var s_or_d = $('input[name=s_or_d]:checked').val();
                                     changeRadioButtonsColor(s_or_d)
                                     $("#no-data").css("display", "none");
-                                    start(muni, "S", aster_div, all_data[s_or_d][viti][muni], "label");
+                                    start(muni, "S", aster_div, all_data[s_or_d][viti][muni], "label", language);
 
                                     onAsterChartClick(muni, s_or_d);
                                     $("#aster-chart-popup").find("#" + slugify(indicator)).d3Click();
@@ -289,7 +290,7 @@
             var lastIndex = save_selected_indicator.lastIndexOf(" ");
             save_selected_indicator = save_selected_indicator.substring(0, lastIndex)
             var year = $('input[name=years-popup]:checked').val();
-            start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label");
+            start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label", language);
             var indicators_array = []
             for (var key in all_data[s_or_d][year][muni]) {
                 indicators_array.push(slugify(key));
@@ -507,7 +508,7 @@
 			data[key] = all_data[s_or_d][year][key][indicator]
 		}
 		$("#aster-chart").find("#" + slugify(municipality)).d3Click();
-		start(muni, s_or_d, aster_div, data, "value");
+		start(muni, s_or_d, aster_div, data, "value", language);
 		drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
 		$("#aster-chart").find("path#" + slugify("Kosovo")).d3Click();
 	}
@@ -527,7 +528,7 @@
 		var muni = "Kosovo";
 		var viti = $('input[name=radio]:checked').val()
 		var aster_div = "aster-chart";
-		start(muni, s_or_d, aster_div, all_data[s_or_d][viti][muni], "label");
+		start(muni, s_or_d, aster_div, all_data[s_or_d][viti][muni], "label", language);
 		bindIndicatorSelectBox(viti, s_or_d);
 
 		bindSelectBoxOnLabelClick(s_or_d);
@@ -546,7 +547,7 @@
 				bindIndicatorSelectBox(year, s_or_d);
 				// draw map chart on year radio button click.
 				$("#indicator-select").val(indicator);
-				start(muni, s_or_d, aster_div, all_data[s_or_d][year][muni], "label");
+				start(muni, s_or_d, aster_div, all_data[s_or_d][year][muni], "label", language);
 				drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
 				$("#aster-chart").find("#" + slugify(indicator)).d3Click();
 				bindSelectBoxOnLabelClick(s_or_d);
@@ -566,7 +567,7 @@
 			if (ranking_by == "municipality") {
 				rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
 			} else {
-				start(muni, s_or_d, aster_div, all_data[s_or_d][year]["Kosovo"], "label");
+				start(muni, s_or_d, aster_div, all_data[s_or_d][year]["Kosovo"], "label", language);
 				bindSelectBoxOnLabelClick(s_or_d);
 				$("#aster-chart").find("path#" + slugify(indicator)).d3Click();
 			}
@@ -607,7 +608,7 @@
 				indicator_id = indicator.replace("Satisfaction with ", "");
 				$("#" + slugify(indicator_id)).d3Click();
 				// draw map chart on year radio button click.
-				start(muni, s_or_d, aster_div, all_data[s_or_d][year]["Kosovo"], "label");
+				start(muni, s_or_d, aster_div, all_data[s_or_d][year]["Kosovo"], "label", language);
 				drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
 
 				bindSelectBoxOnLabelClick(s_or_d);

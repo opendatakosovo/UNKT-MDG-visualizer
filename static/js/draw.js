@@ -45,12 +45,12 @@ var outlineArc = d3.svg.arc()
 
 
 // Import Data
-function start(muni, s_or_d, div, data, sort_by) {
-	convert_data(data, muni, div, sort_by);
+function start(muni, s_or_d, div, data, sort_by, language) {
+	convert_data(data, muni, div, sort_by, language);
 };
 
 // Convert data from JSON to required format
-function convert_data(data, muni, div, sort_by) {
+function convert_data(data, muni, div, sort_by, language) {
 	//Select data for municipality
 	muni_data = data;
 	
@@ -68,7 +68,7 @@ function convert_data(data, muni, div, sort_by) {
 	
 	// Sort data by the label
 	var sorted_data = sortByKey(json_array, sort_by);
-	create(sorted_data.reverse(), div);
+	create(sorted_data.reverse(), div, language);
 }
 
 function sortByKey(array, key) {
@@ -89,8 +89,7 @@ function slugify(text) {
 
 
 // Create chart
-function create(data, div) {
-
+function create(data, div, language) {
 	$("#" + div).empty();
 	window.svg = d3.select("#" + div).append("svg")
 	.attr("id", "aster-chart-svg")
@@ -132,7 +131,7 @@ function create(data, div) {
     .each(stash);
 
   path.append("svg:text")
-    .text(function(d) { return reduceIndicatorsText(d.data.label); })
+    .text(function(d) { return reduceIndicatorsText(indicators_data[d.data.label]["name_" + language]); })
     .classed("label", true)
     .attr("x", function(d) { return d.x; })
     .attr("text-anchor", "middle")
@@ -198,7 +197,7 @@ function select_wedge(d){
 	.attr("stroke-width", "1");
 	
 	// Text placed in the middle
-	var fulltext = capitalizeFirstLetter(d.data.label) + " " + d.data.value + "%";
+	var fulltext = capitalizeFirstLetter(indicators_data[d.data.label]["name_" + language]) + " " + d.data.value + "%";
 	addDescriptionToAsterChart(d, fulltext, svg);
 	
 	//Color selected wedge
