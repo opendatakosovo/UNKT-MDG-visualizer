@@ -1,6 +1,6 @@
 
 var width = 480,
-height = 480
+height = 470
 // var margin = {top: 40, right: 80, bottom: 40, left: 120};
 
 var screen_resolution = window.screen.availWidth;
