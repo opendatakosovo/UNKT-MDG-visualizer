@@ -28,7 +28,11 @@ var tip = d3.tip()
 .attr('class', 'd3-tip')
 .offset([0, 0])
 .html(function(d) {
-	return capitalizeFirstLetter(d.data.label) + ": <span style='color:red'><b>" + d.data.value + "%</b></span>";
+	if (municipalities_data.hasOwnProperty(d.data.label)) {
+		return capitalizeFirstLetter(municipalities_data[d.data.label]["albanian"]) + ": <span style='color:red'><b>" + d.data.value + "%</b></span>";
+	} else {
+		return capitalizeFirstLetter(indicators_data[d.data.label]["name_albanian"]) + ": <span style='color:red'><b>" + d.data.value + "%</b></span>";
+	}
 });
 
 // Calculate fill
@@ -214,7 +218,11 @@ function select_wedge(d){
 	.attr("stroke-width", "1");
 	
 	// Text placed in the middle
-	var fulltext = capitalizeFirstLetter(d.data.label) + " " + d.data.value + "%";
+	if (municipalities_data.hasOwnProperty(d.data.label)) {
+		var fulltext = capitalizeFirstLetter(municipalities_data[d.data.label]['albanian']) + " " + d.data.value + "%";
+	} else {
+		var fulltext = capitalizeFirstLetter(indicators_data[d.data.label]['name_albanian']) + " " + d.data.value + "%";
+	}
 	addDescriptionToAsterChart(d, fulltext, svg);
 	
 	//Color selected wedge
