@@ -29,9 +29,9 @@ var tip = d3.tip()
 .offset([0, 0])
 .html(function(d) {
 	if (municipalities_data.hasOwnProperty(d.data.label)) {
-		return capitalizeFirstLetter(municipalities_data[d.data.label]["albanian"]) + ": <span style='color:red'><b>" + d.data.value + "%</b></span>";
+		return capitalizeFirstLetter(municipalities_data[d.data.label][language]) + ": <span style='color:red'><b>" + d.data.value + "%</b></span>";
 	} else {
-		return capitalizeFirstLetter(indicators_data[d.data.label]["name_albanian"]) + ": <span style='color:red'><b>" + d.data.value + "%</b></span>";
+		return capitalizeFirstLetter(indicators_data[d.data.label]["name_" + language]) + ": <span style='color:red'><b>" + d.data.value + "%</b></span>";
 	}
 });
 
@@ -219,9 +219,9 @@ function select_wedge(d){
 	
 	// Text placed in the middle
 	if (municipalities_data.hasOwnProperty(d.data.label)) {
-		var fulltext = capitalizeFirstLetter(municipalities_data[d.data.label]['albanian']) + " " + d.data.value + "%";
+		var fulltext = capitalizeFirstLetter(municipalities_data[d.data.label][language]) + " " + d.data.value + "%";
 	} else {
-		var fulltext = capitalizeFirstLetter(indicators_data[d.data.label]['name_albanian']) + " " + d.data.value + "%";
+		var fulltext = capitalizeFirstLetter(indicators_data[d.data.label]['name_' + language]) + " " + d.data.value + "%";
 	}
 	addDescriptionToAsterChart(d, fulltext, svg);
 	
