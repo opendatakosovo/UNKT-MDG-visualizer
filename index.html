@@ -1,41 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Encoding -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- Albanian Version -->
     <title>Kosovo Mosaic</title>
 
     <!-- jquery plugin -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="data/standard_lists/indicators.js"></script>
-    <script src="data/clean_data/satisfied.js"></script>
-    <script src="data/clean_data/dissatisfied.js"></script>
-    <script src="data/clean_data/problems.js"></script>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="static/css/radio-button.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+    <script src="data/standard_lists/indicators.js"></script>
+    <script src="data/clean_data/satisfied.js"></script>
+    <script src="data/standard_lists/municipalities.js"></script>
+    <script src="data/clean_data/dissatisfied.js"></script>
+    <script src="data/clean_data/problems.js"></script>
 
     <!-- D3 charts -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-    <link rel="stylesheet" type="text/css" href="static/css/style.css">
-    <link rel="stylesheet" type="text/css" href="static/css/radio-button.css">
 	
-
-    <!-- Bootstrap popup modal plugins -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-
     <!-- Highcharts map JavaScript -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
@@ -55,7 +53,13 @@
             text-align: center;
             color: gray;
         }
+        body {
+            padding-right: 0;
+        }
 
+        svg {
+          font-size: 13px;
+        }
 
         input[type="radio"].toggle {
             position: absolute;
@@ -118,6 +122,8 @@
     	var dData = getDData();
     	var all_data = {s: sData,
     					d: dData};
+        var municipalities_data = getmunicipalitiesData();
+        var language = "albanian";
     	
     	// Load Problem Data
     	var problems_data = getProblemsData();
@@ -212,6 +218,7 @@
                                     } else if (muni == "Drenas") {
                                         muni = "Gllogoc"
                                     }
+                                    var ranking = $('input[name=ranking-radio]:checked').val();
                                     var sat_or_diss = $('input[name=toggle]:checked').val();
                                     generateYearsButtons(sat_or_diss, muni);
                                     radiobtn_s_or_d = document.getElementById(sat_or_diss);
@@ -227,7 +234,7 @@
                                     var s_or_d = $('input[name=s_or_d]:checked').val();
                                     changeRadioButtonsColor(s_or_d)
                                     $("#no-data").css("display", "none");
-                                    start(muni, "S", aster_div, all_data[s_or_d][viti][muni], "label");
+                                    start(muni, "S", aster_div, all_data[s_or_d][viti][muni], "label", language, ranking);
 
                                     onAsterChartClick(muni, s_or_d);
                                     $("#aster-chart-popup").find("#" + slugify(indicator)).d3Click();
@@ -295,13 +302,14 @@
         }
 
         function onRadioChange (muni, aster_div) {
+            var ranking = $('input[name=ranking-radio]:checked').val();
             var s_or_d = $('input[name=s_or_d]:checked').val();
             changeRadioButtonsColor(s_or_d)
             var save_selected_indicator = $("#aster-chart-popup").find("text").text();
             var lastIndex = save_selected_indicator.lastIndexOf(" ");
             save_selected_indicator = save_selected_indicator.substring(0, lastIndex)
             var year = $('input[name=years-popup]:checked').val();
-            start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label");
+            start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label", language, ranking);
             var indicators_array = []
             for (var key in all_data[s_or_d][year][muni]) {
                 indicators_array.push(slugify(key));
@@ -514,12 +522,13 @@
 	}
 
 	function rankingByMunicipality(year, indicator, muni, aster_div, s_or_d) {
+        var ranking = $('input[name=ranking-radio]:checked').val();
 		var data = {}
 		for (var key in all_data[s_or_d][year]){
 			data[key] = all_data[s_or_d][year][key][indicator]
 		}
 		$("#aster-chart").find("#" + slugify(municipality)).d3Click();
-		start(muni, s_or_d, aster_div, data, "value");
+		start(muni, s_or_d, aster_div, data, "value", language, ranking);
 		drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
 		$("#aster-chart").find("path#" + slugify("Kosovo")).d3Click();
 	}
@@ -533,37 +542,38 @@
     }
 
 	$(document).ready(function(){
+        $('body').css('padding-right', '0');
+        var ranking = $('input[name=ranking-radio]:checked').val();
 		var s_or_d = $('input[name=toggle]:checked').val();
         buildLandingPageYearsRadioButtons(s_or_d);
 		var muni = "Kosovo";
 		var viti = $('input[name=radio]:checked').val()
 		var aster_div = "aster-chart";
-		start(muni, s_or_d, aster_div, all_data[s_or_d][viti][muni], "label");
+		start(muni, s_or_d, aster_div, all_data[s_or_d][viti][muni], "label", language, ranking);
 		bindIndicatorSelectBox(viti, s_or_d);
 
 		bindSelectBoxOnLabelClick(s_or_d);
-
 		$(document).on('click', '#close-popup, .close', function(event) {
-			$("#column-chart").empty();
+            $('myModal').empty();
 			var s_or_d = $('input[name=toggle]:checked').val();
 			changeRadioButtonsColor(s_or_d)
 			var year = $('input[name=radio]:checked').val();
 			var indicator = $("#indicator-select").val();
 			var ranking_by = $('input[name=ranking-radio]:checked').val();
-
 			bindIndicatorSelectBox(year, s_or_d);
-			if (ranking_by == "municipality") {
+            if (ranking_by == "municipality") {
 				rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
-			} else {
+            }else {
 				$("#" + year).attr("checked");
 				bindIndicatorSelectBox(year, s_or_d);
 				// draw map chart on year radio button click.
 				$("#indicator-select").val(indicator);
-				start(muni, s_or_d, aster_div, all_data[s_or_d][year][muni], "label");
+				start(muni, s_or_d, aster_div, all_data[s_or_d][year][muni], "label", language, ranking_by);
 				drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
 				$("#aster-chart").find("#" + slugify(indicator)).d3Click();
 				bindSelectBoxOnLabelClick(s_or_d);
 			}
+            $('body').prop('style', null);
 		});
 
 		// Variable for switching between satisfied and dissatisfied datasets
@@ -578,7 +588,7 @@
 			if (ranking_by == "municipality") {
 				rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
 			} else {
-				start(muni, s_or_d, aster_div, all_data[s_or_d][year]["Kosovo"], "label");
+				start(muni, s_or_d, aster_div, all_data[s_or_d][year]["Kosovo"], "label", language, ranking_by);
 				bindSelectBoxOnLabelClick(s_or_d);
 				$("#aster-chart").find("path#" + slugify(indicator)).d3Click();
 			}
@@ -619,7 +629,7 @@
 				indicator_id = indicator.replace("Satisfaction with ", "");
 				$("#" + slugify(indicator_id)).d3Click();
 				// draw map chart on year radio button click.
-				start(muni, s_or_d, aster_div, all_data[s_or_d][year]["Kosovo"], "label");
+				start(muni, s_or_d, aster_div, all_data[s_or_d][year]["Kosovo"], "label", language, ranking_by);
 				drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
 
 				bindSelectBoxOnLabelClick(s_or_d);
@@ -676,6 +686,7 @@
 			$('input[type="radio"]').addClass('toggle-right')
 		}
 	}
+
     </script>
 </head>
 <body>
@@ -699,29 +710,34 @@
         </div> <!-- container-fluid -->
     </nav>
     <div class="container-fluid">
-        <div class="row" style="margin-top: 10px;">
+        <div class="row">
             <div class="col-md-1">
             </div>
             <div class="col-md-4">
-                <div class="form-inline" >
-                    <div class="form-group" style="text-align:center;">
+                <div class="form-inline" style="text-align:center; margin-top:8px;">
+                    <label style="border: 0;">Ju lutemi zgjidhni nje opcion: </label>
+                    <div class="form-group" style="width: 100%; text-align:center;">
                         <select id="indicator-select" style="" class="form-control">Indicator
                         </select><br>
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
-                <div class="no-checkedselector" style="text-align:center;  margin-top:-10px;">
+            <div class="col-md-2"  style="text-align: center;">
+                <label style="width: 90px; border: 0; font-size:12px; text-align:right;">I kënaqur &nbsp;&nbsp;|</label>
+                <label style="width: 90px; border: 0; font-size:12px; text-align:left; padding-left: 5px;">I pakënaqur</label>
+                <br>
+                <div class="no-checkedselector" style="text-align:center;">
                     <div class="toggle-container">
                        <input id="toggle-on" class="toggle toggle-left" name="toggle" value="s" type="radio" checked>
                        <label style="font-size: 30px;" for="toggle-on" class="btn">&#128515;</label>
                        <input id="toggle-off" class="toggle toggle-right" value="d" name="toggle" type="radio">
                        <label style="font-size: 30px;" for="toggle-off" class="btn">&#128544;</label>
-                       <br><br>
+                       <br>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" style="text-align:center; margin-top:8px;">
+                <label style="border: 0;">Ju lutemi zgjidhni vitin: </label>
                 <div style="display-inline;">
                     <div class="no-checkedselector" style="text-align:center;">
                         <div id="years-radio" class="toggle-container">
@@ -734,17 +750,19 @@
         </div>
         <div class="row">
             <hr class="style-eight" style="width: 85%" />
-            <div class="col-md-6">
+            <div class="col-md-6" style="text-align:center;">
+                <label style="border: 0;">Klikoni mbi komunat ne harte per te pare detajet: </label>
                 <div id="container" style="height:550px;"></div><br><br>
             </div>
-            <div class="col-md-6" style="height:500px;">
+            <div class="col-md-6" style="height:500px; text-align:center;">
                 <div class="form-inline">
-                    <div class="no-checkedselector" style="text-align:center;">
+                    <label style="border: 0; width: 130px; text-align:right;">Rankoni sipas: </label>
+                    <div class="no-checkedselector">
                         <div class="toggle-container">
                             <input class="toggle toggle-left" type="radio" name="ranking-radio" id="municipality" value="municipality" checked>
-                            <label style="" for="municipality" class="btn">Municipality</label>
+                            <label style="" for="municipality" class="btn">Qyteteve</label>
                             <input class="toggle toggle-left" type="radio" name="ranking-radio" id="kosovo-level" value="kosovo-level">
-                            <label style="" for="kosovo-level" class="btn">Indicator</label>
+                            <label style="" for="kosovo-level" class="btn">Treguesve</label>
                             <br><br>
                         </div>
                     </div>
@@ -767,7 +785,10 @@
                 <div class="modal-body">
                     <div class="row" style="text-align: center;">
                         <div class="col-md-6">
-                             <div class="no-checkedselector" style="text-align:center;  margin-top:-10px;">
+                            <label style="width: 90px; border: 0; font-size:12px; text-align:right;">I kënaqur &nbsp;&nbsp;|</label>
+                            <label style="width: 90px; border: 0; font-size:12px; text-align:left; padding-left: 5px;">I pakënaqur</label>
+                            <br>
+                             <div class="no-checkedselector" style="text-align:center;">
                                 <div class="toggle-container">
                                    <input id="s" class="toggle toggle-left" name="s_or_d" value="s" type="radio" checked>
                                    <label style="font-size: 30px;" for="s" class="btn">&#128515;</label>
@@ -778,11 +799,13 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                        <div class="no-checkedselector" style="text-align:center;">
-                            <div class="toggle-container" id="years-popup-div">
+                            <label style="border: 0;">Ju lutemi zgjidhni vitin: </label>
+                            <div class="no-checkedselector" style="text-align:center;">
+                                <div class="toggle-container" id="years-popup-div">
+                                </div>
                             </div>
+                            <br><br>
                         </div>
-                        <br><br>
                     </div>
                     <div class="row">
                         <div class="col-md-6" style="text-align: center;">
@@ -793,11 +816,11 @@
                         </div>
                         <div class="col-md-6" >
                             <div class="row" style="margin-left:8%;">
-                                <div id="column-chart" style="min-width: 310px; width: 450px; height: 320px;"></div>
+                                <div id="column-chart" style="min-width: 310px; width: 450px; height: 300px;"></div>
                             </div>
                             <hr class="style-eight" style="margin-left:8%; float:left; width: 80%" />
                             <div class="row" style="margin-left:8%;">
-                                <div id="line-chart" style="min-width: 310px; width: 450px; height: 320px;"></div>
+                                <div id="line-chart" style="min-width: 310px; width: 450px; height: 300px;"></div>
                             </div>
                             <hr>
                         </div>
