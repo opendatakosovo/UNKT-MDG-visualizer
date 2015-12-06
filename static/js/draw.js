@@ -1,4 +1,3 @@
-
 var width = 450,
 height = 470
 
@@ -10,12 +9,6 @@ if (screen_resolution <= 480){
 
 var radius = Math.min(width, height) / 2
 innerRadius = 0.4 * radius;
-
-// Colors
-var wedge_color = "#FFFF46",
-bg_color = "#2F2F29",
-line_color = "#000000"
-select_color = "red";
 
 // Width of wedges
 var pie = d3.layout.pie()

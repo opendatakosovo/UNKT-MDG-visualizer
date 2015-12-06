@@ -70,20 +70,20 @@
         }
 
         input[type="radio"].toggle + label:hover {
-            border: 0.5px solid #73AD21;
+            border: 0.5px solid #71CE53;
         }
 
         input[type="radio"].toggle-right + label:hover {
-            border: 0.5px solid red;
+            border: 0.5px solid #FF4949;
         }
 
         /*input[type="radio"].toggle:checked + label,*/ input[type="radio"].toggle.checked + label {
-            background-color:#73AD21;
-            color:#F7F7F7;
+            background-color: #71CE53;
+            color:#333333;
         }
         input[type="radio"].toggle-right.checked + label {
-            background-color:red;
-            color:#F7F7F7;
+            background-color: #FF4949;
+            color:#333333;
         }
 
 
@@ -122,10 +122,26 @@
     	// Load Problem Data
     	var problems_data = getProblemsData();
 
-    	var s_or_d_colors = {
-    		"s": "#73AD21",
-    		"d": "#FF0000"
-    	}
+		// Color palette
+		/*
+		#FF4949 red
+		#71CE53 green
+		#C07BD3 purple
+		#32BEB3 blue
+		#FFDE3A yellow
+		*/
+		
+		// Aster Chart Colors
+		var wedge_color = "#FFDE3A",
+		bg_color = "#3D4237",
+		line_color = "#000000"
+		select_color = "#E18239";
+		
+		// Satisfied/Dissatisfied Colors
+        var s_or_d_colors = {
+            "s": "#71CE53",
+            "d": "#FF4949"
+        }
 
     	var satisfaction_json = {
     		"s": "Satisfied",
@@ -397,7 +413,7 @@
 			yAxis: {
 				min: 0,
 				title: {
-					text: 'Proportion of Respondents (%)'
+					text: 'Proportion of Respondents (%)',
 				}
 			},
 			legend: {
@@ -450,7 +466,7 @@
 				plotLines: [{
 					value: 0,
 					width: 1,
-					color: '#808080'
+					color: s_or_d_colors[s_or_d]
 				}]
 			},
 			tooltip: {
