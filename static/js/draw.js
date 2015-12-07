@@ -90,6 +90,7 @@ function slugify(text) {
 
 // Create chart
 function create(data, div, language, type) {
+	wedge_color = s_or_d_colors[s_or_d];
 	types = {
 		"municipality": municipalities_data,
 		"kosovo-level": indicators_data
@@ -160,7 +161,7 @@ function create(data, div, language, type) {
 	    	if (outlineArc.centroid(d)[0] > 0) {anchor = "end"} 
 			return anchor
 	    })
-		.attr("fill", "#5892DA")
+		.attr("fill", "white")
 		.attr("font-family", "Eurostile")
 	    // Move to the desired point and set the rotation
 	    .attr("transform", function(d) {
@@ -245,8 +246,8 @@ function select_wedge(d){
 };
 
 function reduceIndicatorsText(text){
-	if (text.length > 20){
-		return text.substring(0, 20) + "...";	
+	if (text.length > 23){
+		return text.substring(0, 23) + "...";	
 	} else {
 		return text;
 	}

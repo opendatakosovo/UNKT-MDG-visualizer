@@ -58,7 +58,7 @@
         }
 		
 		svg {
-			font-size: 14.5px;
+			font-size: 13px;
 		}
 
         input[type="radio"].toggle {
@@ -132,8 +132,7 @@
 		*/
 		
 		// Aster Chart Colors
-		var wedge_color = "#FFDE3A",
-		bg_color = "#3D4237",
+		var bg_color = "#3D4237",
 		line_color = "#000000"
 		select_color = "#E18239";
 		
@@ -225,7 +224,7 @@
                                     var aster_div = "aster-chart-popup";
                                     var indicator = $("#indicator-select").val();
                                     var year = $('input[name=years-popup]:checked').val();
-                                    var s_or_d = $('input[name=s_or_d]:checked').val();
+                                    window.s_or_d = $('input[name=s_or_d]:checked').val();
                                     changeRadioButtonsColor(s_or_d)
                                     $("#no-data").css("display", "none");
                                     start(muni, "S", aster_div, all_data[s_or_d][viti][muni], "label", language, ranking);
@@ -297,7 +296,7 @@
 
         function onRadioChange (muni, aster_div) {
             var ranking = $('input[name=ranking-radio]:checked').val();
-            var s_or_d = $('input[name=s_or_d]:checked').val();
+            window.s_or_d = $('input[name=s_or_d]:checked').val();
             changeRadioButtonsColor(s_or_d)
             var save_selected_indicator = $("#aster-chart-popup").find("text").text();
             var lastIndex = save_selected_indicator.lastIndexOf(" ");
@@ -538,7 +537,7 @@
 	$(document).ready(function(){
         $('body').css('padding-right', '0');
         var ranking = $('input[name=ranking-radio]:checked').val();
-		var s_or_d = $('input[name=toggle]:checked').val();
+		window.s_or_d = $('input[name=toggle]:checked').val();
         buildLandingPageYearsRadioButtons(s_or_d);
 		var muni = "Kosovo";
 		var viti = $('input[name=radio]:checked').val()
@@ -571,9 +570,8 @@
 		});
 
 		// Variable for switching between satisfied and dissatisfied datasets
-            
 		function onRadioButtonChange(){
-			var s_or_d = $('input[name=toggle]:checked').val();
+			window.s_or_d = $('input[name=toggle]:checked').val();
 			changeRadioButtonsColor(s_or_d)
 			var year = $('input[name=radio]:checked').val();
 			var ranking_by = $('input[name=ranking-radio]:checked').val();
@@ -586,7 +584,7 @@
 				bindSelectBoxOnLabelClick(s_or_d);
 				$("#aster-chart").find("path#" + slugify(indicator)).d3Click();
 			}
-		}
+		};
 
 		$("input[name=ranking-radio]:radio").change(function () {
 			onRadioButtonChange()
@@ -597,7 +595,7 @@
 		});
 
 		$("input[name=radio]:radio").change(function () {
-			var s_or_d = $('input[name=toggle]:checked').val();
+			window.s_or_d = $('input[name=toggle]:checked').val();
 			changeRadioButtonsColor(s_or_d)
 			var ranking_by = $('input[name=ranking-radio]:checked').val();
 			var year = $('input[name=radio]:checked').val()
@@ -632,7 +630,7 @@
 		});
 
 		$("#indicator-select").change(function(){
-			var s_or_d = $('input[name=toggle]:checked').val();
+			window.s_or_d = $('input[name=toggle]:checked').val();
 			changeRadioButtonsColor(s_or_d)
 			var ranking_by = $('input[name=ranking-radio]:checked').val();
 			var indicator = $("#indicator-select").val();
