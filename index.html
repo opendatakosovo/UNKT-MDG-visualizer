@@ -227,7 +227,7 @@
                                     window.s_or_d = $('input[name=s_or_d]:checked').val();
                                     changeRadioButtonsColor(s_or_d)
                                     $("#no-data").css("display", "none");
-                                    start(muni, "S", aster_div, all_data[s_or_d][viti][muni], "label", language, ranking);
+                                    start(muni, "S", aster_div, all_data[s_or_d][viti][muni], "label", language, "kosovo-level");
 
                                     onAsterChartClick(muni, s_or_d);
                                     $("#aster-chart-popup").find("#" + slugify(indicator)).d3Click();
