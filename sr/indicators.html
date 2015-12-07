@@ -64,6 +64,14 @@
 
         $(document).ready(function() {
             getData();
+
+            $("#download-data").click(function(){
+                var url = "data/zip_data/kosovo-mosaic-data.zip";
+                var downloadAttr = "data.zip";
+                $('#download-data').prop('href', url);
+                $('#download-data').prop('download', downloadAttr);
+            })
+
         });
 
         function capitalizeFirstLetter(string) {
@@ -90,6 +98,11 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="../sq/indicators.html">Shqip</a></li>
                     <li class="active"><a href="indicators.html">Srpski</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a id="download-data" href="">Download</a>
+                    </li>
                 </ul>
             </div> <!-- navbar-collapse -->
         </div> <!-- container-fluid -->     
