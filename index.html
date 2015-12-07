@@ -546,6 +546,13 @@
 		start(muni, s_or_d, aster_div, all_data[s_or_d][viti][muni], "label", language, ranking);
 		bindIndicatorSelectBox(viti, s_or_d);
 
+        $("#download-data").click(function(){
+            var url = "data/zip_data/zip_data.zip";
+            var downloadAttr = "data.zip";
+            $('#download-data').prop('href', url);
+            $('#download-data').prop('download', downloadAttr);
+        })
+
 		bindSelectBoxOnLabelClick(s_or_d);
 		$(document).on('click', '#close-popup, .close', function(event) {
             $('myModal').empty();
@@ -700,6 +707,11 @@
                     <li class="active"><a href="index.html">Shqip</a></li>
                     <li><a href="sr/index.html">Srpski</a></li>
                 </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a id="download-data" href="">Download</a>
+                        </li>
+                    </ul>
             </div> <!-- navbar-collapse -->
         </div> <!-- container-fluid -->
     </nav>
