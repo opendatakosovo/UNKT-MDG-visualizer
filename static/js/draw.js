@@ -148,6 +148,7 @@ function create(data, div, language, type) {
     	}
     })
     .classed("label", true)
+	.attr("class", "aster-labels")
     .attr("x", function(d) {return (d.x); })
 	// Set anchor based on which side of the circle text is on
     .attr("text-anchor", function(d) {
@@ -239,8 +240,8 @@ function select_wedge(d){
 };
 
 function reduceIndicatorsText(text){
-	if (text.length > 23){
-		return text.substring(0, 23) + "...";	
+	if (text.length > 20){
+		return text.substring(0, 20) + "...";	
 	} else {
 		return text;
 	}
