@@ -138,23 +138,36 @@ function create(data, div, language, type) {
 	.on('mouseout', tip.hide)
     .each(stash);
 
-  path.append("svg:text")
+  	// Append Text Labels 
+  	path.append("svg:text")
     .text(function(d) { 
     	if (types[type].hasOwnProperty(d.data.label)) {
-    		return reduceIndicatorsText(types[type][d.data.label][lang]);
+    		return capitalizeFirstLetter(reduceIndicatorsText(types[type][d.data.label][lang]));
     	} else {
-    		return reduceIndicatorsText(d.data.label);
+    		return capitalizeFirstLetter(reduceIndicatorsText(d.data.label));
     	}
     })
     .classed("label", true)
-    .attr("x", function(d) { return d.x; })
-    .attr("text-anchor", "middle")
-    // translate to the desired point and set the rotation
+    .attr("x", function(d) {return (d.x); })
+	// Set anchor based on which side of the circle text is on
+    .attr("text-anchor", function(d) {
+		var anchor = "start"
+    	if (outlineArc.centroid(d)[0] > 0) {anchor = "end"} 
+		return anchor
+    })
+	.attr("fill", "#5892DA")
+	.attr("font-family", "Eurostile")
+    // Move to the desired point and set the rotation
     .attr("transform", function(d) {
-            return "translate(" + arc.centroid(d) + ")" +
+            return "translate(" + (outlineArc.centroid(d)) + ")" +
                    "rotate(" + getAngle(d) + ")";
     })
-    // .attr("dx", "-16") // margin
+	// Align text to outside border
+    .attr("dx", function(d) {
+		var adjustment = "-70"
+    	if (outlineArc.centroid(d)[0] > 0) {adjustment = "70"} 
+		return adjustment
+	}) 
     .attr("dy", ".35em") // vertical-align
     .attr("pointer-events", "none");
 };
@@ -226,8 +239,8 @@ function select_wedge(d){
 };
 
 function reduceIndicatorsText(text){
-	if (text.length > 10){
-		return text.substring(0, 10) + "...";	
+	if (text.length > 23){
+		return text.substring(0, 23) + "...";	
 	} else {
 		return text;
 	}
