@@ -100,7 +100,9 @@
             .aster-labels {
                 display: none !important;
             }
-
+            #line-chart {
+                margin-left: 0;
+            }
         },
         .tooltip {
           z-index: 1151 !important;
@@ -818,13 +820,13 @@
                             </div>
                             <h3 id="no-data" style="color: red; text-align:center; display:none; ">There's no data available</h3><br><br><br><br>
                         </div>
-                        <div class="col-md-6" >
-                            <div class="row" style="margin-left:8%;">
-                                <div id="column-chart" style="min-width: 310px; width: 450px; height: 300px;"></div>
+                        <div class="col-md-6" style="margin: auto;" >
+                            <div class="row" style="margin: auto;">
+                                <div id="column-chart" style="margin: auto; min-width: 310px; max-width: 500px; width: 100%; height: 300px;"></div>
                             </div>
-                            <hr class="style-eight" style="margin-left:8%; float:left; width: 80%" />
-                            <div class="row" style="margin-left:8%;">
-                                <div id="line-chart" style="min-width: 310px; width: 450px; height: 300px;"></div>
+                            <hr class="style-eight" style="margin: auto; width: 80%" />
+                            <div class="row" style="margin: auto;">
+                                <div id="line-chart" style="margin: auto; min-width: 310px; max-width: 500px; width: 100%; height: 300px;"></div>
                             </div>
                             <hr>
                         </div>
