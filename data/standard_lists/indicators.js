@@ -132,7 +132,7 @@ function getindicatorsData() {return {
     "description_serbian": "Sausage brisket pork, pancetta leberkas fatback doner shankle pastrami swine tongue salami ground round beef ribs."
   },
   "public procurement/tenders": {
-    "name_albanian": "prokurimi/tenderët publik",
+    "name_albanian": "Prokurimi/tenderët publik",
     "name_serbian": "public procurement/tenders",
     "description_albanian": "Sausage brisket pork, pancetta leberkas fatback doner shankle pastrami swine tongue salami ground round beef ribs.",
     "description_serbian": "Turkey alcatra ham shank pork chop. Sirloin spare ribs beef ribs capicola, leberkas salami meatball shoulder turkey swine frankfurter."
@@ -174,7 +174,7 @@ function getindicatorsData() {return {
     "description_serbian": "Ho heave down scuttle walk the plank scallywag rutters grog blossom hang the jib Jack Tar pirate."
   },
   "traffic and parking control and regulation": {
-    "name_albanian": "traffic and parking control and regulation",
+    "name_albanian": "Trafiku, parkimi dhe rregullimi",
     "name_serbian": "traffic and parking control and regulation",
     "description_albanian": "Ho heave down scuttle walk the plank scallywag rutters grog blossom hang the jib Jack Tar pirate.",
     "description_serbian": "You know why the yankees always win, frank? it's 'cause the other teams can't stop staring at those damn pinstripes."
