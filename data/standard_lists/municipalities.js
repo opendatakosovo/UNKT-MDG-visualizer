@@ -88,7 +88,7 @@ function getmunicipalitiesData() {return {
     "serbian": "Kosovska Mitrovica"
   },
   "Mitrovica South": {
-    "albanian": "Mitrovica Veriore",
+    "albanian": "Mitrovicë",
     "serbian": "Severna Kosovska Mitrovica"
   },
   "Novoberda": {

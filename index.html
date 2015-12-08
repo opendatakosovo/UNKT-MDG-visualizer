@@ -264,7 +264,7 @@
                     mapData: Highcharts.maps['countries/kv/kv-all'],
                     joinBy: 'hc-key',
                     allowPointSelect: true,
-                    name: capitalizeFirstLetter(indicator),
+                    name: capitalizeFirstLetter(indicators_data[indicator]["name_" + language]),
                     states: {
                         hover: {
                             color: 'grey'
