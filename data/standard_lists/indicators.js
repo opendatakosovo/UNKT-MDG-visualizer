@@ -210,13 +210,13 @@ function getindicatorsData() {return {
     "description_serbian": "Lo-fi kombuçha PBR&B four loko williamsburg strëët art messenger bag, everyday carry literally put a bird on it meggings vice stumptown. Ethical kombucha affogato, tattooed plaid photo booth readymade. "
   },
   "representation of ethnic minorities": {
-    "name_albanian": "përfaqësimi i minoriteteve",
+    "name_albanian": "Përfaqësimi i minoriteteve",
     "name_serbian": "representation of ethnic minorities",
     "description_albanian": "Corsair American Main yo-ho-ho league ho lateen sail splice the main brace skysail pressgang fire ship. Sutler carouser galleon gally American Main Jack Ketch ye chantey yard no prey, no pay. ",
     "description_serbian": "Gibbet killick cable Admiral of the Black league starboard loaded to the gunwalls Sail ho ahoy yawl."
   },
   "representation of women": {
-    "name_albanian": "përfaqësimi i gruas",
+    "name_albanian": "Përfaqësimi i gruas",
     "name_serbian": "representation of women",
     "description_albanian": "Gibbet killick cable Admiral of the Black league starboard loaded to the gunwalls Sail ho ahoy yawl.",
     "description_serbian": "Measured fer yer chains list chase guns maroon Davy Jones' Locker Cat o'nine tails heave to long boat rope's end execution dock. "
