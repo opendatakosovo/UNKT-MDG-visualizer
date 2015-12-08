@@ -500,16 +500,24 @@
 
     var language = "albanian";
 
+
 	function bindIndicatorSelectBox(year, s_or_d){
 		$("#indicator-select").empty();
+        var indicators = []
+        var html_text = ""
 		for (key in all_data[s_or_d][year]["Pristina"]){
             var indicator_lower = key.toLowerCase();
             if (indicator_lower == "cemetery maintenace") { 
                 indicator_lower = "cemetery maintenance";
             }
             var indicator = indicators_data[indicator_lower]["name_albanian"];
-			$("#indicator-select").append("<option value='"+indicator_lower+"'>"+capitalizeFirstLetter(indicator)+"</option>");
+            indicators.push({"indicator": indicator, "value": indicator_lower});
 		}
+        var sorted_indicators = sortByKey(indicators, "indicator");
+        for (var json in sorted_indicators){
+            text = "<option value='"+sorted_indicators[json]["value"]+"'>"+sorted_indicators[json]["indicator"]+"</option>";
+            $("#indicator-select").append(text);   
+        }
 	}
 
 	jQuery.fn.d3Click = function () {
