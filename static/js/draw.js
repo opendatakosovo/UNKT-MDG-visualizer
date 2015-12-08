@@ -173,7 +173,7 @@ function create(data, div, language, type, s_or_d) {
 			var adjustment = "-70"
 	    	if (outlineArc.centroid(d)[0] > 0) {adjustment = "70"} 
 			return adjustment
-		}) 
+		})
 	    .attr("dy", ".35em") // vertical-align
 	    .attr("pointer-events", "none");
 	}

@@ -304,10 +304,8 @@
             window.s_or_d = $('input[name=s_or_d]:checked').val();
             $("#s_or_d_percentage_popup").empty();
             $("#s_or_d_percentage_popup").text(s_or_d_percentage[s_or_d]);
-            changeRadioButtonsColor(s_or_d)
-            var save_selected_indicator = $("#aster-chart-popup").find("text").text();
-            var lastIndex = save_selected_indicator.lastIndexOf(" ");
-            save_selected_indicator = save_selected_indicator.substring(0, lastIndex)
+            changeRadioButtonsColor(s_or_d);
+            var save_selected_indicator = $("#aster-chart-popup").find("path[fill='#e18239']").attr("value");
             var year = $('input[name=years-popup]:checked').val();
             start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label", language, "kosovo-level", s_or_d);
             var indicators_array = []
