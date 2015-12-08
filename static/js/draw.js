@@ -118,7 +118,7 @@ function create(data, div, language, type, s_or_d) {
 	.attr("fill", d3.rgb(bg_color))
 	.attr("stroke", d3.rgb(line_color))
 	.attr("class", "outlineArc")
-    .transition().delay(function (d,i){ return i * 40;})
+    .transition().delay(function (d,i){ return i * 30;})
 	.attr("d", outlineArc);
 
 

@@ -90,7 +90,7 @@ function getindicatorsData() {return {
     "description_serbian": "Swine meatloaf cow sirloin, alcatra pork andouille ham t-bone prosciutto cupim turkey jowl turducken tri-tip. Salami sirloin swine chuck landjaeger jerky kielbasa hamburger jowl ground round shank cupim. "
   },
   "maintenance of inter-municipal roads and highways": {
-    "name_albanian": "Mirëmbajtjen e rrugëve ndër-komunale dhe autostradave",
+    "name_albanian": "Mirëmbajtja e rrugëve ndër-komunale dhe autostradave",
     "name_serbian": "maintenance of inter-municipal roads and highways",
     "description_albanian": "Swine meatloaf cow sirloin, alcatra pork andouille ham t-bone prosciutto cupim turkey jowl turducken tri-tip. Salami sirloin swine chuck landjaeger jerky kielbasa hamburger jowl ground round shank cupim. ",
     "description_serbian": "Pork belly tenderloin pork loin biltong, fatback short ribs turducken. Ham hock filet mignon drumstick andouille, turkey tenderloin corned beef landjaeger strip steak jerky."
