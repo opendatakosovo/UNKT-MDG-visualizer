@@ -227,6 +227,8 @@
                                     var indicator = $("#indicator-select").val();
                                     var year = $('input[name=years-popup]:checked').val();
                                     window.s_or_d = $('input[name=s_or_d]:checked').val();
+                                    $("#s_or_d_percentage_popup").empty();
+                                    $("#s_or_d_percentage_popup").text(s_or_d_percentage[s_or_d]);
                                     changeRadioButtonsColor(s_or_d)
                                     $("#no-data").css("display", "none");
                                     start(muni, "S", aster_div, all_data[s_or_d][viti][muni], "label", language, "kosovo-level", s_or_d);
@@ -298,6 +300,8 @@
 
         function onRadioChange (muni, aster_div) {
             window.s_or_d = $('input[name=s_or_d]:checked').val();
+            $("#s_or_d_percentage_popup").empty();
+            $("#s_or_d_percentage_popup").text(s_or_d_percentage[s_or_d]);
             changeRadioButtonsColor(s_or_d)
             var save_selected_indicator = $("#aster-chart-popup").find("text").text();
             var lastIndex = save_selected_indicator.lastIndexOf(" ");
@@ -535,10 +539,17 @@
         $("#years-radio").append("<br>");
     }
 
+    var s_or_d_percentage = {
+        "s": "Përqindja e kënaqësisë",
+        "d": "Përqindja e pakënaqësisë"
+    }
+
 	$(document).ready(function(){
         $('body').css('padding-right', '0');
         var ranking = $('input[name=ranking-radio]:checked').val();
 		window.s_or_d = $('input[name=toggle]:checked').val();
+        $("#s_or_d_percentage").empty();
+        $("#s_or_d_percentage").text(s_or_d_percentage[s_or_d]);
         buildLandingPageYearsRadioButtons(s_or_d);
 		var muni = "Kosovo";
 		var viti = $('input[name=radio]:checked').val()
@@ -557,6 +568,8 @@
 		$(document).on('click', '#close-popup, .close', function(event) {
             $('myModal').empty();
 			var s_or_d = $('input[name=toggle]:checked').val();
+            $("#s_or_d_percentage").empty();
+            $("#s_or_d_percentage").text(s_or_d_percentage[s_or_d]);
 			changeRadioButtonsColor(s_or_d)
 			var year = $('input[name=radio]:checked').val();
 			var indicator = $("#indicator-select").val();
@@ -580,6 +593,8 @@
 		// Variable for switching between satisfied and dissatisfied datasets
 		function onRadioButtonChange(){
 			window.s_or_d = $('input[name=toggle]:checked').val();
+            $("#s_or_d_percentage").empty();
+            $("#s_or_d_percentage").text(s_or_d_percentage[s_or_d]);
 			changeRadioButtonsColor(s_or_d)
 			var year = $('input[name=radio]:checked').val();
 			var ranking_by = $('input[name=ranking-radio]:checked').val();
@@ -604,6 +619,8 @@
 
 		$("input[name=radio]:radio").change(function () {
 			window.s_or_d = $('input[name=toggle]:checked').val();
+            $("#s_or_d_percentage").empty();
+            $("#s_or_d_percentage").text(s_or_d_percentage[s_or_d]);
 			changeRadioButtonsColor(s_or_d)
 			var ranking_by = $('input[name=ranking-radio]:checked').val();
 			var year = $('input[name=radio]:checked').val()
@@ -639,6 +656,8 @@
 
 		$("#indicator-select").change(function(){
 			window.s_or_d = $('input[name=toggle]:checked').val();
+            $("#s_or_d_percentage").empty();
+            $("#s_or_d_percentage").text(s_or_d_percentage[s_or_d]);
 			changeRadioButtonsColor(s_or_d)
 			var ranking_by = $('input[name=ranking-radio]:checked').val();
 			var indicator = $("#indicator-select").val();
@@ -721,7 +740,7 @@
             </div>
             <div class="col-md-4">
                 <div class="form-inline" style="text-align:center; margin-top:8px;">
-                    <label style="border: 0;">Ju lutemi zgjidhni nje opcion: </label>
+                    <label style="border: 0;">Ju lutemi zgjidhni një opcion: </label>
                     <div class="form-group" style="width: 100%; text-align:center;">
                         <select id="indicator-select" style="" class="form-control">Indicator
                         </select><br>
@@ -729,8 +748,7 @@
                 </div>
             </div>
             <div class="col-md-2"  style="text-align: center;">
-                <label style="width: 90px; border: 0; font-size:12px; text-align:right;">I kënaqur &nbsp;&nbsp;|</label>
-                <label style="width: 90px; border: 0; font-size:12px; text-align:left; padding-left: 5px;">I pakënaqur</label>
+                <label id="s_or_d_percentage" style="border: 0; font-size:12px; text-align:center;"></label>
                 <br>
                 <div class="no-checkedselector" style="text-align:center;">
                     <div class="toggle-container">
@@ -757,7 +775,7 @@
         <div class="row">
             <hr class="style-eight" style="width: 85%" />
             <div class="col-md-6" style="text-align:center;">
-                <label style="border: 0;">Klikoni mbi komunat ne harte per te pare detajet: </label>
+                <label style="border: 0;">Klikoni mbi komunat në hartë per të parë detajet: </label>
                 <div id="container" style="height:550px;"></div><br><br>
             </div>
             <div class="col-md-6" style="height:500px; text-align:center;">
@@ -795,8 +813,7 @@
                 <div class="modal-body">
                     <div class="row" style="text-align: center;">
                         <div class="col-md-6">
-                            <label style="width: 90px; border: 0; font-size:12px; text-align:right;">I kënaqur &nbsp;&nbsp;|</label>
-                            <label style="width: 90px; border: 0; font-size:12px; text-align:left; padding-left: 5px;">I pakënaqur</label>
+                            <label id="s_or_d_percentage_popup" style="border: 0; font-size:12px; text-align:center;"></label>
                             <br>
                              <div class="no-checkedselector" style="text-align:center;">
                                 <div class="toggle-container">
