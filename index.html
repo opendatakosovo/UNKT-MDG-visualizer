@@ -24,6 +24,7 @@
 
 
     <script src="data/standard_lists/indicators.js"></script>
+    <script src="data/standard_lists/problems.js"></script>
     <script src="data/clean_data/satisfied.js"></script>
     <script src="data/standard_lists/municipalities.js"></script>
     <script src="data/clean_data/dissatisfied.js"></script>
@@ -122,6 +123,7 @@
     	
     	// Load Problem Data
     	var problems_data = getProblemsData();
+        var problems_lang = getproblemsData();
 
 		// Color palette
 		/*
@@ -148,6 +150,10 @@
     		"s": "I kënaqur",
     		"d": "I pakënaqur"
     	}
+
+        String.prototype.capitalize = function() {
+            return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+        };
 
         function drawMap(indicator, s_or_d, data, color){
             var muni_data = [];
@@ -205,7 +211,8 @@
                                     $('#popup-button').click();
                                     var muni = capitalizeFirstLetter(this['hc-key'].replace("kv-", ""));
                                     if (muni.match("-")){
-                                        muni = "Mitrovica North";
+                                        muni = muni.replace("-", " ").capitalize();
+
                                     }
                                     var display_name = this.name
                                     var ranking = $('input[name=ranking-radio]:checked').val();
@@ -217,7 +224,7 @@
                                     radiobtn_viti = document.getElementById("year-" + viti);
                                     radiobtn_viti.click();
                                     $('.modal-title').empty();
-                                    $('.modal-title').append("Municipality Profile: <b>" + display_name + "</b>");
+                                    $('.modal-title').append("Profili i komunës: <b>" + display_name + "</b>");
                                     var aster_div = "aster-chart-popup";
                                     var indicator = $("#indicator-select").val();
                                     var year = $('input[name=years-popup]:checked').val();
@@ -334,8 +341,10 @@
 			
 		for (var record in years) {
 			var year = years[record];
-			colNames.push(municipality + " " + year);
-			colNames.push("Kosovo " + year)
+
+            // replacing the name of columns from englisht to albanian language
+			colNames.push(municipalities_data[municipality][language] + " " + year);
+			colNames.push("Kosovë " + year)
 				
 			for (var cat in data[municipality][year]) {
 				categories.push(data[municipality][year][cat]['label']);
@@ -400,13 +409,19 @@
 			i = i + 1
 		} // Category Loop
 
+        // replacing the name of series from englisht to albanian language
+        for (var item in series) {
+            var name = series[item]['name']
+            var name_albanian = problems_lang[name][language + "_name"]
+            series[item]['name'] = name_albanian
+        }
 		// Feed Data to Chart
 		$('#' + div).highcharts({
 			chart: {
 				type: 'column'
 			},
 			title: {
-				text: 'What is the biggest issue?'
+				text: 'Cilat janë problemet më të mëdha?'
 			},
 			xAxis: {
 				categories: colNames
