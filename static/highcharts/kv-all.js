@@ -27,7 +27,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
       "type": "Feature",
       "properties": {
         "hc-key": "kv-gracanica",
-        "CODE": null,
+        "CODE": "Gracanica",
         "name": "Gracanica",
         "VENDBANIME": 0,
         "HA": 11804.99,
@@ -3605,9 +3605,9 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "hc-key": "kv-novoberde",
-        "CODE": null,
-        "name": "Novoberde",
+        "hc-key": "kv-novoberda",
+        "CODE": "Novoberda",
+        "name": "Novoberda",
         "VENDBANIME": 0,
         "HA": 20431.24,
         "KM": 204.31,
@@ -5924,7 +5924,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": null,
+        "CODE": "Ranillug",
         "hc-key": "kv-ranillug",
         "name": "Ranillug",
         "VENDBANIME": 0,
@@ -7719,7 +7719,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": null,
+        "CODE": "Partesh",
         "hc-key": "kv-partesh",
         "name": "Partesh",
         "VENDBANIME": 0,
@@ -8662,9 +8662,9 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": null,
-        "hc-key": "kv-mitrovice-veriore",
-        "name": "Mitrovice Veriore",
+        "CODE": "Mitrovica North",
+        "hc-key": "kv-mitrovica-north",
+        "name": "Mitrovica North",
         "VENDBANIME": 0,
         "HA": 544.21,
         "KM": 5.44,
@@ -13621,7 +13621,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "29",
+        "CODE": "Zvecan",
         "hc-key": "kv-zvecan",
         "name": "Zvecan",
         "VENDBANIME": 0,
@@ -16288,7 +16288,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "12",
+        "CODE": "Leposaviq",
         "hc-key": "kv-leposaviq",
         "name": "Leposaviq",
         "VENDBANIME": 0,
@@ -19159,7 +19159,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "28",
+        "CODE": "Zubin Potok",
         "hc-key": "kv-zubin-potok",
         "name": "Zubin Potok",
         "VENDBANIME": 0,
@@ -20938,7 +20938,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "18",
+        "CODE": "Podujeve",
         "hc-key": "kv-podujeve",
         "name": "Podujeve",
         "VENDBANIME": 0,
@@ -23581,7 +23581,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "02",
+        "CODE": "Gjakove",
         "hc-key": "kv-gjakove",
         "name": "Gjakove",
         "VENDBANIME": 0,
@@ -26592,7 +26592,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "06",
+        "CODE": "Istog",
         "hc-key": "kv-istog",
         "name": "Istog",
         "VENDBANIME": 0,
@@ -28307,7 +28307,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "17",
+        "CODE": "Peje",
         "hc-key": "kv-peje",
         "name": "Peje",
         "VENDBANIME": 0,
@@ -31030,7 +31030,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "27",
+        "CODE": "Vushtrri",
         "hc-key": "kv-vushtrri",
         "name": "Vushtrri",
         "VENDBANIME": 0,
@@ -32621,7 +32621,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "21",
+        "CODE": "Skenderaj",
         "hc-key": "kv-skenderaj",
         "name": "Skenderaj",
         "VENDBANIME": 0,
@@ -34492,7 +34492,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "23",
+        "CODE": "Shterpce",
         "hc-key": "kv-shterpce",
         "name": "Shterpce",
         "VENDBANIME": 0,
@@ -35515,7 +35515,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "25",
+        "CODE": "Ferizaj",
         "hc-key": "kv-ferizaj",
         "name": "Ferizaj",
         "VENDBANIME": 0,
@@ -37038,7 +37038,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "22",
+        "CODE": "Shtime",
         "hc-key": "kv-shtime",
         "name": "Shtime",
         "VENDBANIME": 0,
@@ -38273,9 +38273,9 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "03",
-        "hc-key": "kv-drenas",
-        "name": "Drenas",
+        "CODE": "Gllogoc",
+        "hc-key": "kv-gllogoc",
+        "name": "Gllogoc",
         "VENDBANIME": 0,
         "HA": 27595.98,
         "KM": 275.96,
@@ -39892,7 +39892,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "24",
+        "CODE": "Suhareke",
         "hc-key": "kv-suhareke",
         "name": "Suhareke",
         "VENDBANIME": 0,
@@ -41487,7 +41487,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "16",
+        "CODE": "Rahovec",
         "hc-key": "kv-rahovec",
         "name": "Rahovec",
         "VENDBANIME": 0,
@@ -43002,7 +43002,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "08",
+        "CODE": "Kline",
         "hc-key": "kv-kline",
         "name": "Kline",
         "VENDBANIME": 0,
@@ -44965,7 +44965,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "05",
+        "CODE": "Dragash",
         "hc-key": "kv-dragash",
         "name": "Dragash",
         "VENDBANIME": 0,
@@ -46664,7 +46664,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "30",
+        "CODE": "Malisheve",
         "hc-key": "kv-malisheve",
         "name": "Malisheve",
         "VENDBANIME": 0,
@@ -48775,7 +48775,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "15",
+        "CODE": "Obiliq",
         "hc-key": "kv-obiliq",
         "name": "Obiliq",
         "VENDBANIME": 0,
@@ -50254,7 +50254,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "10",
+        "CODE": "Kamenice",
         "hc-key": "kv-kamenice",
         "name": "Kamenice",
         "VENDBANIME": 0,
@@ -54449,7 +54449,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "19",
+        "CODE": "Lipjan",
         "hc-key": "kv-lipjan",
         "name": "Lipjan",
         "VENDBANIME": 0,
@@ -58080,7 +58080,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "09",
+        "CODE": "Fushe Kosove",
         "hc-key": "kv-fushe-kosove",
         "name": "Fushe Kosove",
         "VENDBANIME": 0,
@@ -59503,9 +59503,9 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "19",
+        "CODE": "Pristina",
         "hc-key": "kv-pristina",
-        "name": "Prishtine",
+        "name": "Pristina",
         "VENDBANIME": 0,
         "HA": 52443.8,
         "KM": 524.44,
@@ -63134,7 +63134,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "04",
+        "CODE": "Gjilan",
         "hc-key": "kv-gjilan",
         "name": "Gjilan",
         "VENDBANIME": 0,
@@ -67597,9 +67597,9 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "11",
-        "hc-key": "kv-mitrovice",
-        "name": "Mitrovice",
+        "CODE": "Mitrovica",
+        "hc-key": "kv-mitrovica",
+        "name": "Mitrovica",
         "VENDBANIME": 0,
         "HA": 33233.96,
         "KM": 332.34,
@@ -72416,7 +72416,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "Mamusa",
+        "CODE": "Mamushe",
         "hc-key": "kv-mamushe",
         "name": "Mamushe",
         "VENDBANIME": 0,
@@ -72751,7 +72751,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "20",
+        "CODE": "Prizren",
         "hc-key": "kv-prizren",
         "name": "Prizren",
         "VENDBANIME": 0,
@@ -75206,7 +75206,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "37",
+        "CODE": "Kllokot",
         "hc-key": "kv-kllokot",
         "name": "Kllokot",
         "VENDBANIME": 0,
@@ -75905,7 +75905,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "26",
+        "CODE": "Viti",
         "hc-key": "kv-viti",
         "name": "Viti",
         "VENDBANIME": 0,
@@ -78114,9 +78114,9 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "33",
+        "CODE": "Hani i Elezit",
         "hc-key": "kv-hani-i-elezit",
-        "name": "Hani I Elezit",
+        "name": "Hani i Elezit",
         "VENDBANIME": 0,
         "HA": 8360.03,
         "KM": 83.6,
@@ -79213,7 +79213,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "07",
+        "CODE": "Kacanik",
         "hc-key": "kv-kacanik",
         "name": "Kacanik",
         "VENDBANIME": 0,
@@ -80672,7 +80672,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "31",
+        "CODE": "Junik",
         "hc-key": "kv-junik",
         "name": "Junik",
         "VENDBANIME": 0,
@@ -82035,7 +82035,7 @@ Highcharts.maps["countries/kv/kv-all"] = {
     {
       "type": "Feature",
       "properties": {
-        "CODE": "01",
+        "CODE": "Decan",
         "hc-key": "kv-decan",
         "name": "Decan",
         "VENDBANIME": 0,

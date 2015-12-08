@@ -36,9 +36,9 @@
 	
     <!-- Highcharts map JavaScript -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <!-- <script src="https://code.highcharts.com/maps/modules/exporting.js"></script> -->
     <script src="https://code.highcharts.com/maps/modules/map.js"></script>
-    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <!-- <script src="https://code.highcharts.com/maps/modules/data.js"></script> -->
     <script src="static/highcharts/kv-all.js"></script>
 
     <style type="text/css">
@@ -150,20 +150,9 @@
     	}
 
         function drawMap(indicator, s_or_d, data, color){
-            var municipalities_data = [];
+            var muni_data = [];
             for (key in data){
                 var name = key
-                if (key == "Gllogoc"){
-                    name = "Drenas";
-                } else if (key == "Mitrovica South") {
-                    name = "Mitrovice"
-                } else if (key == "Mitrovica North") {
-                    name = "Mitrovice Veriore"
-                } else if (key == "Novoberda") {
-                    name = "Novoberde"
-                } else if (key == "Mitrovica") {
-                    name = "Mitrovice"
-                }
                 var value = data[key][indicator]
                 if (!(isNaN(value))){
                     if (value.toString().length > 4){
@@ -173,7 +162,20 @@
                         "hc-key": "kv-" + slugify(name),
                         "value": value
                     }
-                    municipalities_data.push(json_key);
+                    muni_data.push(json_key);
+                }
+            }
+
+            for (var key in data){
+                indexes = $.map(Highcharts.maps["countries/kv/kv-all"]['features'], function(obj, index) {
+                    // console.log(obj['properties']['name'])
+                    if(obj['properties']['name'] == key) {
+                        return index;
+                    }
+                })
+                firstIndex = indexes[0]
+                if (firstIndex != undefined){
+                    Highcharts.maps["countries/kv/kv-all"]['features'][firstIndex]['properties']['name'] = municipalities_data[key][language];
                 }
             }
             // Initiate the chart
@@ -201,18 +203,11 @@
                             events: {
                                 select: function () {
                                     $('#popup-button').click();
-                                    var muni = this.name;
-                                    if (muni == "Prishtine"){
-                                        muni = "Pristina"
-                                    } else if (muni == "Novoberde") {
-                                        muni = "Novoberda"
-                                    } else if (muni == "Mitrovice") {
-                                        muni = "Mitrovica"
-                                    } else if (muni == "Mitrovice Veriore") {
-                                        muni = "Mitrovica North"
-                                    } else if (muni == "Drenas") {
-                                        muni = "Gllogoc"
+                                    var muni = capitalizeFirstLetter(this['hc-key'].replace("kv-", ""));
+                                    if (muni.match("-")){
+                                        muni = "Mitrovica North";
                                     }
+                                    var display_name = this.name
                                     var ranking = $('input[name=ranking-radio]:checked').val();
                                     var sat_or_diss = $('input[name=toggle]:checked').val();
                                     generateYearsButtons(sat_or_diss, muni);
@@ -222,7 +217,7 @@
                                     radiobtn_viti = document.getElementById("year-" + viti);
                                     radiobtn_viti.click();
                                     $('.modal-title').empty();
-                                    $('.modal-title').append("Municipality Profile: <b>" + this.name + "</b>");
+                                    $('.modal-title').append("Municipality Profile: <b>" + display_name + "</b>");
                                     var aster_div = "aster-chart-popup";
                                     var indicator = $("#indicator-select").val();
                                     var year = $('input[name=years-popup]:checked').val();
@@ -258,7 +253,7 @@
                 },
 
                 series : [{
-                    data : municipalities_data,
+                    data : muni_data,
                     mapData: Highcharts.maps['countries/kv/kv-all'],
                     joinBy: 'hc-key',
                     allowPointSelect: true,
