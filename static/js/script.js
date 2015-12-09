@@ -95,6 +95,7 @@
                 plotOptions: {
                     enabled: true,
                     series: {
+                        cursor: 'pointer',
                         point: {
                             events: {
                                 select: function () {
