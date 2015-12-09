@@ -387,7 +387,7 @@
 				enabled: false
 			},
 			series: [{
-				name: municipality,
+				name: municipalities_data[municipality][language],
 				data: data
 			}]
 		});
