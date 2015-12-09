@@ -362,7 +362,7 @@
 
 		$('#' + div).highcharts({
 			title: {
-				text: satisfaction_json[language][s_or_d] + " - " + capitalizeFirstLetter(indicators_data[indicator][language]),
+				text: s_or_d_percentage[language][s_or_d] + " - " + capitalizeFirstLetter(indicators_data[indicator][language]),
 				x: -20 //center
 			},
 			xAxis: {
