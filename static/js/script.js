@@ -37,8 +37,14 @@
         }
 
     	var satisfaction_json = {
-    		"s": "I kënaqur",
-    		"d": "I pakënaqur"
+            "albanian": {
+        		"s": "I kënaqur",
+        		"d": "I pakënaqur"
+            }, 
+            "serbian": {
+                "s": "Zadovoljan",
+                "d": "Nezadovoljan"
+            }
     	}
 
         String.prototype.capitalize = function() {
@@ -121,7 +127,7 @@
                                     var year = $('input[name=years-popup]:checked').val();
                                     window.s_or_d = $('input[name=s_or_d]:checked').val();
                                     $("#s_or_d_percentage_popup").empty();
-                                    $("#s_or_d_percentage_popup").text(s_or_d_percentage[s_or_d]);
+                                    $("#s_or_d_percentage_popup").text(s_or_d_percentage[language][s_or_d]);
                                     changeRadioButtonsColor(s_or_d)
                                     $("#no-data").css("display", "none");
                                     start(muni, "S", aster_div, all_data[s_or_d][viti][muni], "label", language, "kosovo-level", s_or_d);
@@ -194,7 +200,7 @@
         function onRadioChange (muni, aster_div) {
             window.s_or_d = $('input[name=s_or_d]:checked').val();
             $("#s_or_d_percentage_popup").empty();
-            $("#s_or_d_percentage_popup").text(s_or_d_percentage[s_or_d]);
+            $("#s_or_d_percentage_popup").text(s_or_d_percentage[language][s_or_d]);
             changeRadioButtonsColor(s_or_d);
             var save_selected_indicator = $("#aster-chart-popup").find("path[fill='#e18239']").attr("value");
             var year = $('input[name=years-popup]:checked').val();
@@ -356,7 +362,7 @@
 
 		$('#' + div).highcharts({
 			title: {
-				text: satisfaction_json[s_or_d] + " - " + capitalizeFirstLetter(indicators_data[indicator][language]),
+				text: satisfaction_json[language][s_or_d] + " - " + capitalizeFirstLetter(indicators_data[indicator][language]),
 				x: -20 //center
 			},
 			xAxis: {
@@ -444,8 +450,14 @@
     }
 
     var s_or_d_percentage = {
-        "s": "Përqindja e kënaqësisë",
-        "d": "Përqindja e pakënaqësisë"
+        "albanian": {
+            "s": "Niveli i kënaqshmërisë",
+            "d": "Niveli i pakënaqshmërisë"
+        },
+        "serbian": {
+            "s": "Niveli i kënaqshmërisë",
+            "d": "Niveli i pakënaqshmërisë"
+        }
     }
 
 	$(document).ready(function(){
@@ -453,7 +465,7 @@
         var ranking = $('input[name=ranking-radio]:checked').val();
 		window.s_or_d = $('input[name=toggle]:checked').val();
         $("#s_or_d_percentage").empty();
-        $("#s_or_d_percentage").text(s_or_d_percentage[s_or_d]);
+        $("#s_or_d_percentage").text(s_or_d_percentage[language][s_or_d]);
         buildLandingPageYearsRadioButtons(s_or_d);
 		var muni = "Kosovo";
 		var viti = $('input[name=radio]:checked').val()
@@ -473,7 +485,7 @@
             $('myModal').empty();
 			var s_or_d = $('input[name=toggle]:checked').val();
             $("#s_or_d_percentage").empty();
-            $("#s_or_d_percentage").text(s_or_d_percentage[s_or_d]);
+            $("#s_or_d_percentage").text(s_or_d_percentage[language][s_or_d]);
 			changeRadioButtonsColor(s_or_d)
 			var year = $('input[name=radio]:checked').val();
 			var indicator = $("#indicator-select").val();
@@ -498,7 +510,7 @@
 		function onRadioButtonChange(){
 			window.s_or_d = $('input[name=toggle]:checked').val();
             $("#s_or_d_percentage").empty();
-            $("#s_or_d_percentage").text(s_or_d_percentage[s_or_d]);
+            $("#s_or_d_percentage").text(s_or_d_percentage[language][s_or_d]);
 			changeRadioButtonsColor(s_or_d)
 			var year = $('input[name=radio]:checked').val();
 			var ranking_by = $('input[name=ranking-radio]:checked').val();
@@ -524,7 +536,7 @@
 		$("input[name=radio]:radio").change(function () {
 			window.s_or_d = $('input[name=toggle]:checked').val();
             $("#s_or_d_percentage").empty();
-            $("#s_or_d_percentage").text(s_or_d_percentage[s_or_d]);
+            $("#s_or_d_percentage").text(s_or_d_percentage[language][s_or_d]);
 			changeRadioButtonsColor(s_or_d)
 			var ranking_by = $('input[name=ranking-radio]:checked').val();
 			var year = $('input[name=radio]:checked').val()
@@ -561,7 +573,7 @@
 		$("#indicator-select").change(function(){
 			window.s_or_d = $('input[name=toggle]:checked').val();
             $("#s_or_d_percentage").empty();
-            $("#s_or_d_percentage").text(s_or_d_percentage[s_or_d]);
+            $("#s_or_d_percentage").text(s_or_d_percentage[language][s_or_d]);
 			changeRadioButtonsColor(s_or_d)
 			var ranking_by = $('input[name=ranking-radio]:checked').val();
 			var indicator = $("#indicator-select").val();
