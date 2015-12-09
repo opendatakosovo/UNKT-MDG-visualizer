@@ -474,7 +474,12 @@
 		bindIndicatorSelectBox(viti, s_or_d);
 
         $("#download-data").click(function(){
-            var url = "data/zip_data/kosovo-mosaic-data.zip";
+            var url = "";
+            if (language == "serbian") {
+                url = "../data/zip_data/kosovo-mosaic-data.zip";
+            } else {
+                url = "data/zip_data/kosovo-mosaic-data.zip";
+            }
             var downloadAttr = "data.zip";
             $('#download-data').prop('href', url);
             $('#download-data').prop('download', downloadAttr);
