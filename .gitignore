@@ -1,3 +1,5 @@
+*.js~
+
 # Project Specific
 data/raw_data/archive
 

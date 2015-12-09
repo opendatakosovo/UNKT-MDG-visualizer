@@ -24,6 +24,7 @@
 
 
     <script src="data/standard_lists/indicators.js"></script>
+    <script src="data/standard_lists/problems.js"></script>
     <script src="data/clean_data/satisfied.js"></script>
     <script src="data/standard_lists/municipalities.js"></script>
     <script src="data/clean_data/dissatisfied.js"></script>
@@ -36,9 +37,9 @@
 	
     <!-- Highcharts map JavaScript -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <!-- <script src="https://code.highcharts.com/maps/modules/exporting.js"></script> -->
     <script src="https://code.highcharts.com/maps/modules/map.js"></script>
-    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <!-- <script src="https://code.highcharts.com/maps/modules/data.js"></script> -->
     <script src="static/highcharts/kv-all.js"></script>
 
     <style type="text/css">
@@ -58,7 +59,7 @@
         }
 		
 		svg {
-			font-size: 13px;
+			font-size: 14px;
 		}
 
         input[type="radio"].toggle {
@@ -100,7 +101,9 @@
             .aster-labels {
                 display: none !important;
             }
-
+            #line-chart {
+                margin-left: 0;
+            }
         },
         .tooltip {
           z-index: 1151 !important;
@@ -120,6 +123,7 @@
     	
     	// Load Problem Data
     	var problems_data = getProblemsData();
+        var problems_lang = getproblemsData();
 
 		// Color palette
 		/*
@@ -143,25 +147,18 @@
         }
 
     	var satisfaction_json = {
-    		"s": "Satisfied",
-    		"d": "Dissatisfied"
+    		"s": "I kënaqur",
+    		"d": "I pakënaqur"
     	}
 
+        String.prototype.capitalize = function() {
+            return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+        };
+
         function drawMap(indicator, s_or_d, data, color){
-            var municipalities_data = [];
+            var muni_data = [];
             for (key in data){
                 var name = key
-                if (key == "Gllogoc"){
-                    name = "Drenas";
-                } else if (key == "Mitrovica South") {
-                    name = "Mitrovice"
-                } else if (key == "Mitrovica North") {
-                    name = "Mitrovice Veriore"
-                } else if (key == "Novoberda") {
-                    name = "Novoberde"
-                } else if (key == "Mitrovica") {
-                    name = "Mitrovice"
-                }
                 var value = data[key][indicator]
                 if (!(isNaN(value))){
                     if (value.toString().length > 4){
@@ -171,7 +168,20 @@
                         "hc-key": "kv-" + slugify(name),
                         "value": value
                     }
-                    municipalities_data.push(json_key);
+                    muni_data.push(json_key);
+                }
+            }
+
+            for (var key in data){
+                indexes = $.map(Highcharts.maps["countries/kv/kv-all"]['features'], function(obj, index) {
+                    // console.log(obj['properties']['name'])
+                    if(obj['properties']['name'] == key) {
+                        return index;
+                    }
+                })
+                firstIndex = indexes[0]
+                if (firstIndex != undefined){
+                    Highcharts.maps["countries/kv/kv-all"]['features'][firstIndex]['properties']['name'] = municipalities_data[key][language];
                 }
             }
             // Initiate the chart
@@ -199,18 +209,12 @@
                             events: {
                                 select: function () {
                                     $('#popup-button').click();
-                                    var muni = this.name;
-                                    if (muni == "Prishtine"){
-                                        muni = "Pristina"
-                                    } else if (muni == "Novoberde") {
-                                        muni = "Novoberda"
-                                    } else if (muni == "Mitrovice") {
-                                        muni = "Mitrovica"
-                                    } else if (muni == "Mitrovice Veriore") {
-                                        muni = "Mitrovica North"
-                                    } else if (muni == "Drenas") {
-                                        muni = "Gllogoc"
+                                    var muni = capitalizeFirstLetter(this['hc-key'].replace("kv-", ""));
+                                    if (muni.match("-")){
+                                        muni = muni.replace("-", " ").capitalize();
+
                                     }
+                                    var display_name = this.name
                                     var ranking = $('input[name=ranking-radio]:checked').val();
                                     var sat_or_diss = $('input[name=toggle]:checked').val();
                                     generateYearsButtons(sat_or_diss, muni);
@@ -220,14 +224,16 @@
                                     radiobtn_viti = document.getElementById("year-" + viti);
                                     radiobtn_viti.click();
                                     $('.modal-title').empty();
-                                    $('.modal-title').append("Municipality Profile: <b>" + this.name + "</b>");
+                                    $('.modal-title').append("Profili i komunës: <b>" + display_name + "</b>");
                                     var aster_div = "aster-chart-popup";
                                     var indicator = $("#indicator-select").val();
                                     var year = $('input[name=years-popup]:checked').val();
                                     window.s_or_d = $('input[name=s_or_d]:checked').val();
+                                    $("#s_or_d_percentage_popup").empty();
+                                    $("#s_or_d_percentage_popup").text(s_or_d_percentage[s_or_d]);
                                     changeRadioButtonsColor(s_or_d)
                                     $("#no-data").css("display", "none");
-                                    start(muni, "S", aster_div, all_data[s_or_d][viti][muni], "label", language, ranking);
+                                    start(muni, "S", aster_div, all_data[s_or_d][viti][muni], "label", language, "kosovo-level", s_or_d);
 
                                     onAsterChartClick(muni, s_or_d);
                                     $("#aster-chart-popup").find("#" + slugify(indicator)).d3Click();
@@ -254,11 +260,11 @@
                 },
 
                 series : [{
-                    data : municipalities_data,
+                    data : muni_data,
                     mapData: Highcharts.maps['countries/kv/kv-all'],
                     joinBy: 'hc-key',
                     allowPointSelect: true,
-                    name: capitalizeFirstLetter(indicator),
+                    name: capitalizeFirstLetter(indicators_data[indicator]["name_" + language]),
                     states: {
                         hover: {
                             color: 'grey'
@@ -295,14 +301,13 @@
         }
 
         function onRadioChange (muni, aster_div) {
-            var ranking = $('input[name=ranking-radio]:checked').val();
             window.s_or_d = $('input[name=s_or_d]:checked').val();
-            changeRadioButtonsColor(s_or_d)
-            var save_selected_indicator = $("#aster-chart-popup").find("text").text();
-            var lastIndex = save_selected_indicator.lastIndexOf(" ");
-            save_selected_indicator = save_selected_indicator.substring(0, lastIndex)
+            $("#s_or_d_percentage_popup").empty();
+            $("#s_or_d_percentage_popup").text(s_or_d_percentage[s_or_d]);
+            changeRadioButtonsColor(s_or_d);
+            var save_selected_indicator = $("#aster-chart-popup").find("path[fill='#e18239']").attr("value");
             var year = $('input[name=years-popup]:checked').val();
-            start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label", language, ranking);
+            start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label", language, "kosovo-level", s_or_d);
             var indicators_array = []
             for (var key in all_data[s_or_d][year][muni]) {
                 indicators_array.push(slugify(key));
@@ -334,8 +339,10 @@
 			
 		for (var record in years) {
 			var year = years[record];
-			colNames.push(municipality + " " + year);
-			colNames.push("Kosovo " + year)
+
+            // replacing the name of columns from englisht to albanian language
+			colNames.push(municipalities_data[municipality][language] + " " + year);
+			colNames.push("Kosovë " + year)
 				
 			for (var cat in data[municipality][year]) {
 				categories.push(data[municipality][year][cat]['label']);
@@ -400,13 +407,19 @@
 			i = i + 1
 		} // Category Loop
 
+        // replacing the name of series from englisht to albanian language
+        for (var item in series) {
+            var name = series[item]['name']
+            var name_albanian = problems_lang[name][language + "_name"]
+            series[item]['name'] = name_albanian
+        }
 		// Feed Data to Chart
 		$('#' + div).highcharts({
 			chart: {
 				type: 'column'
 			},
 			title: {
-				text: 'What is the biggest issue?'
+				text: 'Cilat janë problemet më të mëdha?'
 			},
 			xAxis: {
 				categories: colNames
@@ -452,7 +465,7 @@
 
 		$('#' + div).highcharts({
 			title: {
-				text: satisfaction_json[s_or_d] + " - " + capitalizeFirstLetter(indicator),
+				text: satisfaction_json[s_or_d] + " - " + capitalizeFirstLetter(indicators_data[indicator]["name_" + language]),
 				x: -20 //center
 			},
 			xAxis: {
@@ -485,16 +498,24 @@
 
     var language = "albanian";
 
+
 	function bindIndicatorSelectBox(year, s_or_d){
 		$("#indicator-select").empty();
+        var indicators = []
+        var html_text = ""
 		for (key in all_data[s_or_d][year]["Pristina"]){
             var indicator_lower = key.toLowerCase();
             if (indicator_lower == "cemetery maintenace") { 
                 indicator_lower = "cemetery maintenance";
             }
             var indicator = indicators_data[indicator_lower]["name_albanian"];
-			$("#indicator-select").append("<option value='"+indicator_lower+"'>"+capitalizeFirstLetter(indicator)+"</option>");
+            indicators.push({"indicator": indicator, "value": indicator_lower});
 		}
+        var sorted_indicators = sortByKey(indicators, "indicator");
+        for (var json in sorted_indicators){
+            text = "<option value='"+sorted_indicators[json]["value"]+"'>"+sorted_indicators[json]["indicator"]+"</option>";
+            $("#indicator-select").append(text);   
+        }
 	}
 
 	jQuery.fn.d3Click = function () {
@@ -521,7 +542,7 @@
 			data[key] = all_data[s_or_d][year][key][indicator]
 		}
 		$("#aster-chart").find("#" + slugify(municipality)).d3Click();
-		start(muni, s_or_d, aster_div, data, "value", language, ranking);
+		start(muni, s_or_d, aster_div, data, "value", language, ranking, s_or_d);
 		drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
 		$("#aster-chart").find("path#" + slugify("Kosovo")).d3Click();
 	}
@@ -534,19 +555,26 @@
         $("#years-radio").append("<br>");
     }
 
+    var s_or_d_percentage = {
+        "s": "Përqindja e kënaqësisë",
+        "d": "Përqindja e pakënaqësisë"
+    }
+
 	$(document).ready(function(){
         $('body').css('padding-right', '0');
         var ranking = $('input[name=ranking-radio]:checked').val();
 		window.s_or_d = $('input[name=toggle]:checked').val();
+        $("#s_or_d_percentage").empty();
+        $("#s_or_d_percentage").text(s_or_d_percentage[s_or_d]);
         buildLandingPageYearsRadioButtons(s_or_d);
 		var muni = "Kosovo";
 		var viti = $('input[name=radio]:checked').val()
 		var aster_div = "aster-chart";
-		start(muni, s_or_d, aster_div, all_data[s_or_d][viti][muni], "label", language, ranking);
+		start(muni, s_or_d, aster_div, all_data[s_or_d][viti][muni], "label", language, ranking, s_or_d);
 		bindIndicatorSelectBox(viti, s_or_d);
 
         $("#download-data").click(function(){
-            var url = "data/zip_data/zip_data.zip";
+            var url = "data/zip_data/kosovo-mosaic-data.zip";
             var downloadAttr = "data.zip";
             $('#download-data').prop('href', url);
             $('#download-data').prop('download', downloadAttr);
@@ -556,6 +584,8 @@
 		$(document).on('click', '#close-popup, .close', function(event) {
             $('myModal').empty();
 			var s_or_d = $('input[name=toggle]:checked').val();
+            $("#s_or_d_percentage").empty();
+            $("#s_or_d_percentage").text(s_or_d_percentage[s_or_d]);
 			changeRadioButtonsColor(s_or_d)
 			var year = $('input[name=radio]:checked').val();
 			var indicator = $("#indicator-select").val();
@@ -568,7 +598,7 @@
 				bindIndicatorSelectBox(year, s_or_d);
 				// draw map chart on year radio button click.
 				$("#indicator-select").val(indicator);
-				start(muni, s_or_d, aster_div, all_data[s_or_d][year][muni], "label", language, ranking_by);
+				start(muni, s_or_d, aster_div, all_data[s_or_d][year][muni], "label", language, ranking_by, s_or_d);
 				drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
 				$("#aster-chart").find("#" + slugify(indicator)).d3Click();
 				bindSelectBoxOnLabelClick(s_or_d);
@@ -579,6 +609,8 @@
 		// Variable for switching between satisfied and dissatisfied datasets
 		function onRadioButtonChange(){
 			window.s_or_d = $('input[name=toggle]:checked').val();
+            $("#s_or_d_percentage").empty();
+            $("#s_or_d_percentage").text(s_or_d_percentage[s_or_d]);
 			changeRadioButtonsColor(s_or_d)
 			var year = $('input[name=radio]:checked').val();
 			var ranking_by = $('input[name=ranking-radio]:checked').val();
@@ -587,7 +619,7 @@
 			if (ranking_by == "municipality") {
 				rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
 			} else {
-				start(muni, s_or_d, aster_div, all_data[s_or_d][year]["Kosovo"], "label", language, ranking_by);
+				start(muni, s_or_d, aster_div, all_data[s_or_d][year]["Kosovo"], "label", language, ranking_by, s_or_d);
 				bindSelectBoxOnLabelClick(s_or_d);
 				$("#aster-chart").find("path#" + slugify(indicator)).d3Click();
 			}
@@ -603,6 +635,8 @@
 
 		$("input[name=radio]:radio").change(function () {
 			window.s_or_d = $('input[name=toggle]:checked').val();
+            $("#s_or_d_percentage").empty();
+            $("#s_or_d_percentage").text(s_or_d_percentage[s_or_d]);
 			changeRadioButtonsColor(s_or_d)
 			var ranking_by = $('input[name=ranking-radio]:checked').val();
 			var year = $('input[name=radio]:checked').val()
@@ -628,7 +662,7 @@
 				indicator_id = indicator.replace("Satisfaction with ", "");
 				$("#" + slugify(indicator_id)).d3Click();
 				// draw map chart on year radio button click.
-				start(muni, s_or_d, aster_div, all_data[s_or_d][year]["Kosovo"], "label", language, ranking_by);
+				start(muni, s_or_d, aster_div, all_data[s_or_d][year]["Kosovo"], "label", language, ranking_by, s_or_d);
 				drawMap(indicator, s_or_d, all_data[s_or_d][year], s_or_d_colors[s_or_d]);
 
 				bindSelectBoxOnLabelClick(s_or_d);
@@ -638,6 +672,8 @@
 
 		$("#indicator-select").change(function(){
 			window.s_or_d = $('input[name=toggle]:checked').val();
+            $("#s_or_d_percentage").empty();
+            $("#s_or_d_percentage").text(s_or_d_percentage[s_or_d]);
 			changeRadioButtonsColor(s_or_d)
 			var ranking_by = $('input[name=ranking-radio]:checked').val();
 			var indicator = $("#indicator-select").val();
@@ -693,23 +729,24 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="">Kosovo Mosaic Visualizer</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="index.html">Visualizer</a></li>
                     <li><a href="sq/indicators.html">Indicators</a></li>
-                    
                     <li><a href="sq/problems.html">Problems</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="index.html">Shqip</a></li>
                     <li><a href="sr/index.html">Srpski</a></li>
+                    <li><a id="download-data" href="">Download</a></li>
                 </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a id="download-data" href="">Download</a>
-                        </li>
-                    </ul>
             </div> <!-- navbar-collapse -->
         </div> <!-- container-fluid -->
     </nav>
@@ -719,7 +756,7 @@
             </div>
             <div class="col-md-4">
                 <div class="form-inline" style="text-align:center; margin-top:8px;">
-                    <label style="border: 0;">Ju lutemi zgjidhni nje opcion: </label>
+                    <label style="border: 0;">Ju lutemi zgjidhni një opcion: </label>
                     <div class="form-group" style="width: 100%; text-align:center;">
                         <select id="indicator-select" style="" class="form-control">Indicator
                         </select><br>
@@ -727,8 +764,7 @@
                 </div>
             </div>
             <div class="col-md-2"  style="text-align: center;">
-                <label style="width: 90px; border: 0; font-size:12px; text-align:right;">I kënaqur &nbsp;&nbsp;|</label>
-                <label style="width: 90px; border: 0; font-size:12px; text-align:left; padding-left: 5px;">I pakënaqur</label>
+                <label id="s_or_d_percentage" style="border: 0; font-size:12px; text-align:center;"></label>
                 <br>
                 <div class="no-checkedselector" style="text-align:center;">
                     <div class="toggle-container">
@@ -755,19 +791,23 @@
         <div class="row">
             <hr class="style-eight" style="width: 85%" />
             <div class="col-md-6" style="text-align:center;">
-                <label style="border: 0;">Klikoni mbi komunat ne harte per te pare detajet: </label>
+                <label style="border: 0;">Klikoni mbi komunat në hartë per të parë detajet: </label>
                 <div id="container" style="height:550px;"></div><br><br>
             </div>
             <div class="col-md-6" style="height:500px; text-align:center;">
                 <div class="form-inline">
-                    <label style="border: 0; width: 130px; text-align:right;">Rankoni sipas: </label>
-                    <div class="no-checkedselector">
-                        <div class="toggle-container">
-                            <input class="toggle toggle-left" type="radio" name="ranking-radio" id="municipality" value="municipality" checked>
-                            <label style="" for="municipality" class="btn">Qyteteve</label>
-                            <input class="toggle toggle-left" type="radio" name="ranking-radio" id="kosovo-level" value="kosovo-level">
-                            <label style="" for="kosovo-level" class="btn">Treguesve</label>
-                            <br><br>
+                    <div class="form-group" style="margin-bottom:15px; ">
+                        <label style="border: 0; width: 130px; text-align:right;">Rankoni sipas: </label>
+                    </div>
+                    <div class="form-group">
+                        <div class="no-checkedselector" >
+                            <div class="toggle-container">
+                                <input class="toggle toggle-left" type="radio" name="ranking-radio" id="municipality" value="municipality" checked>
+                                <label style="" for="municipality" class="btn">Qyteteve</label>
+                                <input class="toggle toggle-left" type="radio" name="ranking-radio" id="kosovo-level" value="kosovo-level">
+                                <label style="" for="kosovo-level" class="btn">Treguesve</label>
+                                <br><br>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -789,8 +829,7 @@
                 <div class="modal-body">
                     <div class="row" style="text-align: center;">
                         <div class="col-md-6">
-                            <label style="width: 90px; border: 0; font-size:12px; text-align:right;">I kënaqur &nbsp;&nbsp;|</label>
-                            <label style="width: 90px; border: 0; font-size:12px; text-align:left; padding-left: 5px;">I pakënaqur</label>
+                            <label id="s_or_d_percentage_popup" style="border: 0; font-size:12px; text-align:center;"></label>
                             <br>
                              <div class="no-checkedselector" style="text-align:center;">
                                 <div class="toggle-container">
@@ -818,13 +857,13 @@
                             </div>
                             <h3 id="no-data" style="color: red; text-align:center; display:none; ">There's no data available</h3><br><br><br><br>
                         </div>
-                        <div class="col-md-6" >
-                            <div class="row" style="margin-left:8%;">
-                                <div id="column-chart" style="min-width: 310px; width: 450px; height: 300px;"></div>
+                        <div class="col-md-6" style="margin: auto;" >
+                            <div class="row" style="margin: auto;">
+                                <div id="column-chart" style="margin: auto; min-width: 310px; max-width: 500px; width: 100%; height: 300px;"></div>
                             </div>
-                            <hr class="style-eight" style="margin-left:8%; float:left; width: 80%" />
-                            <div class="row" style="margin-left:8%;">
-                                <div id="line-chart" style="min-width: 310px; width: 450px; height: 300px;"></div>
+                            <hr class="style-eight" style="margin: auto; width: 80%" /><br>
+                            <div class="row" style="margin: auto;">
+                                <div id="line-chart" style="margin: auto; min-width: 310px; max-width: 500px; width: 100%; height: 300px;"></div>
                             </div>
                             <hr>
                         </div>

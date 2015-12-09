@@ -45,12 +45,12 @@ var outlineArc = d3.svg.arc()
 
 
 // Import Data
-function start(muni, s_or_d, div, data, sort_by, language, type) {
-	convert_data(data, muni, div, sort_by, language, type);
+function start(muni, s_or_d, div, data, sort_by, language, type, s_or_d) {
+	convert_data(data, muni, div, sort_by, language, type, s_or_d);
 };
 
 // Convert data from JSON to required format
-function convert_data(data, muni, div, sort_by, language, type) {
+function convert_data(data, muni, div, sort_by, language, type, s_or_d) {
 	//Select data for municipality
 	muni_data = data;
 	
@@ -68,7 +68,7 @@ function convert_data(data, muni, div, sort_by, language, type) {
 	
 	// Sort data by the label
 	var sorted_data = sortByKey(json_array, sort_by);
-	create(sorted_data.reverse(), div, language, type);
+	create(sorted_data.reverse(), div, language, type, s_or_d);
 }
 
 function sortByKey(array, key) {
@@ -89,7 +89,7 @@ function slugify(text) {
 
 
 // Create chart
-function create(data, div, language, type) {
+function create(data, div, language, type, s_or_d) {
 	wedge_color = s_or_d_colors[s_or_d];
 	types = {
 		"municipality": municipalities_data,
@@ -118,7 +118,7 @@ function create(data, div, language, type) {
 	.attr("fill", d3.rgb(bg_color))
 	.attr("stroke", d3.rgb(line_color))
 	.attr("class", "outlineArc")
-    .transition().delay(function (d,i){ return i * 40;})
+    .transition().delay(function (d,i){ return i * 30;})
 	.attr("d", outlineArc);
 
 
@@ -173,7 +173,7 @@ function create(data, div, language, type) {
 			var adjustment = "-70"
 	    	if (outlineArc.centroid(d)[0] > 0) {adjustment = "70"} 
 			return adjustment
-		}) 
+		})
 	    .attr("dy", ".35em") // vertical-align
 	    .attr("pointer-events", "none");
 	}
