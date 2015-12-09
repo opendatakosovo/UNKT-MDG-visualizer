@@ -154,7 +154,7 @@ function create(data, div, language, type, s_or_d) {
 			return anchor
 	    })
 		.attr("fill", "white")
-		.attr("font-family", "Eurostile, Tahoma")
+		.style("font-family", "tahoma")
 	    // Move to the desired point and set the rotation
 	    .attr("transform", function(d) {
 	            return "translate(" + (outlineArc.centroid(d)) + ")" +
@@ -199,7 +199,9 @@ function arcTween(a) {
 }
 
 function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+	if (string != undefined){
+		return String(string).charAt(0).toUpperCase() + string.slice(1);
+	}
 }
 
 // What happens when a wedge is clicked
@@ -238,8 +240,8 @@ function select_wedge(d){
 };
 
 function reduceIndicatorsText(text){
-	if (text.length > 23){
-		return text.substring(0, 23) + "...";	
+	if (text.length > 21){
+		return text.substring(0, 21) + "...";	
 	} else {
 		return text;
 	}
