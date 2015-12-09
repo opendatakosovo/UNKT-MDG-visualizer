@@ -268,13 +268,26 @@ function addDescriptionToAsterChart(d, fulltext, svg){
 		index = 0;
 	}
 
+	var r = /\d+/;
+	// alert (s.match(r));
 	a.forEach(function(entry) {
-		svg.append("svg:text")
-		.attr("class", "aster-score")
-		.attr("dy", json_position[index])
-		.attr("text-anchor", "middle")
-		.text(entry);
+		if (entry.match(r)){
+			var text = svg.append("svg:text")
+			.attr("class", "aster-score")
+			.attr("dy", json_position[index])
+			.attr("text-anchor", "middle")
+			.style("font-size", "16px")
+			// .style("fill", "red")
+			.style("font-weight", "bold")
+			.text(entry);
+		} else {
+			svg.append("svg:text")
+			.attr("class", "aster-score")
+			.attr("dy", json_position[index])
+			.attr("text-anchor", "middle")
+			.text(entry);	
+		}
 		index = index + 1;
 	});
-
+	// $(".aster-score-percentage").css("color", "red")
 }
