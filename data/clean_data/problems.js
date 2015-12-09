@@ -2,29 +2,29 @@ function getProblemsData() {return {
     "Decan": {
         "2012": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 10.5
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 57.99999999999999
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 8.5
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 9.5
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 61.5
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 11.0
             }
         ]
@@ -32,29 +32,29 @@ function getProblemsData() {return {
     "Dragash": {
         "2012": [
             {
-                "label": "Road infrastructure", 
+                "label": "road infrastructure", 
                 "value": 8.0
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 60.0
             }, 
             {
-                "label": "Poor water supply", 
+                "label": "poor water supply", 
                 "value": 12.0
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 22.3
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 62.0
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 6.5
             }
         ]
@@ -62,29 +62,29 @@ function getProblemsData() {return {
     "Ferizaj": {
         "2012": [
             {
-                "label": "Road infrastructure", 
+                "label": "road infrastructure", 
                 "value": 5.5
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 70.0
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 9.5
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 15.5
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 44.0
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 13.5
             }
         ]
@@ -92,29 +92,29 @@ function getProblemsData() {return {
     "Fushe Kosove": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 51.5
             }, 
             {
-                "label": "Poor water supply", 
+                "label": "poor water supply", 
                 "value": 22.5
             }, 
             {
-                "label": "Environmental pollution", 
+                "label": "environmental pollution", 
                 "value": 6.0
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 19.0
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 56.00000000000001
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 12.0
             }
         ]
@@ -122,33 +122,33 @@ function getProblemsData() {return {
     "Gjakove": {
         "2012": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 7.000000000000001
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 71.0
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 8.5
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 9.0
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 32.5
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 50.0
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 8.5
             }
         ]
@@ -156,29 +156,29 @@ function getProblemsData() {return {
     "Gjilan": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 56.99999999999999
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 11.0
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 10.0
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 18.5
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 56.99999999999999
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 9.0
             }
         ]
@@ -186,29 +186,29 @@ function getProblemsData() {return {
     "Gllogoc": {
         "2012": [
             {
-                "label": "Road infrastructure", 
+                "label": "road infrastructure", 
                 "value": 12.0
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 51.5
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 13.0
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 18.0
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 51.0
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 9.0
             }
         ]
@@ -216,29 +216,29 @@ function getProblemsData() {return {
     "Gracanica": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 38.5
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 9.0
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 10.5
             }
         ], 
         "2015": [
             {
-                "label": "Crime", 
+                "label": "crime", 
                 "value": 25.0
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 33.5
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 19.0
             }
         ]
@@ -246,29 +246,29 @@ function getProblemsData() {return {
     "Hani I Elezit": {
         "2012": [
             {
-                "label": "Road infrastructure", 
+                "label": "road infrastructure", 
                 "value": 4.8
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 59.599999999999994
             }, 
             {
-                "label": "Poor water supply", 
+                "label": "poor water supply", 
                 "value": 22.1
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 24.0
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 49.0
             }, 
             {
-                "label": "Poor water supply", 
+                "label": "poor water supply", 
                 "value": 8.7
             }
         ]
@@ -276,29 +276,29 @@ function getProblemsData() {return {
     "Istog": {
         "2012": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 4.0
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 71.0
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 7.5
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 25.5
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 40.8
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 12.5
             }
         ]
@@ -306,37 +306,37 @@ function getProblemsData() {return {
     "Junik": {
         "2012": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 2.9
             }, 
             {
-                "label": "Road infrastructure", 
+                "label": "road infrastructure", 
                 "value": 2.9
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 76.9
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 2.9
             }, 
             {
-                "label": "Poorly functioning rubbish collection service ", 
+                "label": "poorly functioning rubbish collection service ", 
                 "value": 3.9
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 22.0
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 43.0
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 31.0
             }
         ]
@@ -344,29 +344,29 @@ function getProblemsData() {return {
     "Kacanik": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 71.5
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 8.5
             }, 
             {
-                "label": "Poor water supply", 
+                "label": "poor water supply", 
                 "value": 11.5
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 20.0
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 57.49999999999999
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 15.5
             }
         ]
@@ -374,29 +374,29 @@ function getProblemsData() {return {
     "Kamenice": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 72.5
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 9.5
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 8.5
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 23.0
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 44.0
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 9.5
             }
         ]
@@ -404,33 +404,33 @@ function getProblemsData() {return {
     "Kline": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 54.50000000000001
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 7.5
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 7.5
             }, 
             {
-                "label": "Poor water supply", 
+                "label": "poor water supply", 
                 "value": 14.499999999999998
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 24.0
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 41.0
             }, 
             {
-                "label": "Poor water supply", 
+                "label": "poor water supply", 
                 "value": 11.5
             }
         ]
@@ -438,29 +438,29 @@ function getProblemsData() {return {
     "Kllokot": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 27.9
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 5.8
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 10.6
             }
         ], 
         "2015": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 30.0
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 11.0
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 16.0
             }
         ]
@@ -468,33 +468,33 @@ function getProblemsData() {return {
     "Kosovo": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 54.400000000000006
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 8.0
             }, 
             {
-                "label": "Poor water supply", 
+                "label": "poor water supply", 
                 "value": 6.1
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 18.9
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 43.5
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 9.4
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 9.5
             }
         ]
@@ -502,29 +502,29 @@ function getProblemsData() {return {
     "Leposaviq": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 21.5
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 9.0
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 36.5
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 14.499999999999998
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 26.5
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 38.0
             }
         ]
@@ -532,25 +532,25 @@ function getProblemsData() {return {
     "Lipjan": {
         "2012": [
             {
-                "label": "Road infrastructure", 
+                "label": "road infrastructure", 
                 "value": 10.0
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 54.0
             }, 
             {
-                "label": "Poor water supply", 
+                "label": "poor water supply", 
                 "value": 10.0
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 52.0
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 26.5
             }
         ]
@@ -558,29 +558,29 @@ function getProblemsData() {return {
     "Malisheve": {
         "2012": [
             {
-                "label": "Road infrastructure", 
+                "label": "road infrastructure", 
                 "value": 4.5
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 61.0
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 9.0
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 42.8
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 32.0
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 8.5
             }
         ]
@@ -588,29 +588,29 @@ function getProblemsData() {return {
     "Mamushe": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 46.2
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 9.6
             }, 
             {
-                "label": "Poor water supply", 
+                "label": "poor water supply", 
                 "value": 20.2
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 40.0
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 37.0
             }, 
             {
-                "label": "Poor water supply", 
+                "label": "poor water supply", 
                 "value": 13.0
             }
         ]
@@ -618,29 +618,29 @@ function getProblemsData() {return {
     "Mitrovica": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 55.89999999999999
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 7.6
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 12.2
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 24.5
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 40.0
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 9.0
             }
         ]
@@ -648,15 +648,15 @@ function getProblemsData() {return {
     "Mitrovica North": {
         "2015": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 23.7
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 33.6
             }, 
             {
-                "label": "Inter-ethnic relations", 
+                "label": "inter-ethnic relations", 
                 "value": 14.499999999999998
             }
         ]
@@ -664,29 +664,29 @@ function getProblemsData() {return {
     "Novoberda": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 46.9
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 14.6
             }, 
             {
-                "label": "Poor water supply", 
+                "label": "poor water supply", 
                 "value": 13.5
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 15.6
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 15.6
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 49.0
             }
         ]
@@ -694,29 +694,29 @@ function getProblemsData() {return {
     "Obiliq": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 38.0
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 8.5
             }, 
             {
-                "label": "Environmental pollution", 
+                "label": "environmental pollution", 
                 "value": 18.5
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 11.5
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 32.0
             }, 
             {
-                "label": "Environmental pollution", 
+                "label": "environmental pollution", 
                 "value": 39.0
             }
         ]
@@ -724,29 +724,29 @@ function getProblemsData() {return {
     "Partesh": {
         "2012": [
             {
-                "label": "Lack of general or personal security", 
+                "label": "lack of general or personal security", 
                 "value": 12.5
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 34.6
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 12.5
             }
         ], 
         "2015": [
             {
-                "label": "Road infrastructure", 
+                "label": "road infrastructure", 
                 "value": 16.0
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 41.0
             }, 
             {
-                "label": "Crime", 
+                "label": "crime", 
                 "value": 13.0
             }
         ]
@@ -754,29 +754,29 @@ function getProblemsData() {return {
     "Peje": {
         "2012": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 14.000000000000002
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 60.5
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 5.5
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 22.0
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 36.5
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 18.0
             }
         ]
@@ -784,29 +784,29 @@ function getProblemsData() {return {
     "Podujeve": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 69.5
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 4.0
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 11.0
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 12.5
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 64.5
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 10.5
             }
         ]
@@ -814,29 +814,29 @@ function getProblemsData() {return {
     "Pristina": {
         "2012": [
             {
-                "label": "Road infrastructure", 
+                "label": "road infrastructure", 
                 "value": 13.3
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 47.4
             }, 
             {
-                "label": "Environmental pollution", 
+                "label": "environmental pollution", 
                 "value": 8.7
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 12.9
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 43.9
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 9.5
             }
         ]
@@ -844,29 +844,29 @@ function getProblemsData() {return {
     "Prizren": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 55.39999999999999
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 10.4
             }, 
             {
-                "label": "Poor water supply", 
+                "label": "poor water supply", 
                 "value": 15.8
             }
         ], 
         "2015": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 48.8
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 19.5
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 8.2
             }
         ]
@@ -874,29 +874,29 @@ function getProblemsData() {return {
     "Rahovec": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 56.99999999999999
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 9.5
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 8.0
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 24.0
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 29.5
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 9.5
             }
         ]
@@ -904,33 +904,33 @@ function getProblemsData() {return {
     "Ranillug": {
         "2012": [
             {
-                "label": "Limited freedom of movement", 
+                "label": "limited freedom of movement", 
                 "value": 6.7
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 47.1
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 6.7
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 9.6
             }
         ], 
         "2015": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 35.0
             }, 
             {
-                "label": "Crime", 
+                "label": "crime", 
                 "value": 14.000000000000002
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 13.0
             }
         ]
@@ -938,37 +938,37 @@ function getProblemsData() {return {
     "Shterpce": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 41.3
             }, 
             {
-                "label": "Crime", 
+                "label": "crime", 
                 "value": 5.6
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 5.6
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 16.3
             }, 
             {
-                "label": "Inter-ethnic relations", 
+                "label": "inter-ethnic relations", 
                 "value": 5.6
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 17.5
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 33.1
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 11.3
             }
         ]
@@ -976,29 +976,29 @@ function getProblemsData() {return {
     "Shtime": {
         "2012": [
             {
-                "label": "Road infrastructure", 
+                "label": "road infrastructure", 
                 "value": 12.5
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 69.0
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 5.5
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 23.5
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 45.0
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 8.5
             }
         ]
@@ -1006,29 +1006,29 @@ function getProblemsData() {return {
     "Skenderaj": {
         "2012": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 7.000000000000001
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 64.0
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 9.0
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 31.5
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 53.0
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 10.5
             }
         ]
@@ -1036,29 +1036,29 @@ function getProblemsData() {return {
     "Suhareke": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 61.0
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 10.0
             }, 
             {
-                "label": "Poor water supply", 
+                "label": "poor water supply", 
                 "value": 9.0
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 21.5
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 63.5
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 6.0
             }
         ]
@@ -1066,29 +1066,29 @@ function getProblemsData() {return {
     "Viti": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 45.5
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 17.5
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 14.000000000000002
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 17.5
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 52.5
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 7.000000000000001
             }
         ]
@@ -1096,29 +1096,29 @@ function getProblemsData() {return {
     "Vushtrri": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 46.5
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 13.0
             }, 
             {
-                "label": "Poor water supply", 
+                "label": "poor water supply", 
                 "value": 17.0
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 6.0
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 69.5
             }, 
             {
-                "label": "Poor water supply", 
+                "label": "poor water supply", 
                 "value": 6.0
             }
         ]
@@ -1126,29 +1126,29 @@ function getProblemsData() {return {
     "Zubin Potok": {
         "2012": [
             {
-                "label": "Limited freedom of movement", 
+                "label": "limited freedom of movement", 
                 "value": 14.400000000000002
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 29.799999999999997
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 18.3
             }
         ], 
         "2015": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 30.0
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 42.2
             }, 
             {
-                "label": "Inter-ethnic relations", 
+                "label": "inter-ethnic relations", 
                 "value": 7.8
             }
         ]
@@ -1156,33 +1156,33 @@ function getProblemsData() {return {
     "Zvecan": {
         "2012": [
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 19.6
             }, 
             {
-                "label": "Poor electricity supply", 
+                "label": "poor electricity supply", 
                 "value": 45.5
             }, 
             {
-                "label": "Poor water supply", 
+                "label": "poor water supply", 
                 "value": 8.9
             }
         ], 
         "2015": [
             {
-                "label": "Lack of economic growth", 
+                "label": "lack of economic growth", 
                 "value": 13.8
             }, 
             {
-                "label": "Unemployment", 
+                "label": "unemployment", 
                 "value": 30.9
             }, 
             {
-                "label": "Corruption", 
+                "label": "corruption", 
                 "value": 13.8
             }, 
             {
-                "label": "Poverty/Low standard of living", 
+                "label": "poverty/low standard of living", 
                 "value": 20.2
             }
         ]

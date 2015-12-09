@@ -123,7 +123,7 @@
     	
     	// Load Problem Data
     	var problems_data = getProblemsData();
-        var problems_lang = getproblemsData();
+        var problems_lang = getProblemsTranslation();
 
 		// Color palette
 		/*
@@ -158,14 +158,14 @@
         function drawMap(indicator, s_or_d, data, color){
             var muni_data = [];
             for (key in data){
-                var name = key
+                var _name = key
                 var value = data[key][indicator]
                 if (!(isNaN(value))){
                     if (value.toString().length > 4){
                         value = value.toFixed(1);
                     }
                     var json_key = {
-                        "hc-key": "kv-" + slugify(name),
+                        "hc-key": "kv-" + slugify(_name),
                         "value": value
                     }
                     muni_data.push(json_key);
@@ -184,6 +184,7 @@
                     Highcharts.maps["countries/kv/kv-all"]['features'][firstIndex]['properties']['name'] = municipalities_data[key][language];
                 }
             }
+			
             // Initiate the chart
             $('#container').highcharts('Map', {
                 title : {
@@ -264,7 +265,7 @@
                     mapData: Highcharts.maps['countries/kv/kv-all'],
                     joinBy: 'hc-key',
                     allowPointSelect: true,
-                    name: capitalizeFirstLetter(indicators_data[indicator]["name_" + language]),
+                    name: capitalizeFirstLetter(indicators_data[indicator][language]),
                     states: {
                         hover: {
                             color: 'grey'
@@ -407,11 +408,11 @@
 			i = i + 1
 		} // Category Loop
 
-        // replacing the name of series from englisht to albanian language
+        // replacing the name of series from english to albanian language
         for (var item in series) {
-            var name = series[item]['name']
-            var name_albanian = problems_lang[name][language + "_name"]
-            series[item]['name'] = name_albanian
+            var _name = series[item]['name'].toLowerCase()
+            var translated_name = problems_lang[_name][language]
+            series[item]['name'] = translated_name
         }
 		// Feed Data to Chart
 		$('#' + div).highcharts({
@@ -465,7 +466,7 @@
 
 		$('#' + div).highcharts({
 			title: {
-				text: satisfaction_json[s_or_d] + " - " + capitalizeFirstLetter(indicators_data[indicator]["name_" + language]),
+				text: satisfaction_json[s_or_d] + " - " + capitalizeFirstLetter(indicators_data[indicator][language]),
 				x: -20 //center
 			},
 			xAxis: {
@@ -496,19 +497,14 @@
 		});
 	}
 
-    var language = "albanian";
-
-
 	function bindIndicatorSelectBox(year, s_or_d){
 		$("#indicator-select").empty();
-        var indicators = []
-        var html_text = ""
-		for (key in all_data[s_or_d][year]["Pristina"]){
+        var indicators = [];
+        var html_text = "";
+		var first_key = Object.keys(all_data[s_or_d][year])[0];
+		for (key in all_data[s_or_d][year][first_key]){
             var indicator_lower = key.toLowerCase();
-            if (indicator_lower == "cemetery maintenace") { 
-                indicator_lower = "cemetery maintenance";
-            }
-            var indicator = indicators_data[indicator_lower]["name_albanian"];
+            var indicator = indicators_data[indicator_lower][language];
             indicators.push({"indicator": indicator, "value": indicator_lower});
 		}
         var sorted_indicators = sortByKey(indicators, "indicator");
@@ -568,7 +564,7 @@
         $("#s_or_d_percentage").text(s_or_d_percentage[s_or_d]);
         buildLandingPageYearsRadioButtons(s_or_d);
 		var muni = "Kosovo";
-		var viti = $('input[name=radio]:checked').val()
+		var viti = $('input[name=radio]:checked').val();
 		var aster_div = "aster-chart";
 		start(muni, s_or_d, aster_div, all_data[s_or_d][viti][muni], "label", language, ranking, s_or_d);
 		bindIndicatorSelectBox(viti, s_or_d);

@@ -27,7 +27,7 @@ var tip = d3.tip()
 	if (municipalities_data.hasOwnProperty(d.data.label)) {
 		return capitalizeFirstLetter(municipalities_data[d.data.label][language]) + ": <span style='color:red'><b>" + d.data.value + "%</b></span>";
 	} else {
-		return capitalizeFirstLetter(indicators_data[d.data.label]["name_" + language]) + ": <span style='color:red'><b>" + d.data.value + "%</b></span>";
+		return capitalizeFirstLetter(indicators_data[d.data.label][language]) + ": <span style='color:red'><b>" + d.data.value + "%</b></span>";
 	}
 });
 
@@ -41,8 +41,6 @@ var arc = d3.svg.arc()
 var outlineArc = d3.svg.arc()
 .innerRadius(innerRadius)
 .outerRadius(radius);
-
-
 
 // Import Data
 function start(muni, s_or_d, div, data, sort_by, language, type, s_or_d) {
@@ -95,12 +93,6 @@ function create(data, div, language, type, s_or_d) {
 		"municipality": municipalities_data,
 		"kosovo-level": indicators_data
 	}
-	var lang = "";
-	if (type == "municipality") {
-		lang = language
-	} else {
-		lang = "name_" + language
-	}
 
 	$("#" + div).empty();
 	window.svg = d3.select("#" + div).append("svg")
@@ -145,9 +137,9 @@ function create(data, div, language, type, s_or_d) {
   	// Append Text Labels 
   	if (screen_resolution >= 480){
 	  	path.append("svg:text")
-	    .text(function(d) { 
+	    .text(function(d) {
 	    	if (types[type].hasOwnProperty(d.data.label)) {
-	    		return capitalizeFirstLetter(reduceIndicatorsText(types[type][d.data.label][lang]));
+	    		return capitalizeFirstLetter(reduceIndicatorsText(types[type][d.data.label][language]));
 	    	} else {
 	    		return capitalizeFirstLetter(reduceIndicatorsText(d.data.label));
 	    	}
@@ -162,7 +154,7 @@ function create(data, div, language, type, s_or_d) {
 			return anchor
 	    })
 		.attr("fill", "white")
-		.attr("font-family", "Eurostile")
+		.attr("font-family", "Eurostile, Tahoma")
 	    // Move to the desired point and set the rotation
 	    .attr("transform", function(d) {
 	            return "translate(" + (outlineArc.centroid(d)) + ")" +
@@ -234,7 +226,7 @@ function select_wedge(d){
 	if (municipalities_data.hasOwnProperty(d.data.label)) {
 		var fulltext = capitalizeFirstLetter(municipalities_data[d.data.label][language]) + " " + d.data.value + "%";
 	} else {
-		var fulltext = capitalizeFirstLetter(indicators_data[d.data.label]['name_' + language]) + " " + d.data.value + "%";
+		var fulltext = capitalizeFirstLetter(indicators_data[d.data.label][language]) + " " + d.data.value + "%";
 	}
 	addDescriptionToAsterChart(d, fulltext, svg);
 	

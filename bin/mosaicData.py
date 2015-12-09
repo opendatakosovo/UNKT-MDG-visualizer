@@ -282,9 +282,14 @@ class MosaicData:
                 output_file = '../data/standard_lists/' + key + '.js'
                 json_file = sheet.to_json(orient = 'index', force_ascii = False)
                 with open(output_file, 'w') as data_file:
-                    data_file.write("function get" + key + "Data() {return "
-                                     + str(json_file)
-                                     + "}")
+                    if key == 'problems':
+                        data_file.write("function getProblemsTranslation() {return "
+                                         + str(json_file)
+                                         + "}")
+                    else:
+                        data_file.write("function get" + key + "Data() {return "
+                                         + str(json_file)
+                                         + "}")
                 
         else: 
             print('MosaicData object requires data_type = \'whitelist\' to use regenerate_whitelists method.')
