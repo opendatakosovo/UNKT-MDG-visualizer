@@ -264,16 +264,6 @@ class MosaicData:
             except Exception, e:
                 print e
     
-    def regenerate_years_list(self, year_col = 'year'):
-        if self.status == 'imported':
-            years = self.data[year_col].drop_duplicates().values.tolist()
-            years = sorted(years)
-            file_path = './data/mapping/years.json'
-            with open(file_path, 'w') as data_file:
-                json.dump(years, data_file)
-        else:
-            print('MosaicData object has to be in \'imported\' status to use regenerate_years_list method. Currently in \'' + self.status + '\' status.')
-    
     def regenerate_whitelists(self):
         if self.data_type == 'whitelist':
             keys = ['municipalities', 'indicators', 'problems']
