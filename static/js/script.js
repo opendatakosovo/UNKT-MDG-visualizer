@@ -36,6 +36,32 @@
             "d": "#FF4949"
         }
 
+        var municipality_profile = {
+            "albanian": "Profili i komunës",
+            "serbian": "Profil opštine"
+        }
+
+        var s_or_d_percentage = {
+            "albanian": {
+                "s": "Niveli i kënaqshmërisë",
+                "d": "Niveli i pakënaqshmërisë"
+            },
+            "serbian": {
+                "s": "Nivo zadovoljstva",
+                "d": "Nivo nezadovoljstva"
+            }
+        }
+
+        var biggest_problems = {
+            "albanian": "Cilat janë problemet më të mëdha?",
+            "serbian": "Koji su najveći problemi?"
+        }
+
+        var line_chart_json = {
+            "albanian": "Përqindja e të anketuarve (%)",
+            "serbian": "Procenat ispitanika (%)"
+        }
+
     	var satisfaction_json = {
             "albanian": {
         		"s": "I kënaqur",
@@ -121,7 +147,7 @@
                                     radiobtn_viti = document.getElementById("year-" + viti);
                                     radiobtn_viti.click();
                                     $('.modal-title').empty();
-                                    $('.modal-title').append("Profili i komunës: <b>" + display_name + "</b>");
+                                    $('.modal-title').append(municipality_profile[language] + ": <b>" + display_name + "</b>");
                                     var aster_div = "aster-chart-popup";
                                     var indicator = $("#indicator-select").val();
                                     var year = $('input[name=years-popup]:checked').val();
@@ -316,7 +342,7 @@
 				type: 'column'
 			},
 			title: {
-				text: 'Cilat janë problemet më të mëdha?'
+				text: biggest_problems[language]
 			},
 			xAxis: {
 				categories: colNames
@@ -324,7 +350,7 @@
 			yAxis: {
 				min: 0,
 				title: {
-					text: 'Percentage (%)',
+					text: line_chart_json[language],
 				}
 			},
 			legend: {
@@ -372,7 +398,7 @@
 				min: 0,
 				max: 100,
 				title: {
-					text: 'Proportion of Respondents (%)'
+					text: line_chart_json[language]
 				},
 				plotLines: [{
 					value: 0,
@@ -447,17 +473,6 @@
             $("#years-radio").append(input_radio);
         }
         $("#years-radio").append("<br>");
-    }
-
-    var s_or_d_percentage = {
-        "albanian": {
-            "s": "Niveli i kënaqshmërisë",
-            "d": "Niveli i pakënaqshmërisë"
-        },
-        "serbian": {
-            "s": "Niveli i kënaqshmërisë",
-            "d": "Niveli i pakënaqshmërisë"
-        }
     }
 
 	$(document).ready(function(){
