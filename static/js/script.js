@@ -161,7 +161,7 @@
                     mapData: Highcharts.maps['countries/kv/kv-all'],
                     joinBy: 'hc-key',
                     allowPointSelect: true,
-                    name: capitalizeFirstLetter(indicators_data[indicator]["name_" + language]),
+                    name: capitalizeFirstLetter(indicators_data[indicator][language]),
                     states: {
                         hover: {
                             color: 'grey'
@@ -239,7 +239,7 @@
 
             // replacing the name of columns from englisht to albanian language
 			colNames.push(municipalities_data[municipality][language] + " " + year);
-			colNames.push("Kosovë " + year)
+			colNames.push(municipalities_data["Kosovo"][language] + " " + year)
 				
 			for (var cat in data[municipality][year]) {
 				categories.push(data[municipality][year][cat]['label']);
@@ -362,7 +362,7 @@
 
 		$('#' + div).highcharts({
 			title: {
-				text: satisfaction_json[language][s_or_d] + " - " + capitalizeFirstLetter(indicators_data[indicator][language]),
+				text: s_or_d_percentage[language][s_or_d] + " - " + capitalizeFirstLetter(indicators_data[indicator][language]),
 				x: -20 //center
 			},
 			xAxis: {
@@ -387,7 +387,7 @@
 				enabled: false
 			},
 			series: [{
-				name: municipality,
+				name: municipalities_data[municipality][language],
 				data: data
 			}]
 		});
@@ -486,7 +486,7 @@
         })
 
 		bindSelectBoxOnLabelClick(s_or_d);
-		$(document).on('click', '#close-popup, .close', function(event) {
+		$(document).on('click', '#close-popup, #close', function(event) {
             $('myModal').empty();
 			var s_or_d = $('input[name=toggle]:checked').val();
             $("#s_or_d_percentage").empty();

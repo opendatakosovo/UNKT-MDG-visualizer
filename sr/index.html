@@ -60,6 +60,7 @@
         
         svg {
             font-size: 14px;
+            font-family: tahoma;
         }
 
         input[type="radio"].toggle {
@@ -155,7 +156,7 @@
                 <div class="form-inline" style="text-align:center; margin-top:8px;">
                     <label style="border: 0;">Ju lutemi zgjidhni një opcion: </label>
                     <div class="form-group" style="width: 100%; text-align:center;">
-                        <select id="indicator-select" style="" class="form-control">Indicator
+                        <select id="indicator-select" style="width:400px;" class="form-control">
                         </select><br>
                     </div>
                 </div>
@@ -220,7 +221,7 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="navbar-collapse modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="btn btn-default" id="close" style="float:right" data-dismiss="modal">Close</button>
                     <h4 class="modal-title" style="text-align: center"></h4>
                 </div>
                 <div class="modal-body">
@@ -266,8 +267,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" id="close-popup" data-dismiss="modal">Close</button>
+                <div class="modal-footer" style="text-align:center;">
+                    <h4>Kosovo Mosaic Visualizer</h4>
                 </div>
             </div>
         </div>

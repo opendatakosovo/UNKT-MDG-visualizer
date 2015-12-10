@@ -136,14 +136,14 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">Visualizer</a></li>
-                    <li><a href="sq/indicators.html">Indicators</a></li>
-                    <li><a href="sq/problems.html">Problems</a></li>
+                    <li class="active"><a href="index.html">Vizualizeri</a></li>
+                    <li><a href="sq/indicators.html">Treguesit</a></li>
+                    <li><a href="sq/problems.html">Problemet</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="index.html">Shqip</a></li>
-                    <li><a href="sr/index.html">Srpski</a></li>
-                    <li><a id="download-data" href="">Download</a></li>
+                    <li><a href="sr/index.html">Serbisht</a></li>
+                    <li><a id="download-data" href="">Shkarko</a></li>
                 </ul>
             </div> <!-- navbar-collapse -->
         </div> <!-- container-fluid -->
@@ -156,7 +156,7 @@
                 <div class="form-inline" style="text-align:center; margin-top:8px;">
                     <label style="border: 0;">Ju lutemi zgjidhni një opcion: </label>
                     <div class="form-group" style="width: 100%; text-align:center;">
-                        <select id="indicator-select" style="" class="form-control">Indicator
+                        <select id="indicator-select" style="" class="form-control">
                         </select><br>
                     </div>
                 </div>
@@ -167,9 +167,9 @@
                 <div class="no-checkedselector" style="text-align:center;">
                     <div class="toggle-container">
                        <input id="toggle-on" class="toggle toggle-left" name="toggle" value="s" type="radio" checked>
-                       <label style="font-size: 30px;" for="toggle-on" class="btn">&#128515;</label>
+                       <label data-toggle="tooltip" title="Përqindja e qytetarëve të kënaqur dhe shumë të kënaqur" style="font-size: 30px;" for="toggle-on" class="btn">&#128515;</label>
                        <input id="toggle-off" class="toggle toggle-right" value="d" name="toggle" type="radio">
-                       <label style="font-size: 30px;" for="toggle-off" class="btn">&#128544;</label>
+                       <label data-toggle="tooltip" title="Përqindja e qytetarëve të pakënaqur dhe shumë të pakënaqur" style="font-size: 30px;" for="toggle-off" class="btn">&#128544;</label>
                        <br>
                     </div>
                 </div>
@@ -221,7 +221,7 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="navbar-collapse modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="btn btn-default" id="close" style="float:right" data-dismiss="modal">Mbyll</button>
                     <h4 class="modal-title" style="text-align: center"></h4>
                 </div>
                 <div class="modal-body">
@@ -232,9 +232,9 @@
                              <div class="no-checkedselector" style="text-align:center;">
                                 <div class="toggle-container">
                                    <input id="s" class="toggle toggle-left" name="s_or_d" value="s" type="radio" checked>
-                                   <label style="font-size: 30px;" for="s" class="btn">&#128515;</label>
+                                   <label data-toggle="tooltip" title="Përqindja e qytetarëve të kënaqur dhe shumë të kënaqur" style="font-size: 30px;" for="s" class="btn">&#128515;</label>
                                    <input id="d" class="toggle toggle-right" value="d" name="s_or_d" type="radio">
-                                   <label style="font-size: 30px;" for="d" class="btn">&#128544;</label>
+                                   <label data-toggle="tooltip" title="Përqindja e qytetarëve të pakënaqur dhe shumë të pakënaqur" style="font-size: 30px;" for="d" class="btn">&#128544;</label>
                                    <br><br>
                                 </div>
                             </div>
@@ -267,8 +267,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" id="close-popup" data-dismiss="modal">Close</button>
+                <div class="modal-footer" style="text-align:center;">
+                    <h4>Kosovo Mosaic Visualizer</h4>
                 </div>
             </div>
         </div>
