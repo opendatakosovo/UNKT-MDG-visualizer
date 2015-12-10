@@ -307,11 +307,11 @@ function getProblemsData() {return {
         "2012": [
             {
                 "label": "lack of economic growth", 
-                "value": 2.9
+                "value": 2.9000000000000004
             }, 
             {
                 "label": "road infrastructure", 
-                "value": 2.9
+                "value": 2.9000000000000004
             }, 
             {
                 "label": "unemployment", 
@@ -319,7 +319,7 @@ function getProblemsData() {return {
             }, 
             {
                 "label": "poor electricity supply", 
-                "value": 2.9
+                "value": 2.9000000000000004
             }, 
             {
                 "label": "poorly functioning rubbish collection service ", 
@@ -439,11 +439,11 @@ function getProblemsData() {return {
         "2012": [
             {
                 "label": "unemployment", 
-                "value": 27.9
+                "value": 27.900000000000002
             }, 
             {
                 "label": "corruption", 
-                "value": 5.8
+                "value": 5.800000000000001
             }, 
             {
                 "label": "poverty/low standard of living", 
@@ -597,7 +597,7 @@ function getProblemsData() {return {
             }, 
             {
                 "label": "poor water supply", 
-                "value": 20.2
+                "value": 20.200000000000003
             }
         ], 
         "2015": [
@@ -619,7 +619,7 @@ function getProblemsData() {return {
         "2012": [
             {
                 "label": "unemployment", 
-                "value": 55.89999999999999
+                "value": 55.900000000000006
             }, 
             {
                 "label": "poverty/low standard of living", 
@@ -729,7 +729,7 @@ function getProblemsData() {return {
             }, 
             {
                 "label": "unemployment", 
-                "value": 34.6
+                "value": 34.599999999999994
             }, 
             {
                 "label": "poverty/low standard of living", 
@@ -845,7 +845,7 @@ function getProblemsData() {return {
         "2012": [
             {
                 "label": "unemployment", 
-                "value": 55.39999999999999
+                "value": 55.400000000000006
             }, 
             {
                 "label": "poor electricity supply", 
@@ -867,7 +867,7 @@ function getProblemsData() {return {
             }, 
             {
                 "label": "poverty/low standard of living", 
-                "value": 8.2
+                "value": 8.200000000000001
             }
         ]
     }, 
@@ -909,7 +909,7 @@ function getProblemsData() {return {
             }, 
             {
                 "label": "unemployment", 
-                "value": 47.1
+                "value": 47.099999999999994
             }, 
             {
                 "label": "corruption", 
@@ -943,11 +943,11 @@ function getProblemsData() {return {
             }, 
             {
                 "label": "crime", 
-                "value": 5.6
+                "value": 5.6000000000000005
             }, 
             {
                 "label": "corruption", 
-                "value": 5.6
+                "value": 5.6000000000000005
             }, 
             {
                 "label": "poverty/low standard of living", 
@@ -955,7 +955,7 @@ function getProblemsData() {return {
             }, 
             {
                 "label": "inter-ethnic relations", 
-                "value": 5.6
+                "value": 5.6000000000000005
             }
         ], 
         "2015": [
@@ -1127,7 +1127,7 @@ function getProblemsData() {return {
         "2012": [
             {
                 "label": "limited freedom of movement", 
-                "value": 14.400000000000002
+                "value": 14.399999999999999
             }, 
             {
                 "label": "unemployment", 
@@ -1145,7 +1145,7 @@ function getProblemsData() {return {
             }, 
             {
                 "label": "poverty/low standard of living", 
-                "value": 42.2
+                "value": 42.199999999999996
             }, 
             {
                 "label": "inter-ethnic relations", 
@@ -1183,7 +1183,7 @@ function getProblemsData() {return {
             }, 
             {
                 "label": "poverty/low standard of living", 
-                "value": 20.2
+                "value": 20.200000000000003
             }
         ]
     }

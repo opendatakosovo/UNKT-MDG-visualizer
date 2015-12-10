@@ -4,7 +4,7 @@ from mosaicData import MosaicData
 import argparse
 import json
 
-# Sample Command: python bin/create_data.py --s data/raw_data/satisfied.csv --d data/raw_data/dissatisfied.csv --p data/raw_data/problems.csv --w data/standard_lists/whitelist.xlsx
+# Sample Command: python bin/create_data.py --s data/raw_data/data.xlsx --d data/raw_data/data.xlsx --p data/raw_data/data.xlsx --w data/standard_lists/whitelist.xlsx
 
 # Setup Parameters
 parser = argparse.ArgumentParser(description='Convert data format for visualizer')
@@ -24,14 +24,14 @@ else:
     # Indicators Data Update
     if args.s:
         mosaicS = MosaicData(data_filepath = args.s, data_type = 'consolidated', sat_or_dis = 's')
-        mosaicS.import_consolidated_data()
+        mosaicS.import_consolidated_data(tab="satisfied")
         mosaicS.transform_consolidated_data(scalar = 100)
         mosaicS.output_data()
         msg_text = msg_text + "satisfied, "
     
     if args.d: 
         mosaicD = MosaicData(data_filepath = args.d, data_type = 'consolidated', sat_or_dis = 'd')
-        mosaicD.import_consolidated_data()
+        mosaicD.import_consolidated_data(tab="dissatisfied")
         mosaicD.transform_consolidated_data(scalar = 100)
         mosaicD.output_data()
         msg_text = msg_text + "dissatisfied, "

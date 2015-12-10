@@ -54,12 +54,11 @@ class MosaicData:
         else:
             print('MosaicData object has to be in \'created\' status to use import_raw_data method. Currently in \'' + self.status + '\' status.')
     
-    def import_consolidated_data(self):
+    def import_consolidated_data(self, tab):
         if self.status == 'created':
             if self.data_type == 'consolidated':
                 # Import consolidated data
-                data = pd.read_csv(self.data_path, header=0, delimiter=',', quoting=1, index_col=None)
-            
+                data = pd.read_excel(self.data_path, tab, header=0, index_col=None)
                 self.data = data
                 self.status = 'imported'
             else: 
@@ -71,7 +70,7 @@ class MosaicData:
         if self.status == 'created':
             if self.data_type == 'problems':
                 # Import consolidated data
-                data = pd.read_csv(self.data_path, header=0, delimiter=',', quoting=1, index_col=None)
+                data = pd.read_excel(self.data_path, "problems", header=0, index_col=None)
                 self.data = data
                 self.status = 'imported'
             else: 
