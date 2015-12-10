@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Albanian Version -->
+    <!-- Serbian Version -->
     <title>Kosovo Mosaic</title>
 
     <!-- jquery plugin -->
@@ -137,13 +137,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="index.html">Visualizer</a></li>
-                    <li><a href="indicators.html">Indicators</a></li>
-                    <li><a href="problems.html">Problems</a></li>
+                    <li><a href="indicators.html">Indikatori</a></li>
+                    <li><a href="problems.html">Problemi</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="../index.html">Shqip</a></li>
                     <li class="active"><a href="index.html">Srpski</a></li>
-                    <li><a id="download-data" href="">Download</a></li>
+                    <li><a id="download-data" href="">Preuzimajte</a></li>
                 </ul>
             </div> <!-- navbar-collapse -->
         </div> <!-- container-fluid -->
@@ -154,7 +154,7 @@
             </div>
             <div class="col-md-4">
                 <div class="form-inline" style="text-align:center; margin-top:8px;">
-                    <label style="border: 0;">Ju lutemi zgjidhni një opcion: </label>
+                    <label style="border: 0;">Molimo vas odaberite opciju: </label>
                     <div class="form-group" style="width: 100%; text-align:center;">
                         <select id="indicator-select" style="width:400px;" class="form-control">
                         </select><br>
@@ -167,15 +167,15 @@
                 <div class="no-checkedselector" style="text-align:center;">
                     <div class="toggle-container">
                        <input id="toggle-on" class="toggle toggle-left" name="toggle" value="s" type="radio" checked>
-                       <label style="font-size: 30px;" for="toggle-on" class="btn">&#128515;</label>
+                       <label data-toggle="tooltip" title="Procenat građana koji su zadovoljni i veoma zadovoljni" style="font-size: 30px;" for="toggle-on" class="btn">&#128515;</label>
                        <input id="toggle-off" class="toggle toggle-right" value="d" name="toggle" type="radio">
-                       <label style="font-size: 30px;" for="toggle-off" class="btn">&#128544;</label>
+                       <label data-toggle="tooltip" title="Procenat građana koji su nezadovoljni i veoma nezadovoljni" style="font-size: 30px;" for="toggle-off" class="btn">&#128544;</label>
                        <br>
                     </div>
                 </div>
             </div>
             <div class="col-md-4" style="text-align:center; margin-top:8px;">
-                <label style="border: 0;">Ju lutemi zgjidhni vitin: </label>
+                <label style="border: 0;">Molimo vas odaberite godinu: </label>
                 <div style="display-inline;">
                     <div class="no-checkedselector" style="text-align:center;">
                         <div id="years-radio" class="toggle-container">
@@ -189,21 +189,21 @@
         <div class="row">
             <hr class="style-eight" style="width: 85%" />
             <div class="col-md-6" style="text-align:center;">
-                <label style="border: 0;">Klikoni mbi komunat në hartë per të parë detajet: </label>
+                <label style="border: 0;">Kliknite na opštinu na karti da biste videli detalje: </label>
                 <div id="container" style="height:550px;"></div><br><br>
             </div>
             <div class="col-md-6" style="height:500px; text-align:center;">
                 <div class="form-inline">
                     <div class="form-group" style="margin-bottom:15px; ">
-                        <label style="border: 0; width: 130px; text-align:right;">Rankoni sipas: </label>
+                        <label style="border: 0; width: 130px; text-align:right;">Porediti po: </label>
                     </div>
                     <div class="form-group">
                         <div class="no-checkedselector" >
                             <div class="toggle-container">
                                 <input class="toggle toggle-left" type="radio" name="ranking-radio" id="municipality" value="municipality" checked>
-                                <label style="" for="municipality" class="btn">Qyteteve</label>
+                                <label style="" for="municipality" class="btn">Opštine</label>
                                 <input class="toggle toggle-left" type="radio" name="ranking-radio" id="kosovo-level" value="kosovo-level">
-                                <label style="" for="kosovo-level" class="btn">Treguesve</label>
+                                <label style="" for="kosovo-level" class="btn">Indikatori</label>
                                 <br><br>
                             </div>
                         </div>
@@ -221,7 +221,7 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="navbar-collapse modal-header">
-                    <button type="button" class="btn btn-default" id="close" style="float:right" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" id="close" style="float:right" data-dismiss="modal">Zatvori</button>
                     <h4 class="modal-title" style="text-align: center"></h4>
                 </div>
                 <div class="modal-body">
@@ -232,15 +232,15 @@
                              <div class="no-checkedselector" style="text-align:center;">
                                 <div class="toggle-container">
                                    <input id="s" class="toggle toggle-left" name="s_or_d" value="s" type="radio" checked>
-                                   <label style="font-size: 30px;" for="s" class="btn">&#128515;</label>
+                                   <label data-toggle="tooltip" title="Procenat građana koji su zadovoljni i veoma zadovoljni" style="font-size: 30px;" for="s" class="btn">&#128515;</label>
                                    <input id="d" class="toggle toggle-right" value="d" name="s_or_d" type="radio">
-                                   <label style="font-size: 30px;" for="d" class="btn">&#128544;</label>
+                                   <label data-toggle="tooltip" title="Procenat građana koji su nezadovoljni i veoma nezadovoljni" style="font-size: 30px;" for="d" class="btn">&#128544;</label>
                                    <br><br>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label style="border: 0;">Ju lutemi zgjidhni vitin: </label>
+                            <label style="border: 0;">Molimo vas odaberite godinu: </label>
                             <div class="no-checkedselector" style="text-align:center;">
                                 <div class="toggle-container" id="years-popup-div">
                                 </div>
