@@ -200,7 +200,7 @@ class MosaicData:
         else:
             print('MosaicData object has to be in \'imported\' status to use transform_problems_data method. Currently in \'' + self.status + '\' status.')
     
-    def output_data(self, output_file, output_type = 'json'):
+    def output_data(self, output_file = './data/clean_data/', output_type = 'json'):
         if self.status == 'transformed':
             data = self.data
             final_dict = {}
@@ -226,13 +226,13 @@ class MosaicData:
                 # If JSON, return merged JSON file
                 if output_type == 'json':
                     if self.sat_or_dis == 's':
-                        file_path = '../data/clean_data/satisfied.js'
+                        file_path = './data/clean_data/satisfied.js'
                         with open(file_path, 'w') as data_file:
                             data_file.write("function getSData() {return "
                                              + json.dumps(obj = final_dict, indent = 4, sort_keys = True)
                                              + "}")
                     elif self.sat_or_dis == 'd':
-                        file_path = '../data/clean_data/dissatisfied.js'
+                        file_path = './data/clean_data/dissatisfied.js'
                         with open(file_path, 'w') as data_file:
                             data_file.write("function getDData() {return "
                                              + json.dumps(obj = final_dict, indent = 4, sort_keys = True)
@@ -255,7 +255,7 @@ class MosaicData:
         else:
             print('MosaicData object has to be in \'transformed\' status to use output_data method. Currently in \'' + self.status + '\' status.')
     
-    def delete_old_files(self, folder = '../data/clean_data/'):
+    def delete_old_files(self, folder = './data/clean_data/'):
         for the_file in os.listdir(folder):
             file_path = os.path.join(folder, the_file)
             try:
@@ -268,7 +268,7 @@ class MosaicData:
         if self.status == 'imported':
             years = self.data[year_col].drop_duplicates().values.tolist()
             years = sorted(years)
-            file_path = '../data/mapping/years.json'
+            file_path = './data/mapping/years.json'
             with open(file_path, 'w') as data_file:
                 json.dump(years, data_file)
         else:
@@ -279,7 +279,7 @@ class MosaicData:
             keys = ['municipalities', 'indicators', 'problems']
             for key in keys:
                 sheet = pd.read_excel(self.data_path, key, index_col = 0)
-                output_file = '../data/standard_lists/' + key + '.js'
+                output_file = './data/standard_lists/' + key + '.js'
                 json_file = sheet.to_json(orient = 'index', force_ascii = False)
                 with open(output_file, 'w') as data_file:
                     if key == 'problems':

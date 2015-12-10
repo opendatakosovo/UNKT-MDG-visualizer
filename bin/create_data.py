@@ -1,42 +1,39 @@
 #!/usr/local/bin/python3.1
 # -*- coding: utf-8 -*-
 from mosaicData import MosaicData
+import argparse
 import json
 
-s_filepath = "../data/raw_data/satisfied.csv"
-d_filepath = "../data/raw_data/dissatisfied.csv"
-p_filepath = "../data/raw_data/problems.csv"
-w_filepath = "../data/standard_lists/whitelist.xlsx"
-output_filepath = "../data/clean_data/"
+# Sample Command: python bin/create_data.py --s data/raw_data/satisfied.csv --d data/raw_data/dissatisfied.csv --p data/raw_data/problems.csv --w data/standard_lists/whitelist.xlsx
 
-# Create Mosaic object
-mosaicS = MosaicData(data_filepath = s_filepath, data_type = 'consolidated', sat_or_dis = 's')
-mosaicD = MosaicData(data_filepath = d_filepath, data_type = 'consolidated', sat_or_dis = 'd')
-mosaicP = MosaicData(data_filepath = p_filepath, data_type = 'problems')
-mosaicW = MosaicData(data_filepath = w_filepath, data_type = 'whitelist')
+parser = argparse.ArgumentParser(description='Convert data format for visualizer')
+parser.add_argument('--s', type=str)
+parser.add_argument('--d', type=str)
+parser.add_argument('--p', type=str)
+parser.add_argument('--w', type=str)
+args = parser.parse_args()
 
-# Import the data
-mosaicS.import_consolidated_data()
-mosaicD.import_consolidated_data()
-mosaicP.import_problems_data()
+# Indicators Data Update
+if args.s:
+    mosaicS = MosaicData(data_filepath = args.s, data_type = 'consolidated', sat_or_dis = 's')
+    mosaicS.import_consolidated_data()
+    mosaicS.transform_consolidated_data(scalar = 100)
+    mosaicS.output_data()
+    
+if args.d: 
+    mosaicD = MosaicData(data_filepath = args.d, data_type = 'consolidated', sat_or_dis = 'd')
+    mosaicD.import_consolidated_data()
+    mosaicD.transform_consolidated_data(scalar = 100)
+    mosaicD.output_data()
 
-# Create years list
-mosaicS.regenerate_years_list()
+# Problems Data Update
+if args.p:
+    mosaicP = MosaicData(data_filepath = args.p, data_type = 'problems')
+    mosaicP.import_problems_data()
+    mosaicP.transform_problems_data(scalar = 100)
+    mosaicP.output_data()
 
-# Transform the data
-mosaicS.transform_consolidated_data(scalar = 100)
-mosaicD.transform_consolidated_data(scalar = 100)
-mosaicP.transform_problems_data(scalar = 100)
-
-# Delete previous (indicator) files
-mosaicS.delete_old_files(output_filepath)
-
-# Write new files
-#output_type = "csv"
-output_type = "json"
-mosaicS.output_data(output_filepath, output_type)
-mosaicD.output_data(output_filepath, output_type)
-mosaicP.output_data(output_filepath, output_type)
-
-# Regenerate Whitelists
-mosaicW.regenerate_whitelists()
+# Standard (white) Lists Updates
+if args.w:
+    mosaicW = MosaicData(data_filepath = args.w, data_type = 'whitelist')
+    mosaicW.regenerate_whitelists()
