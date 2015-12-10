@@ -258,7 +258,6 @@ function addDescriptionToAsterChart(d, fulltext, svg){
 		5: 62,
 	}
 	var a = "";
-	console.log(fulltext + ": " + fulltext.length)
 	if (fulltext.length > 11){
 		a = fulltext.match(/.{6}\S*|.*/g);	
 	} else if (fulltext.length == 8) {
