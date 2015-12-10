@@ -324,7 +324,7 @@
 			yAxis: {
 				min: 0,
 				title: {
-					text: 'Proportion of Respondents (%)',
+					text: 'Percentage (%)',
 				}
 			},
 			legend: {

@@ -247,6 +247,7 @@ function reduceIndicatorsText(text){
 	}
 }
 
+// Adds description in the middle of the aster chart and regulates the size of text.
 function addDescriptionToAsterChart(d, fulltext, svg){
 	var json_position = {
 		0: -38,
@@ -256,7 +257,19 @@ function addDescriptionToAsterChart(d, fulltext, svg){
 		4: 42,
 		5: 62,
 	}
-	var a = fulltext.match(/.{6}\S*|.*/g);
+	var a = "";
+	console.log(fulltext + ": " + fulltext.length)
+	if (fulltext.length > 11){
+		a = fulltext.match(/.{6}\S*|.*/g);	
+	} else if (fulltext.length == 8) {
+		a = fulltext.match(/.{4}\S*|.*/g);	
+	} else if (fulltext.length == 9) {
+		a = fulltext.match(/.{3}\S*|.*/g);	
+	} else if (fulltext.length == 10) {
+		a = fulltext.match(/.{4}\S*|.*/g);	
+	} else {
+		a = fulltext.match(/.{5}\S*|.*/g);	
+	}
 	var index = 0;
 	if (a.length <= 2) {
 		index = 2;
