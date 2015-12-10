@@ -6,6 +6,7 @@ import json
 
 # Sample Command: python bin/create_data.py --s data/raw_data/satisfied.csv --d data/raw_data/dissatisfied.csv --p data/raw_data/problems.csv --w data/standard_lists/whitelist.xlsx
 
+# Setup Parameters
 parser = argparse.ArgumentParser(description='Convert data format for visualizer')
 parser.add_argument('--s', type=str, help="Including this parameter will cause the script to refresh the satisfied indicators data. The parameter should immediately be followed by the file path of the file with the new satisfied indicators data. This file should be a csv in the same format as satisfied.csv.")
 parser.add_argument('--d', type=str, help="Including this parameter will cause the script to refresh the dissatisfied indicators data. The parameter should immediately be followed by the file path of the file with the new dissatisfied indicators data. This file should be a csv in the same format as dissatisfied.csv.")
@@ -13,8 +14,8 @@ parser.add_argument('--p', type=str, help="Including this parameter will cause t
 parser.add_argument('--w', type=str, help="Including this parameter will cause the script to refresh the standard lists used by the visualization. The parameter should immediately be followed by the file path of the file with the new standard lists. This file should be an xlsx file in the same format as whitelist.xlsx.")
 args = parser.parse_args()
 
-# Check at least one parae
-if not args.s and not args.s and not args.s and not args.s:
+# Check at least one parameter is not empty
+if not args.s and not args.d and not args.p and not args.w:
     print("At least one parameter is required to run this script. Please type 'python create_data.py -h' for more information.")
 
 else: 
