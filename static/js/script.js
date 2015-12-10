@@ -476,9 +476,9 @@
         $("#download-data").click(function(){
             var url = "";
             if (language == "serbian") {
-                url = "../data/zip_data/kosovo-mosaic-data";
+                url = "../data/zip_data/kosovo-mosaic-data.zip";
             } else {
-                url = "data/zip_data/kosovo-mosaic-data";
+                url = "data/zip_data/kosovo-mosaic-data.zip";
             }
             var downloadAttr = "data.zip";
             $('#download-data').prop('href', url);
