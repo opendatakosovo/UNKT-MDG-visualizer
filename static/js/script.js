@@ -239,7 +239,7 @@
 
             // replacing the name of columns from englisht to albanian language
 			colNames.push(municipalities_data[municipality][language] + " " + year);
-			colNames.push("Kosovë " + year)
+			colNames.push(municipalities_data["Kosovo"][language] + " " + year)
 				
 			for (var cat in data[municipality][year]) {
 				categories.push(data[municipality][year][cat]['label']);
