@@ -486,7 +486,7 @@
         })
 
 		bindSelectBoxOnLabelClick(s_or_d);
-		$(document).on('click', '#close-popup, .close', function(event) {
+		$(document).on('click', '#close-popup, #close', function(event) {
             $('myModal').empty();
 			var s_or_d = $('input[name=toggle]:checked').val();
             $("#s_or_d_percentage").empty();
