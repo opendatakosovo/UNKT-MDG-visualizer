@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3.1
+#!/usr/local/bin/python2.7
 # -*- coding: utf-8 -*-
 import pandas as pd
 import os, shutil
