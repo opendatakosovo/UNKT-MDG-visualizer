@@ -1,11 +1,11 @@
 body {
-  font-family: Eurostile, corbel, sans-serif;
+  font-family: Exo, corbel, sans-serif;
   font-size:  11px;
   padding-right: 0;
 }
 
 @font-face{
-  font-family:"Eurostile";
+  font-family:"Exo";
   src:url("Exo-Regular.otf");
 }
 
@@ -37,7 +37,7 @@ body {
 
 .aster-score { 
   line-height: 0.5;
-  font-family: Eurostile, corbel;
+  font-family: Exo, corbel;
   font-size: 15px;
   font-color: #000000;
 }
