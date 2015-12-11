@@ -28,7 +28,7 @@
 		// Aster Chart Colors
 		var bg_color = "#3D4237",
 		line_color = "#000000"
-		select_color = "#E18239";
+		select_color = "#FFDE3A";
 		
 		// Satisfied/Dissatisfied Colors
         var s_or_d_colors = {
