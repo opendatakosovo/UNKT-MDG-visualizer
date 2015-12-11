@@ -77,12 +77,14 @@ function sortByKey(array, key) {
 }
 
 function slugify(text) {
-  return text.toString().toLowerCase()
-    .replace(/\s+/g, '-')           // Replace spaces with -
-    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-    .replace(/^-+/, '')             // Trim - from start of text
-    .replace(/-+$/, '');            // Trim - from end of text
+	if (text != undefined){
+	  return text.toString().toLowerCase()
+	    .replace(/\s+/g, '-')           // Replace spaces with -
+	    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+	    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+	    .replace(/^-+/, '')             // Trim - from start of text
+	    .replace(/-+$/, '');            // Trim - from end of text
+	}
 }
 
 
@@ -139,7 +141,11 @@ function create(data, div, language, type, s_or_d) {
 	  	path.append("svg:text")
 	    .text(function(d) {
 	    	if (types[type].hasOwnProperty(d.data.label)) {
-	    		return capitalizeFirstLetter(reduceIndicatorsText(types[type][d.data.label][language]));
+	    		if (types[type][d.data.label].hasOwnProperty([language + "_short"])){
+	    			return capitalizeFirstLetter(reduceIndicatorsText(types[type][d.data.label][language + "_short"]));
+	    		} else {
+	    			return capitalizeFirstLetter(reduceIndicatorsText(types[type][d.data.label][language]));
+	    		}
 	    	} else {
 	    		return capitalizeFirstLetter(reduceIndicatorsText(d.data.label));
 	    	}
@@ -154,7 +160,6 @@ function create(data, div, language, type, s_or_d) {
 			return anchor
 	    })
 		.attr("fill", "white")
-		.style("font-family", "tahoma")
 	    // Move to the desired point and set the rotation
 	    .attr("transform", function(d) {
 	            return "translate(" + (outlineArc.centroid(d)) + ")" +

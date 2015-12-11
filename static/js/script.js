@@ -1,4 +1,4 @@
-        
+
         function capitalizeFirstLetter(string) {
             if (string != undefined){
                 return String(string).charAt(0).toUpperCase() + string.slice(1);
@@ -28,7 +28,7 @@
 		// Aster Chart Colors
 		var bg_color = "#3D4237",
 		line_color = "#000000"
-		select_color = "#E18239";
+		select_color = "#FFDE3A";
 		
 		// Satisfied/Dissatisfied Colors
         var s_or_d_colors = {
@@ -61,17 +61,6 @@
             "albanian": "Përqindja e të anketuarve (%)",
             "serbian": "Procenat ispitanika (%)"
         }
-
-    	var satisfaction_json = {
-            "albanian": {
-        		"s": "I kënaqur",
-        		"d": "I pakënaqur"
-            }, 
-            "serbian": {
-                "s": "Zadovoljan",
-                "d": "Nezadovoljan"
-            }
-    	}
 
         String.prototype.capitalize = function() {
             return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
@@ -123,6 +112,12 @@
                     min: 0,
                     max: 100,
                     maxColor: color
+                },
+                chart: {
+                    style: {
+                        fontFamily: 'eurostile',
+                        fontSize: "13px;"
+                    }
                 },
                 plotOptions: {
                     enabled: true,
@@ -178,7 +173,7 @@
                 },
                 tooltip: {
                     backgroundColor: "#FCFFC5",
-                    fontSize: "15px",
+                    fontSize: "17px",
                     valueSuffix: "%"
                 },
 
@@ -195,7 +190,11 @@
                     },
                     dataLabels: {
                         enabled: true,
-                        format: '{point.name}'
+                        format: '{point.name}',
+                        style: {
+                            fontFamily: 'eurostile',
+                            fontSize: "11.5px;"
+                        },
                     }
                 }]
             });
@@ -228,7 +227,7 @@
             $("#s_or_d_percentage_popup").empty();
             $("#s_or_d_percentage_popup").text(s_or_d_percentage[language][s_or_d]);
             changeRadioButtonsColor(s_or_d);
-            var save_selected_indicator = $("#aster-chart-popup").find("path[fill='#e18239']").attr("value");
+            var save_selected_indicator = $("#aster-chart-popup").find("path[fill='#ffde3a']").attr("value");
             var year = $('input[name=years-popup]:checked').val();
             start(muni, "S", aster_div, all_data[s_or_d][year][muni], "label", language, "kosovo-level", s_or_d);
             var indicators_array = []
@@ -339,7 +338,10 @@
 		// Feed Data to Chart
 		$('#' + div).highcharts({
 			chart: {
-				type: 'column'
+				type: 'column',
+                style: {
+                    fontFamily: 'eurostile'
+                }
 			},
 			title: {
 				text: biggest_problems[language]
@@ -391,6 +393,11 @@
 				text: s_or_d_percentage[language][s_or_d] + " - " + capitalizeFirstLetter(indicators_data[indicator][language]),
 				x: -20 //center
 			},
+            chart: {
+                style: {
+                    fontFamily: 'eurostile'
+                }
+            },
 			xAxis: {
 				categories: categories
 			},

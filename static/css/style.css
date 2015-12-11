@@ -1,11 +1,14 @@
 body {
-  font: 12px eurostile;
+  font-family: eurostile, sans-serif;
+  font-size:  12px;
   padding-right: 0;
 }
+
 @font-face{
   font-family:"Eurostile";
-  src:url("http://www.myfontfree.com/data/1/e/eurostile/films.eurostile.ttf");
+  src:url("films.eurostile.ttf");
 }
+
 .axis path,
 .axis line {
   fill: none;
