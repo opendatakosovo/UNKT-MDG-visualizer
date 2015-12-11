@@ -5,15 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Albanian Version -->
+    <!-- English Version -->
     <title>Kosovo Mosaic</title>
 
     <!-- jquery plugin -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" type="text/css" href="static/css/style.css">
-    <link rel="stylesheet" type="text/css" href="static/css/radio-button.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/radio-button.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <!-- Optional theme -->
@@ -23,24 +23,24 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 
-    <script src="data/standard_lists/indicators.js"></script>
-    <script src="data/standard_lists/problems.js"></script>
-    <script src="data/clean_data/satisfied.js"></script>
-    <script src="data/standard_lists/municipalities.js"></script>
-    <script src="data/clean_data/dissatisfied.js"></script>
-    <script src="data/clean_data/problems.js"></script>
+    <script src="../data/standard_lists/indicators.js"></script>
+    <script src="../data/standard_lists/problems.js"></script>
+    <script src="../data/clean_data/satisfied.js"></script>
+    <script src="../data/standard_lists/municipalities.js"></script>
+    <script src="../data/clean_data/dissatisfied.js"></script>
+    <script src="../data/clean_data/problems.js"></script>
 
     <!-- D3 charts -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-	
+    
     <!-- Highcharts map JavaScript -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <!-- <script src="https://code.highcharts.com/maps/modules/exporting.js"></script> -->
     <script src="https://code.highcharts.com/maps/modules/map.js"></script>
     <!-- <script src="https://code.highcharts.com/maps/modules/data.js"></script> -->
-    <script src="static/highcharts/kv-all.js"></script>
+    <script src="../static/highcharts/kv-all.js"></script>
 
     <style type="text/css">
         body {
@@ -59,11 +59,11 @@
             text-align: center;
             color: gray;
         }
-		
-		svg {
-			font-size: 14px;
+        
+        svg {
+            font-size: 14px;
             font-family: eurostile;
-		}
+        }
 
         input[type="radio"].toggle {
             position: absolute;
@@ -118,11 +118,11 @@
 
     <script type="text/javascript">
 
-        window.language = "albanian";
+        window.language = "english";
         
     </script>
 
-    <script type="text/javascript" src="static/js/script.js"></script>
+    <script type="text/javascript" src="../static/js/script.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-inverse">
@@ -138,15 +138,15 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">Vizualizuesi</a></li>
-                    <!-- <li><a href="sq/indicators.html">Treguesit</a></li>
-                    <li><a href="sq/problems.html">Problemet</a></li> -->
+                    <li class="active"><a href="index.html">Visualizer</a></li>
+                    <!-- <li><a href="indicators.html">Indikatori</a></li>
+                    <li><a href="problems.html">Problemi</a></li> -->
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="en/index.html">English</a></li>
-                    <li class="active"><a href="index.html">Shqip</a></li>
-                    <li><a href="sr/index.html">Srpski</a></li>
-                    <li><a id="download-data" href="">Shkarko</a></li>
+                    <li class="active"><a href="index.html">English</a></li>
+                    <li><a href="../index.html">Shqip</a></li>
+                    <li><a href="../sr/index.html">Srpski</a></li>
+                    <li><a id="download-data" href="">Download</a></li>
                 </ul>
             </div> <!-- navbar-collapse -->
         </div> <!-- container-fluid -->
@@ -157,9 +157,9 @@
             </div>
             <div class="col-md-4">
                 <div class="form-inline" style="text-align:center; margin-top:8px;">
-                    <label style="border: 0;">Ju lutemi zgjidhni një opcion: </label>
+                    <label style="border: 0;">Please select an option: </label>
                     <div class="form-group" style="width: 100%; text-align:center;">
-                        <select id="indicator-select" style="width: 100%" class="form-control">
+                        <select id="indicator-select" style="width:100%;" class="form-control">
                         </select><br>
                     </div>
                 </div>
@@ -170,15 +170,15 @@
                 <div class="no-checkedselector" style="text-align:center;">
                     <div class="toggle-container">
                        <input id="toggle-on" class="toggle toggle-left" name="toggle" value="s" type="radio" checked>
-                       <label data-toggle="tooltip" title="Përqindja e qytetarëve të kënaqur dhe shumë të kënaqur" style="font-size: 30px;" for="toggle-on" class="btn">&#128515;</label>
+                       <label data-toggle="tooltip" title="Percentage of citizens satisfied or very satisfied" style="font-size: 30px;" for="toggle-on" class="btn">&#128515;</label>
                        <input id="toggle-off" class="toggle toggle-right" value="d" name="toggle" type="radio">
-                       <label data-toggle="tooltip" title="Përqindja e qytetarëve të pakënaqur dhe shumë të pakënaqur" style="font-size: 30px;" for="toggle-off" class="btn">&#128544;</label>
+                       <label data-toggle="tooltip" title="Percentage of citizens dissatisfied or very dissatisfied" style="font-size: 30px;" for="toggle-off" class="btn">&#128544;</label>
                        <br>
                     </div>
                 </div>
             </div>
             <div class="col-md-4" style="text-align:center; margin-top:8px;">
-                <label style="border: 0;">Ju lutemi zgjidhni vitin: </label>
+                <label style="border: 0;">Please select a year: </label>
                 <div style="display-inline;">
                     <div class="no-checkedselector" style="text-align:center;">
                         <div id="years-radio" class="toggle-container">
@@ -192,21 +192,21 @@
         <div class="row">
             <hr class="style-eight" style="width: 85%" />
             <div class="col-md-6" style="text-align:center;">
-                <label style="border: 0;">Klikoni mbi komunat në hartë per të parë detajet: </label>
+                <label style="border: 0;">Click a municipality on the map below to view the details: </label>
                 <div id="container" style="height:550px;"></div><br><br>
             </div>
             <div class="col-md-6" style="height:500px; text-align:center;">
                 <div class="form-inline">
                     <div class="form-group" style="margin-bottom:15px; ">
-                        <label style="border: 0; width: 130px; text-align:right;">Radhitni sipas: </label>
+                        <label style="border: 0; width: 130px; text-align:right;">Rank by: &nbsp;</label>
                     </div>
                     <div class="form-group">
                         <div class="no-checkedselector" >
                             <div class="toggle-container">
                                 <input class="toggle toggle-left" type="radio" name="ranking-radio" id="municipality" value="municipality" checked>
-                                <label style="" for="municipality" class="btn">Komunave</label>
+                                <label style="font-size:13.5px;" for="municipality" class="btn">Municipalities</label>
                                 <input class="toggle toggle-left" type="radio" name="ranking-radio" id="kosovo-level" value="kosovo-level">
-                                <label style="" for="kosovo-level" class="btn">Treguesve</label>
+                                <label style="" for="kosovo-level" class="btn">Indicators</label>
                                 <br><br>
                             </div>
                         </div>
@@ -224,7 +224,7 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="navbar-collapse modal-header">
-                    <button type="button" class="btn btn-default" id="close" style="float:right" data-dismiss="modal">Mbyll</button>
+                    <button type="button" class="btn btn-default" id="close" style="float:right" data-dismiss="modal">Close</button>
                     <h4 class="modal-title" style="text-align: center"></h4>
                 </div>
                 <div class="modal-body">
@@ -235,15 +235,15 @@
                              <div class="no-checkedselector" style="text-align:center;">
                                 <div class="toggle-container">
                                    <input id="s" class="toggle toggle-left" name="s_or_d" value="s" type="radio" checked>
-                                   <label data-toggle="tooltip" title="Përqindja e qytetarëve të kënaqur dhe shumë të kënaqur" style="font-size: 30px;" for="s" class="btn">&#128515;</label>
+                                   <label data-toggle="tooltip" title="Percentage of citizens satisfied or very satisfied" style="font-size: 30px;" for="s" class="btn">&#128515;</label>
                                    <input id="d" class="toggle toggle-right" value="d" name="s_or_d" type="radio">
-                                   <label data-toggle="tooltip" title="Përqindja e qytetarëve të pakënaqur dhe shumë të pakënaqur" style="font-size: 30px;" for="d" class="btn">&#128544;</label>
+                                   <label data-toggle="tooltip" title="Percentage of citizens dissatisfied or very dissatisfied" style="font-size: 30px;" for="d" class="btn">&#128544;</label>
                                    <br><br>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label style="border: 0;">Ju lutemi zgjidhni vitin: </label>
+                            <label style="border: 0;">Please select a year: </label>
                             <div class="no-checkedselector" style="text-align:center;">
                                 <div class="toggle-container" id="years-popup-div">
                                 </div>
@@ -278,7 +278,7 @@
     </div>
 
     <!-- Aster chart script -->
-    <script src="static/js/draw.js" ></script>
+    <script src="../static/js/draw.js" ></script>
 
 </body>
 </html>

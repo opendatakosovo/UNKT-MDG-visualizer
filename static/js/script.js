@@ -38,7 +38,8 @@
 
         var municipality_profile = {
             "albanian": "Profili i komunës",
-            "serbian": "Profil opštine"
+            "serbian": "Profil opštine",
+            "english": "Municipality profile"
         }
 
         var s_or_d_percentage = {
@@ -49,17 +50,23 @@
             "serbian": {
                 "s": "Nivo zadovoljstva",
                 "d": "Nivo nezadovoljstva"
+            },
+            "english": {
+                "s": "Satisfaction Level",
+                "d": "Dissatisfaction Level"
             }
         }
 
         var biggest_problems = {
             "albanian": "Cilat janë problemet më të mëdha?",
-            "serbian": "Koji su najveći problemi?"
+            "serbian": "Koji su najveći problemi?",
+            "english": "What are the biggest problems?"
         }
 
         var line_chart_json = {
             "albanian": "Përqindja e të anketuarve (%)",
-            "serbian": "Procenat ispitanika (%)"
+            "serbian": "Procenat ispitanika (%)",
+            "english": "Proportion of respondents (%)"
         }
 
         String.prototype.capitalize = function() {
