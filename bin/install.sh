@@ -56,5 +56,5 @@ currentDir=`pwd`
 virtualenvPath='venv/bin/activate'
 source $currentDir/$virtualenvPath 
 
-pip install -r requirements.txt
+pip install -r ./requirements.txt
 echo "Installation complete."
