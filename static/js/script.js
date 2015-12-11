@@ -123,7 +123,7 @@
                 chart: {
                     style: {
                         fontFamily: 'Exo, corbel',
-                        fontSize: "11px;"
+                        fontSize: "10px;"
                     }
                 },
                 plotOptions: {
@@ -200,7 +200,7 @@
                         format: '{point.name}',
                         style: {
                             fontFamily: 'Exo, corbel',
-                            fontSize: "11px;"
+                            fontSize: "10px;"
                         },
                     }
                 }]
