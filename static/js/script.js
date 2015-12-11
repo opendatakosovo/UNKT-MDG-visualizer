@@ -1,4 +1,4 @@
-        
+
         function capitalizeFirstLetter(string) {
             if (string != undefined){
                 return String(string).charAt(0).toUpperCase() + string.slice(1);
@@ -113,6 +113,12 @@
                     max: 100,
                     maxColor: color
                 },
+                chart: {
+                    style: {
+                        fontFamily: 'eurostile',
+                        fontSize: "13px;"
+                    }
+                },
                 plotOptions: {
                     enabled: true,
                     series: {
@@ -167,7 +173,7 @@
                 },
                 tooltip: {
                     backgroundColor: "#FCFFC5",
-                    fontSize: "15px",
+                    fontSize: "17px",
                     valueSuffix: "%"
                 },
 
@@ -184,7 +190,11 @@
                     },
                     dataLabels: {
                         enabled: true,
-                        format: '{point.name}'
+                        format: '{point.name}',
+                        style: {
+                            fontFamily: 'eurostile',
+                            fontSize: "11.5px;"
+                        },
                     }
                 }]
             });
@@ -328,7 +338,10 @@
 		// Feed Data to Chart
 		$('#' + div).highcharts({
 			chart: {
-				type: 'column'
+				type: 'column',
+                style: {
+                    fontFamily: 'eurostile'
+                }
 			},
 			title: {
 				text: biggest_problems[language]
@@ -380,6 +393,11 @@
 				text: s_or_d_percentage[language][s_or_d] + " - " + capitalizeFirstLetter(indicators_data[indicator][language]),
 				x: -20 //center
 			},
+            chart: {
+                style: {
+                    fontFamily: 'eurostile'
+                }
+            },
 			xAxis: {
 				categories: categories
 			},
