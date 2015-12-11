@@ -122,7 +122,7 @@
                 },
                 chart: {
                     style: {
-                        fontFamily: 'eurostile',
+                        fontFamily: 'eurostile, corbel',
                         fontSize: "13px;"
                     }
                 },
@@ -199,7 +199,7 @@
                         enabled: true,
                         format: '{point.name}',
                         style: {
-                            fontFamily: 'eurostile',
+                            fontFamily: 'eurostile, corbel',
                             fontSize: "11.5px;"
                         },
                     }
@@ -347,7 +347,7 @@
 			chart: {
 				type: 'column',
                 style: {
-                    fontFamily: 'eurostile'
+                    fontFamily: 'eurostile, corbel',
                 }
 			},
 			title: {
