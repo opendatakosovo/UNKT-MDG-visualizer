@@ -160,7 +160,6 @@ function create(data, div, language, type, s_or_d) {
 			return anchor
 	    })
 		.attr("fill", "white")
-		.style("font-family", "tahoma")
 	    // Move to the desired point and set the rotation
 	    .attr("transform", function(d) {
 	            return "translate(" + (outlineArc.centroid(d)) + ")" +
