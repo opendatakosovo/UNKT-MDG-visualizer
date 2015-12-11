@@ -322,7 +322,7 @@ function getProblemsData() {return {
                 "value": 2.9000000000000004
             }, 
             {
-                "label": "poorly functioning rubbish collection service ", 
+                "label": "poorly functioning rubbish collection service", 
                 "value": 3.9
             }
         ], 
