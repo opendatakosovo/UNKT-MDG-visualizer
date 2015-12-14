@@ -525,6 +525,7 @@
 			var indicator = $("#indicator-select").val();
 			var ranking_by = $('input[name=ranking-radio]:checked').val();
 			bindIndicatorSelectBox(year, s_or_d);
+            $("#indicator-select").val(indicator);
             if (ranking_by == "municipality") {
 				rankingByMunicipality(year, indicator, muni, aster_div, s_or_d);
             }else {
