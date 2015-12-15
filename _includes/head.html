@@ -1,0 +1,142 @@
+<head>
+    <!-- Encoding -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Kosovo Mosaic Version -->
+    <title>Kosovo Mosaic</title>
+
+    <!-- jquery plugin -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+    <script src="../data/standard_lists/indicators.js"></script>
+    <script src="../data/standard_lists/problems.js"></script>
+    <script src="../data/clean_data/satisfied.js"></script>
+    <script src="../data/standard_lists/municipalities.js"></script>
+    <script src="../data/clean_data/dissatisfied.js"></script>
+    <script src="../data/clean_data/problems.js"></script>
+
+    <!-- D3 charts -->
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+	
+    <!-- Highcharts map JavaScript -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <!-- <script src="https://code.highcharts.com/maps/modules/exporting.js"></script> -->
+    <script src="https://code.highcharts.com/maps/modules/map.js"></script>
+    <!-- <script src="https://code.highcharts.com/maps/modules/data.js"></script> -->
+    <script src="../static/highcharts/kv-all.js"></script>
+    
+    <!-- Facebook Open Graph tags -->
+    <meta property="og:title" content="Kosovo Mosaic Visualizer" />
+    <meta property="og:site_name" content="Kosovo Mosaic Visualizer"/>
+    <meta property="og:image" content="http://assemblio.github.io/kosovo-mosaic-visualizer/static/images/kosovo-mosaic-share-image-1.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://assemblio.github.io/kosovo-mosaic-visualizer/" />
+    <meta property="fb:app_id" content="966242223397117"/>
+    <meta property="og:description" content="The Mosaic Survey has been assessing citizens’ perceptions of public services and local authorities in Kosovo every three years since 2003. It is based on a representative sample of Kosovan population and interviews with individuals aged 18 years and older. " />
+
+    <!-- Twitter card tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@UNDP_Kosovo">
+    <meta name="twitter:description" content="The Mosaic Survey has been assessing citizens’ perceptions of public services and local authorities in Kosovo every three years since 2003. It is based on a representative sample of Kosovan population and intervievallaws with individuals aged 18 years and older. ">
+    <meta name="twitter:title" content="Kosovo Mosaic Visualizer">
+    <meta name="twitter:creator" content="@assemblio">
+    <meta name="twitter:image" content="http://assemblio.github.io/kosovo-mosaic-visualizer/static/images/kosovo-mosaic-share-image-1.png">
+
+    <!-- Google Analytics -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-71331818-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    <style type="text/css">
+        body {
+          font-family: Exo, corbel, sans-serif;
+          font-size:  15px;
+          padding-right: 0;
+        }
+        #container {
+            height: 500px; 
+            min-width: 310px; 
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+        .loading {
+            margin-top: 10em;
+            text-align: center;
+            color: gray;
+        }
+		
+		svg {
+			font-size: 13px;
+            font-family: Exo;
+		}
+
+        input[type="radio"].toggle {
+            position: absolute;
+            left: -99em;
+        }
+
+        input[type="radio"].toggle + label {
+            display:inline-block;
+            text-align:center;
+            padding:3px 0px;
+            width:76px;
+        }
+
+        input[type="radio"].toggle + label:hover {
+            border: 0.5px solid #71CE53;
+        }
+
+        input[type="radio"].toggle-right + label:hover {
+            border: 0.5px solid #FF4949;
+        }
+
+        /*input[type="radio"].toggle:checked + label,*/ input[type="radio"].toggle.checked + label {
+            background-color: #71CE53;
+            color:#333333;
+        }
+        input[type="radio"].toggle-right.checked + label {
+            background-color: #FF4949;
+            color:#333333;
+        }
+
+
+
+        @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+            /* Styles */
+            #aster-chart-popup {
+                margin-left: -5px !important;
+            },
+            .aster-labels {
+                display: none !important;
+            }
+            #line-chart {
+                margin-left: 0;
+            }
+        },
+        .tooltip {
+          z-index: 1151 !important;
+        }
+        .style-eight { padding: 0; border: none; border-top: medium double #333; color: #333; text-align: center; } 
+        .style-eight:after { content: "§"; display: inline-block; position: relative; top: -0.7em; font-size: 1.5em; padding: 0 0.25em; background: white; }
+    </style>
+    <script type="text/javascript" src="../static/js/script.js"></script>
+</head>

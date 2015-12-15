@@ -1,283 +1,160 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- Encoding -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Serbian Version -->
-    <title>Kosovo Mosaic</title>
-
-    <!-- jquery plugin -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/radio-button.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-
-    <script src="../data/standard_lists/indicators.js"></script>
-    <script src="../data/standard_lists/problems.js"></script>
-    <script src="../data/clean_data/satisfied.js"></script>
-    <script src="../data/standard_lists/municipalities.js"></script>
-    <script src="../data/clean_data/dissatisfied.js"></script>
-    <script src="../data/clean_data/problems.js"></script>
-
-    <!-- D3 charts -->
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-    
-    <!-- Highcharts map JavaScript -->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <!-- <script src="https://code.highcharts.com/maps/modules/exporting.js"></script> -->
-    <script src="https://code.highcharts.com/maps/modules/map.js"></script>
-    <!-- <script src="https://code.highcharts.com/maps/modules/data.js"></script> -->
-    <script src="../static/highcharts/kv-all.js"></script>
-
-    <style type="text/css">
-        body {
-          font-family: Exo, corbel, sans-serif;
-          font-size:  15px;
-          padding-right: 0;
-        }
-        #container {
-            height: 500px; 
-            min-width: 310px; 
-            max-width: 800px; 
-            margin: 0 auto; 
-        }
-        .loading {
-            margin-top: 10em;
-            text-align: center;
-            color: gray;
-        }
-        
-        svg {
-            font-size: 13px;
-            font-family: Exo, corbel;
-        }
-
-        input[type="radio"].toggle {
-            position: absolute;
-            left: -99em;
-        }
-
-        input[type="radio"].toggle + label {
-            display:inline-block;
-            text-align:center;
-            padding:3px 0px;
-            width:76px;
-        }
-
-        input[type="radio"].toggle + label:hover {
-            border: 0.5px solid #71CE53;
-        }
-
-        input[type="radio"].toggle-right + label:hover {
-            border: 0.5px solid #FF4949;
-        }
-
-        /*input[type="radio"].toggle:checked + label,*/ input[type="radio"].toggle.checked + label {
-            background-color: #71CE53;
-            color:#333333;
-        }
-        input[type="radio"].toggle-right.checked + label {
-            background-color: #FF4949;
-            color:#333333;
-        }
-
-
-
-        @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-            /* Styles */
-            #aster-chart-popup {
-                margin-left: -5px !important;
-            },
-            .aster-labels {
-                display: none !important;
-            }
-            #line-chart {
-                margin-left: 0;
-            }
-        },
-        .tooltip {
-          z-index: 1151 !important;
-        }
-        .style-eight { padding: 0; border: none; border-top: medium double #333; color: #333; text-align: center; } 
-        .style-eight:after { content: "§"; display: inline-block; position: relative; top: -0.7em; font-size: 1.5em; padding: 0 0.25em; background: white; }
-    </style>
-
-
-    <script type="text/javascript">
-
-        window.language = "serbian";
-        
-    </script>
-
-    <script type="text/javascript" src="../static/js/script.js"></script>
-</head>
-<body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="">Kosovo Mosaic Visualizer</a>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">Visualizer</a></li>
-                    <!-- <li><a href="indicators.html">Indikatori</a></li>
-                    <li><a href="problems.html">Problemi</a></li> -->
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="../en/index.html">English</a></li>
-                    <li><a href="../index.html">Shqip</a></li>
-                    <li class="active"><a href="index.html">Srpski</a></li>
-                    <li><a id="download-data" href="">Preuzimajte</a></li>
-                </ul>
-            </div> <!-- navbar-collapse -->
-        </div> <!-- container-fluid -->
-    </nav>
+---
+layout: default
+---
+<script type="text/javascript">
+    window.language = "serbian";
+</script>
+<script type="text/javascript" src="../static/js/script.js"></script>
+<nav class="navbar navbar-inverse">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-4">
-                <div class="form-inline" style="text-align:center; margin-top:8px;">
-                    <label style="border: 0;">Molimo vas odaberite opciju: </label>
-                    <div class="form-group" style="width: 100%; text-align:center;">
-                        <select id="indicator-select" style="width:100%;" class="form-control">
-                        </select><br>
-                    </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="">Kosovo Mosaic Visualizer</a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">Visualizer</a></li>
+                <!-- <li><a href="indicators.html">Indikatori</a></li>
+                <li><a href="problems.html">Problemi</a></li> -->
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="../en/index.html">English</a></li>
+                <li><a href="../index.html">Shqip</a></li>
+                <li class="active"><a href="index.html">Srpski</a></li>
+                <li><a id="download-data" href="">Preuzimajte</a></li>
+            </ul>
+        </div> <!-- navbar-collapse -->
+    </div> <!-- container-fluid -->
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-4">
+            <div class="form-inline" style="text-align:center; margin-top:8px;">
+                <label style="border: 0;">Molimo vas odaberite opciju: </label>
+                <div class="form-group" style="width: 100%; text-align:center;">
+                    <select id="indicator-select" style="width:100%;" class="form-control">
+                    </select><br>
                 </div>
-            </div>
-            <div class="col-md-2"  style="text-align: center;">
-                <label id="s_or_d_percentage" style="border: 0; font-size:14px; text-align:center;"></label>
-                <br>
-                <div class="no-checkedselector" style="text-align:center;">
-                    <div class="toggle-container">
-                       <input id="toggle-on" class="toggle toggle-left" name="toggle" value="s" type="radio" checked>
-                       <label data-toggle="tooltip" title="Procenat građana koji su zadovoljni i veoma zadovoljni" style="font-size: 30px;" for="toggle-on" class="btn">&#128515;</label>
-                       <input id="toggle-off" class="toggle toggle-right" value="d" name="toggle" type="radio">
-                       <label data-toggle="tooltip" title="Procenat građana koji su nezadovoljni i veoma nezadovoljni" style="font-size: 30px;" for="toggle-off" class="btn">&#128544;</label>
-                       <br>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4" style="text-align:center; margin-top:8px;">
-                <label style="border: 0;">Molimo vas odaberite godinu: </label>
-                <div style="display-inline;">
-                    <div class="no-checkedselector" style="text-align:center;">
-                        <div id="years-radio" class="toggle-container">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-1">
             </div>
         </div>
-        <div class="row">
-            <hr class="style-eight" style="width: 85%" />
-            <div class="col-md-6" style="text-align:center;">
-                <label style="border: 0;">Kliknite na opštinu na karti da biste videli detalje: </label>
-                <div id="container" style="height:550px;"></div><br><br>
-            </div>
-            <div class="col-md-6" style="height:500px; text-align:center;">
-                <div class="form-inline">
-                    <div class="form-group" style="margin-bottom:15px; ">
-                        <label style="border: 0; width: 130px; text-align:right;">Porediti po: </label>
-                    </div>
-                    <div class="form-group">
-                        <div class="no-checkedselector" >
-                            <div class="toggle-container">
-                                <input class="toggle toggle-left" type="radio" name="ranking-radio" id="municipality" value="municipality" checked>
-                                <label style="" for="municipality" class="btn">Opštine</label>
-                                <input class="toggle toggle-left" type="radio" name="ranking-radio" id="kosovo-level" value="kosovo-level">
-                                <label style="" for="kosovo-level" class="btn">Indikatori</label>
-                                <br><br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="aster-chart" style="width:100%; text-align: center;">
+        <div class="col-md-2"  style="text-align: center;">
+            <label id="s_or_d_percentage" style="border: 0; font-size:14px; text-align:center;"></label>
+            <br>
+            <div class="no-checkedselector" style="text-align:center;">
+                <div class="toggle-container">
+                   <input id="toggle-on" class="toggle toggle-left" name="toggle" value="s" type="radio" checked>
+                   <label data-toggle="tooltip" title="Procenat građana koji su zadovoljni i veoma zadovoljni" style="font-size: 30px;" for="toggle-on" class="btn">&#128515;</label>
+                   <input id="toggle-off" class="toggle toggle-right" value="d" name="toggle" type="radio">
+                   <label data-toggle="tooltip" title="Procenat građana koji su nezadovoljni i veoma nezadovoljni" style="font-size: 30px;" for="toggle-off" class="btn">&#128544;</label>
+                   <br>
                 </div>
             </div>
+        </div>
+        <div class="col-md-4" style="text-align:center; margin-top:8px;">
+            <label style="border: 0;">Molimo vas odaberite godinu: </label>
+            <div style="display-inline;">
+                <div class="no-checkedselector" style="text-align:center;">
+                    <div id="years-radio" class="toggle-container">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1">
         </div>
     </div>
-    <button id="popup-button" type="button" class="btn btn-info btn-lg" data-toggle="modal" style="display:none;" data-target="#myModal">Open Modal</button>
-    <!-- Modal -->
-    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="myModal" role="dialog">
-        <div class="modal-dialog" style="width:95%;">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="navbar-collapse modal-header">
-                    <button type="button" class="btn btn-default" id="close" style="float:right" data-dismiss="modal">Zatvori</button>
-                    <h4 class="modal-title" style="text-align: center"></h4>
+    <div class="row">
+        <hr class="style-eight" style="width: 85%" />
+        <div class="col-md-6" style="text-align:center;">
+            <label style="border: 0;">Kliknite na opštinu na karti da biste videli detalje: </label>
+            <div id="container" style="height:550px;"></div><br><br>
+        </div>
+        <div class="col-md-6" style="height:500px; text-align:center;">
+            <div class="form-inline">
+                <div class="form-group" style="margin-bottom:15px; ">
+                    <label style="border: 0; width: 130px; text-align:right;">Porediti po: </label>
                 </div>
-                <div class="modal-body">
-                    <div class="row" style="text-align: center;">
-                        <div class="col-md-6">
-                            <label id="s_or_d_percentage_popup" style="border: 0; font-size:14px; text-align:center;"></label>
-                            <br>
-                             <div class="no-checkedselector" style="text-align:center;">
-                                <div class="toggle-container">
-                                   <input id="s" class="toggle toggle-left" name="s_or_d" value="s" type="radio" checked>
-                                   <label data-toggle="tooltip" title="Procenat građana koji su zadovoljni i veoma zadovoljni" style="font-size: 30px;" for="s" class="btn">&#128515;</label>
-                                   <input id="d" class="toggle toggle-right" value="d" name="s_or_d" type="radio">
-                                   <label data-toggle="tooltip" title="Procenat građana koji su nezadovoljni i veoma nezadovoljni" style="font-size: 30px;" for="d" class="btn">&#128544;</label>
-                                   <br><br>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label style="border: 0;">Molimo vas odaberite godinu: </label>
-                            <div class="no-checkedselector" style="text-align:center;">
-                                <div class="toggle-container" id="years-popup-div">
-                                </div>
-                            </div>
+                <div class="form-group">
+                    <div class="no-checkedselector" >
+                        <div class="toggle-container">
+                            <input class="toggle toggle-left" type="radio" name="ranking-radio" id="municipality" value="municipality" checked>
+                            <label style="" for="municipality" class="btn">Opštine</label>
+                            <input class="toggle toggle-left" type="radio" name="ranking-radio" id="kosovo-level" value="kosovo-level">
+                            <label style="" for="kosovo-level" class="btn">Indikatori</label>
                             <br><br>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6" style="text-align: center;">
-                            <br><br><br>
-                            <div id="aster-chart-popup" style="min-width: 310px; width:330; text-align: center;">
-                            </div>
-                            <h3 id="no-data" style="color: red; text-align:center; display:none; ">There's no data available</h3><br><br><br><br>
-                        </div>
-                        <div class="col-md-6" style="margin: auto;" >
-                            <div class="row" style="margin: auto;">
-                                <div id="column-chart" style="margin: auto; min-width: 310px; max-width: 500px; width: 100%; height: 300px;"></div>
-                            </div>
-                            <hr class="style-eight" style="margin: auto; width: 80%" /><br>
-                            <div class="row" style="margin: auto;">
-                                <div id="line-chart" style="margin: auto; min-width: 310px; max-width: 500px; width: 100%; height: 300px;"></div>
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
                 </div>
-                <div class="modal-footer" style="text-align:center;">
-                    <h4>Kosovo Mosaic Visualizer</h4>
-                </div>
+            </div>
+            <div id="aster-chart" style="width:100%; text-align: center;">
             </div>
         </div>
     </div>
-
-    <!-- Aster chart script -->
-    <script src="../static/js/draw.js" ></script>
-
-</body>
-</html>
+</div>
+<button id="popup-button" type="button" class="btn btn-info btn-lg" data-toggle="modal" style="display:none;" data-target="#myModal">Open Modal</button>
+<!-- Modal -->
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="myModal" role="dialog">
+    <div class="modal-dialog" style="width:95%;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="navbar-collapse modal-header">
+                <button type="button" class="btn btn-default" id="close" style="float:right" data-dismiss="modal">Zatvori</button>
+                <h4 class="modal-title" style="text-align: center"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="text-align: center;">
+                    <div class="col-md-6">
+                        <label id="s_or_d_percentage_popup" style="border: 0; font-size:14px; text-align:center;"></label>
+                        <br>
+                         <div class="no-checkedselector" style="text-align:center;">
+                            <div class="toggle-container">
+                               <input id="s" class="toggle toggle-left" name="s_or_d" value="s" type="radio" checked>
+                               <label data-toggle="tooltip" title="Procenat građana koji su zadovoljni i veoma zadovoljni" style="font-size: 30px;" for="s" class="btn">&#128515;</label>
+                               <input id="d" class="toggle toggle-right" value="d" name="s_or_d" type="radio">
+                               <label data-toggle="tooltip" title="Procenat građana koji su nezadovoljni i veoma nezadovoljni" style="font-size: 30px;" for="d" class="btn">&#128544;</label>
+                               <br><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label style="border: 0;">Molimo vas odaberite godinu: </label>
+                        <div class="no-checkedselector" style="text-align:center;">
+                            <div class="toggle-container" id="years-popup-div">
+                            </div>
+                        </div>
+                        <br><br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" style="text-align: center;">
+                        <br><br><br>
+                        <div id="aster-chart-popup" style="min-width: 310px; width:330; text-align: center;">
+                        </div>
+                        <h3 id="no-data" style="color: red; text-align:center; display:none; ">There's no data available</h3><br><br><br><br>
+                    </div>
+                    <div class="col-md-6" style="margin: auto;" >
+                        <div class="row" style="margin: auto;">
+                            <div id="column-chart" style="margin: auto; min-width: 310px; max-width: 500px; width: 100%; height: 300px;"></div>
+                        </div>
+                        <hr class="style-eight" style="margin: auto; width: 80%" /><br>
+                        <div class="row" style="margin: auto;">
+                            <div id="line-chart" style="margin: auto; min-width: 310px; max-width: 500px; width: 100%; height: 300px;"></div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="text-align:center;">
+                <h4>Kosovo Mosaic Visualizer</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Aster chart script -->
+<script src="../static/js/draw.js" ></script>
