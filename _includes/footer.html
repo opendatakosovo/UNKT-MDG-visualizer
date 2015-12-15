@@ -1,4 +1,35 @@
 <!-- Footer -->
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<style type="text/css">
+    .share-btn {
+        display: inline-block;
+        border-radius: 5px;
+        color: #ffffff;
+        border: none;
+        padding: 0.5em;
+        width: 4em;
+        opacity: 0.9;
+        box-shadow: 0 2px 0 0 rgba(0,0,0,0.2);
+        outline: none;
+        text-align: center;
+    }
+    .share-btn:hover {
+      color: #eeeeee;
+    }
+    .share-btn:active {
+      position: relative;
+      top: 2px;
+      box-shadow: none;
+      color: #e2e2e2;
+      outline: none;
+    }
+    .share-btn.twitter { background: #55acee; }
+    .share-btn.google-plus { background: #dd4b39; }
+    .share-btn.facebook { background: #3B5998; }
+    .share-btn.linkedin { background: #4875B4; }
+    .share-btn.instagram { background: #C8C1AF; }
+    .share-btn.youtube { background: #E62117; }
+</style>
 <footer class="text-center navbar-header" style="width:100%; background-color:#363636; color: #FFF;">
     <div class="navbar" style="">
         <div class="container">
@@ -8,21 +39,36 @@
                     <p>The Mosaic Survey has been assessing citizens’ perceptions of public services and local authorities in Kosovo every three years since 2003. It is based on a representative sample of Kosovan population and interviews with individuals aged 18 years and older.</p>
                 </div>
                 <div class="footer-col col-md-4">
-                    <h4>Contact</h4>
-                    <ul class="list-inline">
-                        <li>
-                            <a href="https://www.facebook.com/UNDP.Kosovo" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="https://twitter.com/UNDP_Kosovo" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="http://www.ks.undp.org/content/kosovo/en/home.html" class="btn-social btn-outline"><i class="fa fa-fw fa-globe"></i></a>
-                        </li>
-                    </ul>
+                    <br>
+                    <h4>Follow us</h4>
+                    <!-- Twitter -->
+                    <a href="https://twitter.com/UNDP_Kosovo" target="_blank" class="share-btn twitter">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+
+                    <!-- Youtube -->
+                    <a href="http://www.youtube.com/user/undp?sub_confirmation=1" target="_blank" class="share-btn youtube">
+                        <i class="fa fa-youtube-play"></i>
+                    </a>
+
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/UNDP.Kosovo" target="_blank" class="share-btn facebook">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+
+                    <!-- LinkedIn -->
+                    <a href="http://www.linkedin.com/company/undp" target="_blank" class="share-btn linkedin">
+                        <i class="fa fa-linkedin"></i>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a href="http://instagram.com/undp_" target="_blank" class="share-btn instagram">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                    <br><br>
                 </div>
                 <div class="footer-col col-md-4">
-                    <h4>UNDP Kosovo</h4>
+                    <!-- <h4>UNDP Kosovo</h4> -->
                     <div class="row">
                         <!-- <div class="col-xs-6">
                             <a href="http://opendatakosovo.org/" target="_blank"><img src="static/images/open-data-kosovo-logo.png" alt="" class="partner-img img-responsive"></a>
