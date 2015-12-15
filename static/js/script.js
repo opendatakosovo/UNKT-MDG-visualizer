@@ -494,6 +494,16 @@ function buildLandingPageYearsRadioButtons (s_or_d) {
 }
 
 $(document).ready(function(){
+    $("#column-chart-div").empty();
+    $("#line-chart-div").empty();
+    if (screen_resolution < 480){
+        $("#column-chart-div").append("<div id='column-chart' style='margin: auto; width: 320px; height: 350px;'></div>");
+        $("#line-chart-div").append("<div id='line-chart' style='margin: auto; width: 320px; height: 350px;'></div>");
+    } else {
+        $("#column-chart-div").append("<div id='column-chart' style='margin: auto; min-width: 310px; max-width: 550px; width: 100%; height: 300px;'></div>");
+        $("#line-chart-div").append("<div id='line-chart' style='margin: auto; min-width: 310px; max-width: 550px; width: 100%; height: 300px;'></div>");
+    }
+    
     $('body').css('padding-right', '0');
     var ranking = $('input[name=ranking-radio]:checked').val();
 	window.s_or_d = $('input[name=toggle]:checked').val();
