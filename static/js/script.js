@@ -504,6 +504,8 @@ $(document).ready(function(){
         $("#column-chart-div").append("<div id='column-chart' style='margin: auto; min-width: 310px; max-width: 550px; width: 100%; height: 300px;'></div>");
         $("#line-chart-div").append("<div id='line-chart' style='margin: auto; min-width: 310px; max-width: 550px; width: 100%; height: 300px;'></div>");
     } else {
+        $("#column-chart-div").append("<div id='column-chart' style='margin: auto; min-width: 310px; max-width: 550px; width: 100%; height: 300px;'></div>");
+        $("#line-chart-div").append("<div id='line-chart' style='margin: auto; min-width: 310px; max-width: 550px; width: 100%; height: 300px;'></div>");
         $("#line-breaks").empty();
     }
     
