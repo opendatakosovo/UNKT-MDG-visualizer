@@ -137,7 +137,7 @@ function create(data, div, language, type, s_or_d) {
     .each(stash);
 
   	// Append Text Labels 
-  	if (screen_resolution >= 480){
+  	if (screen_resolution > 480){
 	  	path.append("svg:text")
 	    .text(function(d) {
 	    	if (types[type].hasOwnProperty(d.data.label)) {

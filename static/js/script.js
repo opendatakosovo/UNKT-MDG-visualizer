@@ -496,12 +496,15 @@ function buildLandingPageYearsRadioButtons (s_or_d) {
 $(document).ready(function(){
     $("#column-chart-div").empty();
     $("#line-chart-div").empty();
-    if (screen_resolution < 480){
+    if (screen_resolution <= 480){
         $("#column-chart-div").append("<div id='column-chart' style='margin: auto; width: 320px; height: 350px;'></div>");
         $("#line-chart-div").append("<div id='line-chart' style='margin: auto; width: 320px; height: 350px;'></div>");
-    } else {
+        $("#line-breaks").empty();
+    } else if (screen_resolution > 480 && screen_resolution < 1200) {
         $("#column-chart-div").append("<div id='column-chart' style='margin: auto; min-width: 310px; max-width: 550px; width: 100%; height: 300px;'></div>");
         $("#line-chart-div").append("<div id='line-chart' style='margin: auto; min-width: 310px; max-width: 550px; width: 100%; height: 300px;'></div>");
+    } else {
+        $("#line-breaks").empty();
     }
     
     $('body').css('padding-right', '0');
