@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
-	{% include head.html %}
+	{% include head.html language=page.language %}
 	<body>
-		<div class="container-fluid" style="padding:0">
+		<div class="container-fluid">
+			{% include navbar.html language=page.language %}
 			{{ content }}
-		</div>
-		<div style="width:100%">
 			{% include footer.html %}
 		</div>
 	</body>
