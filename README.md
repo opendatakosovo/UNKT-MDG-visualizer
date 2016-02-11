@@ -1,7 +1,5 @@
-#Kosovo Mosaic Visualizer#
-A visualizer that displays data collected as part of the Kosovo Mosaic project. 
+#UNKT MDG Visualizer#
+A visualizer that displays data collected to assess the progress of Kosovo against the Millenium Development Goals (MDGs). 
 
-The visualization can be viewed [here](http://assemblio.github.io/kosovo-mosaic-visualizer/).
+The visualization can be viewed [here](http://opendatakosovo.github.io/UNKT-MDG-visualizer/).
 
-###Updating###
-To update the visualization with new data, you will need to follow the steps outlined in the [documentation](https://github.com/assemblio/kosovo-mosaic-visualizer/tree/master/documentation).
