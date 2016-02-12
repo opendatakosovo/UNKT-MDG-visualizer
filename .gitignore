@@ -4,7 +4,7 @@ _site/
 *.xlsx#
 
 # Project Specific
-data/raw_data/archive
+data/raw
 
 .idea
 
