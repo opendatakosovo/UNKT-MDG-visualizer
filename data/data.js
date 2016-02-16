@@ -366,13 +366,6 @@ function getData() {return {
             "2013": 1, 
             "2014": 1
         }, 
-        "AIDS/HIV": {
-            "2010": 3, 
-            "2011": 8, 
-            "2012": 4, 
-            "2013": 3, 
-            "2014": 7
-        }, 
         "HIV": {
             "2010": 0, 
             "2011": 1, 
@@ -526,9 +519,9 @@ function getData() {return {
             "5_3": "#80CED7", 
             "6_1": "#BEBBBB", 
             "6_2": NaN, 
-            "7_1": "#412B2B", 
-            "7_2": "#000B28", 
-            "7_3": NaN, 
+            "7_1": "#443850", 
+            "7_2": "#F2F7F2", 
+            "7_3": "#F2F7F2", 
             "8_1": "#313930", 
             "8_2": "#313930"
         }, 
@@ -549,7 +542,7 @@ function getData() {return {
             "6_1": "#444054", 
             "6_2": NaN, 
             "7_1": NaN, 
-            "7_2": "#C69FB1", 
+            "7_2": "#443850", 
             "7_3": NaN, 
             "8_1": NaN, 
             "8_2": NaN
@@ -658,7 +651,7 @@ function getData() {return {
             "5_3": "% of respondents", 
             "6_1": "Number of cases", 
             "6_2": NaN, 
-            "7_1": "Area in hectares", 
+            "7_1": "Cumulative Area in hectares", 
             "7_2": "% of total", 
             "7_3": "Number of cases", 
             "8_1": "%  of households with access", 
