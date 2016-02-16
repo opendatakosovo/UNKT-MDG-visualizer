@@ -1,18 +1,11 @@
 var screen_resolution = window.screen.availWidth;
 var allData = getData();
-var colors = {	MDG1:'#FCDB32',
-				MDG2:'#D6DD3A',
-				MDG3:'#F3941D',
-				MDG4:'#C7EBFC',
-				MDG5:'#F6C2DA',
-				MDG6:'#EE5B45',
-				MDG7:'#8CC449',
-				MDG8:'#29B1E6'
-			};
+var lineColor = '#000000'
 
 function drawLineChart(div, tab){
 	var chartTitle = allData['meta']['chart_title'][tab];
 	var yAxis = allData['meta']['y_axis'][tab];
+	var background = allData['meta']['bg_color'][tab];
 	var rounding = '';
 	var legend = false;
 	
@@ -28,30 +21,29 @@ function drawLineChart(div, tab){
 		rounding = 1;
 	}
 	
-	// Get background color
-	var color_key = 'MDG'
-	color_key = color_key.concat(tab.substring(0, 1));
-	var background = colors[color_key];
-	
 	// Get values for charts
 	var data = [];
-	var i = 1
+	var lineColors = [];
+	var i = 1;
+	
 	for (keyOne in allData[tab]){
 		var entry = {};
 		var values = [];
+		var colName = 'line_color_';
 		var seriesName = keyOne;
 		var indices = allData[tab][keyOne];
 		var xAxis = [];
+		colName = colName.concat(i);
 		
 		for (keyTwo in indices){
-			value = Number(Number(allData[tab][keyOne][keyTwo]).toFixed(rounding));
-			
+			value = Number(Number(allData[tab][keyOne][keyTwo]).toFixed(rounding));	
 			values.push(value);
 			xAxis.push(keyTwo);
 		}
 		
 		entry['name'] = seriesName;
 		entry['data'] = values;
+		entry['color'] = allData['meta'][colName][tab];
 		data.push(entry);
 		
 		// Check if Legend is needed (i.e. there is more than 1 series)
@@ -73,16 +65,32 @@ function drawLineChart(div, tab){
             }
         },
 		xAxis: {
-			categories: xAxis // list of index values
+			lineColor: lineColor,
+			tickColor: lineColor,
+			categories: xAxis, // list of index values
+			labels: {
+				style: {
+					color: lineColor
+				}
+			}
 		},
 		yAxis: {
 			title: {
-				text: yAxis
+				text: yAxis,
+				style: {
+					color: lineColor
+				}
 			},
+			labels: {
+				style: {
+					color: lineColor
+				}
+			},
+			gridLineColor: lineColor,
+			gridLineDashStyle: 'ShortDot',
 			plotLines: [{
 				value: 0,
 				width: 1,
-				color: '#000000' // line colors
 			}]
 		},
 		tooltip: {
@@ -111,13 +119,37 @@ $(document).ready(function(){
 		$("#line-chart-div6").append("<div id='line-chart6' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
 		$("#line-chart-div7").append("<div id='line-chart7' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
 		$("#line-chart-div8").append("<div id='line-chart8' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
+		$("#line-chart-div9").append("<div id='line-chart9' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
+		$("#line-chart-div10").append("<div id='line-chart10' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
+		$("#line-chart-div11").append("<div id='line-chart11' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
+		$("#line-chart-div12").append("<div id='line-chart12' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
+		$("#line-chart-div13").append("<div id='line-chart13' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
+		$("#line-chart-div14").append("<div id='line-chart14' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
+		$("#line-chart-div15").append("<div id='line-chart15' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
+		$("#line-chart-div16").append("<div id='line-chart16' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
+		$("#line-chart-div17").append("<div id='line-chart17' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
+		$("#line-chart-div18").append("<div id='line-chart18' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
+		$("#line-chart-div19").append("<div id='line-chart19' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
     }
-	drawLineChart("line-chart1", '1_2');
-	drawLineChart("line-chart2", '2_2');
-	drawLineChart("line-chart3", '3_2');
-	drawLineChart("line-chart4", '4_2');
-	drawLineChart("line-chart5", '5_2');
-	drawLineChart("line-chart6", '6_1');
-	drawLineChart("line-chart7", '7_2');
-	drawLineChart("line-chart8", '8_2');
+	
+	// Draw Charts
+	drawLineChart('line-chart1', '1_1');
+	drawLineChart('line-chart2', '1_2');
+	drawLineChart('line-chart3', '1_3');
+	drawLineChart('line-chart4', '2_1');
+	drawLineChart('line-chart5', '2_2');
+	drawLineChart('line-chart6', '3_1');
+	drawLineChart('line-chart7', '3_2');
+	drawLineChart('line-chart8', '3_3');
+	drawLineChart('line-chart9', '4_1');
+	drawLineChart('line-chart10', '4_2');
+	drawLineChart('line-chart11', '5_1');
+	drawLineChart('line-chart12', '5_2');
+	drawLineChart('line-chart13', '5_3');
+	drawLineChart('line-chart14', '6_1');
+	drawLineChart('line-chart15', '7_1');
+	drawLineChart('line-chart16', '7_2');
+	drawLineChart('line-chart17', '7_3');
+	drawLineChart('line-chart18', '8_1');
+	drawLineChart('line-chart19', '8_2');
 })
