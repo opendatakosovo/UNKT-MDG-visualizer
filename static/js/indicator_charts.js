@@ -1,6 +1,7 @@
 var screen_resolution = window.screen.availWidth;
 var allData = getData();
 var lineColor = '#000000'
+var font = 'Helvetica'
 
 function drawLineChart(div, tab){
 	var chartTitle = allData['meta']['chart_title'][tab];
@@ -61,7 +62,7 @@ function drawLineChart(div, tab){
         chart: {
 			backgroundColor: background, // Background color
             style: {
-                fontFamily: 'Eurostile'
+                fontFamily: font
             }
         },
 		xAxis: {
@@ -170,7 +171,7 @@ function drawBarChart(div, tab, stacked){
 			type: 'column',
 			backgroundColor: background, // Background color
             style: {
-                fontFamily: 'Eurostile'
+                fontFamily: font
             }
 		},
 		plotOptions: {
@@ -233,6 +234,7 @@ $(document).ready(function(){
 		$("#line-chart-div6").append("<div id='line-chart6' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
 		$("#line-chart-div7").append("<div id='line-chart7' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
 		$("#line-chart-div8").append("<div id='line-chart8' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
+		$("#bar-chart-div5").append("<div id='bar-chart5' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
 		$("#line-chart-div9").append("<div id='line-chart9' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
 		$("#line-chart-div10").append("<div id='line-chart10' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
 		$("#line-chart-div11").append("<div id='line-chart11' style='margin: auto; min-width: 310px; max-width: 800px; width: 100%; height: 400px;'></div>");
@@ -255,6 +257,7 @@ $(document).ready(function(){
 	drawLineChart('line-chart6', '3_1');
 	drawLineChart('line-chart7', '3_2');
 	drawLineChart('line-chart8', '3_3');
+	drawBarChart('bar-chart5', '3_4', true);
 	drawLineChart('line-chart9', '4_1');
 	drawLineChart('line-chart10', '4_2');
 	drawLineChart('line-chart11', '5_1');
