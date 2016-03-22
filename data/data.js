@@ -390,7 +390,6 @@ function getData() {return {
             "2014": 6
         }
     }, 
-    "6_2": {}, 
     "7_1": {
         "Area": {
             "2004": 18, 
@@ -456,24 +455,6 @@ function getData() {return {
             "2014": 84.0
         }
     }, 
-    "8_2": {
-        "Use of IMF credit (DOD, current US$)": {
-            "2001": 69583000, 
-            "2002": 75274000, 
-            "2003": 82276000, 
-            "2004": 85988000, 
-            "2005": 79136000, 
-            "2006": 83296000, 
-            "2007": 87496000, 
-            "2008": 85282000, 
-            "2009": 86801000, 
-            "2010": 114160000, 
-            "2011": 113807000, 
-            "2012": 234141000, 
-            "2013": 230999000, 
-            "2014": 203731000
-        }
-    }, 
     "meta": {
         "bg_color": {
             "1_1": "#FCDB32", 
@@ -491,12 +472,10 @@ function getData() {return {
             "5_2": "#F6C2DA", 
             "5_3": "#F6C2DA", 
             "6_1": "#EE5B45", 
-            "6_2": "#EE5B45", 
             "7_1": "#8CC449", 
             "7_2": "#8CC449", 
             "7_3": "#8CC449", 
-            "8_1": "#29B1E6", 
-            "8_2": "#29B1E6"
+            "8_1": "#29B1E6"
         }, 
         "chart_title": {
             "1_1": "Poverty Headcount Ratio at National Poverty Lines", 
@@ -514,12 +493,10 @@ function getData() {return {
             "5_2": "Aware of Modern Contraception", 
             "5_3": "Using Modern Contraception", 
             "6_1": "Prevalence of HIV/AIDS", 
-            "6_2": NaN, 
             "7_1": "Afforested Area", 
             "7_2": "Renewable Energy", 
             "7_3": "Biodiversity Numbers", 
-            "8_1": "Internet Penetration", 
-            "8_2": "Use of IMF credit"
+            "8_1": "Internet Penetration"
         }, 
         "line_color_1": {
             "1_1": "#191500", 
@@ -537,12 +514,10 @@ function getData() {return {
             "5_2": "#80CED7", 
             "5_3": "#80CED7", 
             "6_1": "#BEBBBB", 
-            "6_2": NaN, 
             "7_1": "#443850", 
             "7_2": "#F2F7F2", 
             "7_3": "#F2F7F2", 
-            "8_1": "#313930", 
-            "8_2": "#313930"
+            "8_1": "#313930"
         }, 
         "line_color_2": {
             "1_1": NaN, 
@@ -560,12 +535,10 @@ function getData() {return {
             "5_2": "#263D42", 
             "5_3": "#263D42", 
             "6_1": "#444054", 
-            "6_2": NaN, 
             "7_1": NaN, 
             "7_2": "#443850", 
             "7_3": NaN, 
-            "8_1": NaN, 
-            "8_2": NaN
+            "8_1": NaN
         }, 
         "line_color_3": {
             "1_1": NaN, 
@@ -583,12 +556,10 @@ function getData() {return {
             "5_2": NaN, 
             "5_3": NaN, 
             "6_1": "#2F243A", 
-            "6_2": NaN, 
             "7_1": NaN, 
             "7_2": NaN, 
             "7_3": NaN, 
-            "8_1": NaN, 
-            "8_2": NaN
+            "8_1": NaN
         }, 
         "line_color_4": {
             "1_1": NaN, 
@@ -606,12 +577,10 @@ function getData() {return {
             "5_2": NaN, 
             "5_3": NaN, 
             "6_1": NaN, 
-            "6_2": NaN, 
             "7_1": NaN, 
             "7_2": NaN, 
             "7_3": NaN, 
-            "8_1": NaN, 
-            "8_2": NaN
+            "8_1": NaN
         }, 
         "prefix": {
             "1_1": "_", 
@@ -629,12 +598,10 @@ function getData() {return {
             "5_2": "_", 
             "5_3": "_", 
             "6_1": "_", 
-            "6_2": "_", 
             "7_1": "_", 
             "7_2": "_", 
             "7_3": "_", 
-            "8_1": "_", 
-            "8_2": "US$"
+            "8_1": "_"
         }, 
         "suffix": {
             "1_1": "%", 
@@ -652,12 +619,10 @@ function getData() {return {
             "5_2": "%", 
             "5_3": "%", 
             "6_1": "_", 
-            "6_2": "_", 
             "7_1": " ha", 
             "7_2": "%", 
             "7_3": "_", 
-            "8_1": "%", 
-            "8_2": "_"
+            "8_1": "%"
         }, 
         "y_axis": {
             "1_1": "% of the population", 
@@ -675,12 +640,10 @@ function getData() {return {
             "5_2": "% of respondents", 
             "5_3": "% of respondents", 
             "6_1": "Number of cases", 
-            "6_2": NaN, 
             "7_1": "Cumulative Area in hectares (ha)", 
             "7_2": "% of total", 
             "7_3": "Number of cases", 
-            "8_1": "%  of households with access", 
-            "8_2": "DOD, current US$"
+            "8_1": "%  of households with access"
         }
     }
 }}
