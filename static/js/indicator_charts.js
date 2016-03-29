@@ -7,7 +7,7 @@ function drawLineChart(div, tab){
 	var chartTitle = allData['meta']['chart_title'][tab];
 	var yAxis = allData['meta']['y_axis'][tab];
 	var background = allData['meta']['bg_color'][tab];
-	var rounding = '';
+	var rounding = allData['meta']['rounding'][tab];
 	var legend = false;
 	
 	// Get Suffixes and Prefixes
@@ -18,8 +18,6 @@ function drawLineChart(div, tab){
 	}
 	if (suffix == '_'){
 		suffix = '';
-	} else if (suffix = '%'){
-		rounding = 1;
 	}
 	
 	// Get values for charts
@@ -125,7 +123,7 @@ function drawBarChart(div, tab, stacked){
 	var chartTitle = allData['meta']['chart_title'][tab];
 	var yAxis = allData['meta']['y_axis'][tab];
 	var background = allData['meta']['bg_color'][tab];
-	var rounding = '';
+	var rounding = allData['meta']['rounding'][tab];
 	var legend = false;
 	
 	// Get Suffixes and Prefixes
@@ -136,8 +134,6 @@ function drawBarChart(div, tab, stacked){
 	}
 	if (suffix == '_'){
 		suffix = '';
-	} else if (suffix == '%'){
-		rounding = 1;
 	}
 	
 	// Determine if columns are stacked
