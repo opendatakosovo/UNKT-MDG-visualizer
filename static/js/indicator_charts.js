@@ -36,12 +36,28 @@ function drawLineChart(div, tab){
 		var xAxis = [];
 		colName = colName.concat(i);
 		
-		for (keyTwo in indices){
-			value = Number(Number(allData[tab][keyOne][keyTwo]).toFixed(rounding));	
+		// Ensure keys are sorted correctly
+	    var keys = [];
+	    var k, j, len;
+
+	  	for (k in indices) {
+	    	if (indices.hasOwnProperty(k)) {
+				keys.push(k);
+	    	}
+		}
+			
+		keys.sort();
+		len = keys.length;
+		
+		// Cycle through keys in order
+		for (j = 0; j < len; j++) {
+		  	k = keys[j];
+			value = Number(Number(indices[k]).toFixed(rounding));	
 			values.push(value);
-			xAxis.push(keyTwo);
+			xAxis.push(k);
 		}
 		
+		// Get meta data
 		entry['name'] = seriesName;
 		entry['data'] = values;
 		entry['color'] = allData['meta'][colName][tab];
@@ -53,7 +69,7 @@ function drawLineChart(div, tab){
 		}
 		i = i + 1;
 	}
-
+	
 	$('#' + div).highcharts({
 		title: {
 			text: chartTitle, // Chart text from meta data
@@ -144,10 +160,25 @@ function drawBarChart(div, tab, stacked){
 		var xAxis = [];
 		colName = colName.concat(i);
 		
-		for (keyTwo in indices){
-			value = Number(Number(allData[tab][keyOne][keyTwo]).toFixed(rounding));	
+		// Ensure keys are sorted correctly
+	    var keys = [];
+	    var k, j, len;
+
+	  	for (k in indices) {
+	    	if (indices.hasOwnProperty(k)) {
+				keys.push(k);
+	    	}
+		}
+			
+		keys.sort();
+		len = keys.length;
+		
+		// Cycle through keys in order
+		for (j = 0; j < len; j++) {
+		  	k = keys[j];
+			value = Number(Number(indices[k]).toFixed(rounding));	
 			values.push(value);
-			xAxis.push(keyTwo);
+			xAxis.push(k);
 		}
 		
 		entry['name'] = seriesName;
